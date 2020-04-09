@@ -71,3 +71,9 @@ footer a:link, footer a:visited, footer a:active {
 footer a:hover {
     color: rgba(173, 173, 173, 0.527);
 }
+
+@media only screen and (max-height: 768px) {
+    img {
+        width: 450px;
+    }
+}
