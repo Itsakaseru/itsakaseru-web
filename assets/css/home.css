@@ -29,6 +29,10 @@ a, a:link, a:visited, a:hover, a:active {
     font-size: 36px;
 }
 
+#title a, a:link, a:visited, a:hover, a:active {
+    color: #524C46;
+}
+
 #top-interface {
     padding: 30px;
 }
@@ -76,14 +80,23 @@ a, a:link, a:visited, a:hover, a:active {
     color: white;
 }
 
+img {
+    position: absolute;
+    top: 43%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+img {
+    width: 30%;
+    border-radius: 50%;
+    border: 3px solid #707070;
+}
+
 /*
     Coloring Grid
 */
 
-#top-interface #title {
+#profile-image {
     background: rgb(255, 179, 135);
-}
-
-#top-interface .col-3 {
-    background: rgb(156, 243, 255);
 }
