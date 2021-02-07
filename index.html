@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/bootstrap/5.0.0-beta1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="frameworks/bootstrap/5.0.0-beta1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/home.css">
     <title>Itsakaseru</title>
 </head>
 <body>
-    <script src="assets/bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
+    <div id="full-wrapper" class="container">
+        <!-- Desktop Navigation -->
+        <div id="top-interface" class="row justify-content-between">
+            <!-- Left Column -->
+            <div id="title" class="col-3">
+                ITSAKASERU
+            </div>
+            <!-- Right Column -->
+            <nav id="main-navigation" class="col">
+                <div id="navigation" class="navigation-bg row h-100 align-items-center justify-content-between">
+                    <a id="nav-home" class="col text-center active">HOME</a>
+                    <a id="nav-portfolio" class="col text-center">PORTFOLIO</a>
+                    <a id="nav-aboutme" class="col text-center">ABOUT ME</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <script src="frameworks/bootstrap/5.0.0-beta1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

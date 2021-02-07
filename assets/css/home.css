@@ -1,0 +1,89 @@
+/* 
+
+    Color Palette
+    Background : #F9F9F9
+
+*/
+
+* {
+    font-family: 'Roboto' !important;
+    color: #524C46;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+    text-decoration: none !important;
+}
+
+#full-wrapper {
+    background-color: #F9F9F9;
+    background-size: cover;
+    position: absolute;
+    min-width: 100%;
+    width: 100%;
+    min-height: 100%;
+    z-index: 1;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 36px;
+}
+
+#top-interface {
+    padding: 30px;
+}
+
+#main-navigation {
+    font-weight: bold;
+    font-size: 16px;
+    flex: 0 0 auto;
+    width: 420px !important;
+}
+
+.navigation-bg {
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgb(0, 0, 0, 0.16);
+}
+
+#navigation {
+    padding: 15px 20px !important;
+}
+
+#navigation .col {
+    border-radius: 10px;
+    padding: 5px 0 5px;
+    flex: 0 0 auto;
+    color: #524C46;
+    
+    cursor: pointer;
+}
+
+#nav-home {
+    width: 25% !important;
+}
+
+#nav-portfolio {
+    width: 35% !important;
+}
+
+#nav-aboutme {
+    width: 35% !important;
+}
+
+#navigation .active {
+    background-color: #524C46;
+    color: white;
+}
+
+/*
+    Coloring Grid
+*/
+
+#top-interface #title {
+    background: rgb(255, 179, 135);
+}
+
+#top-interface .col-3 {
+    background: rgb(156, 243, 255);
+}
