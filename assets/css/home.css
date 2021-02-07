@@ -6,7 +6,7 @@
 */
 
 * {
-    font-family: 'Roboto' !important;
+    font-family: 'Roboto', sans-serif !important;
     color: #524C46;
 }
 
@@ -55,7 +55,7 @@ a, a:link, a:visited, a:hover, a:active {
     padding: 5px 0 5px;
     flex: 0 0 auto;
     color: #524C46;
-    
+
     cursor: pointer;
 }
 
