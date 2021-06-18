@@ -2,101 +2,180 @@
 
     Color Palette
     Background : #F9F9F9
+    Text       : #524C46;
+    Border     : #707070;
 
 */
 
-* {
+:root
+{
+    --foreground-color: #F9F9F9;
+    --main-color: #524C46;
+    --light-color: #707070;
+    --def-margin: 2.5rem;
+}
+
+
+*
+{
     font-family: 'Roboto', sans-serif !important;
-    color: #524C46;
+    color: var(--main-color);
 }
 
-a, a:link, a:visited, a:hover, a:active {
-    text-decoration: none !important;
+body
+{
+    background: #F9F9F9;
 }
 
-#full-wrapper {
-    background-color: #F9F9F9;
-    background-size: cover;
-    position: absolute;
-    min-width: 100%;
-    width: 100%;
-    min-height: 100%;
-    z-index: 1;
+a:link
+{
+    text-decoration: none;
 }
 
-#title {
-    font-weight: bold;
-    font-size: 36px;
+a:visited
+{
+    text-decoration: none;
 }
 
-#title a, a:link, a:visited, a:hover, a:active {
-    color: #524C46;
+a:hover
+{
+    text-decoration: none;
 }
 
-#top-interface {
-    padding: 30px;
+a:active
+{
+    text-decoration: none;
 }
 
-#main-navigation {
-    font-weight: bold;
-    font-size: 16px;
-    flex: 0 0 auto;
-    width: 420px !important;
+#header
+{
+    margin-top: var(--def-margin);
+    margin-left: var(--def-margin);
+    margin-right: var(--def-margin);
+
+    font-weight: 700;
 }
 
-.navigation-bg {
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    box-shadow: 0 0 50px rgb(0, 0, 0, 0.16);
-}
-
-#navigation {
-    padding: 15px 20px !important;
-}
-
-#navigation .col {
-    border-radius: 10px;
-    padding: 5px 0 5px;
-    flex: 0 0 auto;
-    color: #524C46;
-
-    cursor: pointer;
-}
-
-#nav-home {
-    width: 25% !important;
-}
-
-#nav-portfolio {
-    width: 35% !important;
-}
-
-#nav-aboutme {
-    width: 35% !important;
-}
-
-#navigation .active {
-    background-color: #524C46;
+.title a
+{
     color: white;
 }
 
-img {
-    position: absolute;
-    top: 43%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+footer
+{
+    margin-bottom: var(--def-margin);
+    margin-left: var(--def-margin);
+    margin-right: var(--def-margin);
+
+    font-size: 1.15rem;
+    font-weight: 700;
 }
 
-img {
-    width: 30%;
-    border-radius: 50%;
-    border: 3px solid #707070;
+#navbar
+{
+    background: white;
+    padding: 0.9rem 1.5rem;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgb(0, 0, 0, 0.16);
 }
 
-/*
-    Coloring Grid
-*/
+#navbar li:not(:last-child)
+{
+    margin-right: 1.5rem;
+}
 
-#profile-image {
-    background: rgb(255, 179, 135);
+#navbar a
+{
+    color: var(--main-color);
+    padding: 0.3rem 1.25rem;
+}
+
+#navbar a.active
+{
+    color: white;
+    background: var(--main-color);
+
+    border-radius: 10px;
+}
+
+#navbar ul
+{
+    display: flex;
+    list-style: none;
+    align-items: center;
+
+    font-size: 1.2rem;
+}
+
+section
+{
+    overflow: hidden;
+}
+
+#homepage
+{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+#homepage img
+{
+    border: 3px solid var(--light-color);
+}
+
+.col-4
+{
+    width: 32%;
+}
+
+#quick-links
+{
+    margin-top: 5rem;
+}
+
+#quick-links li:not(:last-child)
+{
+    margin-right: 0.25rem;
+}
+
+#quick-links ul
+{
+    background: white;
+    padding: 0.65rem 1rem;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgb(0, 0, 0, 0.16);
+
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+#quick-links a
+{
+    cursor: pointer;
+}
+
+#quick-links a
+{
+    fill: var(--main-color);
+    transition: 0.3s;
+}
+
+#quick-links a:hover
+{
+    fill: var(--light-color);
+}
+
+footer a
+{
+    color: var(--light-color);
+    transition: 0.3s;
+}
+
+footer a:hover
+{
+    color: var(--main-color);
 }

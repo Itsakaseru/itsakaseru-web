@@ -6,29 +6,90 @@
     <link rel="stylesheet" href="frameworks/bootstrap/5.0.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <title>Itsakaseru</title>
 </head>
 <body>
-    <div id="full-wrapper" class="container">
-        <!-- Desktop Navigation -->
-        <div id="top-interface" class="row justify-content-between">
-            <!-- Left Column -->
-            <div id="title" class="col-3 my-auto">
-                <!-- <a>ITSAKASERU</a> -->
-                <a>イサカセル</a>
-            </div>
-            <!-- Right Column -->
-            <nav id="main-navigation" class="col">
-                <div id="navigation" class="navigation-bg row h-100 align-items-center justify-content-between">
-                    <a id="nav-home" class="col text-center active">Home</a>
-                    <a id="nav-portfolio" class="col text-center">Portfolio</a>
-                    <a id="nav-aboutme" class="col text-center">About Me</a>
-                </div>
+    <svg width="100%" height="100%" class="position-absolute">
+        <rect x="0" y="-150" width="300" height="300" style="fill:#524C46;" transform="rotate(25)"/>
+    </svg>
+    <header id="header" class="fixed-top d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center">
+            <h1 class="title me-auto my-auto">
+                <a href="">Itsakaseru</a>
+            </h1>
+            <nav id="navbar" class="d-flex justify-content-between">
+                <ul class="my-auto p-0">
+                    <li>
+                        <a class="nav-link active" href="">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="">Portfolio</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="">About Me</a>
+                    </li>
+                </ul>
             </nav>
         </div>
-        <img class="img" src="assets/img/itsakaseru.jpg">
-    </div>
-    <script src="frameworks/bootstrap/5.0.1-dist/js/bootstrap.bundle.min.js"></script>
+    </header>
+    <section id="homepage" class="clearfix">
+        <div class="container-fluid d-flex h-100">
+            <div class="col-4 mx-auto my-auto">
+                <img class="img-fluid rounded-circle" src="assets/img/itsakaseru.jpg">
+                <div id="quick-links" class="d-flex justify-content-evenly">
+                    <ul class="my-auto">
+                        <li>
+                            <a class="nav-link" href="https://YouTube.com/SkyEncripttion">
+                                <svg id="yt-icon" xmlns="http://www.w3.org/2000/svg" width="35px" height="35px"
+                                    viewBox="0 0 47.122 32.958">
+                                    <path id="Path_2" data-name="Path 2"
+                                        d="M46.141,5.149A5.905,5.905,0,0,0,41.957.985C38.281,0,23.551,0,23.551,0S8.817,0,5.149.985A5.9,5.9,0,0,0,.985,5.149C0,8.821,0,16.487,0,16.487s0,7.666.985,11.337a5.9,5.9,0,0,0,4.164,4.164c3.672.969,18.4.969,18.4.969s14.734,0,18.406-.985a5.905,5.905,0,0,0,4.184-4.149c.981-3.672.981-11.337.981-11.337S47.1,8.821,46.141,5.149Z"
+                                        />
+                                    <path id="Path_3" data-name="Path 3" d="M48.59,38.429V24.3l12.241,7.065Z"
+                                        transform="translate(-29.75 -14.878)" fill="#fff" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="https://GitHub.com/Itsakaseru">
+                                <svg id="github-icon" xmlns="http://www.w3.org/2000/svg" width="30px" height="35px"
+                                    viewBox="0 0 33.667 32.958">
+                                    <path id="Path_1" data-name="Path 1"
+                                        d="M16.9,0a16.9,16.9,0,0,0-5.341,32.93c.85.156,1.151-.373,1.151-.819V29.237c-4.719,1.027-5.715-2.271-5.715-2.271a4.522,4.522,0,0,0-1.877-2.479c-1.525-1.037.124-1.037.124-1.037a3.557,3.557,0,0,1,2.583,1.742A3.609,3.609,0,0,0,12.737,26.6a3.589,3.589,0,0,1,1.037-2.261c-3.755-.425-7.7-1.877-7.7-8.3A6.534,6.534,0,0,1,7.81,11.512a6.161,6.161,0,0,1,.166-4.47S9.4,6.586,12.623,8.774a15.983,15.983,0,0,1,8.463,0c3.226-2.188,4.636-1.732,4.636-1.732a6.13,6.13,0,0,1,.207,4.439,6.534,6.534,0,0,1,1.732,4.532c0,6.493-3.952,7.914-7.716,8.3A3.993,3.993,0,0,1,21.1,27.422c0,2.261,0,4.086,0,4.636s.3.975,1.162.809A16.9,16.9,0,0,0,16.9,0Z"
+                                        transform="translate(0.018 0)" fill-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="http://Twitter.com/Itsakaseru">
+                                <svg id="twitter-icon" xmlns="http://www.w3.org/2000/svg" width="30px" height="35px"
+                                    viewBox="0 0 34.549 28.073">
+                                    <path id="white_background"
+                                        d="M32.012,8.486c.021.3.021.609.021.917,0,9.366-7.13,20.168-20.168,20.168v-.006A20.066,20.066,0,0,1,1,26.387a14.418,14.418,0,0,0,1.687.1,14.233,14.233,0,0,0,8.8-3.04,7.1,7.1,0,0,1-6.622-4.922,7.065,7.065,0,0,0,3.2-.122,7.089,7.089,0,0,1-5.686-6.948v-.09a7.043,7.043,0,0,0,3.217.887A7.1,7.1,0,0,1,3.406,2.79,20.118,20.118,0,0,0,18.014,10.2,7.095,7.095,0,0,1,30.093,3.731a14.223,14.223,0,0,0,4.5-1.721,7.115,7.115,0,0,1-3.116,3.92,14.1,14.1,0,0,0,4.07-1.116A14.4,14.4,0,0,1,32.012,8.486Z"
+                                        transform="translate(-1 -1.497)"/>
+                                </svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="coming.soon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="35px"
+                                    viewBox="0 0 32.202 25.046">
+                                    <path id="_-icon" data-name="?-icon"
+                                        d="M30.314,32c-3.064.174-9.153.807-12.912,3.108a.86.86,0,0,0-.406.736V56.186a.885.885,0,0,0,1.3.754c3.868-1.947,9.461-2.478,12.227-2.623A1.744,1.744,0,0,0,32.2,52.6V33.715A1.753,1.753,0,0,0,30.314,32ZM14.8,35.107C11.042,32.805,4.952,32.173,1.889,32A1.753,1.753,0,0,0,0,33.715V52.6a1.743,1.743,0,0,0,1.678,1.714c2.767.145,8.363.677,12.231,2.625a.882.882,0,0,0,1.3-.752V35.833A.842.842,0,0,0,14.8,35.107Z"
+                                        transform="translate(0 -31.996)"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="fixed-bottom d-flex justify-content-between">
+        <div id="credits">Profile picture by <a href="https://www.pixiv.net/member.php?id=7238253">fishy</a> (I edited the hair and eye)</div>
+        <div id="copyright">© <script>document.write(new Date().getFullYear())</script> Itsakaseru. All Rights Reserved</div>
+    </footer>
 </body>
+<script src="frameworks/bootstrap/5.0.1-dist/js/bootstrap.bundle.min.js"></script>
 </html>
