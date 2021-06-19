@@ -1,0 +1,194 @@
+/* 
+
+    Color Palette
+    Background : #F9F9F9
+    Text       : #524C46;
+    Border     : #707070;
+
+*/
+
+:root
+{
+    --foreground-color: #F9F9F9;
+    --main-color: #524C46;
+    --light-color: #707070;
+    --def-margin: 2.5rem;
+}
+
+
+*
+{
+    font-family: 'Roboto', sans-serif !important;
+    color: var(--main-color);
+}
+
+body
+{
+    background: #F9F9F9;
+}
+
+a:link
+{
+    text-decoration: none;
+}
+
+a:visited
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: none;
+}
+
+a:active
+{
+    text-decoration: none;
+}
+
+svg
+{
+    z-index: -1;
+    overflow: visible
+}
+
+#header
+{
+    margin-top: var(--def-margin);
+    margin-left: var(--def-margin);
+    margin-right: var(--def-margin);
+
+    font-weight: 700;
+}
+
+.title a
+{
+    color: var(--main-color);
+}
+
+footer
+{
+    margin-bottom: var(--def-margin);
+    margin-left: var(--def-margin);
+    margin-right: var(--def-margin);
+
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+#navbar
+{
+    background: white;
+    padding: 0.9rem 1.5rem;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgb(0, 0, 0, 0.16);
+}
+
+#navbar li:not(:last-child)
+{
+    margin-right: 1.5rem;
+}
+
+#navbar a
+{
+    color: var(--main-color);
+    padding: 0.3rem 1.25rem;
+
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#navbar a:hover
+{
+    color: white;
+    background: var(--main-color);
+}
+
+#navbar a.active
+{
+    color: white;
+    background: var(--main-color);
+}
+
+#navbar ul
+{
+    display: flex;
+    list-style: none;
+    align-items: center;
+
+    font-size: 1.05rem;
+}
+
+section
+{
+    overflow: hidden;
+}
+
+#homepage
+{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+#homepage img
+{
+    border: 3px solid var(--light-color);
+}
+
+.col-4
+{
+    width: 32%;
+}
+
+#quick-links
+{
+    margin-top: 5rem;
+}
+
+#quick-links li:not(:last-child)
+{
+    margin-right: 0.25rem;
+}
+
+#quick-links ul
+{
+    background: white;
+    padding: 0.65rem 1rem;
+
+    border-radius: 10px;
+    box-shadow: 0px 0px 50px rgb(0, 0, 0, 0.16);
+
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+#quick-links a
+{
+    cursor: pointer;
+}
+
+#quick-links a
+{
+    fill: var(--main-color);
+    transition: 0.3s;
+}
+
+#quick-links a:hover
+{
+    fill: var(--light-color);
+}
+
+footer a
+{
+    color: var(--light-color);
+    transition: 0.3s;
+}
+
+footer a:hover
+{
+    color: var(--main-color);
+}
