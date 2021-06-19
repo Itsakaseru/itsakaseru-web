@@ -89,14 +89,21 @@ footer
 {
     color: var(--main-color);
     padding: 0.3rem 1.25rem;
+
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+#navbar a:hover
+{
+    color: white;
+    background: var(--main-color);
 }
 
 #navbar a.active
 {
     color: white;
     background: var(--main-color);
-
-    border-radius: 10px;
 }
 
 #navbar ul
@@ -105,7 +112,7 @@ footer
     list-style: none;
     align-items: center;
 
-    font-size: 1.2rem;
+    font-size: 1.05rem;
 }
 
 section
