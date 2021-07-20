@@ -1,6 +1,7 @@
 import Head from "next/head";
 import profilePicture from "../public/images/itsakaseru.jpg";
 import Navbar from "../components/navbar";
+import QuickNav from "../components/quick-nav";
 
 export default function Home()
 {
@@ -13,6 +14,7 @@ export default function Home()
 					className="rounded-full border-2 border-primary"
 				/>
 			</div>
+			<QuickNav />
 		</div >
 	);
 }
