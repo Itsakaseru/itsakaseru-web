@@ -1,7 +1,20 @@
-import NavbarLink from "../components/navbar-link";
-
 export default function Navbar()
 {
+	const links = [
+		{
+			"name": "Home",
+			"href": "/"
+		},
+		{
+			"name": "Portfolio",
+			"href": "/"
+		},
+		{
+			"name": "About Me",
+			"href": "/"
+		}
+	]
+
 	return (
 		<nav className="p-10">
 			<div className="float-left font-primary font-semibold text-primary text-3xl">
@@ -9,7 +22,16 @@ export default function Navbar()
 			</div>
 			<div id="navigation" className="bg-white rounded-xl drop-shadow-navigation px-5 py-3 float-right">
 				<div className="flex space-x-6 font-secondary font-semibold text-primary text-base">
-					<NavbarLink />
+					{
+						links.map(({ name, href }) =>
+						{
+							return (
+								<a className="py-1 px-4 rounded hover:bg-primary hover:text-white transition-colors" href={ href }>
+									{ name }
+								</a>
+							);
+						})
+					}
 				</div>
 			</div>
 		</nav>
