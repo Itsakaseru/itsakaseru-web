@@ -2,7 +2,22 @@ module.exports = {
 	purge: [ './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}' ],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				"primary": [ "Poppins", "sans-serif" ],
+				"secondary": [ "Inter", "sans-serif" ]
+			},
+			colors: {
+				primary: {
+					light: '#787068',
+					DEFAULT: '#524C46',
+					dark: '#3A3531',
+				}
+			},
+			dropShadow: {
+				'navigation': '0 0 50px rgba(0, 0, 0, 1)',
+			}
+		},
 	},
 	variants: {
 		extend: {},
