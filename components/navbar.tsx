@@ -17,7 +17,7 @@ export default function Navbar()
 
 	return (
 		<nav className="m-10">
-			<div className="float-left font-primary font-semibold text-primary text-3xl">
+			<div className="float-left font-primary font-semibold text-primary text-3xl select-none">
 				Itsakaseru
 			</div>
 			<div id="navigation" className="bg-white rounded-xl shadow-navigation px-5 py-3 float-right">
