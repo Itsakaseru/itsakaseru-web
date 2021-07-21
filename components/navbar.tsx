@@ -23,10 +23,10 @@ export default function Navbar()
 			<div id="navigation" className="bg-white rounded-xl shadow-navigation px-5 py-3 float-right">
 				<div className="flex space-x-6 font-secondary font-semibold text-primary text-base">
 					{
-						links.map(({ name, href }) =>
+						links.map(({ name, href }, index) =>
 						{
 							return (
-								<a className="py-1 px-4 rounded hover:bg-primary hover:text-white transition-colors duration-300" href={ href }>
+								<a key={ index } className="py-1 px-4 rounded hover:bg-primary hover:text-white transition-colors duration-300" href={ href }>
 									{ name }
 								</a>
 							);
