@@ -7,15 +7,15 @@ export default function QuickNav()
 	const quick_links = [
 		{
 			"icon": faYoutube,
-			"href": "/"
+			"href": "https://www.youtube.com/SkyEncripttion"
 		},
 		{
 			"icon": faGithub,
-			"href": "/"
+			"href": "https://github.com/Itsakaseru"
 		},
 		{
 			"icon": faTwitter,
-			"href": "/"
+			"href": "https://www.twitter.com/Itsakaseru"
 		},
 		{
 			"icon": faBookOpen,

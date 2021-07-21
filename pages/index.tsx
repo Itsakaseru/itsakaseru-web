@@ -17,7 +17,7 @@ export default function Home()
 			<QuickNav />
 			<footer className="flex justify-between mx-10 my-8">
 				<div className="font-secondary font-semibold text-primary">
-					Profile picture by fishy (I edited the hair and eye)
+					Profile picture by <a className="hover:text-primary-light" href="https://www.pixiv.net/member.php?id=7238253">fishy</a> (I edited the hair and eye)
 				</div>
 				<div className="font-secondary font-semibold text-primary">
 					© 2021 Itsakaseru. All Rights Reserved
