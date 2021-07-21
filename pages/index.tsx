@@ -22,7 +22,7 @@ export default function Home()
 					Profile picture by <a className="hover:text-primary-light" href="https://www.pixiv.net/member.php?id=7238253">fishy</a> (I edited the hair and eye)
 				</div>
 				<div className="font-secondary font-semibold text-primary">
-					© 2021 Itsakaseru. All Rights Reserved
+					© { new Date().getFullYear() } Itsakaseru. All Rights Reserved
 				</div>
 			</footer>
 		</div >
