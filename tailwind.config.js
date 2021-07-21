@@ -14,8 +14,8 @@ module.exports = {
 					dark: '#3A3531',
 				}
 			},
-			dropShadow: {
-				'navigation': '0 0 50px rgba(0, 0, 0, 1)',
+			boxShadow: {
+				'navigation': '0 0 50px rgba(82, 76, 70, 0.05)',
 			}
 		},
 	},

@@ -16,17 +16,17 @@ export default function Navbar()
 	]
 
 	return (
-		<nav className="p-10">
+		<nav className="m-10">
 			<div className="float-left font-primary font-semibold text-primary text-3xl">
 				Itsakaseru
 			</div>
-			<div id="navigation" className="bg-white rounded-xl drop-shadow-navigation px-5 py-3 float-right">
+			<div id="navigation" className="bg-white rounded-xl shadow-navigation px-5 py-3 float-right">
 				<div className="flex space-x-6 font-secondary font-semibold text-primary text-base">
 					{
 						links.map(({ name, href }) =>
 						{
 							return (
-								<a className="py-1 px-4 rounded hover:bg-primary hover:text-white transition-colors" href={ href }>
+								<a className="py-1 px-4 rounded hover:bg-primary hover:text-white transition-colors duration-300" href={ href }>
 									{ name }
 								</a>
 							);
