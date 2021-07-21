@@ -1,4 +1,11 @@
-export default function Navbar()
+import { AppProps } from "next/dist/next-server/lib/router/router";
+
+interface IProps
+{
+	page: string
+};
+
+export default function Navbar({ page }: IProps)
 {
 	const links = [
 		{
@@ -7,11 +14,11 @@ export default function Navbar()
 		},
 		{
 			"name": "Portfolio",
-			"href": "/"
+			"href": "/portfolio"
 		},
 		{
 			"name": "About Me",
-			"href": "/"
+			"href": "/aboutme"
 		}
 	]
 
@@ -26,7 +33,7 @@ export default function Navbar()
 						links.map(({ name, href }, index) =>
 						{
 							return (
-								<a key={ index } className="py-1 px-4 rounded hover:bg-primary hover:text-white transition-colors duration-300" href={ href }>
+								<a key={ index } className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` } href={ href }>
 									{ name }
 								</a>
 							);
