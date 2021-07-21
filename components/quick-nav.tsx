@@ -24,7 +24,7 @@ export default function QuickNav()
 	];
 
 	return (
-		<div className="self-center rounded-xl shadow-navigation bg-white mt-8 mb-10 px-7 py-4 space-x-8">
+		<div className="self-center rounded-xl shadow-normal bg-white mt-8 mb-10 px-7 py-4 space-x-8">
 			{
 				quick_links.map(({ icon, href }, index) =>
 				{

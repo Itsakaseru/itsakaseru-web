@@ -15,7 +15,7 @@ module.exports = {
 				}
 			},
 			boxShadow: {
-				'navigation': '0 0 50px rgba(82, 76, 70, 0.05)',
+				'normal': '0 0 50px rgba(82, 76, 70, 0.05)',
 			}
 		},
 	},
