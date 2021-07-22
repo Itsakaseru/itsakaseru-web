@@ -23,11 +23,11 @@ export default function Navbar({ page }: IProps)
 	]
 
 	return (
-		<nav className="m-10">
-			<div className="float-left font-primary font-semibold text-primary text-3xl select-none">
+		<nav className="m-10 flex justify-between">
+			<div className="self-center font-primary font-semibold text-primary text-3xl select-none">
 				Itsakaseru
 			</div>
-			<div id="navigation" className="bg-white rounded-xl shadow-normal px-5 py-3 float-right">
+			<div id="navigation" className="bg-white rounded-xl shadow-normal px-5 py-3">
 				<div className="flex space-x-6 font-secondary font-semibold text-primary text-base">
 					{
 						links.map(({ name, href }, index) =>
