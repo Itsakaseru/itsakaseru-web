@@ -11,7 +11,7 @@ module.exports = {
 				primary: {
 					light: '#787068',
 					DEFAULT: '#524C46',
-					dark: '#3A3531',
+					dark: '#3A3531'
 				},
 				lime: {
 					light: '#C6F27A',
@@ -21,7 +21,7 @@ module.exports = {
 				orange: {
 					light: '#FFB940',
 					DEFAULT: '#FFA040',
-					dark: '#955E26',
+					dark: '#955E26'
 				},
 				chocolate: {
 					light: '#CD955A',
