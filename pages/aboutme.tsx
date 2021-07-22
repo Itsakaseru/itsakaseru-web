@@ -65,7 +65,7 @@ export default function AboutMe()
     return (
         <>
             <Head>
-                <title>Itsakaseru</title>
+                <title>About Me</title>
                 <meta name="description" content="Itsakaseru Personal Website"></meta>
                 <meta name="author" content="Remueru Itsakaseru"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
