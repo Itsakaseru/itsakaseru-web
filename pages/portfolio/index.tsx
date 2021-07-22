@@ -70,7 +70,7 @@ export default function Portfolio()
                 <div className="flex flex-col">
                     <div className="p-8 self-center rounded-xl bg-white font-secondary text-center text-primary-light">
                         <p className="max-w-lg font-bold">
-                            Here are all of the projects that I've been
+                            Here are all of the projects that I&quot;ve been
                             worked on either throughout college or my life.
                         </p>
                         <p className="mt-5 max-w-lg font-light">
@@ -91,6 +91,7 @@ export default function Portfolio()
                                                 <Image
                                                     src={ icon }
                                                     className="rounded-lg"
+                                                    alt={ `${ name } logo` }
                                                 />
                                             </div>
                                             <div className="mx-8">
