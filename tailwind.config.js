@@ -2,12 +2,12 @@ module.exports = {
 	purge: {
 		content: [ './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}' ],
 		safelist: [
-			'bg-lime', 'bg-lime-light', 'bg-lime-dark',
-			'bg-orange', 'bg-orange-light', 'bg-orange-dark',
-			'bg-dayker', 'bg-dayker-light', 'bg-dayker-dark',
-			'bg-cloud', 'bg-cloud-light', 'bg-cloud-dark',
-			'bg-chocolate', 'bg-chocolate-light', 'bg-chocolate-dark',
-			'bg-lavender', 'bg-lavender-light', 'bg-lavender-dark',
+			/^from-lime/, /^to-lime/, /^text-lime/,
+			/^from-orange/, /^to-orange/, /^text-orange/,
+			/^from-chocolate/, /^to-chocolate/, /^text-chocolate/,
+			/^from-dayker/, /^to-dayker/, /^text-dayker/,
+			/^from-cloud/, /^to-cloud/, /^text-cloud/,
+			/^from-lavender/, /^to-lavender/, /^text-lavender/
 		]
 	},
 	darkMode: false, // or 'media' or 'class'
