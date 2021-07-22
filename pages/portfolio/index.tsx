@@ -10,22 +10,53 @@ import MateMatirunLogo from "../../public/images/matematirun.png"
 import KnoledgeLogo from "../../public/svg/knoledge.svg";
 import LatusLogo from "../../public/svg/latus.svg";
 
-interface portfolioType
+export default function Portfolio()
 {
-    name: string,
-    desc: string,
-    href: string,
-    icon: StaticImageData,
-    color: string
-}
+    const portfolioList = [
+        {
+            "name": "Routine.",
+            "desc": "Daily routine reminder and simple digital wellbeing android application",
+            "href": "/portfolio/routine",
+            "icon": RoutineLogo,
+            "color": "lime"
+        },
+        {
+            "name": "Security SLip",
+            "desc": "It's an \"security- checkup\" based simulation game",
+            "href": "/portfolio/security-slip",
+            "icon": SecuritySLipLogo,
+            "color": "orange"
+        },
+        {
+            "name": "Imma Crossy Box",
+            "desc": "It's an \"action- adventure\" based simulation game",
+            "href": "/portfolio/imma-crossy-box",
+            "icon": ImmaCrossyBoxLogo,
+            "color": "dayker"
+        },
+        {
+            "name": "MateMatirun",
+            "desc": "A math learning based rhythm game with RPG spice into it",
+            "href": "/portfolio/matematirun",
+            "icon": MateMatirunLogo,
+            "color": "cloud"
+        },
+        {
+            "name": "Knoledge",
+            "desc": "Education Management Web Application made with CodeIgniter 3",
+            "href": "/portfolio/knoledge",
+            "icon": KnoledgeLogo,
+            "color": "chocolate"
+        },
+        {
+            "name": "Latus",
+            "desc": "Pure PHP, simple social media website",
+            "href": "/portfolio/latus",
+            "icon": LatusLogo,
+            "color": "lavender"
+        },
+    ];
 
-interface IProps
-{
-    portfolioList: Array<portfolioType>
-};
-
-export default function Portfolio({ portfolioList }: IProps)
-{
     return (
         <>
             <Head>
@@ -80,54 +111,4 @@ export default function Portfolio({ portfolioList }: IProps)
             </div>
         </>
     );
-}
-
-Portfolio.getInitialProps = async () =>
-{
-    const portfolioList: Array<portfolioType> = [
-        {
-            "name": "Routine.",
-            "desc": "Daily routine reminder and simple digital wellbeing android application",
-            "href": "/portfolio/routine",
-            "icon": RoutineLogo,
-            "color": "lime"
-        },
-        {
-            "name": "Security SLip",
-            "desc": "It's an \"security- checkup\" based simulation game",
-            "href": "/portfolio/security-slip",
-            "icon": SecuritySLipLogo,
-            "color": "orange"
-        },
-        {
-            "name": "Imma Crossy Box",
-            "desc": "It's an \"action- adventure\" based simulation game",
-            "href": "/portfolio/imma-crossy-box",
-            "icon": ImmaCrossyBoxLogo,
-            "color": "dayker"
-        },
-        {
-            "name": "MateMatirun",
-            "desc": "A math learning based rhythm game with RPG spice into it",
-            "href": "/portfolio/matematirun",
-            "icon": MateMatirunLogo,
-            "color": "cloud"
-        },
-        {
-            "name": "Knoledge",
-            "desc": "Education Management Web Application made with CodeIgniter 3",
-            "href": "/portfolio/knoledge",
-            "icon": KnoledgeLogo,
-            "color": "chocolate"
-        },
-        {
-            "name": "Latus",
-            "desc": "Pure PHP, simple social media website",
-            "href": "/portfolio/latus",
-            "icon": LatusLogo,
-            "color": "lavender"
-        },
-    ];
-
-    return { portfolioList };
 }
