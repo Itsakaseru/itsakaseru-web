@@ -1,4 +1,4 @@
-import { AppProps } from "next/dist/next-server/lib/router/router";
+import Link from "next/link";
 
 interface IProps
 {
@@ -33,9 +33,11 @@ export default function Navbar({ page }: IProps)
 						links.map(({ name, href }, index) =>
 						{
 							return (
-								<a key={ index } className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` } href={ href }>
-									{ name }
-								</a>
+								<Link href={ href }>
+									<a key={ index } className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` }>
+										{ name }
+									</a>
+								</Link>
 							);
 						})
 					}
