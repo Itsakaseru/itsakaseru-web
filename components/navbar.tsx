@@ -33,8 +33,8 @@ export default function Navbar({ page }: IProps)
 						links.map(({ name, href }, index) =>
 						{
 							return (
-								<Link href={ href }>
-									<a key={ index } className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` }>
+								<Link key={ index } href={ href }>
+									<a className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` }>
 										{ name }
 									</a>
 								</Link>
