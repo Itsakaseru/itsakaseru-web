@@ -102,21 +102,21 @@ export default function AboutMe()
                                     who will not give up until I reach my
                                     goal. I have always been fascinated by
                                     technology especially in the programming
-                                    world. Although I am a 'quiet type', I
+                                    world. Although I am a quiet type, I
                                     can adapt to my social environment and I
                                     will be able to blend in.
                                     I am an easygoing person and a person
                                     who will not give up until I reach my
                                     goal. I have always been fascinated by
                                     technology especially in the programming
-                                    world. Although I am a 'quiet type', I
+                                    world. Although I am a quiet type, I
                                     can adapt to my social environment and I
                                     will be able to blend in.
                                     I am an easygoing person and a person
                                     who will not give up until I reach my
                                     goal. I have always been fascinated by
                                     technology especially in the programming
-                                    world. Although I am a 'quiet type', I
+                                    world. Although I am a quiet type, I
                                     can adapt to my social environment and I
                                     will be able to blend in.
                                 </p>
