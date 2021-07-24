@@ -64,7 +64,7 @@ export default function PortfolioDetails({ portfolioList }: AppProps)
                                                 <div className="flex">
                                                     {
                                                         link ?
-                                                            <a href={ link } target="_blank" className="flex">
+                                                            <a href={ link } target="_blank" rel="noreferrer" className="flex">
                                                                 { name }
                                                                 <FontAwesomeIcon icon={ faExternalLinkAlt } className="mt-1 ml-1 text-xs" />
                                                             </a>
