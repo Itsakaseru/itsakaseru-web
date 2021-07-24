@@ -106,11 +106,11 @@ export default function AboutMe({ statistics }: AppProps)
                                     goal. I have always been fascinated by
                                     technology especially in the programming
                                     world. Although I am a quiet type, like
-                                    really.. I'm got nervous around people
-                                    I don't know. But with that said, I
+                                    really.. I\'m got nervous around people
+                                    I don\'t know. But with that said, I
                                     can try and will try adapt to my social
                                     environment and be able to blend in.<br /><br />
-                                    Other than technologies, I'm myself like
+                                    Other than technologies, I\'m myself like
                                     all things about dreaming. I got interested
                                     in how and why dream itself is possible.
                                     As well as the story of the dreams that I
@@ -118,11 +118,11 @@ export default function AboutMe({ statistics }: AppProps)
                                     My goal is finding how dream are construct
                                     and why it sometimes, have unique things
                                     happening inside it.<br /><br />
-                                    With that said, I'm also trying to write
+                                    With that said, I\'m also trying to write
                                     my own novel, the story will be taken from
                                     all of the dreams that I experience. Sadly
-                                    I'm not confident enough to write it.
-                                    But I'll try it anyway. It's still a
+                                    I\'m not confident enough to write it.
+                                    But I\'ll try it anyway. It\'s still a
                                     work in progress.
                                 </p>
                             </div>
@@ -164,7 +164,7 @@ export default function AboutMe({ statistics }: AppProps)
                                 <br /><br />
                                 If you want contact me, you can do it through
                                 my email <span className="select-text">contact@itsakaseru.me</span>. Though I
-                                don't why you would want to contact me to
+                                don\'t why you would want to contact me to
                                 be completely honest xD. <br /><br />
                                 I own two YouTube channels, one is for
                                 gaming and one I have not decided yet.
