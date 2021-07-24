@@ -3,59 +3,12 @@ import Image from "next/image"
 import Link from "next/link";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
-import RoutineLogo from "../../public/svg/routine.svg";
-import SecuritySLipLogo from "../../public/images/security-slip.png";
-import ImmaCrossyBoxLogo from "../../public/images/imma-crossy-box.png";
-import MateMatirunLogo from "../../public/images/matematirun.png"
-import KnoledgeLogo from "../../public/svg/knoledge.svg";
-import LatusLogo from "../../public/svg/latus.svg";
+import getPortfolioData from "../api/portfolio";
+import { IPortfolio } from "../../types/custom";
 
 export default function Portfolio()
 {
-    const portfolioList = [
-        {
-            "name": "Routine.",
-            "desc": "Daily routine reminder and simple digital wellbeing android application",
-            "href": "/portfolio/routine",
-            "icon": RoutineLogo,
-            "color": "lime"
-        },
-        {
-            "name": "Security SLip",
-            "desc": "It's an \"security- checkup\" based simulation game",
-            "href": "/portfolio/security-slip",
-            "icon": SecuritySLipLogo,
-            "color": "orange"
-        },
-        {
-            "name": "Imma Crossy Box",
-            "desc": "It's an \"action- adventure\" based simulation game",
-            "href": "/portfolio/imma-crossy-box",
-            "icon": ImmaCrossyBoxLogo,
-            "color": "dayker"
-        },
-        {
-            "name": "MateMatirun",
-            "desc": "A math learning based rhythm game with RPG spice into it",
-            "href": "/portfolio/matematirun",
-            "icon": MateMatirunLogo,
-            "color": "cloud"
-        },
-        {
-            "name": "Knoledge",
-            "desc": "Education Management Web Application made with CodeIgniter 3",
-            "href": "/portfolio/knoledge",
-            "icon": KnoledgeLogo,
-            "color": "chocolate"
-        },
-        {
-            "name": "Latus",
-            "desc": "Pure PHP, simple social media website",
-            "href": "/portfolio/latus",
-            "icon": LatusLogo,
-            "color": "lavender"
-        },
-    ];
+    const portfolioList = getPortfolioData("") as IPortfolio[];
 
     return (
         <>
