@@ -19,7 +19,7 @@ export default function QuickNav()
 		},
 		{
 			"icon": faBookOpen,
-			"href": "/"
+			"href": "/coming-soon"
 		}
 	];
 
