@@ -9,3 +9,19 @@ html,
 body {
 	background-color: var(--bg-primary);
 }
+
+::-webkit-scrollbar-track {
+	border-radius: 8px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	background-color: #555;
+}
