@@ -22,6 +22,7 @@ export interface IPortfolio
     id: string,
     name: string,
     icon: StaticImageData,
+    href: string,
     color: string,
     desc: string,
     longDesc: string,
