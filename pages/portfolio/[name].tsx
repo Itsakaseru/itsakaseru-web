@@ -84,7 +84,7 @@ export default function PortfolioDetails({ portfolioList }: AppProps)
                     <div className="flex flex-col flex-grow justify-between space-y-4 p-10 rounded-lg shadow-normal bg-white">
                         <article>
                             <h3 className={ `font-secondary font-extrabold text-3xl text-${ color }-dark` }>Project Info</h3>
-                            <p className={ `mt-4 font-primary text-${ color }` }>
+                            <p className={ `mt-4 whitespace-pre-line font-primary text-${ color }` }>
                                 { longDesc }
                             </p>
                         </article>
