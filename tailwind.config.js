@@ -58,7 +58,11 @@ module.exports = {
 				'normal': '0 0 50px rgba(82, 76, 70, 0.05)',
 			},
 			maxWidth: {
+				'small': '8rem',
 				'icon': '10rem',
+			},
+			width: {
+				'landscape': '45rem',
 			}
 		},
 	},
