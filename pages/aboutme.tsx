@@ -153,7 +153,7 @@ export default function AboutMe({ statistics }: AppProps)
                                 If you are curious, this website was made
                                 using Next.js, Typescript and TailwindCSS.
                                 This was my first attempt at using Next.js
-                                for building website and I'm still learning
+                                for building website and I&apos;'m still learning
                                 from it. The code itself is open source,
                                 you can check it out yourself by <a
                                     href="https://github.com/Itsakaseru/itsakaseru-web"
