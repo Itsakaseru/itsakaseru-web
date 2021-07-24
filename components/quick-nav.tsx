@@ -29,7 +29,7 @@ export default function QuickNav()
 				quick_links.map(({ icon, href }, index) =>
 				{
 					return (
-						<a key={ index } href={ href } className="text-3xl text-primary hover:text-primary-light transition-colors duration-300">
+						<a key={ index } href={ href } target="_blank" rel="noreferrer" className="text-3xl text-primary hover:text-primary-light transition-colors duration-300">
 							<FontAwesomeIcon icon={ icon } />
 						</a>
 					);
