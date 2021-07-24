@@ -8,9 +8,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import selfPicture from "../public/images/lemi.jpg";
+import { AppProps } from "next/dist/next-server/lib/router/router";
 
-export default function AboutMe()
+export default function AboutMe({ statistics }: AppProps)
 {
+    const { subscriberCount, viewCount, videoCount } = statistics;
+
     const faSkyEncripttion: IconDefinition = {
         prefix: "fac" as IconPrefix,
         iconName: "skyencripttion-logo" as IconName,
@@ -72,7 +75,7 @@ export default function AboutMe()
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="About Me" />
-                <div className="flex justify-between">
+                <div className="flex flex-grow justify-between">
                     <div className="mx-10">
                         <div className="flex flex-row p-6 rounded-xl bg-white shadow-normal">
                             <div className="flex p-0 max-w-xs">
@@ -89,7 +92,7 @@ export default function AboutMe()
                                     <div className="font-secondary font-extrabold text-4xl text-primary">Lemuel<br />Lancaster</div>
                                     <div className="font-primary font-normal text-sm text-primary-light" onMouseEnter={ onMouseEnter } onMouseLeave={ onMouseExit }>{ name }</div>
                                 </div>
-                                <div className="font-primary font-semibold text-sm text-primary-light">Programer, Oneironautics, Human</div>
+                                <div className="font-primary font-semibold text-sm text-primary-light">Programmer, Oneironautics, Human</div>
                             </div>
                         </div>
                     </div>
@@ -102,23 +105,25 @@ export default function AboutMe()
                                     who will not give up until I reach my
                                     goal. I have always been fascinated by
                                     technology especially in the programming
-                                    world. Although I am a quiet type, I
-                                    can adapt to my social environment and I
-                                    will be able to blend in.
-                                    I am an easygoing person and a person
-                                    who will not give up until I reach my
-                                    goal. I have always been fascinated by
-                                    technology especially in the programming
-                                    world. Although I am a quiet type, I
-                                    can adapt to my social environment and I
-                                    will be able to blend in.
-                                    I am an easygoing person and a person
-                                    who will not give up until I reach my
-                                    goal. I have always been fascinated by
-                                    technology especially in the programming
-                                    world. Although I am a quiet type, I
-                                    can adapt to my social environment and I
-                                    will be able to blend in.
+                                    world. Although I am a quiet type, like
+                                    really.. I'm got nervous around people
+                                    I don't know. But with that said, I
+                                    can try and will try adapt to my social
+                                    environment and be able to blend in.<br /><br />
+                                    Other than technologies, I'm myself like
+                                    all things about dreaming. I got interested
+                                    in how and why dream itself is possible.
+                                    As well as the story of the dreams that I
+                                    went through throughout my life.
+                                    My goal is finding how dream are construct
+                                    and why it sometimes, have unique things
+                                    happening inside it.<br /><br />
+                                    With that said, I'm also trying to write
+                                    my own novel, the story will be taken from
+                                    all of the dreams that I experience. Sadly
+                                    I'm not confident enough to write it.
+                                    But I'll try it anyway. It's still a
+                                    work in progress.
                                 </p>
                             </div>
                         </div>
@@ -129,8 +134,8 @@ export default function AboutMe()
                                     {
                                         return (
                                             <div key={ index }>
-                                                <a href={ href } className="table-cell align-middle">
-                                                    <FontAwesomeIcon icon={ icon } className="font-primary text-primary text-3xl" />
+                                                <a href={ href } className="table-cell align-middle text-primary hover:text-primary-light transition-colors duration-300">
+                                                    <FontAwesomeIcon icon={ icon } className="font-primary text-3xl" />
                                                 </a>
                                             </div>
                                         );
@@ -141,26 +146,54 @@ export default function AboutMe()
                     </div>
                     <div className="mx-10">
                         <div className="flex flex-col h-full p-10 rounded-xl bg-white shadow-normal max-w-lg">
-                            <h1 className="font-secondary font-extrabold text-4xl text-primary">About <span className="text-primary-light">Me</span></h1>
+                            <h1 className="font-secondary font-extrabold text-4xl text-primary">Additional <span className="text-primary-light">Info</span></h1>
                             <p className="mt-4 font-primary font-normal text-base text-justify">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Maiores optio voluptas vitae earum sapiente facilis quidem
-                                velit? Alias laborum, optio mollitia nemo minima accusamus
-                                nobis et nam eius aperiam deserunt nulla eaque eos assumenda
-                                vero sapiente! Eos doloribus nesciunt ullam saepe. Temporibus
-                                blanditiis delectus repellat iusto eum reprehenderit, quibusdam nihil!
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Maiores optio voluptas vitae earum sapiente facilis quidem
-                                velit? Alias laborum, optio mollitia nemo minima accusamus
-                                nobis et nam eius aperiam deserunt nulla eaque eos assumenda
-                                vero sapiente! Eos doloribus nesciunt ullam saepe. Temporibus
-                                blanditiis delectus repellat iusto eum reprehenderit, quibusdam nihil!
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Maiores optio voluptas vitae earum sapiente facilis quidem
-                                velit? Alias laborum, optio mollitia nemo minima accusamus
-                                nobis et nam eius aperiam deserunt nulla eaque eos assumenda
-                                vero sapiente! Eos doloribus nesciunt ullam saepe.
+                                Hi, you can called me Lemi or Sakii. Thanks
+                                for visiting my personal website.
+                                If you are curious, this website was made
+                                using Next.js, Typescript and TailwindCSS.
+                                This was my first attempt at using Next.js
+                                for building website and I'm still learning
+                                from it. The code itself is open source,
+                                you can check it out yourself by <a
+                                    href="https://github.com/Itsakaseru/itsakaseru-web"
+                                    target="_blank"
+                                    rel="noreferrer">
+                                    clicking here.
+                                </a>
+                                <br /><br />
+                                If you want contact me, you can do it through
+                                my email <span className="select-text">contact@itsakaseru.me</span>. Though I
+                                don't why you would want to contact me to
+                                be completely honest xD. <br /><br />
+                                I own two YouTube channels, one is for
+                                gaming and one I have not decided yet.
+                                For the gaming one, I might change it to
+                                others things that I got interest in later on.
+                                You can visit my channel by clicking the
+                                YouTube logo in my homepage, or by clicking
+                                this box below.
                             </p>
+                            <div className="mt-5 flex flex-grow">
+                                <div className="self-center">
+                                    <a href="https://youtube.com/SkyEncripttion" className="flex flex-row items-center rounded-lg shadow-normal bg-gray-100">
+                                        <div className={ `flex justify-center max-w-small w-full m-5 p-7 rounded-lg bg-gradient-to-br from-dayker to-dayker-light` }>
+                                            <FontAwesomeIcon
+                                                icon={ faSkyEncripttion }
+                                                className="text-7xl text-white"
+                                            />
+                                        </div>
+                                        <div className="ml-3 mr-8">
+                                            <h2 className={ `font-primary font-bold drop-shadow-md text-dayker-dark text-3xl` }>SkyEncripttion</h2>
+                                            <p className={ `mt-2 font-secondary font-medium text-dayker text-sm` }>
+                                                <b>{ subscriberCount }</b> Subscribers<br />
+                                                <b>{ viewCount }</b> Total Views<br />
+                                                <b>{ videoCount }</b> Videos Uploaded
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -168,4 +201,15 @@ export default function AboutMe()
             </div >
         </>
     );
+}
+
+export async function getServerSideProps()
+{
+    const apiURL = `https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCoEztSI7PDAwtGsUQ8Dq7Pg&key=${ process.env.GOOGLE_API_KEY }`;
+
+    const response = await fetch(apiURL);
+    const responseJSON = await response.json();
+    const { statistics } = responseJSON.items[ 0 ];
+
+    return { props: { statistics } };
 }
