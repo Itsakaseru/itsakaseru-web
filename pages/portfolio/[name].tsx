@@ -1,10 +1,8 @@
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
-import Loading from "../../components/loading";
 import { faArrowLeft, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import getPortfolioData from "../api/portfolio";
