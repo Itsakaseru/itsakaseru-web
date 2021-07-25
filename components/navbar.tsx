@@ -96,10 +96,10 @@ export default function Navbar({ page }: IProps)
 				</>
 			}
 			<nav className="m-10 flex justify-between md:hidden">
-				<div className="self-center font-primary font-semibold text-primary text-3xl select-none">
+				<div className="self-center font-primary font-semibold text-primary text-2xl select-none">
 					Itsakaseru
 				</div>
-				<button className="px-5 py-3 rounded-lg bg-white text-2xl" onClick={ () => setShowMobileNavbar(true) }>
+				<button className="px-4 py-2 rounded-lg bg-white text-2xl" onClick={ () => setShowMobileNavbar(true) }>
 					<FontAwesomeIcon icon={ faBars } />
 				</button>
 			</nav>
