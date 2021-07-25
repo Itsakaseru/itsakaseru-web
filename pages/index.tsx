@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import profilePicture from "../public/images/itsakaseru.jpg";
+import profilePictureBlur from "../public/images/itsakaseru-blur.jpg";
 import Navbar from "../components/navbar";
 import QuickNav from "../components/quick-nav";
 import Footer from "../components/footer";
@@ -22,6 +23,7 @@ export default function Home()
 						src={ profilePicture }
 						className="rounded-full"
 						alt="Itsakaseru profile picture"
+						placeholder="blur"
 					/>
 				</div>
 				<QuickNav />
