@@ -61,6 +61,10 @@ module.exports = {
 				'small': '8rem',
 				'icon': '10rem',
 			},
+			maxHeight: {
+				'small': '8rem',
+				'icon': '10rem',
+			},
 			width: {
 				'landscape': '45rem',
 			}
