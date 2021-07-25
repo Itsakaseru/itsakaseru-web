@@ -168,7 +168,7 @@ export default function AboutMe({ statistics }: AppProps)
                                     <br /><br />
                                     If you want contact me, you can do it through
                                     my email <span className="select-text">contact@itsakaseru.me</span>. Though I
-                                    don&apos;t why you would want to contact me to
+                                    don&apos;t know why you would want to contact me to
                                     be completely honest xD. <br /><br />
                                     I own two YouTube channels, one is for
                                     gaming and one I have not decided yet.
