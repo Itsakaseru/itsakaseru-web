@@ -17,7 +17,7 @@ export default function Home()
 			</Head>
 			<div className="flex flex-col justify-between h-screen select-none">
 				<Navbar page="Home" />
-				<div className="self-center max-w-lg rounded-full">
+				<div className="self-center max-w-xs md:max-w-lg rounded-full">
 					<Image
 						src={ profilePicture }
 						className="rounded-full"
