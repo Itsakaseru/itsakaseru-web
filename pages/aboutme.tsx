@@ -75,7 +75,7 @@ export default function AboutMe({ statistics }: AppProps)
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="About Me" />
-                <div className="flex flex-col 2xl:flex-row flex-grow justify-between items-center 2xl:items-stretch mx-4 sm:mx-10 space-x-0 2xl:space-x-8 space-y-8 2xl:space-y-0">
+                <div className="flex flex-col 2xl:flex-row flex-grow justify-between items-center 2xl:items-stretch mx-10 sm:mx-10 space-x-0 2xl:space-x-8 space-y-8 2xl:space-y-0">
                     <div>
                         <div className="flex flex-col sm:flex-row max-w-lg items-center sm:items-stretch p-6 rounded-xl bg-white shadow-normal">
                             <div className="flex p-0 max-w-xs mt-3 sm:mt-0">
@@ -129,7 +129,7 @@ export default function AboutMe({ statistics }: AppProps)
                                 </div>
                             </div>
                             <div id="quick-links" className="mb-8 lg:mb-0">
-                                <div className="flex flex-row justify-around px-14 py-5 rounded-xl bg-white shadow-normal">
+                                <div className="flex flex-row justify-around px-4 sm:px-14 py-5 rounded-xl bg-white shadow-normal">
                                     {
                                         personalInfo.map(({ icon, href }, index) =>
                                         {
