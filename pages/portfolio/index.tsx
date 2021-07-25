@@ -5,7 +5,6 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import getPortfolioData from "../api/portfolio";
 import { IPortfolio } from "../../types/custom";
-import MetaColor from "../../components/meta-color";
 
 export default function Portfolio()
 {
@@ -18,7 +17,9 @@ export default function Portfolio()
                 <meta name="description" content="Just as the name says, collection of all of my projects"></meta>
                 <meta name="author" content="Remueru Itsakaseru"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <MetaColor />
+                <meta name="theme-color" content="#F9F9F9" />
+                <meta name="msapplication-navbutton-color" content="#F9F9F9" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="#F9F9F9" />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="Portfolio" />

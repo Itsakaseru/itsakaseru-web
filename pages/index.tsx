@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import profilePicture from "../public/images/itsakaseru.jpg";
-import profilePictureBlur from "../public/images/itsakaseru-blur.jpg";
 import Navbar from "../components/navbar";
 import QuickNav from "../components/quick-nav";
 import Footer from "../components/footer";
-import MetaColor from "../components/meta-color";
 
 export default function Home()
 {
@@ -16,7 +14,9 @@ export default function Home()
 				<meta name="description" content="Itsakaseru Personal Website"></meta>
 				<meta name="author" content="Remueru Itsakaseru"></meta>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<MetaColor />
+				<meta name="theme-color" content="#F9F9F9" />
+				<meta name="msapplication-navbutton-color" content="#F9F9F9" />
+				<meta name="apple-mobile-web-app-status-bar-style" content="#F9F9F9" />
 			</Head>
 			<div className="flex flex-col justify-between h-screen select-none">
 				<Navbar page="Home" />
