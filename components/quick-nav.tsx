@@ -24,12 +24,12 @@ export default function QuickNav()
 	];
 
 	return (
-		<div className="self-center rounded-xl shadow-normal bg-white mt-8 mb-10 px-7 py-4 space-x-8">
+		<div className="self-center rounded-xl shadow-normal bg-white mt-8 mb-10 px-5 py-3 md:px-7 md:py-4 space-x-8">
 			{
 				quick_links.map(({ icon, href }, index) =>
 				{
 					return (
-						<a key={ index } href={ href } target="_blank" rel="noreferrer" className="text-3xl text-primary hover:text-primary-light transition-colors duration-300">
+						<a key={ index } href={ href } target="_blank" rel="noreferrer" className="text-2xl md:text-3xl text-primary hover:text-primary-light transition-colors duration-300">
 							<FontAwesomeIcon icon={ icon } />
 						</a>
 					);
