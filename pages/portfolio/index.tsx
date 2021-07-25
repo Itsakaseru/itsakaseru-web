@@ -5,6 +5,7 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import getPortfolioData from "../api/portfolio";
 import { IPortfolio } from "../../types/custom";
+import MetaColor from "../../components/meta-color";
 
 export default function Portfolio()
 {
@@ -13,10 +14,11 @@ export default function Portfolio()
     return (
         <>
             <Head>
-                <title>Itsakaseru</title>
-                <meta name="description" content="Itsakaseru Personal Website"></meta>
+                <title>Portfolio</title>
+                <meta name="description" content="Just as the name says, collection of all of my projects"></meta>
                 <meta name="author" content="Remueru Itsakaseru"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <MetaColor />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="Portfolio" />

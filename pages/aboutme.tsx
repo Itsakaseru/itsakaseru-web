@@ -9,6 +9,7 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import selfPicture from "../public/images/lemi.jpg";
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import MetaColor from "../components/meta-color";
 
 export default function AboutMe({ statistics }: AppProps)
 {
@@ -69,9 +70,10 @@ export default function AboutMe({ statistics }: AppProps)
         <>
             <Head>
                 <title>About Me</title>
-                <meta name="description" content="Itsakaseru Personal Website"></meta>
+                <meta name="description" content="Information about me, who am I and what am I doing?"></meta>
                 <meta name="author" content="Remueru Itsakaseru"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <MetaColor />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="About Me" />

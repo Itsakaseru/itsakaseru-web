@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import getPortfolioData from "../api/portfolio";
 import { IPortfolio } from "../../types/custom";
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import MetaColor from "../../components/meta-color";
 
 export default function PortfolioDetails({ portfolioList }: AppProps)
 {
@@ -17,9 +18,10 @@ export default function PortfolioDetails({ portfolioList }: AppProps)
         <>
             <Head>
                 <title>Portfolio: { name }</title>
-                <meta name="description" content="Itsakaseru Personal Website"></meta>
+                <meta name="description" content={ desc }></meta>
                 <meta name="author" content="Remueru Itsakaseru"></meta>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+                <MetaColor />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="Portfolio" />
