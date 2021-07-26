@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
@@ -12,6 +13,16 @@ export default function Navbar({ page }: IProps)
 {
 	const [ showMobileNavbar, setShowMobileNavbar ] = useState(false);
 	const mobileNavbar = useRef<HTMLInputElement>(null);
+
+	const fadeInOut = {
+		hidden: { opacity: 0, transition: { duration: 0.5 } },
+		visible: { opacity: 0.3, transition: { duration: 0.5 } },
+	}
+
+	const popInOut = {
+		hidden: { scale: 0, opacity: 0, transition: { duration: 0.5, type: "spring", bounce: 0.35 } },
+		visible: { scale: 1, opacity: 1, transition: { duration: 0.5, type: "spring", bounce: 0.35 } },
+	}
 
 	useEffect(() =>
 	{
@@ -70,31 +81,33 @@ export default function Navbar({ page }: IProps)
 					</div>
 				</div>
 			</nav>
-			{
-				showMobileNavbar &&
-				<>
-					<div className="absolute h-screen w-screen flex justify-center items-center z-10 bg-black opacity-30" />
-					<div className="absolute h-screen w-screen flex justify-center items-center z-10">
-						<div ref={ mobileNavbar } className="flex flex-col space-y-6 justify-between p-6 rounded-lg bg-white shadow-lg font-secondary font-semibold text-primary text-base">
-							{
-								links.map(({ name, href }, index) =>
+			<AnimatePresence>
+				{
+					showMobileNavbar &&
+					<>
+						<motion.div variants={ fadeInOut } initial="hidden" animate="visible" exit="hidden" className="absolute h-screen w-screen flex justify-center items-center z-10 bg-black" />
+						<motion.div variants={ popInOut } initial="hidden" animate="visible" exit="hidden" className="absolute h-screen w-screen flex justify-center items-center z-10">
+							<div ref={ mobileNavbar } className="flex flex-col space-y-6 justify-between p-6 rounded-lg bg-white shadow-lg font-secondary font-semibold text-primary text-base">
 								{
-									return (
-										<Link key={ index } href={ href }>
-											<a
-												onClick={ name === page ? () => setShowMobileNavbar(false) : undefined }
-												className="bg-primary text-white hover:bg-primary-light hover:text-white text-center px-8 py-3 rounded transition-colors duration-300"
-											>
-												{ name }
-											</a>
-										</Link>
-									);
-								})
-							}
-						</div>
-					</div>
-				</>
-			}
+									links.map(({ name, href }, index) =>
+									{
+										return (
+											<Link key={ index } href={ href }>
+												<a
+													onClick={ name === page ? () => setShowMobileNavbar(false) : undefined }
+													className="bg-primary text-white hover:bg-primary-light hover:text-white text-center px-8 py-3 rounded transition-colors duration-300"
+												>
+													{ name }
+												</a>
+											</Link>
+										);
+									})
+								}
+							</div>
+						</motion.div>
+					</>
+				}
+			</AnimatePresence>
 			<nav className="m-10 flex justify-between md:hidden">
 				<div className="self-center font-primary font-semibold text-primary text-2xl select-none">
 					Itsakaseru
