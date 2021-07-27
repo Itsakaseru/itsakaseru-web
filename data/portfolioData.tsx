@@ -608,7 +608,7 @@ export default function getData()
             href: "/portfolio/video-editing-konmul",
             color: "cyan",
             desc: "All about the history of video games",
-            longDesc: "This project was made for our multimedia concept final project. Our main topic was to talk about the history of video games, from and after the 2000s era. Our group worked together to write the script, translate it and prepare for recording sessions.\n\nOther than writing the script, I was in charge of helping with recording voices, video and also editing it together with motion graphics added.",
+            longDesc: "This project was made for our multimedia concept final project. Our main topic was to talk about the history of video games, before and after the 2000s era. Our group worked together to write the script, translate it and prepare for recording sessions.\n\nOther than writing the script, I was in charge of helping with recording voices, video and also editing it together with motion graphics added.",
             dcs: [
                 {
                     name: "Premiere Pro",
