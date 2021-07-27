@@ -16,8 +16,8 @@ class MyDocument extends Document
                     <meta name="author" content="Lemuel Lancaster" />
                     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                     <meta name="theme-color" content="#524C46" />
-                    <meta name="msapplication-navbutton-color" content="#F9F9F9" />
-                    <meta name="apple-mobile-web-app-status-bar-style" content="#F9F9F9" />
+                    <meta name="msapplication-navbutton-color" content="#524C46" />
+                    <meta name="apple-mobile-web-app-status-bar-style" content="#524C46" />
                 </Head>
                 <body>
                     <Main />
