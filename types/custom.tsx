@@ -27,5 +27,6 @@ export interface IPortfolio
     desc: string,
     longDesc: string,
     dcs: IPortfolioDcs[],
-    img: IPortfolioImg[]
+    img?: IPortfolioImg[]
+    video?: string
 }

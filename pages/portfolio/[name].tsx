@@ -11,7 +11,7 @@ import { AppProps } from "next/dist/next-server/lib/router/router";
 
 export default function PortfolioDetails({ portfolioList }: AppProps)
 {
-    const { id, name, icon, color, desc, longDesc, dcs, img }: IPortfolio = portfolioList;
+    const { id, name, icon, color, desc, longDesc, dcs, img, video }: IPortfolio = portfolioList;
 
     return (
         <>
@@ -88,27 +88,35 @@ export default function PortfolioDetails({ portfolioList }: AppProps)
                             </p>
                         </article>
                         <div className="flex flex-col my-24">
-                            <h3 className={ `font-secondary font-extrabold text-3xl text-${ color }-dark` }>Screenshots</h3>
-                            <div id="images" className="flex flex-row self-center overflow-auto max-w-xs sm:max-w-lg lg:max-w-xs xl:max-w-screen-sm 2xl:max-w-screen-md mt-8 pb-6">
-                                {
-                                    img.map(({ type, src, blurSrc, alt, width, height }, index) =>
+                            <h3 className={ `font-secondary font-extrabold text-3xl text-${ color }-dark` }>{ img ? "Screenshots" : video && "Video" }</h3>
+                            { img &&
+                                <div id="images" className="flex flex-row self-center overflow-auto max-w-xs sm:max-w-lg lg:max-w-xs xl:max-w-screen-sm 2xl:max-w-screen-md mt-8 pb-6">
                                     {
-                                        return (
-                                            <div key={ index } className={ `flex-shrink-0 px-6 ${ type === "portrait" ? "w-56" : "w-72 sm:w-landscape" }` }>
-                                                <Image
-                                                    className="rounded-md"
-                                                    src={ src }
-                                                    alt={ alt }
-                                                    width={ width }
-                                                    height={ height }
-                                                    blurDataURL={ blurSrc }
-                                                    placeholder="blur"
-                                                />
-                                            </div>
-                                        );
-                                    })
-                                }
-                            </div>
+                                        img.map(({ type, src, blurSrc, alt, width, height }, index) =>
+                                        {
+                                            return (
+                                                <div key={ index } className={ `flex-shrink-0 px-6 ${ type === "portrait" ? "w-56" : "w-72 sm:w-landscape" }` }>
+                                                    <Image
+                                                        className="rounded-md"
+                                                        src={ src }
+                                                        alt={ alt }
+                                                        width={ width }
+                                                        height={ height }
+                                                        blurDataURL={ blurSrc }
+                                                        placeholder="blur"
+                                                    />
+                                                </div>
+                                            );
+                                        })
+                                    }
+                                </div>
+                            }
+                            {
+                                video &&
+                                <div id="images" className="flex flex-row self-center overflow-auto max-w-xs sm:max-w-lg lg:max-w-xs xl:max-w-screen-sm 2xl:max-w-screen-md mt-8 pb-6">
+                                    <iframe className="rounded-lg" width="560" height="315" src={ `https://www.youtube-nocookie.com/embed/${ video }` } title="YouTube" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

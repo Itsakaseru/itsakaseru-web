@@ -4,9 +4,10 @@ import ImmaCrossyBoxLogo from "../public/images/imma-crossy-box.png";
 import MateMatirunLogo from "../public/images/matematirun.png"
 import KnoledgeLogo from "../public/svg/knoledge.svg";
 import LatusLogo from "../public/svg/latus.svg";
+import VideoEditing from "../public/svg/video-editing.svg";
 
 import { faAndroid, faPhp, faUnity } from "@fortawesome/free-brands-svg-icons";
-import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy, faFilm, faClock, faShapes } from "@fortawesome/free-solid-svg-icons";
 
 export default function getData()
 {
@@ -599,6 +600,90 @@ export default function getData()
                     layout: "responsive"
                 }
             ]
+        },
+        {
+            id: "video-editing-konmul",
+            name: "Sejarah Video Games",
+            icon: VideoEditing,
+            href: "/portfolio/video-editing-konmul",
+            color: "cyan",
+            desc: "All about the history of video games",
+            longDesc: "This project was made for our multimedia concept final project. Our main topic was to talk about the history of video games, from and after the 2000s era. Our group worked together to write the script, translate it and prepare for recording sessions.\n\nOther than writing the script, I was in charge of helping with recording voices, video and also editing it together with motion graphics added.",
+            dcs: [
+                {
+                    name: "Premiere Pro",
+                    icon: faFilm
+                },
+                {
+                    name: "After Effects",
+                    icon: faShapes
+                },
+                {
+                    name: "20 March 2019",
+                    icon: faClock
+                }
+            ],
+            video: "MSwIq1I0L88"
+        },
+        {
+            id: "video-editing-lyrics",
+            name: "Lyrics Video",
+            icon: VideoEditing,
+            href: "/portfolio/video-editing-lyrics",
+            color: "cyan",
+            desc: "Lyrics Video made with after effects",
+            longDesc: "This project was made for optional assignments in my multimedia concept courses. The assignment is to make a lyrics video from any songs that I want. I\'m not really good at making motion graphics back then, I can only do simple animations in after effects. But, I decided to make this. I\'m making this to practice my skills in making motion graphics using after effects.\n\nBack then, I was really stocked with the result. Even though it lacks some things that might need to be added like smooth animation, better colour palette, etc...",
+            dcs: [
+                {
+                    name: "After Effects",
+                    icon: faShapes
+                },
+                {
+                    name: "7 December 2018",
+                    icon: faClock
+                }
+            ],
+            video: "S7FN6Lrn2R0"
+        },
+        {
+            id: "video-editing-civics",
+            name: "Iklan Layanan Masyarakat",
+            icon: VideoEditing,
+            href: "/portfolio/video-editing-civics",
+            color: "cyan",
+            desc: "Public Service Advertisement for my civics course final project",
+            longDesc: "This project is for our civics final project. We got an assignment to make a public service advertisement video from our student creativity program, which was teaching high school students about basic programming. This was a lengthy project. But It was so much fun in the end, I think... Maybe? Ummm.. hehehew\n\nEvery step we do must be documented for use later on when making the video, my friends and I had different roles. I was in charge to teach in one of the sessions, documenting and lastly editing.",
+            dcs: [
+                {
+                    name: "Premiere Pro",
+                    icon: faFilm
+                },
+                {
+                    name: "5 December 2018",
+                    icon: faClock
+                }
+            ],
+            video: "DY3B9ZTjsIk"
+        },
+        {
+            id: "video-editing-plc2k17",
+            name: "PLC2K17",
+            icon: VideoEditing,
+            href: "/portfolio/video-editing-plc2k17",
+            color: "cyan",
+            desc: "Video \"Ads\" for my upcoming high school event",
+            longDesc: "This project is the result of one of my job being a documenter for my yearly high school event. I was tasked to make a video kinda like an ad for it, or maybe a trailer I guess? frankly, I don\'t really know how to describe it. With the same attitude as when I was making my lyrics video. I\'m doing this to practice my video editing skills.\n\nI\'m only mainly doing the editing works, all the video assets were made by another or previous documenter and given to me. The deadline was really tight on this one, They said it can be extended, but given the date of the event, I felt bad if the video was posted late. It was a fun event in my opinion, but unfortunately, I was sicked after it lol xD. This was the result.",
+            dcs: [
+                {
+                    name: "Premiere Pro",
+                    icon: faFilm
+                },
+                {
+                    name: "14 October 2017",
+                    icon: faClock
+                }
+            ],
+            video: "8VumGU01xkg"
         }
     ];
 }

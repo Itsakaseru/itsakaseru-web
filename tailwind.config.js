@@ -52,6 +52,11 @@ module.exports = {
 					light: '#AB8AFF',
 					DEFAULT: '#7E6BC4',
 					dark: '#7E6BC4'
+				},
+				cyan: {
+					light: '#AFCDFF',
+					DEFAULT: '#79A9FB',
+					dark: '#617BCC'
 				}
 			},
 			boxShadow: {
