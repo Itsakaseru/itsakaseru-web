@@ -7,7 +7,8 @@ module.exports = {
 			/^from-chocolate/, /^to-chocolate/, /^text-chocolate/,
 			/^from-dayker/, /^to-dayker/, /^text-dayker/,
 			/^from-cloud/, /^to-cloud/, /^text-cloud/,
-			/^from-lavender/, /^to-lavender/, /^text-lavender/
+			/^from-lavender/, /^to-lavender/, /^text-lavender/,
+			/^from-cyan/, /^to-cyan/, /^text-cyan/
 		]
 	},
 	darkMode: false, // or 'media' or 'class'
