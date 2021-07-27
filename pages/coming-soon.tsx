@@ -7,11 +7,6 @@ export default function ComingSoon()
         <>
             <Head>
                 <title>Coming Soon</title>
-                <meta name="author" content="Remueru Itsakaseru"></meta>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta name="theme-color" content="#F9F9F9" />
-                <meta name="msapplication-navbutton-color" content="#F9F9F9" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="#F9F9F9" />
             </Head>
             <div className="flex flex-col justify-center space-y-4 items-center h-screen">
                 <h1 className="font-secondary font-extrabold text-4xl">Coming Soon</h1>

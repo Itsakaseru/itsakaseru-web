@@ -11,12 +11,7 @@ export default function Home()
 		<>
 			<Head>
 				<title>Itsakaseru</title>
-				<meta name="description" content="Itsakaseru Personal Website"></meta>
-				<meta name="author" content="Remueru Itsakaseru"></meta>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-				<meta name="theme-color" content="#F9F9F9" />
-				<meta name="msapplication-navbutton-color" content="#F9F9F9" />
-				<meta name="apple-mobile-web-app-status-bar-style" content="#F9F9F9" />
+				<meta name="description" content="Itsakaseru Personal Website" />
 			</Head>
 			<div className="flex flex-col justify-between h-screen select-none">
 				<Navbar page="Home" />

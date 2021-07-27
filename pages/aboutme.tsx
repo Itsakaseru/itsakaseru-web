@@ -69,12 +69,7 @@ export default function AboutMe({ statistics }: AppProps)
         <>
             <Head>
                 <title>About Me</title>
-                <meta name="description" content="Information about me, who am I and what am I doing?"></meta>
-                <meta name="author" content="Remueru Itsakaseru"></meta>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                <meta name="theme-color" content="#F9F9F9" />
-                <meta name="msapplication-navbutton-color" content="#F9F9F9" />
-                <meta name="apple-mobile-web-app-status-bar-style" content="#F9F9F9" />
+                <meta name="description" content="Information about me, who am I and what am I doing?" />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="About Me" />
