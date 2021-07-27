@@ -106,7 +106,7 @@ export default function AboutMe({ statistics }: AppProps)
                                         goal. I have always been fascinated by
                                         technology especially in the programming
                                         world. Although I am a quiet type, like
-                                        really.. I&apos;m got nervous around people
+                                        really.. I got nervous around people
                                         I don&apos;t know. But with that said, I
                                         can try and will try adapt to my social
                                         environment and be able to blend in.<br /><br />
