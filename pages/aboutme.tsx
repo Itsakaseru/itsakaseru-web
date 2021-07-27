@@ -70,6 +70,7 @@ export default function AboutMe({ statistics }: AppProps)
             <Head>
                 <title>About Me</title>
                 <meta name="description" content="Information about me, who am I and what am I doing?" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="About Me" />

@@ -7,6 +7,7 @@ export default function ComingSoon()
         <>
             <Head>
                 <title>Coming Soon</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <div className="flex flex-col justify-center space-y-4 items-center h-screen">
                 <h1 className="font-secondary font-extrabold text-4xl">Coming Soon</h1>

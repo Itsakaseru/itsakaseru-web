@@ -15,6 +15,7 @@ export default function Portfolio()
             <Head>
                 <title>Portfolio</title>
                 <meta name="description" content="Just as the name says, collection of all of my projects" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="Portfolio" />

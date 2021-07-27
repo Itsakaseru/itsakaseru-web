@@ -18,6 +18,7 @@ export default function PortfolioDetails({ portfolioList }: AppProps)
             <Head>
                 <title>Portfolio: { name }</title>
                 <meta name="description" content={ desc } />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="Portfolio" />
