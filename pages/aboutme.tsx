@@ -9,8 +9,9 @@ import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import selfPicture from "../public/images/lemi.jpg";
 import { AppProps } from "next/dist/next-server/lib/router/router";
+import { InferGetStaticPropsType } from "next";
 
-export default function AboutMe({ statistics }: AppProps)
+export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof getStaticProps>)
 {
     const { subscriberCount, viewCount, videoCount } = statistics;
 
@@ -204,7 +205,7 @@ export default function AboutMe({ statistics }: AppProps)
     );
 }
 
-export async function getServerSideProps()
+export async function getStaticProps()
 {
     const apiURL = `https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCoEztSI7PDAwtGsUQ8Dq7Pg&key=${ process.env.GOOGLE_API_KEY }`;
 
@@ -212,5 +213,5 @@ export async function getServerSideProps()
     const responseJSON = await response.json();
     const { statistics } = responseJSON.items[ 0 ];
 
-    return { props: { statistics } };
+    return { props: { statistics }, revalidate: 300 };
 }
