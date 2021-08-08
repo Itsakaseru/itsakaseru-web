@@ -14,7 +14,8 @@ interface IPortfolioImg
     src: string,
     blurSrc: string,
     width: number,
-    height: number
+    height: number,
+    layout: string
 }
 
 export interface IPortfolio
