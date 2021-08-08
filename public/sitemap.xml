@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+  <loc>https://itsakaseru.me/</loc>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/aboutme</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/coming-soon</loc>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/routine</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/security-slip</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/imma-crossy-box</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/matematirun</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/knoledge</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/latus</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/video-editing-konmul</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/video-editing-lyrics</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/video-editing-civics</loc>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://itsakaseru.me/portfolio/video-editing-plc2k17</loc>
+  <priority>0.64</priority>
+</url>
+</urlset>
