@@ -44,6 +44,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/splash-screen.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -52,6 +53,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/first-setup.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -60,6 +62,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/dashboard.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -68,6 +71,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/routine-list.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -76,6 +80,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/analytics.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -84,6 +89,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/settings.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -92,6 +98,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/add-routine.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -100,6 +107,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/notification-heads-up.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
                 {
                     type: "portrait",
@@ -108,6 +116,7 @@ export default function getData()
                     blurSrc: "/images/routine/blur/notification.png",
                     width: 1080,
                     height: 2400,
+                    layout: "responsive"
                 },
             ]
         },
