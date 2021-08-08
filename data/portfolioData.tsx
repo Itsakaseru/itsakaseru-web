@@ -5,18 +5,18 @@ import MateMatirunLogo from "../public/images/matematirun.png"
 import KnoledgeLogo from "../public/svg/knoledge.svg";
 import LatusLogo from "../public/svg/latus.svg";
 import VideoEditing from "../public/svg/video-editing.svg";
+import { IPortfolio } from "../types/custom";
 
 import { faAndroid, faPhp, faUnity } from "@fortawesome/free-brands-svg-icons";
 import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy, faFilm, faClock, faShapes } from "@fortawesome/free-solid-svg-icons";
 
 export default function getData()
 {
-    return [
+    const portfolios: IPortfolio[] = [
         {
             id: "routine",
             name: "Routine.",
             icon: RoutineLogo,
-            href: "/portfolio/routine",
             color: "lime",
             desc: "Daily routine reminder and simple digital wellbeing android application",
             longDesc: "Routine is a reminder and simple digital wellbeing application built using Android SDK for our Mobile Application Programming final project. It\'s a simple alarm clock that is repeated automatically corresponding to your daily routine. Featuring simple digital wellbeing to check how consistent you are with your daily routine, we hope that it will help you get more consistent doing your daily routine.\n\nIn this project, I work mainly on the design of the application (UI, UX), and a little bit of backend for the frontend element",
@@ -114,7 +114,6 @@ export default function getData()
             id: "security-slip",
             name: "Security SLip",
             icon: SecuritySLipLogo,
-            href: "/portfolio/security-slip",
             color: "orange",
             desc: "It\'s an \"security- checkup\" based simulation game",
             longDesc: "Security SLip or we like to call it SSL lol, is a simulation game where your job is to make sure all the people who come in, come ou- I mean umm... They have proper entry cards. We got inspired by the game Paper Please, we thought since it\'s a 2D game why not make it 3D with a little bit more twist?\nThis game was built for our Game Design and Development 2 final project. With the limited time given, there are still many game components that are still not yet implemented.\n\nIn this project, I work mainly on the design of the game (UI, UX). I\'m also doing the backend for the game with the rest of the team.",
@@ -190,7 +189,6 @@ export default function getData()
             id: "imma-crossy-box",
             name: "Imma Crossy Box",
             icon: ImmaCrossyBoxLogo,
-            href: "/portfolio/imma-crossy-box",
             color: "dayker",
             desc: "It's an \"action- adventure\" based simulation game",
             longDesc: "Imma Crossy Box is a simulation game where you are a box that only had one goal. Deliver itself into someone\’s house. We got inspired by the game crossy road on mobile. From that, we want to make it more challenging and by making the main player a box and controlling it with multiple inputs, we think we reached our goal. This game was built for our Computer Graphics and Animation final project. \n\nIn this project, I work mainly on the design of the game (UI, UX). I\'m also doing the backend for the game with the rest of the team.",
@@ -284,7 +282,6 @@ export default function getData()
             id: "matematirun",
             name: "MateMatirun",
             icon: MateMatirunLogo,
-            href: "/portfolio/matematirun",
             color: "cloud",
             desc: "A math learning based rhythm game with RPG spice into it",
             longDesc: "MateMatirun is a math learning based rhythm game, where you do the rhythm while doing some math questions at the same time until the end of the song. It was built for our Game Design and Development 1 final project. We combined our team ideas into one, and the result is spectacular! at least it\'s what we think.\n\nIn this project, I work mainly on the design of the game (UI, UX). I\'m also doing the backend for the game with the rest of the team.",
@@ -391,7 +388,6 @@ export default function getData()
             id: "knoledge",
             name: "Knoledge",
             icon: KnoledgeLogo,
-            href: "/portfolio/knoledge",
             color: "chocolate",
             desc: "Education Management Web Application made with CodeIgniter 3",
             longDesc: "Knoledge is a web application design for educational institutions to manage either students or employees according to their educational system. Teachers can assign scores, manage re-review requests and see how their students performing throughout their education. The student itself can also be logged in to access and view scores. This project was built for our Web Programming final project\n\nIn this project, I work mainly on the sketch up design for the web application itself (UI, UX), later on, that sketch up design get perfected by my other team member. I\'m also doing the backend for the web application with the rest of the team.",
@@ -516,7 +512,6 @@ export default function getData()
             id: "latus",
             name: "Latus",
             icon: LatusLogo,
-            href: "/portfolio/latus",
             color: "lavender",
             desc: "Pure PHP, simple social media website",
             longDesc: "Latus is a very simple social media website built for our Web Programming mid-term project using HTML, CSS and pure PHP. Upon login you can discover \"friends\" that you can visit and comment on their own posts, it\'s kinda like Twitter but more open to the public. You can change your profile picture, change your profile theme, add a background image to your profile, make a post either with text and or a picture added in.\n\nIn this project, I work mainly on the design for the website. I\'m also doing the backend for the website with the rest of the team.",
@@ -605,7 +600,6 @@ export default function getData()
             id: "video-editing-konmul",
             name: "Sejarah Video Games",
             icon: VideoEditing,
-            href: "/portfolio/video-editing-konmul",
             color: "cyan",
             desc: "All about the history of video games",
             longDesc: "This project was made for our multimedia concept final project. Our main topic was to talk about the history of video games, before and after the 2000s era. Our group worked together to write the script, translate it and prepare for recording sessions.\n\nOther than writing the script, I was in charge of helping with recording voices, video and also editing it together with motion graphics added.",
@@ -629,7 +623,6 @@ export default function getData()
             id: "video-editing-lyrics",
             name: "Lyrics Video",
             icon: VideoEditing,
-            href: "/portfolio/video-editing-lyrics",
             color: "cyan",
             desc: "Lyrics Video made with after effects",
             longDesc: "This project was made for optional assignments in my multimedia concept courses. The assignment is to make a lyrics video from any songs that I want. I\'m not really good at making motion graphics back then, I can only do simple animations in after effects. But, I decided to make this. I\'m making this to practice my skills in making motion graphics using after effects.\n\nBack then, I was really stocked with the result. Even though it lacks some things that might need to be added like smooth animation, better colour palette, etc...",
@@ -649,7 +642,6 @@ export default function getData()
             id: "video-editing-civics",
             name: "Iklan Layanan Masyarakat",
             icon: VideoEditing,
-            href: "/portfolio/video-editing-civics",
             color: "cyan",
             desc: "Public Service Advertisement for my civics course final project",
             longDesc: "This project is for our civics final project. We got an assignment to make a public service advertisement video from our student creativity program, which was teaching high school students about basic programming. This was a lengthy project. But It was so much fun in the end, I think... Maybe? Ummm.. hehehew\n\nEvery step we do must be documented for use later on when making the video, my friends and I had different roles. I was in charge to teach in one of the sessions, documenting and lastly editing.",
@@ -669,7 +661,6 @@ export default function getData()
             id: "video-editing-plc2k17",
             name: "PLC2K17",
             icon: VideoEditing,
-            href: "/portfolio/video-editing-plc2k17",
             color: "cyan",
             desc: "Video \"Ads\" for my upcoming high school event",
             longDesc: "This project is the result of one of my job being a documenter for my yearly high school event. I was tasked to make a video kinda like an ad for it, or maybe a trailer I guess? frankly, I don\'t really know how to describe it. With the same attitude as when I was making my lyrics video. I\'m doing this to practice my video editing skills.\n\nI\'m only mainly doing the editing works, all the video assets were made by another or previous documenter and given to me. The deadline was really tight on this one, They said it can be extended, but given the date of the event, I felt bad if the video was posted late. It was a fun event in my opinion, but unfortunately, I was sicked after it lol xD. This was the result.",
@@ -686,4 +677,6 @@ export default function getData()
             video: "8VumGU01xkg"
         }
     ];
+
+    return portfolios;
 }

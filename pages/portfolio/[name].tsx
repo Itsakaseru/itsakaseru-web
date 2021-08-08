@@ -5,13 +5,13 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import { faArrowLeft, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import getPortfolioData from "../api/portfolio";
+import getPortfolioData from "../../data/portfolio";
 import { IPortfolio } from "../../types/custom";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 
 export default function PortfolioDetails({ portfolioList }: AppProps)
 {
-    const { id, name, icon, color, desc, longDesc, dcs, img, video }: IPortfolio = portfolioList;
+    const { name, icon, color, desc, longDesc, dcs, img, video }: IPortfolio = portfolioList;
 
     return (
         <>

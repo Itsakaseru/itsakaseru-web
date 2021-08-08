@@ -3,7 +3,7 @@ import Image from "next/image"
 import Link from "next/link";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
-import getPortfolioData from "../api/portfolio";
+import getPortfolioData from "../../data/portfolio";
 import { IPortfolio } from "../../types/custom";
 
 export default function Portfolio()
@@ -31,10 +31,10 @@ export default function Portfolio()
                     </div>
                     <div className="m-0 mt-8 sm:m-24 flex flex-row flex-wrap justify-evenly gap-8">
                         {
-                            portfolioList.map(({ name, desc, href, icon, color }, index) =>
+                            portfolioList.map(({ id, name, desc, icon, color }, index) =>
                             {
                                 return (
-                                    <Link key={ index } href={ href }>
+                                    <Link key={ index } href={ `portfolio/${ id }` }>
                                         <a
                                             id={ name }
                                             className="flex flex-col sm:flex-row justify-evenly sm:justify-start p-6 sm:p-0 space-y-6 sm:space-y-0 max-w-none sm:max-w-md w-full sm:w-auto items-center rounded-lg shadow-normal bg-white transform transition duration-500 hover:scale-110"
