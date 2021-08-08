@@ -1,4 +1,4 @@
-import getData from "../../data/portfolioData";
+import getData from "./portfolioData";
 
 export default function apiHandler(id: string | undefined)
 {
