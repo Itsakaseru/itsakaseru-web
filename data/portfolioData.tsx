@@ -4,11 +4,12 @@ import ImmaCrossyBoxLogo from "../public/images/imma-crossy-box.png";
 import MateMatirunLogo from "../public/images/matematirun.png"
 import KnoledgeLogo from "../public/svg/knoledge.svg";
 import LatusLogo from "../public/svg/latus.svg";
+import EXSendLogo from "../public/images/ex-send.png";
 import VideoEditing from "../public/svg/video-editing.svg";
 import { IPortfolio } from "../types/custom";
 
 import { faAndroid, faPhp, faUnity } from "@fortawesome/free-brands-svg-icons";
-import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy, faFilm, faClock, faShapes } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy, faFilm, faClock, faShapes, faCopyright } from "@fortawesome/free-solid-svg-icons";
 
 export default function getData()
 {
@@ -594,6 +595,81 @@ export default function getData()
                     height: 1080,
                     layout: "responsive"
                 }
+            ]
+        },
+        {
+            id: "ex-send",
+            name: "EX-Send",
+            icon: EXSendLogo,
+            color: "dayker",
+            desc: "Simple delivery simulation written in C with Djikstra Algorithm",
+            longDesc: "EXSend is a delivery simulation program, either customer or courier can log in, customer can create order and view final shipping price. The courier can check customer\'s orders, and check the necessary routes to deliver the order generated using Dijkstra Algorithm. It was built for our basic programming final project, It was also our first programming project.",
+            dcs: [
+                {
+                    name: "C",
+                    icon: faCopyright
+                },
+                {
+                    name: "Open Source",
+                    icon: faCode,
+                    link: "https://github.com/Itsakaseru/exsend"
+                }
+            ],
+            img: [
+                {
+                    type: "landscape",
+                    alt: "EX-Send startup logo",
+                    src: "/images/ex-send/start.png",
+                    blurSrc: "/images/ex-send/blur/start.png",
+                    width: 965,
+                    height: 465,
+                    layout: "responsive"
+                },
+                {
+                    type: "landscape",
+                    alt: "EX-Send login menu",
+                    src: "/images/ex-send/login.png",
+                    blurSrc: "/images/ex-send/blur/login.png",
+                    width: 965,
+                    height: 465,
+                    layout: "responsive"
+                },
+                {
+                    type: "landscape",
+                    alt: "EX-Send main menu",
+                    src: "/images/ex-send/menu.png",
+                    blurSrc: "/images/ex-send/blur/menu.png",
+                    width: 965,
+                    height: 465,
+                    layout: "responsive"
+                },
+                {
+                    type: "landscape",
+                    alt: "EX-Send create order menu",
+                    src: "/images/ex-send/menu-order.png",
+                    blurSrc: "/images/ex-send/blur/menu-order.png",
+                    width: 965,
+                    height: 465,
+                    layout: "responsive"
+                },
+                {
+                    type: "landscape",
+                    alt: "EX-Send order list",
+                    src: "/images/ex-send/order-list.png",
+                    blurSrc: "/images/ex-send/blur/order-list.png",
+                    width: 965,
+                    height: 465,
+                    layout: "responsive"
+                },
+                {
+                    type: "landscape",
+                    alt: "EX-Send route list",
+                    src: "/images/ex-send/routes.png",
+                    blurSrc: "/images/ex-send/blur/routes.png",
+                    width: 965,
+                    height: 465,
+                    layout: "responsive"
+                },
             ]
         },
         {
