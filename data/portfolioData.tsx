@@ -612,7 +612,7 @@ export default function getData()
             icon: EXSendLogo,
             color: "dayker",
             desc: "Simple delivery simulation written in C with Djikstra Algorithm",
-            longDesc: "EXSend is a delivery simulation program, either customer or courier can log in, customer can create order and view final shipping price. The courier can check customer\'s orders, and check the necessary routes to deliver the order generated using Dijkstra Algorithm. It was built for our basic programming final project, It was also our first programming project.",
+            longDesc: "EXSend is a delivery simulation program, either customer or courier can log in, customer can create order and view final shipping price. The courier can check customer\'s orders, and check the necessary routes to deliver the order generated using Dijkstra Algorithm. It was built for our algorithms and data structures final project. It was our first programming project",
             dcs: [
                 {
                     name: "C",
