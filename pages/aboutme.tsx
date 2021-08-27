@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Navbar from "../components/navbar";
 import Footer from "../components/footer";
 import selfPicture from "../public/images/lemi.jpg";
-import { AppProps } from "next/dist/next-server/lib/router/router";
 import { InferGetStaticPropsType } from "next";
 
 export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof getStaticProps>)
