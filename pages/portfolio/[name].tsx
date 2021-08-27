@@ -7,9 +7,9 @@ import { faArrowLeft, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import getPortfolioData from "../../data/portfolio";
 import { IPortfolio } from "../../types/custom";
-import { AppProps } from "next/dist/next-server/lib/router/router";
+import { InferGetStaticPropsType } from "next";
 
-export default function PortfolioDetails({ portfolioList }: AppProps)
+export default function PortfolioDetails({ portfolioList }: InferGetStaticPropsType<typeof getStaticProps>)
 {
     const { name, icon, color, desc, longDesc, dcs, img, video }: IPortfolio = portfolioList;
 
