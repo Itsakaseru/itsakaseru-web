@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
+import { disableScroll, enableScroll } from "../utils/common";
 
 interface IProps
 {
@@ -23,6 +24,11 @@ export default function Navbar({ page }: IProps)
 		hidden: { scale: 0, opacity: 0, transition: { duration: 0.5, type: "spring", bounce: 0.35 } },
 		visible: { scale: 1, opacity: 1, transition: { duration: 0.5, type: "spring", bounce: 0.35 } },
 	}
+
+	useEffect(() => {
+		if (showMobileNavbar) disableScroll();
+		else enableScroll();
+	}, [ showMobileNavbar ])
 
 	useEffect(() =>
 	{
