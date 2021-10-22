@@ -1,3 +1,4 @@
+import SuteppuLogo from "../public/svg/suteppu.svg";
 import RoutineLogo from "../public/svg/routine.svg";
 import SecuritySLipLogo from "../public/images/security-slip.png";
 import ImmaCrossyBoxLogo from "../public/images/imma-crossy-box.png";
@@ -9,11 +10,50 @@ import VideoEditing from "../public/svg/video-editing.svg";
 import { IPortfolio } from "../types/custom";
 
 import { faAndroid, faPhp, faUnity } from "@fortawesome/free-brands-svg-icons";
-import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy, faFilm, faClock, faShapes, faCopyright } from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faCode, faCube, faVectorSquare, faBurn, faShareAlt, faFileDownload, faDonate, faCopy, faFilm, faClock, faShapes, faCopyright, faTools } from "@fortawesome/free-solid-svg-icons";
 
 export default function getData()
 {
     const portfolios: IPortfolio[] = [
+        {
+            id: "suteppu",
+            name: "Suteppu",
+            icon: SuteppuLogo,
+            color: "orange",
+            desc: "Step by step copy paste for presenting code with Fireship style for Visual Studio Code",
+            longDesc: "Suteppu is a Visual Studio Code Extension that can be use to step by step copy paste code-- presenting like what Fireship did in his video. I made this extension as a fun project and was intended to use it as a way to teach without ever having to type any code... and yea I know, I know... you can do all of this by just removing and stepping back using the built-in undo system from VSCode. But with this extension, you can save your steps into a file for use later on in the future.\n\nWelp... it's still kinda a useless extension tbh.",
+            dcs: [
+                {
+                    name: "Visual Studio Code Extension",
+                    icon: faTools
+                },
+                {
+                    name: "Open Source",
+                    icon: faCode,
+                    link: "https://github.com/Itsakaseru/Suteppu"
+                }
+            ],
+            img: [
+                {
+                    type: "landscape",
+                    alt: "Suteppu redo step",
+                    src: "/images/suteppu/suteppu-demo-redo.gif",
+                    blurSrc: "/images/routine/blur/suteppu-demo-redo.gif",
+                    width: 1421,
+                    height: 975,
+                    layout: "responsive"
+                },
+                {
+                    type: "landscape",
+                    alt: "Suteppu save step",
+                    src: "/images/suteppu/suteppu-demo-save.gif",
+                    blurSrc: "/images/routine/blur/suteppu-demo-save.gif",
+                    width: 1421,
+                    height: 975,
+                    layout: "responsive"
+                }
+            ]
+        },
         {
             id: "routine",
             name: "Routine.",
