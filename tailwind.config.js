@@ -1,17 +1,10 @@
 module.exports = {
-	purge: {
-		content: [ './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}' ],
-		safelist: [
-			/^from-lime/, /^to-lime/, /^text-lime/,
-			/^from-orange/, /^to-orange/, /^text-orange/,
-			/^from-chocolate/, /^to-chocolate/, /^text-chocolate/,
-			/^from-dayker/, /^to-dayker/, /^text-dayker/,
-			/^from-cloud/, /^to-cloud/, /^text-cloud/,
-			/^from-lavender/, /^to-lavender/, /^text-lavender/,
-			/^from-cyan/, /^to-cyan/, /^text-cyan/
-		]
-	},
-	darkMode: false, // or 'media' or 'class'
+	content: [ './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}' ],
+	safelist: [
+		{
+			pattern: /(from|to|text)-(lime|orange|chocolate|dayker|cloud|lavender|cyan)/
+		}
+	],
 	theme: {
 		extend: {
 			fontFamily: {
@@ -79,5 +72,7 @@ module.exports = {
 	variants: {
 		extend: {},
 	},
-	plugins: [],
+	plugins: [
+		require('@tailwindcss/aspect-ratio'),
+	],
 }
