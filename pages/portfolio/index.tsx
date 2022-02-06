@@ -47,7 +47,7 @@ export default function Portfolio()
                                                 />
                                             </div>
                                             <div className="mx-8">
-                                                <h2 className={ `font-primary font-bold drop-shadow-md text-${ color }-dark text-3xl text-center sm:text-left` }>{ name }</h2>
+                                                <h2 className={ `font-primary font-bold text-${ color }-dark text-3xl text-center sm:text-left` }>{ name }</h2>
                                                 <p className={ `mt-2 font-secondary font-medium text-${ color } text-sm hidden sm:block` }>
                                                     { desc }
                                                 </p>
