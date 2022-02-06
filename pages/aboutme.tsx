@@ -77,14 +77,16 @@ export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof g
                 <div className="flex flex-col 2xl:flex-row flex-grow justify-between items-center 2xl:items-stretch mx-10 sm:mx-10 space-x-0 2xl:space-x-8 space-y-8 2xl:space-y-0">
                     <div>
                         <div className="flex flex-col sm:flex-row max-w-lg items-center sm:items-stretch p-6 rounded-xl bg-white shadow-normal">
-                            <div className="flex p-0 max-w-xs mt-3 sm:mt-0">
+                            <div className="flex my-auto">
+                                <div className="p-0 min-w-[10rem] max-w-xs mt-3 sm:mt-0 relative aspect-1">
                                 <Image
                                     src={ selfPicture }
                                     className="rounded-xl"
                                     alt="Self-Portrait of Lemuel Lancaster"
-                                    width={ 200 }
-                                    height={ 200 }
+                                    layout="responsive"
+                                    objectFit="cover"
                                 />
+                            </div>
                             </div>
                             <div className="flex flex-col justify-between my-3 m-10 space-y-6 sm:space-y-0 text-center sm:text-left">
                                 <div>
