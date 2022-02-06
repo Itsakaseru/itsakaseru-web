@@ -40,7 +40,7 @@ export default function PortfolioDetails({ portfolioList }: InferGetStaticPropsT
                                     />
                                 </div>
                                 <div className="ml-3 mr-3 mb-7 sm:mb-0 sm:ml-3 sm:mr-8 text-center sm:text-left">
-                                    <h2 className={ `font-primary font-bold drop-shadow-md text-${ color }-dark text-3xl` }>{ name }</h2>
+                                    <h2 className={ `font-primary font-bold text-${ color }-dark text-3xl` }>{ name }</h2>
                                     <p className={ `mt-2 font-secondary font-medium text-${ color } text-sm` }>
                                         { desc }
                                     </p>
