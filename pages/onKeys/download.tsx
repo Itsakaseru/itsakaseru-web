@@ -40,7 +40,7 @@ export default function Download()
         {
             icon: faWindows,
             name: "Windows 64-bit",
-            link: ""
+            link: "http://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBb0k4aWtoU2FScWM3VnBlUGpfcEdKRGIxM0JqP2U9NkdSdGNi/root/content"
         },
         {
             icon: faApple,
@@ -79,10 +79,14 @@ export default function Download()
                             <a
                                 className={`${ isEnglish && "text-purple-600" } cursor-pointer`}
                                 onClick={ () => setIsEnglish(true) }
-                            >EN</a> | <a
+                            >
+                                EN
+                            </a> | <a
                                 className={`${ isEnglish || "text-purple-600" } cursor-pointer`}
                                 onClick={ () => setIsEnglish(false) }
-                            >ID</a>
+                            >
+                                ID
+                            </a>
                         </div>
                         <div className="flex flex-col gap-4 break-words text-gray-400 text-sm text-justify">
                             {
@@ -95,7 +99,7 @@ export default function Download()
                             {
                                 links.map(({icon, name, link }, index) => {
                                     return (
-                                        <a className="flex flex-row gap-2 px-4 py-2 text-gray-800 rounded-md bg-gray-300 text-sm" href={ link } key={ index }>
+                                        <a className="flex flex-row gap-2 px-4 py-2 text-gray-800 rounded-md bg-gray-300 hover:bg-gray-200 transition-colors text-sm" href={ link } key={ index }>
                                             <FontAwesomeIcon icon={ icon } className="my-auto text-lg"/>
                                             { name }
                                         </a>
@@ -103,9 +107,24 @@ export default function Download()
                                 })
                             }
                         </div>
+                        <a
+                            className="p-2 bg-orange-400 hover:bg-orange-300 transition-colors font-primary text-sm text-center text-white rounded-md"
+                            href=""
+                        >
+                            Additional Song
+                        </a>
                         <div className="text-center">─────</div>
-                        <a className="p-2 bg-green-600 font-primary text-sm text-center text-white rounded-md">
+                        <a
+                            className="p-2 bg-green-600 hover:bg-green-500 transition-colors font-primary text-sm text-center text-white rounded-md"
+                            href=""
+                        >
                             Survey Link
+                        </a>
+                        <a
+                            className="p-2 bg-green-600 hover:bg-green-500 transition-colors font-primary text-sm text-center text-white rounded-md"
+                            href="onKeys/faq"
+                        >
+                            Frequently Asked Questions
                         </a>
                     </div>
                 </div>
