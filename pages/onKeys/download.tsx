@@ -5,7 +5,6 @@ import { faApple, faUbuntu, faWindows } from "@fortawesome/free-brands-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
-
 export default function Download()
 {
     const [ isEnglish, setIsEnglish ] = useState(false);
@@ -61,7 +60,7 @@ export default function Download()
                 <meta name="description" content="Page to download onKeys game" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
-            <div className="w-full h-screen flex justify-center">
+            <div className="w-full h-screen my-16 flex justify-center">
                 <div className="flex flex-col w-80 gap-6 my-auto bg-white p-10 rounded-lg shadow-normal">
                     <div className="flex flex-col gap-3">
                         <div className="w-32 self-center">
@@ -95,6 +94,7 @@ export default function Download()
                         </div>
                     </div>
                     <div className="flex flex-col gap-3">
+                        <p className="text-center text-sm text-gray-400">v1.0.0</p>
                         <div className="flex flex-col gap-3 font-secondary">
                             {
                                 links.map(({icon, name, link }, index) => {
@@ -122,11 +122,12 @@ export default function Download()
                         </a>
                         <a
                             className="p-2 bg-green-600 hover:bg-green-500 transition-colors font-primary text-sm text-center text-white rounded-md"
-                            href="onKeys/faq"
+                            href="faq"
                         >
                             Frequently Asked Questions
                         </a>
                     </div>
+                    <p className="text-center text-sm text-gray-400">© { new Date().getFullYear() } Itsakaseru<br />All Rights Reserved</p>
                 </div>
             </div>
         </>
