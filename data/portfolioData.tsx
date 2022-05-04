@@ -166,7 +166,7 @@ export default function getData()
             icon: SecuritySLipLogo,
             color: "orange",
             desc: "It\'s an \"security- checkup\" based simulation game",
-            longDesc: "Security SLip or we like to call it SSL lol, is a simulation game where your job is to make sure all the people who come in, come ou- I mean umm... They have proper entry cards. We got inspired by the game Paper Please, we thought since it\'s a 2D game why not make it 3D with a little bit more twist?\nThis game was built for our Game Design and Development 2 final project. With the limited time given, there are still many game components that are still not yet implemented.\n\nIn this project, I work mainly on the design of the game (UI, UX). I\'m also doing the backend for the game with the rest of the team.",
+            longDesc: "Security SLip or we like to call it SSL lol, is a simulation game where your job is to make sure all the people who come in, come ou- I mean umm... They have proper entry cards. We got inspired by the game Paper Please, we thought since it\'s a 2D game why not make it 3D with a little bit more twist?\nThis game was built for our Game Design and Development 2 final project. With the limited time given, there are still many game components that are still not yet implemented.\n\nIn this project, I work mainly on the design of the game (UI, UX) with my friend. I\'m also doing the backend for the game with the rest of the team.",
             dcs: [
                 {
                     name: "Unity 2020.3.0f1",
