@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from 'react'
-import { IconDefinition, IconName, IconPrefix } from "@fortawesome/fontawesome-common-types";
+import { IconName, IconPrefix, IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faYoutube, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,13 +1,14 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import { StaticImageData } from "next/image";
 
-interface IPortfolioDcs
+export interface IPortfolioDcs
 {
     name: string,
     icon: IconProp,
     link?: string
 }
 
-interface IPortfolioImg
+export interface IPortfolioImg
 {
     type: string,
     alt: string,
