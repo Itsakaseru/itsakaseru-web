@@ -109,7 +109,7 @@ export default function Download()
                         </div>
                         <a
                             className="p-2 bg-orange-400 hover:bg-orange-300 transition-colors font-primary text-sm text-center text-white rounded-md"
-                            href="https://dl.itsakaseru.me/Additional%20Songs.zip"
+                            href="https://dl.itsakaseru.me/SongPack-1.zip"
                             target="_blank"
                             rel="noreferrer"
                         >
