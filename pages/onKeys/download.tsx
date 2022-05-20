@@ -39,17 +39,17 @@ export default function Download()
         {
             icon: faWindows,
             name: "Windows 64-bit",
-            link: "https://dl.itsakaseru.me/onKeys-Win-v1.0.2.zip"
+            link: "https://dl.itsakaseru.me/onKeys-Win-v1.0.3.zip"
         },
         {
             icon: faApple,
             name: "Apple (Universal)",
-            link: "https://dl.itsakaseru.me/onKeys-Mac-v1.0.2.zip"
+            link: "https://dl.itsakaseru.me/onKeys-Mac-v1.0.3.zip"
         },
         {
             icon: faUbuntu,
             name: "Linux 64-bit (Untested)",
-            link: "https://dl.itsakaseru.me/onKeys-Linux-v1.0.2.zip"
+            link: "https://dl.itsakaseru.me/onKeys-Linux-v1.0.3.zip"
         }
     ]
 
@@ -94,7 +94,7 @@ export default function Download()
                         </div>
                     </div>
                     <div className="flex flex-col gap-3">
-                        <p className="text-center text-sm text-gray-400">v1.0.2</p>
+                        <p className="text-center text-sm text-gray-400">v1.0.3</p>
                         <div className="flex flex-col gap-3 font-secondary">
                             {
                                 links.map(({icon, name, link }, index) => {
