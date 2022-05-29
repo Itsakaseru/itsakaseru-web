@@ -39,17 +39,17 @@ export default function Download()
         {
             icon: faWindows,
             name: "Windows 64-bit",
-            link: "https://dl.itsakaseru.me/onKeys-Win-v1.0.3.zip"
+            link: "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBb0k4aWtoU2FScWM3VnhtUUxzWG5TbWRjUFp0P2U9N1Vwckc4/root/content"
         },
         {
             icon: faApple,
             name: "Apple (Universal)",
-            link: "https://dl.itsakaseru.me/onKeys-Mac-v1.0.3.zip"
+            link: "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBb0k4aWtoU2FScWM3VjJXREdwSlVGbFJ3anM5P2U9OUVUdjg1/root/content"
         },
         {
             icon: faUbuntu,
             name: "Linux 64-bit (Untested)",
-            link: "https://dl.itsakaseru.me/onKeys-Linux-v1.0.3.zip"
+            link: "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBb0k4aWtoU2FScWM3VnN4YmlPLXlFY1FIYV9nP2U9ekxPeEUz/root/content"
         }
     ]
 
@@ -109,7 +109,7 @@ export default function Download()
                         </div>
                         <a
                             className="p-2 bg-orange-400 hover:bg-orange-300 transition-colors font-primary text-sm text-center text-white rounded-md"
-                            href="https://dl.itsakaseru.me/SongPack-1.zip"
+                            href="https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly8xZHJ2Lm1zL3UvcyFBb0k4aWtoU2FScWM3VjRzZzA2MW9iRjZpdXVhP2U9Z0VQNkd/root/content"
                             target="_blank"
                             rel="noreferrer"
                         >
