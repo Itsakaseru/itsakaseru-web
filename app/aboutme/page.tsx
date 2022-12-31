@@ -1,18 +1,15 @@
-import Head from "next/head";
 import Image from "next/image";
-import { useState } from 'react'
 import { IconName, IconPrefix, IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faGithub, faYoutube, faTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
-import selfPicture from "../public/images/lemi.jpg";
-import { InferGetStaticPropsType } from "next";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import selfPicture from "../../public/images/lemi.jpg";
 
-export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof getStaticProps>)
+export default async function AboutMe()
 {
-    const { subscriberCount, viewCount, videoCount } = statistics;
+    const { subscriberCount, viewCount, videoCount } = await getYoutubeStats();
 
     const faSkyEncripttion: IconDefinition = {
         prefix: "fac" as IconPrefix,
@@ -27,10 +24,6 @@ export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof g
     };
 
     library.add(faSkyEncripttion);
-
-    const enName = "Remueru Itsakaseru";
-    const jpnName = "イサカセル レムエル";
-    const [ name, setName ] = useState("Remueru Itsakaseru");
 
     const personalInfo = [
         {
@@ -55,23 +48,8 @@ export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof g
         }
     ]
 
-    function onMouseEnter()
-    {
-        setName(jpnName);
-    }
-
-    function onMouseExit()
-    {
-        setName(enName);
-    }
-
     return (
         <>
-            <Head>
-                <title>About Me</title>
-                <meta name="description" content="Information about me, who am I and what am I doing?" />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="About Me" />
                 <div className="flex flex-col 2xl:flex-row flex-grow justify-between items-center 2xl:items-stretch mx-10 sm:mx-10 space-x-0 2xl:space-x-8 space-y-8 2xl:space-y-0">
@@ -91,7 +69,7 @@ export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof g
                             <div className="flex flex-col justify-between my-3 m-10 space-y-6 sm:space-y-0 text-center sm:text-left">
                                 <div>
                                     <div className="font-secondary font-extrabold text-2xl sm:text-4xl text-primary">Lemuel<br className="hidden sm:block" /> Lancaster</div>
-                                    <div className="font-primary font-normal text-sm text-primary-light" onMouseEnter={ onMouseEnter } onMouseLeave={ onMouseExit }>{ name }</div>
+                                    <div className="font-primary font-normal text-sm text-primary-light">レムエル イサカセル</div>
                                 </div>
                                 <div className="font-primary font-semibold text-sm text-primary-light">Programmer, Oneironautics, Human</div>
                             </div>
@@ -206,13 +184,13 @@ export default function AboutMe({ statistics }: InferGetStaticPropsType<typeof g
     );
 }
 
-export async function getStaticProps()
-{
-    const apiURL = `https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCoEztSI7PDAwtGsUQ8Dq7Pg&key=${ process.env.GOOGLE_API_KEY }`;
+async function getYoutubeStats() {
+    const url = `https://youtube.googleapis.com/youtube/v3/channels?part=statistics&id=UCoEztSI7PDAwtGsUQ8Dq7Pg&key=${ process.env.GOOGLE_API_KEY }`;
 
-    const response = await fetch(apiURL);
-    const responseJSON = await response.json();
-    const { statistics } = responseJSON.items[ 0 ];
+    const res = await fetch(url, { next: { revalidate: 300 } });
+    const resJson = await res.json();
 
-    return { props: { statistics }, revalidate: 300 };
+    const { statistics } = resJson.items[ 0 ];
+
+    return statistics;
 }

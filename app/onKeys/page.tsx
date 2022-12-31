@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "../../components/navbar";
@@ -67,11 +66,6 @@ export default function OnKeys()
 
     return (
         <>
-            <Head>
-                <title>onKeys: Typing made fun.</title>
-                <meta name="description" content="onKeys overview" />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page=""/>
                 <div id="onKeys" className="flex flex-col lg:flex-row mx-4 sm:mx-10 space-x-0 lg:space-x-10 space-y-10 lg:space-y-0">
@@ -108,10 +102,10 @@ export default function OnKeys()
                                                     <div className="flex">
                                                         {
                                                             link ?
-                                                                <a href={ link } target="_blank" rel="noreferrer" className="flex">
+                                                                <Link href={ link } target="_blank" rel="noreferrer" className="flex">
                                                                     { name }
                                                                     <FontAwesomeIcon icon={ faExternalLinkAlt } className="mt-1 ml-1 text-xs" />
-                                                                </a>
+                                                                </Link>
                                                                 :
                                                                 <>
                                                                     { name }
@@ -125,10 +119,8 @@ export default function OnKeys()
                                 </ul>
                             </div>
                         </div>
-                        <Link href="/onKeys/download">
-                            <a className="flex flex-col px-7 p-3 sm:flex-row items-center rounded-lg shadow-normal bg-purple-500">
-                                <p className="w-full text-center font-primary text-white text-lg font-semibold">Download Game</p>
-                            </a>
+                        <Link href="/onKeys/download" className="flex flex-col px-7 p-3 sm:flex-row items-center rounded-lg shadow-normal bg-purple-500">
+                            <p className="w-full text-center font-primary text-white text-lg font-semibold">Download Game</p>
                         </Link>
                     </div>
                     <div className="flex flex-col flex-grow justify-between space-y-4 p-10 rounded-lg shadow-normal bg-white">

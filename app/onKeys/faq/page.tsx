@@ -1,4 +1,5 @@
-import Head from "next/head";
+"use client";
+
 import { useState } from "react";
 
 export default function FAQ()
@@ -96,11 +97,6 @@ export default function FAQ()
     
     return (
         <>
-            <Head>
-                <title>onKeys: Download</title>
-                <meta name="description" content="Page to download onKeys game" />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
             <div className="w-full flex justify-center">
                 <div className="flex flex-col gap-6 max-w-sm my-16 bg-white p-10 rounded-lg shadow-normal">
                     <div className="flex flex-col gap-3">
@@ -113,17 +109,17 @@ export default function FAQ()
                     </div>
                     <div className="flex flex-col gap-4">
                         <div className="font-bold flex flex-row gap-4 justify-center text-gray-400">
-                            <a
+                            <button
                                 className={`${ isEnglish && "text-white bg-purple-600 py-1 px-3 rounded-md" } cursor-pointer`}
                                 onClick={ () => setIsEnglish(true) }
                             >
                                 EN
-                            </a> | <a
+                            </button> | <button
                                 className={`${ isEnglish || "text-white bg-purple-600 py-1 px-3 rounded-md" } cursor-pointer`}
                                 onClick={ () => setIsEnglish(false) }
                             >
                                 ID
-                            </a>
+                            </button>
                         </div>
                         <div className="flex flex-col gap-4 break-words text-gray-400 text-sm text-justify">
                             {

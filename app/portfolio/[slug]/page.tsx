@@ -1,34 +1,30 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "../../components/navbar";
-import Footer from "../../components/footer";
+import Navbar from "../../../components/navbar";
+import Footer from "../../../components/footer";
 import { faArrowLeft, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import getPortfolioData from "../../data/portfolio";
-import { IPortfolio } from "../../types/custom";
-import { InferGetStaticPropsType } from "next";
-
-export default function PortfolioDetails({ portfolioList }: InferGetStaticPropsType<typeof getStaticProps>)
+import getPortfolioData from "../../../data/portfolio";
+import { IPortfolio } from "../../../types/custom";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+ 
+export default function PortfolioDetails({ params: { slug } }: Params)
 {
-    const { name, icon, color, desc, longDesc, dcs, img, video }: IPortfolio = portfolioList;
+    const portfolioData = getPortfolioData(slug);
+
+    if (!portfolioData) return;
+
+    const { name, icon, color, desc, longDesc, dcs, img, video }: IPortfolio = portfolioData as IPortfolio;
 
     return (
         <>
-            <Head>
-                <title>Portfolio: { name }</title>
-                <meta name="description" content={ desc } />
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
             <div className="flex flex-col justify-between h-screen select-none">
                 <Navbar page="Portfolio" />
                 <div id={ name } className="flex flex-col lg:flex-row mx-4 sm:mx-10 space-x-0 lg:space-x-10 space-y-10 lg:space-y-0">
                     <div className="flex flex-col flex-shrink-0 max-w-none lg:max-w-md space-y-10">
-                        <Link href="/portfolio">
-                            <a className="flex flex-row space-x-8 items-center p-5 rounded-xl bg-white shadow-normal font-secondary text-primary">
-                                <FontAwesomeIcon icon={ faArrowLeft } className="ml-4 text-xl opacity-70" />
-                                <div className="font-bold opacity-50">Back to portfolio list</div>
-                            </a>
+                        <Link href="/portfolio" className="flex flex-row space-x-8 items-center p-5 rounded-xl bg-white shadow-normal font-secondary text-primary">
+                            <FontAwesomeIcon icon={ faArrowLeft } className="ml-4 text-xl opacity-70" />
+                            <div className="font-bold opacity-50">Back to portfolio list</div>
                         </Link>
                         <div className="flex flex-col md:flex-row lg:flex-col justify-between lg:justify-start space-y-10 md:space-y-0 lg:space-y-10 space-x-0 md:space-x-2 lg:space-x-0">
                             <div className="flex flex-col sm:flex-row items-center rounded-lg shadow-normal bg-white">
@@ -62,10 +58,10 @@ export default function PortfolioDetails({ portfolioList }: InferGetStaticPropsT
                                                     <div className="flex">
                                                         {
                                                             link ?
-                                                                <a href={ link } target="_blank" rel="noreferrer" className="flex">
+                                                                <Link href={ link } target="_blank" rel="noreferrer" className="flex">
                                                                     { name }
                                                                     <FontAwesomeIcon icon={ faExternalLinkAlt } className="mt-1 ml-1 text-xs" />
-                                                                </a>
+                                                                </Link>
                                                                 :
                                                                 <>
                                                                     { name }
@@ -126,23 +122,13 @@ export default function PortfolioDetails({ portfolioList }: InferGetStaticPropsT
     );
 }
 
-export async function getStaticPaths()
-{
-    const portfolio = getPortfolioData("");
+export async function generateStaticParams() {
+    const portfolios = getPortfolioData("");
 
-    if (portfolio instanceof Array)
+    if (portfolios instanceof Array)
     {
-        const paths = portfolio?.map((val) => ({
-            params: { name: val.id },
-        }))
-
-        return { paths, fallback: false };
+        return portfolios.map((portfolio) => ({
+            slug: portfolio.id,
+        })) as any;
     }
-}
-
-export async function getStaticProps({ params }: { params: { name: string } })
-{
-    const portfolioList = getPortfolioData(params.name);
-
-    return { props: { portfolioList } };
 }

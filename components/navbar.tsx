@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -76,10 +78,8 @@ export default function Navbar({ page }: IProps)
 							links.map(({ name, href }, index) =>
 							{
 								return (
-									<Link key={ index } href={ href }>
-										<a className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` }>
-											{ name }
-										</a>
+									<Link key={ index } href={ href } className={ `${ name === page ? "bg-primary text-white" : "hover:bg-primary hover:text-white" } py-1 px-4 rounded transition-colors duration-300` }>
+										{ name }
 									</Link>
 								);
 							})
@@ -98,13 +98,8 @@ export default function Navbar({ page }: IProps)
 									links.map(({ name, href }, index) =>
 									{
 										return (
-											<Link key={ index } href={ href }>
-												<a
-													onClick={ name === page ? () => setShowMobileNavbar(false) : undefined }
-													className="bg-primary text-white hover:bg-primary-light hover:text-white text-center px-8 py-3 rounded transition-colors duration-300"
-												>
-													{ name }
-												</a>
+											<Link key={ index } href={ href } onClick={ name === page ? () => setShowMobileNavbar(false) : undefined } className="bg-primary text-white hover:bg-primary-light hover:text-white text-center px-8 py-3 rounded transition-colors duration-300">
+												{ name }
 											</Link>
 										);
 									})

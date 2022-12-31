@@ -1,5 +1,12 @@
+const { fontFamily } = require('tailwindcss/defaultTheme');
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-	content: [ './pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}' ],
+	content: [ 
+		"./app/**/*.{js,ts,jsx,tsx}",
+    	"./pages/**/*.{js,ts,jsx,tsx}",
+    	"./components/**/*.{js,ts,jsx,tsx}",
+	],
 	safelist: [
 		{
 			pattern: /(from|to|text)-(lime|orange|chocolate|dayker|cloud|lavender|cyan)/
@@ -8,8 +15,8 @@ module.exports = {
 	theme: {
 		extend: {
 			fontFamily: {
-				"primary": [ "Poppins", "sans-serif" ],
-				"secondary": [ "Inter", "sans-serif" ]
+				"primary": [ "var(--font-poppins)", fontFamily.sans ],
+				"secondary": [ "var(--font-inter)", fontFamily.sans ]
 			},
 			colors: {
 				primary: {

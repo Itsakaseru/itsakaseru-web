@@ -11,8 +11,8 @@ export default function ComingSoon()
             </Head>
             <div className="flex flex-col justify-center space-y-4 items-center h-screen">
                 <h1 className="font-secondary font-extrabold text-4xl">Coming Soon</h1>
-                <Link href="/">
-                    <a className="font-primary text-primary-light">Back to home</a>
+                <Link href="/" className="font-primary text-primary-light">
+                    Back to home
                 </Link>
             </div>
         </>

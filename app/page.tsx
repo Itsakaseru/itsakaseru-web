@@ -9,11 +9,6 @@ export default function Home()
 {
 	return (
 		<>
-			<Head>
-				<title>Itsakaseru</title>
-				<meta name="description" content="Itsakaseru Personal Website" />
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" />
-			</Head>
 			<div className="flex flex-col justify-between h-screen select-none">
 				<Navbar page="Home" />
 				<div className="self-center max-w-xs md:max-w-lg rounded-full">
