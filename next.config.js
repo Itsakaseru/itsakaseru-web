@@ -11,7 +11,7 @@ module.exports = {
       default-src 'self';
       script-src 'self' 'unsafe-eval' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com;
       style-src 'self' 'unsafe-inline';
-      img-src 'self' www.googletagmanager.com https://www.google-analytics.com;
+      img-src 'self' data: www.googletagmanager.com https://www.google-analytics.com;
       connect-src 'self' https://www.google-analytics.com;
       font-src 'self';
     `
