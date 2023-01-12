@@ -5,12 +5,14 @@ import Script from "next/script";
 const poppins = Poppins({
     weight: [ "400", "600", "700" ],
     variable: "--font-poppins",
-    subsets: ["latin"]
+    subsets: ["latin"],
+    preload: false
 });
 
 const inter = Inter({
     variable: "--font-inter",
-    subsets: ["latin"]
+    subsets: ["latin"],
+    preload: false
 });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
