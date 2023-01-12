@@ -28,6 +28,10 @@ module.exports = {
             value: '1; mode=block'
           },
           {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff'
+          },
+          {
             key: 'Content-Security-Policy',
             value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim()
           },
