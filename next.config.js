@@ -14,6 +14,7 @@ module.exports = {
       img-src 'self' data: www.googletagmanager.com https://www.google-analytics.com;
       connect-src 'self' https://www.google-analytics.com;
       font-src 'self';
+      frame-src 'self' https://www.youtube-nocookie.com;
     `
     return [
       {
