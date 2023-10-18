@@ -57,7 +57,7 @@ module.exports = {
       },
       {
         source: '/onKeys/survey',
-        destination: 'https://docs.google.com/forms/d/e/1FAIpQLScMtN3W2ZULGf_PeBo1hjO9eWxONn21TEyEMpK_0EPSxqp-5Q/viewform?usp=sf_link',
+        destination: 'https://docs.google.com/forms/d/e/1FAIpQLScL3XC3n4hFTauEhqttnezF3PiDItHudcvLD_phBi44GcNuxQ/viewform?usp=sf_link',
         permanent: false,
       }
     ]
