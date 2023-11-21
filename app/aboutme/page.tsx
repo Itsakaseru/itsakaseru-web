@@ -190,7 +190,7 @@ async function getYoutubeStats() {
     const res = await fetch(url, { next: { revalidate: 300 } });
     const resJson = await res.json();
 
-    const { statistics } = resJson.items[ 0 ];
+    const { statistics } = resJson.items[0];
 
     return statistics;
 }

@@ -6,11 +6,10 @@ import { faArrowLeft, faExternalLinkAlt } from "@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import getPortfolioData from "../../../data/portfolio";
 import { IPortfolio } from "../../../types/custom";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
  
-export default function PortfolioDetails({ params: { slug } }: Params)
+export default function PortfolioDetails({ params }: { params: { slug: string } })
 {
-    const portfolioData = getPortfolioData(slug);
+    const portfolioData = getPortfolioData(params.slug);
 
     if (!portfolioData) return;
 
@@ -123,12 +122,9 @@ export default function PortfolioDetails({ params: { slug } }: Params)
 }
 
 export async function generateStaticParams() {
-    const portfolios = getPortfolioData("");
+    const portfolios = getPortfolioData("") as IPortfolio[];
 
-    if (portfolios instanceof Array)
-    {
-        return portfolios.map((portfolio) => ({
-            slug: portfolio.id,
-        })) as any;
-    }
+    return portfolios.map((portfolio) => ({
+        slug: portfolio.id,
+    }));
 }
