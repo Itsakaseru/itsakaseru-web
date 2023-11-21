@@ -3,9 +3,6 @@
  */
 module.exports = {
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
-  },
   async headers() {
     const ContentSecurityPolicy = `
       default-src 'self';

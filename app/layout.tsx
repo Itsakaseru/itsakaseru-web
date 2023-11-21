@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Poppins, Inter } from "@next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import Script from "next/script";
 
 const poppins = Poppins({
