@@ -742,7 +742,7 @@ export default function getData()
                     icon: faClock
                 }
             ],
-            video: "MSwIq1I0L88"
+            video: "sPx_XnPGtOg"
         },
         {
             id: "video-editing-lyrics",
@@ -780,7 +780,7 @@ export default function getData()
                     icon: faClock
                 }
             ],
-            video: "DY3B9ZTjsIk"
+            video: "WteF-U0VjPs"
         },
         {
             id: "video-editing-plc2k17",
