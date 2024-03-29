@@ -1,9 +1,0 @@
-export default function Head() {
-  return (
-    <>
-        <title>onKeys: Download</title>
-        <meta name="description" content="Page to download onKeys game" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    </>
-  )
-}
