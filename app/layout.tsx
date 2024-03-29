@@ -23,19 +23,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <meta name="theme-color" content="#524C46" />
                 <meta name="msapplication-navbutton-color" content="#524C46" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="#524C46" />
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-VP2Z22PN09"
-                    strategy="afterInteractive"
-                />
-                <Script id="google-analytics" strategy="afterInteractive">
-                    {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){ dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    
-                    gtag('config', 'G-VP2Z22PN09');
-                    `}
+                {/* <!-- Cloudflare Web Analytics --> */}
+                <Script id="cloudflare-web-analytics" defer
+                        src='https://static.cloudflareinsights.com/beacon.min.js'
+                        data-cf-beacon='{"token": "08c219abad4142a884e911161d2488e5"}'>
                 </Script>
+                {/* <!-- End Cloudflare Web Analytics --> */}
             </head>
             <body>{children}</body>
         </html>
