@@ -1,6 +1,0 @@
-Sitemap: https://itsakaseru.me/sitemap.xml
-
-User-agent: *
-Allow: /*
-
-Disallow: /api/*
