@@ -8,6 +8,8 @@ module.exports = {
       default-src 'self';
       script-src 'self' 'unsafe-eval' 'unsafe-inline' https://static.cloudflareinsights.com/;
       style-src 'self' 'unsafe-inline';
+      img-src 'self';
+      connect-src 'self';
       font-src 'self';
       frame-src 'self' https://www.youtube-nocookie.com;
     `
