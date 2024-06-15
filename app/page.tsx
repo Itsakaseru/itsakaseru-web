@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import {useState} from "react";
 import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   const WEB_LINKS = [
     {
       icon: CodeBracketSquareIcon,
@@ -89,7 +89,7 @@ export default function Home() {
           />
           <div className="mx-auto text-cocoa">
             <motion.div
-              className="flex flex-row space-x-3 rounded-xl bg-white-light p-4"
+              className="flex flex-row space-x-3 rounded-xl bg-white-light outline outline-1 outline-cocoa-light p-4"
               layout
               transition={{duration: 0.25, type: "tween", stiffness: 50}}
             >
