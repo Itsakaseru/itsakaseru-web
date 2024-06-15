@@ -11,7 +11,7 @@ export default async function PortfolioPage() {
   const data = await getPortfolioList();
   
   return (
-    <div className="flex flex-col space-y-6">
+    <div className="flex flex-col grow h-full space-y-6">
       {/* Function Bars */}
       <div
         className="flex flex-row items-center justify-between space-x-6 bg-white-light outline outline-1 outline-cocoa-light px-6 py-4 rounded-md">
@@ -30,7 +30,7 @@ export default async function PortfolioPage() {
           </div> */}
       </div>
       {/* Portfolio List */}
-      <div className="flex flex-row justify-center flex-grow space-x-6">
+      <div className="w-full grid grid-flow-col auto-cols-max justify-center gap-6 ">
         {
           data.map((portfolio) => (
             <Portfolio key={portfolio.name} portfolio={portfolio}/>
