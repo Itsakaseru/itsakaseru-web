@@ -7,6 +7,7 @@ import { CodeBracketSquareIcon, NewspaperIcon, Square2StackIcon, UserCircleIcon 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import {useState} from "react";
+import Link from "next/link";
 
 export default function Home() {
   const WEB_LINKS = [
@@ -66,7 +67,7 @@ export default function Home() {
     <main className="items-center h-screen p-16">
       <div className="flex flex-col justify-between w-full h-full rounded-3xl bg-white p-14">
         <nav className="flex flex-row justify-between">
-          <div className="flex flex-col text-cocoa -space-y-1">
+          <div className="flex flex-col my-auto text-cocoa -space-y-1">
             <div className="text-3xl font-semibold">Itsakaseru</div>
             <div className="text-base font-extralight">Lemuel Lancaster</div>
           </div>
@@ -94,40 +95,43 @@ export default function Home() {
             >
               {
                 WEB_LINKS.map((link) =>
-                  <motion.a
-                    key={link.name}
-                    className={`flex flex-row px-3 py-2 space-x-2 transition-colors duration-300 ${link.name === selectedTab && "bg-white rounded hover:bg-white-dark"}`}
-                    href="https://itsakaseru.me/portfolio"
-                    layout
-                    onHoverStart={() => setSelectedTab(link.name)}
-                  >
-                    <motion.div layout="position">
-                      <link.icon className="size-6"/>
+                  <Link key={link.name} href="/portfolio">
+                    <motion.div
+                      key={link.name}
+                      className={`flex flex-row px-3 py-2 space-x-2 transition-colors duration-300 ${link.name === selectedTab && "bg-white rounded hover:bg-white-dark"}`}
+                      layout
+                      onHoverStart={() => setSelectedTab(link.name)}
+                    >
+                      <motion.div layout="position">
+                        <link.icon className="size-6"/>
+                      </motion.div>
+                      {
+                        link.name === selectedTab &&
+                          <motion.p initial={{opacity: 0}} animate={{opacity: 1}}>
+                            {link.name}
+                          </motion.p>
+                      }
                     </motion.div>
-                    {
-                      link.name === selectedTab &&
-                        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1}}>
-                          { link.name }
-                        </motion.p>
-                    }
-                  </motion.a>
+                  </Link>
                 )
               }
             </motion.div>
           </div>
         </div>
         <footer className="mx-auto text-cocoa">
-          © 2024<ruby> It
-          <rt>イ</rt>
+          © 2024
+          <ruby> It
+            <rt>イ</rt>
             sa
-          <rt>サ</rt>
+            <rt>サ</rt>
             ka
-          <rt>カ</rt>
+            <rt>カ</rt>
             se
-          <rt>セ</rt>
+            <rt>セ</rt>
             ru
-          <rt>ル</rt>
-        </ruby>. All Rights Reserved.
+            <rt>ル</rt>
+          </ruby>
+          . All Rights Reserved.
         </footer>
       </div>
     </main>
