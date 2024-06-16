@@ -4,7 +4,6 @@ import matter from "gray-matter";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import Portfolio, {IPortfolioMetadata} from "@/components/Portfolio";
 
-
 const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
 
 export default async function PortfolioPage() {
@@ -30,10 +29,10 @@ export default async function PortfolioPage() {
           </div> */}
       </div>
       {/* Portfolio List */}
-      <div className="w-full grid grid-flow-col auto-cols-max justify-center gap-6 ">
+      <div className="w-full grid grid-flow-col auto-cols-max justify-center gap-6">
         {
           data.map((portfolio) => (
-            <Portfolio key={portfolio.name} portfolio={portfolio}/>
+            <Portfolio key={portfolio.name} portfolio={portfolio} options={{ mode: "outline", showDescription: true }}/>
           ))
         }
       </div>
@@ -48,12 +47,6 @@ export async function getPortfolioList() {
     const mdFile = fs.readFileSync(path.join(PORTFOLIO_DATA_PATH, portfolio), "utf-8");
     const metadata = matter(mdFile).data as IPortfolioMetadata;
 
-    return {
-      name: metadata.name,
-      description: metadata.description,
-      slug: metadata.slug,
-      logo: metadata.logo,
-      color: metadata.color
-    } as IPortfolioMetadata;
+    return metadata as IPortfolioMetadata;
   });
 }
