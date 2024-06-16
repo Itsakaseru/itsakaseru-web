@@ -8,7 +8,7 @@ const config: Config = {
   ],
   safelist: [
     {
-      pattern: /(bg|from|to|text|outline)-(lime|orange|chocolate|cloud|lavender|cyan)/
+      pattern: /(bg|from|to|text|outline)-(white|cocoa|lime|orange|chocolate|cloud|lavender|cyan)/
     }
   ],
   theme: {

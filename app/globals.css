@@ -2,3 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+article {
+    h1 {
+        @apply font-bold text-3xl leading-tight;
+        @apply mb-1;
+    }
+    
+    h1:not(:first-child) {
+        @apply font-bold text-3xl leading-tight;
+        @apply mb-3;
+    }
+
+    p {
+        @apply font-normal text-base leading-tight;
+        @apply mb-5;
+    }
+}
