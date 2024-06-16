@@ -60,6 +60,7 @@ export default async function Portfolio({ portfolio, options } : { portfolio: IP
                  alt={ `${ portfolio.name } logo` }
                  width={50}
                  height={50}
+                 style={{objectFit: "contain"}}
           />
         </div>
         <div className="flex flex-col space-y-1.5 my-auto">
