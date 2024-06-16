@@ -12,6 +12,7 @@ export interface IPortfolioMetadata {
   slug: string, 
   logo: string, 
   color: string
+  year: number
   tags?: IPortfolioTag[],
 }
 
@@ -60,16 +61,23 @@ export default async function Portfolio({ portfolio, options } : { portfolio: IP
                  alt={ `${ portfolio.name } logo` }
                  width={50}
                  height={50}
-                 style={{objectFit: "contain"}}
+                 style={{ objectFit: "contain" }}
           />
         </div>
         <div className="flex flex-col space-y-1.5 my-auto">
           <div className={`text-${ portfolio.color }-dark text-xl font-bold`}>{ portfolio.name }</div>
           <div className="flex flex-row gap-2 flex-wrap">
+            <div className={ `${ portfolio.color && portfolio.color ? `bg-${ portfolio.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 text-sm rounded-full` }>{ portfolio.year }</div>
             {
-              portfolio.tags && portfolio.tags.map((tag) => (
-                <div key="tag" className={ `${ tag.color && tag.color ? `bg-${ tag.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 text-sm rounded-full` }>{ tag.text }</div>
-              ))
+              portfolio.tags && portfolio.tags.map((tag) => {
+                return (
+                  <div
+                    key={tag.text}
+                    className={`${tag.color && tag.color ? `bg-${tag.color}-dark` : `bg-${ portfolio.color }-dark`} text-white-light px-2 py-0.5 text-sm rounded-full`}>
+                    {tag.text}
+                  </div>
+                )
+              })
             }
           </div>
         </div>
