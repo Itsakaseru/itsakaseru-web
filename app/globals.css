@@ -14,7 +14,7 @@ article {
     }
 
     p {
-        @apply font-normal text-base leading-tight;
+        @apply font-normal text-base leading-snug;
         @apply mb-5;
     }
 }
