@@ -83,6 +83,7 @@ export default function HomePage() {
           <Image
             className="mx-auto rounded-[3.125rem]"
             src="/sakii.png"
+            quality={100}
             width={350}
             height={350}
             alt="Photo of Sakii as Anime Character"
