@@ -8,7 +8,7 @@ const config: Config = {
   ],
   safelist: [
     {
-      pattern: /(bg|from|to|text|outline)-(dayker|white|cocoa|lime|orange|chocolate|cloud|lavender|cyan)/
+      pattern: /(bg|from|to|text|outline)-(dayker|white|cocoa|lime|orange|chocolate|cloud|lavender|cyan|rose)/
     }
   ],
   theme: {
@@ -65,6 +65,12 @@ const config: Config = {
           light: "#AFCDFF",
           DEFAULT: "#79A9FB",
           dark: "#617BCC"
+        },
+        "rose": {
+          white: "#fff2f2",
+          light: "#FF9F9F",
+          DEFAULT: "#E97777",
+          dark: "#e83a3a",
         },
       }
     }
