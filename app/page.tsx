@@ -1,34 +1,30 @@
-"use client";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faYoutube, faGithub, faXTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { CodeBracketSquareIcon, NewspaperIcon, Square2StackIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+
 import Image from "next/image";
-import { motion } from "framer-motion";
-import {useState} from "react";
-import Link from "next/link";
+import { HubBar, IHubLink } from "@/components/HubBar";
 
 export default function HomePage() {
-  const WEB_LINKS = [
+  const WEB_LINKS: IHubLink[] = [
     {
-      icon: CodeBracketSquareIcon,
-      href: "",
+      icon: "code-bracket-square-icon",
+      href: "/portfolio",
       name: "Portfolio",
     },
     {
-      icon: UserCircleIcon,
-      href: "",
+      icon: "user-circle-icon",
+      href: "/about",
       name: "About Me"
     },
     {
-      icon: NewspaperIcon,
-      href: "",
+      icon: "newspaper-icon",
+      href: "https://blog.itsakaseru.me",
       name: "My Blog"
     },
     {
-      icon: Square2StackIcon,
-      href: "",
+      icon: "square2stack-icon",
+      href: "https://fun.itsakaseru.me",
       name: "Fun"
     }
   ];
@@ -46,7 +42,7 @@ export default function HomePage() {
     },
     {
       icon: faYoutube,
-      href: "https://youtube.com/c/Itsakaseru",
+      href: "https://youtube.com/Itsakaseru",
       name: "YouTube"
     },
     {
@@ -60,8 +56,6 @@ export default function HomePage() {
       name: "X Formerly Twitter"
     }
   ];
-  
-  const [ selectedTab, setSelectedTab ] = useState<string | null>(WEB_LINKS[0].name);
   
   return (
     <main className="items-center h-screen p-16">
@@ -82,41 +76,14 @@ export default function HomePage() {
         <div className="flex flex-col space-y-12">
           <Image
             className="mx-auto rounded-[3.125rem]"
-            src="/sakii.png"
+            src="/static/sakii.png"
             quality={100}
             width={350}
             height={350}
             alt="Photo of Sakii as Anime Character"
           />
           <div className="mx-auto text-cocoa">
-            <motion.div
-              className="flex flex-row space-x-3 rounded-xl bg-white-light outline outline-1 outline-cocoa-light p-4"
-              layout
-              transition={{duration: 0.25, type: "tween", stiffness: 50}}
-            >
-              {
-                WEB_LINKS.map((link) =>
-                  <Link key={link.name} href="/portfolio">
-                    <motion.div
-                      key={link.name}
-                      className={`flex flex-row px-3 py-2 space-x-2 transition-colors duration-300 ${link.name === selectedTab && "bg-white rounded hover:bg-white-dark"}`}
-                      layout
-                      onHoverStart={() => setSelectedTab(link.name)}
-                    >
-                      <motion.div layout="position">
-                        <link.icon className="size-6"/>
-                      </motion.div>
-                      {
-                        link.name === selectedTab &&
-                          <motion.p initial={{opacity: 0}} animate={{opacity: 1}}>
-                            {link.name}
-                          </motion.p>
-                      }
-                    </motion.div>
-                  </Link>
-                )
-              }
-            </motion.div>
+            <HubBar Links={WEB_LINKS} />
           </div>
         </div>
         <footer className="mx-auto text-cocoa">
