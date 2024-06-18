@@ -13,7 +13,7 @@ export default async function InfoBubble({ info, color } : { info : IInfoBubble[
           <a
             key={ info.text }
             href={ info.href }
-            className={`bg-${ color }-dark text-white px-3 py-1 rounded-lg text-sm`}
+            className={`info-bubble bg-${ color }-dark text-white px-3 py-1 rounded-lg text-sm`}
           >
             <div className="flex flex-row items-center gap-2">
               { info.text }

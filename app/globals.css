@@ -14,7 +14,16 @@ article {
     }
 
     p {
-        @apply font-normal text-base leading-snug;
+        @apply font-normal text-base leading-snug whitespace-pre-wrap;
         @apply mb-5;
+    }
+    
+    a:not(.info-bubble) {
+        @apply font-semibold border-cocoa-light border-b-2;
+        @apply hover:border-cocoa transition-colors duration-300
+    }
+    
+    hr:not(:first-child) {
+        @apply -mt-1 mb-4 border-t-[0.5px] border-cocoa-light;
     }
 }
