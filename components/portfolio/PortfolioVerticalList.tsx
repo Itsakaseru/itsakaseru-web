@@ -1,9 +1,9 @@
 "use client";
 
-import Portfolio, { IPortfolioMetadata } from "@/components/portfolio/Portfolio";
+import Portfolio, { IMarkdownMetadata } from "@/components/portfolio/Portfolio";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function PortfolioVerticalList({ portfolios, currentSlug }: { portfolios: IPortfolioMetadata[], currentSlug: string }) {
+export default function PortfolioVerticalList({ portfolios, currentSlug }: { portfolios: IMarkdownMetadata[], currentSlug: string }) {
   return (
     <AnimatePresence>
       <motion.div className="flex flex-col h-[70vh] overflow-y-auto overflow-hidden items-center p-6 bg-white-light outline outline-1 outline-cocoa-light rounded-xl gap-4">

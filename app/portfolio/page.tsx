@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import Portfolio, { IPortfolioMetadata } from "@/components/portfolio/Portfolio";
+import Portfolio, { IMarkdownMetadata } from "@/components/portfolio/Portfolio";
 
 const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
 
@@ -45,9 +45,9 @@ export async function getPortfolioList(slug?: string) {
   const portfolioFolderList = fs.readdirSync(PORTFOLIO_DATA_PATH).filter((file) => file.endsWith(".mdx"));
   const portfoliosMetadata = portfolioFolderList.map((portfolio) => {
     const mdFile = fs.readFileSync(path.join(PORTFOLIO_DATA_PATH, portfolio), "utf-8");
-    const metadata = matter(mdFile).data as IPortfolioMetadata;
+    const metadata = matter(mdFile).data as IMarkdownMetadata;
 
-    return metadata as IPortfolioMetadata;
+    return metadata as IMarkdownMetadata;
   })
 
   const portfoliosMetadataSorted = portfoliosMetadata.sort((a, b) => {

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { IPortfolio } from "@/components/portfolio/Portfolio";
+import { IMarkdown } from "@/components/portfolio/Portfolio";
 import Markdown from "@/components/Markdown";
 import { getPortfolioList } from "@/app/portfolio/page";
 import Link from "next/link";
@@ -38,5 +38,5 @@ async function getPortfolioData(slug: string) {
   return {
     content: markdownData.content,
     metadata: markdownData.data
-  } as IPortfolio;
+  } as IMarkdown;
 }

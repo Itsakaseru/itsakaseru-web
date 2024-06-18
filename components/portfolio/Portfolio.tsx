@@ -4,22 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion  } from "framer-motion";
 
-export interface IPortfolio {
+export interface IMarkdown {
   content: string, 
-  metadata: IPortfolioMetadata
+  metadata: IMarkdownMetadata
 }
 
-export interface IPortfolioMetadata {
+export interface IMarkdownMetadata {
   name: string, 
   description: string,
   slug: string, 
   logo: string, 
   color: string
   year: number
-  tags?: IPortfolioTag[],
+  tags?: IMarkdownTag[],
 }
 
-export interface IPortfolioTag {
+export interface IMarkdownTag {
   text: string,
   icon?: string,
   color?: string, 
@@ -31,7 +31,7 @@ export interface IPortfolioOptions {
   showDescription: boolean,
 }
 
-export default function Portfolio({ portfolio, options } : { portfolio: IPortfolioMetadata, options?: IPortfolioOptions }) {
+export default function Portfolio({ portfolio, options } : { portfolio: IMarkdownMetadata, options?: IPortfolioOptions }) {
   const outlineMode = `bg-white-light outline outline-1 outline-${ portfolio.color }-light`;
   const backgroundMode = `bg-${ portfolio.color }-white`;
   
@@ -56,7 +56,7 @@ export default function Portfolio({ portfolio, options } : { portfolio: IPortfol
     <motion.div
       layoutId={portfolio.slug}
       className="max-w-96 flex"
-      whileHover={{ scale: 1.05, type: "spring" }}
+      whileHover={{ scale: 1.05 }}
     >
       <Link
         className={`cursor-pointer flex flex-col grow justify-between space-y-3  ${ modeClass } rounded-xl p-4`}
@@ -64,12 +64,13 @@ export default function Portfolio({ portfolio, options } : { portfolio: IPortfol
       >
         <motion.div className="flex flex-row space-x-5" layout="position">
           <div className={`min-w-20 min-h-20 bg-gradient-to-br from-${ portfolio.color } to-${ portfolio.color }-light rounded-lg`}>
-            <Image className="m-auto h-full"
+            <Image className="m-auto w-12 h-full"
                    src={ `${ portfolio.logo }` }
                    alt={ `${ portfolio.name } logo` }
                    width={50}
                    height={50}
                    style={{ objectFit: "contain" }}
+                   priority
             />
           </div>
           <div className="flex flex-col space-y-1.5 my-auto">
