@@ -17,7 +17,7 @@ const config: Config = {
         "cocoa" : {
           light: "#F4EAE9",
           DEFAULT: "#694B47",
-          dark: "#452520",
+          dark: "#694B47",
         },
         "white": {
           light: "#FFFFFF",
