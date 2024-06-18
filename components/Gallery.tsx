@@ -12,19 +12,26 @@ export interface IImage {
 export default function Gallery({ images, orientation } : { images : IImage[], orientation : "portrait" | "landscape" }) {
   const [ modal, setModal ] = useState<number | undefined>();
   const [ isDragging, setDragging ] = useState<boolean>(false);
-  const [ width, setWidth ] = useState(0);
   const gallery = useRef<HTMLDivElement>(null);
+  const [ width, setWidth ] = useState(5);
+
+  function LimitScroll() {
+    // Temporary workaround for scrollWidth delay value update
+    // Maybe there is a better solution?
+    setTimeout(() => {
+      if (!gallery.current) return;
+      setWidth(gallery.current?.scrollWidth - gallery.current?.offsetWidth);
+    }, 500);
+  }
   
   useEffect(() => {
     LimitScroll();
     window.addEventListener("resize", LimitScroll, false);
-  }, []);
-  
-  function LimitScroll() {
-    if (!gallery.current) return;
-    setWidth(gallery.current.scrollWidth - gallery.current.offsetWidth);
-  }
-  
+
+    return () => {
+      window.removeEventListener("resize", LimitScroll, false);
+    }
+  }, [ ]);
   
   return (
     <>
@@ -71,7 +78,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
             </>
         }
       </AnimatePresence>
-      <div className="px-2 py-2">
+      <div className="px-2 py-2" ref={gallery}>
         <motion.div
           drag="x"
           dragConstraints={{ right: 0, left: -width }}
@@ -79,7 +86,6 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
           onDragStart={() => setDragging(true)}
           onDragEnd={() => setDragging(false)}
           dragElastic={0.5}
-          ref={gallery}
           className="flex flex-row gap-8"
         >
           {
@@ -96,7 +102,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
               >
                 <Image
                   src={img.src}
-                  className="rounded-lg pointer-events-none"
+                  className={`${ orientation == "landscape" ? "max-w-[45rem]" : "max-w-[15rem]" } w-auto h-auto rounded-lg pointer-events-none`}
                   width={orientation == "landscape" ? 770 : 250}
                   height={orientation == "landscape" ? 443 : 444}
                   style={{ objectFit: "contain" }}
