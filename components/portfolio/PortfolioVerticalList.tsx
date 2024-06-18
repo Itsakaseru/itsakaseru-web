@@ -1,6 +1,6 @@
 "use client";
 
-import Portfolio, { IPortfolioMetadata } from "@/components/Portfolio";
+import Portfolio, { IPortfolioMetadata } from "@/components/portfolio/Portfolio";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function PortfolioVerticalList({ portfolios, currentSlug }: { portfolios: IPortfolioMetadata[], currentSlug: string }) {

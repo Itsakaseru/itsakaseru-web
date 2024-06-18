@@ -1,5 +1,5 @@
 import { MDXRemote } from "next-mdx-remote/rsc";
-import {IPortfolio} from "@/components/Portfolio";
+import { IPortfolio } from "@/components/portfolio/Portfolio";
 import InfoBubble from "@/components/InfoBuble";
 import Gallery from "@/components/Gallery";
 

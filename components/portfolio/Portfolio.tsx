@@ -56,6 +56,7 @@ export default function Portfolio({ portfolio, options } : { portfolio: IPortfol
     <motion.div
       layoutId={portfolio.slug}
       className="max-w-96 flex"
+      whileHover={{ scale: 1.05, type: "spring" }}
     >
       <Link
         className={`cursor-pointer flex flex-col grow justify-between space-y-3  ${ modeClass } rounded-xl p-4`}
@@ -72,7 +73,7 @@ export default function Portfolio({ portfolio, options } : { portfolio: IPortfol
             />
           </div>
           <div className="flex flex-col space-y-1.5 my-auto">
-            <div className={`text-${ portfolio.color }-dark text-xl font-bold`}>{ portfolio.name }</div>
+            <div className={`text-${ portfolio.color }-dark text-xl font-bold leading-tight`}>{ portfolio.name }</div>
             <div className="flex flex-row gap-2 flex-wrap">
               <div className={ `${ portfolio.color && portfolio.color ? `bg-${ portfolio.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 text-sm rounded-full` }>{ portfolio.year }</div>
               {

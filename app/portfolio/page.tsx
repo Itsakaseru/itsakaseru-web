@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import Portfolio, { IPortfolioMetadata } from "@/components/Portfolio";
+import Portfolio, { IPortfolioMetadata } from "@/components/portfolio/Portfolio";
 
 const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
 
