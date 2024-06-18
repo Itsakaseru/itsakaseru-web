@@ -2,7 +2,7 @@ import * as fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import Portfolio, {IPortfolioMetadata} from "@/components/Portfolio";
+import Portfolio, { IPortfolioMetadata } from "@/components/Portfolio";
 
 const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
 
@@ -41,15 +41,31 @@ export default async function PortfolioPage() {
   );
 }
 
-export async function getPortfolioList() {
+export async function getPortfolioList(slug?: string) {
   // Scan for projects
   const portfolioFolderList = fs.readdirSync(PORTFOLIO_DATA_PATH).filter((file) => file.endsWith(".mdx"));
-  return portfolioFolderList.map((portfolio) => {
+  const portfoliosMetadata = portfolioFolderList.map((portfolio) => {
     const mdFile = fs.readFileSync(path.join(PORTFOLIO_DATA_PATH, portfolio), "utf-8");
     const metadata = matter(mdFile).data as IPortfolioMetadata;
-    
+
     return metadata as IPortfolioMetadata;
-  }).sort((a, b) => {
+  })
+
+  const portfoliosMetadataSorted = portfoliosMetadata.sort((a, b) => {
     return b.year - a.year
   });
+
+  if (!slug) {
+    return portfoliosMetadataSorted;
+  }
+
+  const currentSlugMetadataIdx = portfoliosMetadataSorted.findIndex((portfolio) => portfolio.slug === slug);
+  const currentSlugMetadata = [ portfoliosMetadataSorted[currentSlugMetadataIdx] ];
+
+  // In miracle case where portfolio metadata not found
+  if (!currentSlugMetadata) return portfoliosMetadataSorted;
+
+  portfoliosMetadataSorted.splice(currentSlugMetadataIdx, 1)
+
+  return currentSlugMetadata.concat(portfoliosMetadataSorted);
 }
