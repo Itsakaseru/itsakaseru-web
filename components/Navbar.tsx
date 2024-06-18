@@ -4,8 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-
-interface ILinks {
+export interface ILink {
+  icon?: any,
   href: string,
   name: IPage
 }
@@ -14,7 +14,7 @@ type IPage = "Home" | "Portfolio" | "About Me";
 
 export default function Navbar({ currentPage }: { currentPage: IPage }) {
 
-  const NAV_LINKS: ILinks[] = [
+  const NAV_LINKS: ILink[] = [
     {
       href: "/",
       name: "Home",
@@ -45,7 +45,7 @@ export default function Navbar({ currentPage }: { currentPage: IPage }) {
                 key={link.name}
                 className={`relative flex flex-row px-3 py-1 duration-300`}
                 onMouseEnter={() => setSelectedTab(link.name)}
-                onMouseLeave={() => setSelectedTab("Portfolio")}
+                onMouseLeave={() => setSelectedTab(currentPage)}
               >
                 {
                   link.name === selectedTab &&
