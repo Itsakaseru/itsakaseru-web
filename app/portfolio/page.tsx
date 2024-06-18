@@ -9,7 +9,6 @@ const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfo
 export default async function PortfolioPage() {
   const data = await getPortfolioList();
   
-  
   return (
     <div className="flex flex-col grow h-full space-y-6">
       {/* Function Bars */}

@@ -16,9 +16,15 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
   const gallery = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
+    LimitScroll();
+    window.addEventListener("resize", LimitScroll, false);
+  }, []);
+  
+  function LimitScroll() {
     if (!gallery.current) return;
     setWidth(gallery.current.scrollWidth - gallery.current.offsetWidth);
-  }, []);
+  }
+  
   
   return (
     <>
