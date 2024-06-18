@@ -59,7 +59,7 @@ export default function Portfolio({ portfolio, options } : { portfolio: IMarkdow
       whileHover={{ scale: 1.05 }}
     >
       <Link
-        className={`cursor-pointer flex flex-col grow justify-between space-y-3  ${ modeClass } rounded-xl p-4`}
+        className={`cursor-pointer flex flex-col grow justify-between space-y-3 ${ modeClass } rounded-xl p-4`}
         href={ `/portfolio/${portfolio.slug}` }
       >
         <motion.div className="flex flex-row space-x-5" layout="position">
