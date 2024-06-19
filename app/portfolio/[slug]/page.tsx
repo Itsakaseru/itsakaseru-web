@@ -13,8 +13,14 @@ export default async function PortfolioInfoPage({ params }: { params: { slug: st
   const sortedListPortfolio = sortPortfolioList(await getPortfolioList(), params.slug);
   
   return (
-    <main className="flex flex-row items-start max-w-full gap-8">
-      <section className="flex flex-col min-w-96 gap-6">
+    <main className={
+      "flex md:flex-row items-start max-w-full md:gap-8 " +
+      "flex-col gap-0"
+    }>
+      <section className={
+        "flex flex-col md:min-w-96 gap-6 " +
+        "min-w-full"
+      }>
         <Link href="/portfolio"
               className="flex flex-row items-center pl-6 py-4 gap-4 bg-white-light outline outline-1 outline-cocoa-light rounded-xl text-cocoa font-medium">
           <ArrowLeftIcon className="size-5"/>
@@ -25,7 +31,10 @@ export default async function PortfolioInfoPage({ params }: { params: { slug: st
         {/* Other Portfolio */}
         <PortfolioVerticalList portfolios={sortedListPortfolio} currentSlug={params.slug}/>
       </section>
-      <section className="p-8 overflow-x-hidden bg-white-light outline outline-1 outline-cocoa-light rounded-xl">
+      <section className={
+        "w-full md:p-8 overflow-x-hidden md:bg-white-light md:outline md:outline-1 md:outline-cocoa-light rounded-xl " +
+        "px-0 pt-8 pb-8 bg-transparent"
+      }>
         <Markdown content={content} metadata={metadata}/>
       </section>
     </main>

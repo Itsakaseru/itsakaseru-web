@@ -64,7 +64,7 @@ export default function HomePage() {
     }
     >
       <div className={
-        "flex flex-col justify-between w-full min-h-full grow p-14 bg-white lg:rounded-3xl " +
+        "flex flex-col justify-between w-full min-h-full grow sm:p-14 bg-white lg:rounded-3xl " +
         "p-10"
       }>
         <nav className={

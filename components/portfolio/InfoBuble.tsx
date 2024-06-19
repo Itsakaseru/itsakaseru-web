@@ -7,7 +7,7 @@ export interface IInfoBubble {
 
 export default async function InfoBubble({ info, color } : { info : IInfoBubble[], color : string }) {
   return (
-    <div className="flex flex-row gap-2 mb-6">
+    <div className="flex flex-row flex-wrap gap-2 mb-6">
       {
         info.map((info) => (
           <a

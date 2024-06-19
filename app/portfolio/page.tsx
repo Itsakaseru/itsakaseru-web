@@ -12,9 +12,18 @@ export default async function PortfolioPage() {
       {/* Info Bars */}
       <section
         className="flex flex-row items-center justify-between space-x-6 bg-white-light outline outline-1 outline-cocoa-light px-6 py-4 rounded-md">
-        <div className="flex flex-row space-x-4 text-cocoa">
-          <div className="w-0.5 border-l-4 border-cocoa rounded-xl"/>
-          <InformationCircleIcon className="size-6"/>
+        <div className={
+          "flex flex-row sm:gap-4 sm:text-left text-cocoa " +
+          "gap-0 text-center"
+        }>
+          <div className={
+            "sm:block w-0.5 border-l-4 border-cocoa rounded-xl " +
+            "hidden"
+          }/>
+          <div><InformationCircleIcon className={
+            "sm:block size-6 " +
+            "hidden"
+          }/></div>
           <p>Here are all of the projects that I&apos;ve been worked on either throughout college or my life.</p>
         </div>
         {/* Search Bar (Disabled) */}

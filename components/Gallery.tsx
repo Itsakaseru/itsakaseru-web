@@ -64,7 +64,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
                         </motion.button>
                         <motion.div
                             /* There must be a better way */
-                            className={`relative flex ${ orientation == "landscape" ? "min-w-[80vw] min-h-[80vh]" : "min-w-[20vw] min-h-[80vh]" }`}
+                            className={`relative flex ${ orientation == "landscape" ? "min-w-[80vw] min-h-[80vh]" : "lg:min-w-[20vw] min-h-[80vh] min-w-[80vw]" }`}
                             layoutId={modal.toString()}
                         >
                             <Image

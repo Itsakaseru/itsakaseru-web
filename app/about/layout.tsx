@@ -3,7 +3,10 @@ import Navbar from "@/components/Navbar";
 
 export default function AboutLayout({ children, }: Readonly<{ children: ReactNode; }>) {
   return (
-    <div className="flex flex-col w-full min-h-screen p-14 space-y-8 bg-white">
+    <div className={
+      "flex flex-col w-full min-h-screen sm:p-14 space-y-8 bg-white " +
+      "p-10"
+    }>
       <Navbar currentPage="About Me"/>
       {children}
       <footer className="mx-auto text-cocoa">

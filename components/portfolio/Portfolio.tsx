@@ -34,7 +34,10 @@ export default function Portfolio({ portfolio, options } : { portfolio: IMarkdow
   return (
     <motion.div
       layoutId={portfolio.slug}
-      className="max-w-96 flex"
+      className={
+        "flex lg:flex-grow-0 md:w-auto " +
+        "flex-grow w-full"
+      }
       whileHover={{ scale: 1.05 }}
     >
       <Link
@@ -53,9 +56,12 @@ export default function Portfolio({ portfolio, options } : { portfolio: IMarkdow
             />
           </div>
           <div className="flex flex-col space-y-1.5 my-auto">
-            <div className={`text-${ portfolio.color }-dark text-xl font-bold leading-tight`}>{ portfolio.name }</div>
+            <div className={`text-${ portfolio.color }-dark text-xl font-bold leading-tight`}>{portfolio.name}</div>
             <div className="flex flex-row gap-2 flex-wrap">
-              <div className={ `${ portfolio.color && portfolio.color ? `bg-${ portfolio.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 text-sm rounded-full` }>
+              <div className={
+                `${ portfolio.color && portfolio.color ? `bg-${ portfolio.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 sm:text-sm rounded-full ` +
+                "text-xs"
+              }>
                 { portfolio.year }
               </div>
               {
@@ -63,7 +69,10 @@ export default function Portfolio({ portfolio, options } : { portfolio: IMarkdow
                   return (
                     <div
                       key={tag.text}
-                      className={`${tag.color && tag.color ? `bg-${tag.color}-dark` : `bg-${ portfolio.color }-dark`} text-white-light px-2 py-0.5 text-sm rounded-full`}>
+                      className={
+                        `${tag.color && tag.color ? `bg-${tag.color}-dark` : `bg-${ portfolio.color }-dark`} text-white-light px-2 py-0.5 sm:text-sm rounded-full ` +
+                        "text-xs"
+                    }>
                       {tag.text}
                     </div>
                   )
