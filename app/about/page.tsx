@@ -1,14 +1,13 @@
-import Image from "next/image";
-import Markdown from "@/components/Markdown";
-import fs from "node:fs";
 import path from "node:path";
-import matter from "gray-matter";
-import { IMarkdown } from "@/components/portfolio/Portfolio";
+import Image from "next/image";
+import { getMarkdownData } from "@/libs/Markdown";
+import Markdown from "@/components/Markdown";
 import { HubBar, IHubLink } from "@/components/HubBar";
 
+const ABOUTME_MD_FILE_PATH = path.join("public", "static", "about.mdx");
 const HUB_LINKS: IHubLink[] = [
   {
-    icon: "skyencripttion",
+    icon: "sky-encripttion",
     href: "https://youtube.com/SkyEncripttion",
     name: "SkyEncripttion",
   },
@@ -34,12 +33,12 @@ const HUB_LINKS: IHubLink[] = [
   }
 ]
 
-export default async function AboutLayout() {
-  const { content, metadata } = await getAboutMeMD();
+export default async function AboutPage() {
+  const { content, metadata } = getMarkdownData(ABOUTME_MD_FILE_PATH);
   
   return (
-    <div className="flex flex-row justify-center gap-10 p-8 rounded-xl bg-white-light outline outline-1 outline-cocoa-light">
-      <div className="flex flex-col min-w-max items-center gap-8">
+    <div className="flex flex-row justify-center p-8 gap-10 bg-white-light outline outline-1 outline-cocoa-light rounded-xl">
+      <div className="flex flex-col items-center min-w-max gap-8">
         <div className="flex flex-row py-4 pl-4 pr-10 gap-7 bg-white-dark rounded-xl">
           <Image
             className="rounded-xl"
@@ -48,14 +47,14 @@ export default async function AboutLayout() {
             height={135}
             style={{ objectFit: "contain" }}
             quality={100}
-            alt="Logo"
+            alt="Photo of Lemuel Lancaster"
           />
           <div className="flex flex-col justify-between py-2 text-cocoa">
             <div className="flex flex-col leading-none">
               <div className="font-bold text-[1.7rem]">Lemuel Lancaster</div>
               <div className="font-light">Itsakaseru, Remueru</div>
             </div>
-            <div className="text-wrap leading-tight font-medium">
+            <div className="font-medium text-wrap leading-tight">
               Programmer,<br />
               Oneironatics, Human
             </div>
@@ -66,20 +65,9 @@ export default async function AboutLayout() {
         </div>
       </div>
       <div className="flex-initial min-w-0.5 bg-cocoa bg-opacity-75 rounded-full"/>
-      <div className="overflow-x-hidden p-8">
+      <div className="p-8 overflow-x-hidden">
         <Markdown content={content} metadata={metadata} />
       </div>
     </div>
   );
-}
-
-// "Temporary" DRY
-async function getAboutMeMD() {
-  const mdFile = fs.readFileSync(path.join("public", "static", `about.mdx`), "utf-8");
-  const markdownData = matter(mdFile);
-
-  return {
-    content: markdownData.content,
-    metadata: markdownData.data
-  } as IMarkdown;
 }

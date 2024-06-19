@@ -2,29 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion  } from "framer-motion";
-
-export interface IMarkdown {
-  content: string, 
-  metadata: IMarkdownMetadata
-}
-
-export interface IMarkdownMetadata {
-  name: string, 
-  description: string,
-  slug: string, 
-  logo: string, 
-  color: string
-  year: number
-  tags?: IMarkdownTag[],
-}
-
-export interface IMarkdownTag {
-  text: string,
-  icon?: string,
-  color?: string, 
-  href? :string, 
-}
+import { motion } from "framer-motion";
+import { IMarkdownMetadata } from "@/libs/Markdown";
 
 export interface IPortfolioOptions {
   mode: "none" | "outline" | "background",
@@ -76,7 +55,9 @@ export default function Portfolio({ portfolio, options } : { portfolio: IMarkdow
           <div className="flex flex-col space-y-1.5 my-auto">
             <div className={`text-${ portfolio.color }-dark text-xl font-bold leading-tight`}>{ portfolio.name }</div>
             <div className="flex flex-row gap-2 flex-wrap">
-              <div className={ `${ portfolio.color && portfolio.color ? `bg-${ portfolio.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 text-sm rounded-full` }>{ portfolio.year }</div>
+              <div className={ `${ portfolio.color && portfolio.color ? `bg-${ portfolio.color }-dark text-white-light` : "bg-gray-300" } px-2 py-0.5 text-sm rounded-full` }>
+                { portfolio.year }
+              </div>
               {
                 portfolio.tags && portfolio.tags.map((tag) => {
                   return (

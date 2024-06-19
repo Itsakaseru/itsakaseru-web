@@ -10,10 +10,12 @@ export interface ILink {
   name: IPage
 }
 
-type IPage = "Home" | "Portfolio" | "About Me";
+type IPage =
+  "Home" |
+  "Portfolio" |
+  "About Me";
 
 export default function Navbar({ currentPage }: { currentPage: IPage }) {
-
   const NAV_LINKS: ILink[] = [
     {
       href: "/",
@@ -33,11 +35,11 @@ export default function Navbar({ currentPage }: { currentPage: IPage }) {
 
   return (
     <nav className="flex flex-row justify-between">
-      <div className="flex flex-col my-auto text-cocoa -space-y-1">
-        <div className="text-3xl font-semibold">Itsakaseru</div>
-        <div className="text-base font-extralight">Lemuel Lancaster</div>
+      <div className="flex flex-col my-auto -space-y-1 text-cocoa">
+        <div className="font-semibold text-3xl">Itsakaseru</div>
+        <div className="font-extralight text-base">Lemuel Lancaster</div>
       </div>
-      <div className="flex flex-row items-center space-x-8 px-4 py-3 rounded-xl bg-white-light outline outline-1 outline-cocoa-light text-cocoa">
+      <div className="flex flex-row items-center px-4 py-3 space-x-8 text-cocoa bg-white-light outline outline-1 outline-cocoa-light rounded-xl">
         {
           NAV_LINKS.map((link) =>
             <Link key={link.name} href={link.href}>
@@ -51,10 +53,10 @@ export default function Navbar({ currentPage }: { currentPage: IPage }) {
                   link.name === selectedTab &&
                     <motion.div
                         layoutId="navbar-link"
-                        className="absolute inset-0 rounded bg-white"
+                        className="absolute inset-0 bg-white rounded"
                     />
                 }
-                <p className="relative z-10">
+                <p className="z-10 relative">
                   {link.name}
                 </p>
               </div>

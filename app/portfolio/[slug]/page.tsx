@@ -1,42 +1,47 @@
-import fs from "node:fs";
 import path from "node:path";
-import { IMarkdown } from "@/components/portfolio/Portfolio";
-import Markdown from "@/components/Markdown";
-import { getPortfolioList } from "@/app/portfolio/page";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
-import matter from "gray-matter";
+import { getMarkdownData, IMarkdownMetadata } from "@/libs/Markdown";
+import { getPortfolioList } from "@/app/portfolio/page";
+import Markdown from "@/components/Markdown";
 import PortfolioVerticalList from "@/components/portfolio/PortfolioVerticalList";
 
 const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
 
 export default async function PortfolioInfoPage({ params }: { params: { slug: string } }) {
-  const { content, metadata } = await getPortfolioData(params.slug);
-  const listPortfolio = await getPortfolioList(params.slug);
+  const { content, metadata } = getMarkdownData(path.join(PORTFOLIO_DATA_PATH, `${ params.slug }.mdx`));
+  const sortedListPortfolio = sortPortfolioList(await getPortfolioList(), params.slug);
   
   return (
-    <div className="flex flex-row max-w-full items-start gap-8">
-      <div className="min-w-96 flex flex-col gap-6">
+    <main className="flex flex-row items-start max-w-full gap-8">
+      <section className="flex flex-col min-w-96 gap-6">
         <Link href="/portfolio"
-              className="flex flex-row items-center gap-4 pl-6 py-4 bg-white-light outline outline-1 outline-cocoa-light rounded-xl text-cocoa font-medium">
-          <ArrowLeftIcon className="size-5"/>Back to Portfolio List
+              className="flex flex-row items-center pl-6 py-4 gap-4 bg-white-light outline outline-1 outline-cocoa-light rounded-xl text-cocoa font-medium">
+          <ArrowLeftIcon className="size-5"/>
+          <div>
+            Back to Portfolio List
+          </div>
         </Link>
         {/* Other Portfolio */}
-        <PortfolioVerticalList portfolios={listPortfolio} currentSlug={ params.slug }/>
-      </div>
-      <div className="overflow-x-hidden p-8 rounded-xl bg-white-light outline outline-1 outline-cocoa-light">
+        <PortfolioVerticalList portfolios={sortedListPortfolio} currentSlug={params.slug}/>
+      </section>
+      <section className="p-8 overflow-x-hidden bg-white-light outline outline-1 outline-cocoa-light rounded-xl">
         <Markdown content={content} metadata={metadata}/>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 
-async function getPortfolioData(slug: string) {
-  const mdFile = fs.readFileSync(path.join(PORTFOLIO_DATA_PATH, `${slug}.mdx`), "utf-8");
-  const markdownData = matter(mdFile);
+// Sort by current portfolio first and rest by year descending
+function sortPortfolioList(portfolioList: IMarkdownMetadata[], currentPortfolioFile: string) {
+  const portfolioListSorted = portfolioList.sort((a, b) => {
+    return b.year - a.year
+  });
 
-  return {
-    content: markdownData.content,
-    metadata: markdownData.data
-  } as IMarkdown;
+  const currentSlugMetadataIdx = portfolioListSorted.findIndex((portfolio) => portfolio.slug === currentPortfolioFile);
+  const currentSlugMetadata = [portfolioListSorted[currentSlugMetadataIdx]];
+
+  portfolioListSorted.splice(currentSlugMetadataIdx, 1)
+
+  return currentSlugMetadata.concat(portfolioListSorted);
 }

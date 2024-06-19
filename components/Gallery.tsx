@@ -12,26 +12,28 @@ export interface IImage {
 export default function Gallery({ images, orientation } : { images : IImage[], orientation : "portrait" | "landscape" }) {
   const [ modal, setModal ] = useState<number | undefined>();
   const [ isDragging, setDragging ] = useState<boolean>(false);
-  const gallery = useRef<HTMLDivElement>(null);
   const [ width, setWidth ] = useState(5);
 
-  function LimitScroll() {
-    // Temporary workaround for scrollWidth delay value update
-    // Maybe there is a better solution?
-    setTimeout(() => {
-      if (!gallery.current) return;
-      setWidth(gallery.current?.scrollWidth - gallery.current?.offsetWidth);
-    }, 500);
-  }
+  const gallery = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     LimitScroll();
+    
     window.addEventListener("resize", LimitScroll, false);
 
     return () => {
       window.removeEventListener("resize", LimitScroll, false);
     }
   }, [ ]);
+
+  function LimitScroll() {
+    // Workaround for scrollWidth delay value update
+    // Maybe there is a better solution?
+    setTimeout(() => {
+      if (!gallery.current) return;
+      setWidth(gallery.current?.scrollWidth - gallery.current?.offsetWidth);
+    }, 500);
+  }
   
   return (
     <>
@@ -44,14 +46,14 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ delay: 0.1, duration: 0.25 }}
-                    className="fixed z-10 top-0 left-0 flex w-screen h-screen bg-black bg-opacity-5 backdrop-blur"
+                    className="z-10 fixed top-0 left-0 flex w-screen h-screen bg-black bg-opacity-5 backdrop-blur"
                 />
                 <motion.div
                   className="fixed z-20 top-0 left-0 flex w-screen h-screen"
                 >
-                    <motion.div className="flex flex-col gap-4 m-auto text-cocoa">
+                    <motion.div className="flex flex-col m-auto gap-4 text-cocoa">
                         <motion.button
-                            className="mx-auto bg-dayker-dark text-white px-8 py-2 rounded-full"
+                            className="mx-auto px-8 py-2 bg-dayker-dark rounded-full text-white"
                             whileHover={{ scale: 1.05 }}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -91,7 +93,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
           {
             images.map((img, idx) => (
               <motion.div
-                className={`flex-shrink-0 drop-shadow-md cursor-pointer`}
+                className="flex-shrink-0 drop-shadow-md cursor-pointer"
                 onPointerUp={() => {
                   if (isDragging) return;
                   setModal(idx);
@@ -102,7 +104,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
               >
                 <Image
                   src={img.src}
-                  className={`${ orientation == "landscape" ? "max-w-[45rem]" : "max-w-[15rem]" } w-auto h-auto rounded-lg pointer-events-none`}
+                  className={`w-auto h-auto ${ orientation == "landscape" ? "max-w-[45rem]" : "max-w-[15rem]" } rounded-lg pointer-events-none`}
                   width={orientation == "landscape" ? 770 : 250}
                   height={orientation == "landscape" ? 443 : 444}
                   style={{ objectFit: "contain" }}

@@ -1,4 +1,4 @@
-export default function Video({ src }: { src: string }) {
+export default function YTVideo({ src }: { src: string }) {
   return (
     <div className="flex justify-center px-20">
       <iframe
