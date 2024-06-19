@@ -27,16 +27,15 @@ export interface IHubLink {
   name: string
 }
 
-export interface IHubBarOptions {
-  background: boolean
-}
-
-export function HubBar({ Links, options = { background: true } }: { Links: IHubLink[], options?: IHubBarOptions }) {
+export function HubBar({ Links, background = true, flexResponsive = true }: { Links: IHubLink[], background?: boolean, flexResponsive?: boolean }) {
   const [ selectedTab, setSelectedTab ] = useState<string | null>(Links[0]?.name);
 
   return (
     <motion.div
-      className={`flex flex-row p-4 gap-3 ${ options?.background ? "bg-white-light outline outline-1 outline-cocoa-light rounded-xl" : "" }`}
+      className={
+        `flex sm:flex-row p-4 gap-3 ${ background ? "bg-white-light outline outline-1 outline-cocoa-light rounded-xl" : "" } ` +
+        `${ flexResponsive ? "flex-col" : "" }`
+      }
       layout
       transition={{ duration: 0.25, type: "tween", stiffness: 50 }}
     >
@@ -44,19 +43,35 @@ export function HubBar({ Links, options = { background: true } }: { Links: IHubL
         Links.map((link) => {
           const Icon = IconMapping[link.icon];
           return (
-            <Link key={link.name} href={link.href} className="my-auto">
+            <Link
+              key={link.name}
+              href={link.href}
+              className="my-auto"
+            >
               <motion.div
                 key={link.name}
-                className={`flex flex-row px-3 py-2 space-x-2 ${ link.name === selectedTab && "bg-white rounded hover:bg-white-dark" } transition-colors duration-300`}
+                className={
+                  `flex flex-row px-3 py-2 space-x-2 ${ link.name === selectedTab ? "sm:bg-white hover:bg-white-dark" : "sm:bg-inherit" } rounded transition-colors duration-300 ` +
+                  `${ flexResponsive ? "bg-white rounded" : "" }`
+                }
                 layout
                 onHoverStart={() => setSelectedTab(link.name)}
               >
                 <motion.div layout="position" className="my-auto">
-                    <Icon className="size-6" />
+                  <Icon className="size-6"/>
                 </motion.div>
                 {
                   link.name === selectedTab &&
-                    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                    <motion.p initial={{opacity: 0}} animate={{opacity: 1}}>
+                      {link.name}
+                    </motion.p>
+                }
+                {
+                  link.name !== selectedTab &&
+                    <motion.p initial={{opacity: 0}} animate={{opacity: 1}} className={
+                      "sm:hidden " +
+                      `${ flexResponsive ? "block" : "" }`
+                    }>
                       {link.name}
                     </motion.p>
                 }

@@ -58,14 +58,30 @@ const SOCIAL_LINKS = [
 export default function HomePage() {
   
   return (
-    <main className="items-center h-screen p-16">
-      <header className="flex flex-col justify-between w-full h-full p-14 bg-white rounded-3xl">
-        <nav className="flex flex-row justify-between">
-          <div className="flex flex-col my-auto -space-y-1 text-cocoa">
+    <main className={
+      "items-center h-screen lg:p-16 " +
+      "p-0"
+    }
+    >
+      <div className={
+        "flex flex-col justify-between w-full min-h-full grow p-14 bg-white lg:rounded-3xl " +
+        "p-10"
+      }>
+        <nav className={
+          "flex sm:flex-row sm:justify-between sm:space-y-0 " +
+          "flex-col space-y-6"
+        }>
+          <div className={
+            "flex flex-col my-auto -space-y-1 text-cocoa sm:text-left " +
+            "text-center"
+          }>
             <div className="font-semibold text-3xl">Itsakaseru</div>
             <div className="font-extralight text-base">Lemuel Lancaster</div>
           </div>
-          <div className="flex flex-row items-center space-x-8">
+          <div className={
+            "sm:flex flex-row items-center space-x-8 " +
+            "hidden"
+          }>
             {
               SOCIAL_LINKS.map((link) =>
                 <a
@@ -82,7 +98,12 @@ export default function HomePage() {
         </nav>
         <section className="flex flex-col space-y-12">
           <Image
-            className="mx-auto rounded-[3.125rem]"
+            className={
+              "mx-auto rounded-[3.125rem] xl:w-96 " +
+              "lg:w-80 " +
+              "md:w-72 " +
+              "w-64"
+            }
             src="/static/sakii.png"
             quality={100}
             width={350}
@@ -108,7 +129,7 @@ export default function HomePage() {
           </ruby>
           . All Rights Reserved.
         </footer>
-      </header>
+      </div>
     </main>
   );
 }

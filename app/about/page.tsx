@@ -61,7 +61,7 @@ export default async function AboutPage() {
           </div>
         </div>
         <div className="text-cocoa">
-          <HubBar Links={ HUB_LINKS } options={{ background: false }} />
+          <HubBar Links={HUB_LINKS} background={false} />
         </div>
       </div>
       <div className="flex-initial min-w-0.5 bg-cocoa bg-opacity-75 rounded-full"/>
