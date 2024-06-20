@@ -66,7 +66,6 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  
   return (
     <main className={
       "items-center h-screen lg:p-16 " +
@@ -119,6 +118,7 @@ export default function HomePage() {
             width={350}
             height={350}
             alt="Photo of Sakii as Anime Character"
+            priority
           />
           <nav className="mx-auto text-cocoa">
             <HubBar Links={HUB_LINKS} />
