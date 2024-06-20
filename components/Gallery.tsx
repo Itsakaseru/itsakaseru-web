@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState} from "react";
 
 export interface IImage {
   src: string, 
@@ -11,29 +11,6 @@ export interface IImage {
 
 export default function Gallery({ images, orientation } : { images : IImage[], orientation : "portrait" | "landscape" }) {
   const [ modal, setModal ] = useState<number | undefined>();
-  const [ isDragging, setDragging ] = useState<boolean>(false);
-  const [ width, setWidth ] = useState(5);
-
-  const gallery = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    LimitScroll();
-    
-    window.addEventListener("resize", LimitScroll, false);
-
-    return () => {
-      window.removeEventListener("resize", LimitScroll, false);
-    }
-  }, [ ]);
-
-  function LimitScroll() {
-    // Workaround for scrollWidth delay value update
-    // Maybe there is a better solution?
-    setTimeout(() => {
-      if (!gallery.current) return;
-      setWidth(gallery.current?.scrollWidth - gallery.current?.offsetWidth);
-    }, 1000);
-  }
   
   return (
     <>
@@ -64,7 +41,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
                         </motion.button>
                         <motion.div
                             /* There must be a better way */
-                            className={`relative flex ${ orientation == "landscape" ? "min-w-[80vw] min-h-[80vh]" : "lg:min-w-[20vw] min-h-[80vh] min-w-[80vw]" }`}
+                            className={`relative flex ${ orientation == "landscape" ? "min-w-[80vw] min-h-[80vh]" : "xl:min-w-[20vw] min-h-[80vh] min-w-[80vw]" }`}
                             layoutId={modal.toString()}
                         >
                             <Image
@@ -80,22 +57,13 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
             </>
         }
       </AnimatePresence>
-      <div className="px-2 py-2" ref={gallery}>
-        <motion.div
-          drag="x"
-          dragConstraints={{ right: 0, left: -width }}
-          dragTransition={{ bounceStiffness: 200 }}
-          onDragStart={() => setDragging(true)}
-          onDragEnd={() => setDragging(false)}
-          dragElastic={0.5}
-          className="flex flex-row gap-8"
-        >
+      <div className="overflow-x-scroll">
+        <div className="flex flex-row w-auto my-4 pb-4 gap-8 overflow-y-visible">
           {
             images.map((img, idx) => (
               <motion.div
-                className="flex-shrink-0 drop-shadow-md cursor-pointer"
+                className={`flex-shrink-0 ${ idx == 0 ? "pl-6" : idx == images.length - 1 ? "pr-6" : "" } drop-shadow-md cursor-pointer`}
                 onPointerUp={() => {
-                  if (isDragging) return;
                   setModal(idx);
                 }}
                 layoutId={idx.toString()}
@@ -114,7 +82,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
               </motion.div>
             ))
           }
-        </motion.div>
+        </div>
       </div>
     </>
   )

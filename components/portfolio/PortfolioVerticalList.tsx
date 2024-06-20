@@ -8,7 +8,7 @@ export default function PortfolioVerticalList({ portfolios, currentSlug }: { por
   return (
     <AnimatePresence>
       <motion.div className={
-        "flex flex-col items-center lg:h-[70vh] lg:p-6 gap-4 lg:overflow-hidden lg:overflow-y-auto lg:bg-white-light lg:outline lg:outline-1 lg:outline-cocoa-light rounded-xl " +
+        "flex flex-col items-center lg:h-[70vh] lg:p-6 gap-4 scroll-smooth lg:overflow-hidden lg:overflow-y-auto lg:bg-white-light lg:outline lg:outline-1 lg:outline-cocoa-light rounded-xl " +
         "h-auto p-0 overflow-visible bg-transparent"
       }>
         {
