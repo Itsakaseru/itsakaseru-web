@@ -15,7 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default async function PortfolioPage() {
-  const data = await getPortfolioList();
+  const portfolioList = await getPortfolioList();
+  const sortedListPortfolio = sortPortfolioList(await getPortfolioList());
   
   return (
     <main className="flex flex-col grow h-full space-y-6">
@@ -48,7 +49,7 @@ export default async function PortfolioPage() {
       {/* Portfolio List */}
       <section className="flex flex-row flex-wrap w-full justify-center gap-6">
         {
-          data.map((portfolio) => (
+          sortedListPortfolio.map((portfolio) => (
             <Portfolio key={portfolio.name} portfolio={portfolio} options={{ mode: "outline", showDescription: true }}/>
           ))
         }
@@ -65,4 +66,20 @@ export async function getPortfolioList() {
     const mdData = getMarkdownData(path.join(PORTFOLIO_DATA_PATH, portfolio));
     return mdData.metadata as IMarkdownMetadata;
   }));
+}
+
+// Sort by current portfolio first (if any) and rest by year descending
+export function sortPortfolioList(portfolioList: IMarkdownMetadata[], currentPortfolioFile?: string) {
+  const portfolioListSorted = portfolioList.sort((a, b) => {
+    return b.year - a.year
+  });
+  
+  if (!currentPortfolioFile) return portfolioListSorted;
+
+  const currentSlugMetadataIdx = portfolioListSorted.findIndex((portfolio) => portfolio.slug === currentPortfolioFile);
+  const currentSlugMetadata = [portfolioListSorted[currentSlugMetadataIdx]];
+
+  portfolioListSorted.splice(currentSlugMetadataIdx, 1)
+
+  return currentSlugMetadata.concat(portfolioListSorted);
 }

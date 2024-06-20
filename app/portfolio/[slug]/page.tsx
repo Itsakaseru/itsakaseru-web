@@ -3,7 +3,7 @@ import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { getMarkdownData, IMarkdownMetadata } from "@/libs/Markdown";
-import { getPortfolioList } from "@/app/portfolio/page";
+import {getPortfolioList, sortPortfolioList} from "@/app/portfolio/page";
 import Markdown from "@/components/Markdown";
 import PortfolioVerticalList from "@/components/portfolio/PortfolioVerticalList";
 
@@ -53,18 +53,4 @@ export default async function PortfolioInfoPage({ params }: { params: { slug: st
       </section>
     </main>
   );
-}
-
-// Sort by current portfolio first and rest by year descending
-function sortPortfolioList(portfolioList: IMarkdownMetadata[], currentPortfolioFile: string) {
-  const portfolioListSorted = portfolioList.sort((a, b) => {
-    return b.year - a.year
-  });
-
-  const currentSlugMetadataIdx = portfolioListSorted.findIndex((portfolio) => portfolio.slug === currentPortfolioFile);
-  const currentSlugMetadata = [portfolioListSorted[currentSlugMetadataIdx]];
-
-  portfolioListSorted.splice(currentSlugMetadataIdx, 1)
-
-  return currentSlugMetadata.concat(portfolioListSorted);
 }
