@@ -58,14 +58,14 @@ export default async function PortfolioPage() {
   );
 }
 
-export async function getPortfolioList() {
+export function getPortfolioList() {
   const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
   const portfolioFolderList = getFileList(PORTFOLIO_DATA_PATH, ".mdx");
   
-  return await Promise.all(portfolioFolderList.map(async (portfolio) => {
+  return portfolioFolderList.map((portfolio) => {
     const mdData = getMarkdownData(path.join(PORTFOLIO_DATA_PATH, portfolio));
     return mdData.metadata as IMarkdownMetadata;
-  }));
+  });
 }
 
 // Sort by current portfolio first (if any) and rest by year descending

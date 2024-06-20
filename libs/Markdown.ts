@@ -14,6 +14,7 @@ export interface IMarkdownMetadata {
   color: string
   year: number
   tags?: IMarkdownTag[],
+  "lastUpdated": string, 
 }
 
 export interface IMarkdownTag {
