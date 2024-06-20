@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply select-none;
+}
+
 article {
     h1 {
         @apply font-bold text-3xl leading-tight;
