@@ -32,7 +32,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
     setTimeout(() => {
       if (!gallery.current) return;
       setWidth(gallery.current?.scrollWidth - gallery.current?.offsetWidth);
-    }, 500);
+    }, 1000);
   }
   
   return (
