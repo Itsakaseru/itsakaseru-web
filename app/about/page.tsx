@@ -1,4 +1,5 @@
 import path from "node:path";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getMarkdownData } from "@/libs/Markdown";
 import Markdown from "@/components/Markdown";
@@ -31,7 +32,17 @@ const HUB_LINKS: IHubLink[] = [
     href: "https://linkedin.com/in/itsakaseru",
     name: "LinkedIn"
   }
-]
+];
+
+export const metadata: Metadata = {
+  title: "Itsakaseru: About Me",
+  description: "About Itsakaseru or Lemuel Lancaster",
+  openGraph: {
+    title: "Itsakaseru: About Me",
+    description: "About Itsakaseru or Lemuel Lancaster",
+  }
+};
+
 
 export default async function AboutPage() {
   const { content, metadata } = getMarkdownData(ABOUTME_MD_FILE_PATH);

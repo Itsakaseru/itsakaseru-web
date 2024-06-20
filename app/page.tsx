@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -54,6 +55,15 @@ const SOCIAL_LINKS = [
     name: "X Formerly Twitter"
   }
 ];
+
+export const metadata: Metadata = {
+  title: "Itsakaseru",
+  description: "Itsakaseru's personal website",
+  openGraph: {
+    title: "Itsakaseru",
+    description: "Itsakaseru's personal website",
+  }
+};
 
 export default function HomePage() {
   

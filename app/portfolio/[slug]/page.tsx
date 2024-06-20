@@ -1,4 +1,5 @@
 import path from "node:path";
+import type { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { getMarkdownData, IMarkdownMetadata } from "@/libs/Markdown";
@@ -7,6 +8,19 @@ import Markdown from "@/components/Markdown";
 import PortfolioVerticalList from "@/components/portfolio/PortfolioVerticalList";
 
 const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "static", "portfolio");
+
+export async function generateMetadata({ params }: { params: { slug: string } }, parent: ResolvingMetadata): Promise<Metadata> {
+  const metadata = getMarkdownData(path.join(PORTFOLIO_DATA_PATH, `${ params.slug }.mdx`)).metadata;
+
+  return {
+    title: `Itsakaseru: ${ metadata.name }`,
+    description: metadata.description,
+    openGraph: {
+      title: `Itsakaseru: ${ metadata.name }`,
+      description: metadata.description,
+    },
+  }
+}
 
 export default async function PortfolioInfoPage({ params }: { params: { slug: string } }) {
   const { content, metadata } = getMarkdownData(path.join(PORTFOLIO_DATA_PATH, `${ params.slug }.mdx`));

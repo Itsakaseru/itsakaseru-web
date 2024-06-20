@@ -3,6 +3,16 @@ import { InformationCircleIcon } from "@heroicons/react/24/solid";
 import Portfolio from "@/components/portfolio/Portfolio";
 import { getFileList } from "@/libs/FileSystem";
 import { getMarkdownData, IMarkdownMetadata } from "@/libs/Markdown";
+import type {Metadata} from "next";
+
+export const metadata: Metadata = {
+  title: "Itsakaseru: Portfolio",
+  description: "List of projects that I've been worked on either throughout college or my life",
+  openGraph: {
+    title: "Itsakaseru: Portfolio",
+    description: "List of projects that I've been worked on either throughout college or my life",
+  }
+};
 
 export default async function PortfolioPage() {
   const data = await getPortfolioList();
