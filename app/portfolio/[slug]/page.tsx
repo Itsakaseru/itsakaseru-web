@@ -28,11 +28,11 @@ export default async function PortfolioInfoPage({ params }: { params: { slug: st
   
   return (
     <main className={
-      "flex md:flex-row items-start max-w-full md:gap-8 " +
+      "flex lg:flex-row items-start max-w-full lg:gap-8 " +
       "flex-col gap-0"
     }>
       <section className={
-        "flex flex-col md:min-w-96 gap-6 " +
+        "flex flex-col lg:min-w-96 gap-6 " +
         "min-w-full"
       }>
         <Link href="/portfolio"
@@ -46,7 +46,7 @@ export default async function PortfolioInfoPage({ params }: { params: { slug: st
         <PortfolioVerticalList portfolios={sortedListPortfolio} currentSlug={params.slug}/>
       </section>
       <section className={
-        "w-full md:p-8 overflow-x-hidden md:bg-white-light md:outline md:outline-1 md:outline-cocoa-light rounded-xl " +
+        "w-full lg:p-8 overflow-x-hidden lg:bg-white-light lg:outline lg:outline-1 lg:outline-cocoa-light rounded-xl " +
         "px-0 pt-8 pb-8 bg-transparent"
       }>
         <Markdown content={content} metadata={metadata}/>

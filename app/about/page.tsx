@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getMarkdownData } from "@/libs/Markdown";
 import Markdown from "@/components/Markdown";
 import { HubBar, IHubLink } from "@/components/HubBar";
+import { Source_Sans_3 } from "next/font/google";
 
 const ABOUTME_MD_FILE_PATH = path.join("public", "static", "about.mdx");
 const HUB_LINKS: IHubLink[] = [
@@ -34,6 +35,10 @@ const HUB_LINKS: IHubLink[] = [
   }
 ];
 
+const QUOTE_LIST = [
+  "Sometimes you just need to relax",
+];
+
 export const metadata: Metadata = {
   title: "Itsakaseru: About Me",
   description: "About Itsakaseru or Lemuel Lancaster",
@@ -43,22 +48,23 @@ export const metadata: Metadata = {
   }
 };
 
+const SourceSans = Source_Sans_3({ subsets: [ "latin" ] });
 
 export default async function AboutPage() {
   const { content, metadata } = getMarkdownData(ABOUTME_MD_FILE_PATH);
   
   return (
     <div className={
-      "flex md:flex-row justify-center md:p-8 md:gap-10 md:bg-white-light md:outline md:outline-1 md:outline-cocoa-light rounded-xl " +
+      "flex lg:flex-row justify-center lg:p-8 lg:gap-10 lg:bg-white-light lg:outline lg:outline-1 lg:outline-cocoa-light rounded-xl " +
       "flex-col p-0 gap-4 bg-transparent"
     }>
       <div className="flex flex-col items-center min-w-max gap-8">
         <div className={
-          "flex md:flex-row w-full md:py-4 md:pl-4 md:pr-10 gap-7 md:bg-white-dark rounded-xl " +
+          "flex lg:flex-row w-full lg:py-4 lg:pl-4 lg:pr-10 gap-7 lg:bg-white-dark rounded-xl " +
           "flex-col bg-white-light p-8"
         }>
           <div className={
-            "w-auto h-auto md:max-w-36 md:max-y-36 mx-auto " +
+            "w-auto h-auto lg:max-w-36 lg:max-y-36 mx-auto " +
             "max-w-64 max-y-64"
           }>
             <Image
@@ -72,12 +78,12 @@ export default async function AboutPage() {
             />
           </div>
           <div className={
-            "flex flex-col justify-between py-2 md:gap-0 md:text-left text-cocoa " +
+            "flex flex-col justify-between py-2 lg:gap-0 lg:text-left text-cocoa " +
             "text-center gap-6"
           }>
             <div className="flex flex-col leading-none">
               <div className={
-                "font-bold md:text-[1.7rem] " +
+                "font-bold lg:text-[1.7rem] " +
                 "text-2xl"
               }>
                 Lemuel Lancaster
@@ -91,15 +97,23 @@ export default async function AboutPage() {
           </div>
         </div>
         <div className={
-          "text-cocoa md:background-transparent rounded-lg " +
+          "text-cocoa lg:background-transparent rounded-lg " +
           "bg-white-light"
         }>
           <HubBar Links={HUB_LINKS} background={false} />
         </div>
+        <div className={
+          "flex flex-grow lg:mb-24 " +
+          "mb-0"
+        }>
+          <blockquote className={`${ SourceSans.className } my-auto font-medium text-xl text-cocoa`}>
+            {`"${ QUOTE_LIST[0] }"`}
+          </blockquote>
+        </div>
       </div>
       <div className="flex-initial min-w-0.5 bg-cocoa bg-opacity-75 rounded-full"/>
       <div className={
-        "md:p-8 overflow-x-hidden " +
+        "lg:p-8 overflow-x-hidden " +
         "p-0"
       }>
         <Markdown content={content} metadata={metadata} />

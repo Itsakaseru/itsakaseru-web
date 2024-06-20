@@ -35,7 +35,7 @@ export default function Portfolio({ portfolio, options } : { portfolio: IMarkdow
     <motion.div
       layoutId={portfolio.slug}
       className={
-        "flex lg:flex-grow-0 md:w-auto " +
+        "flex lg:flex-grow-0 lg:w-auto lg:max-w-96 " +
         "flex-grow w-full"
       }
       whileHover={{ scale: 1.05 }}

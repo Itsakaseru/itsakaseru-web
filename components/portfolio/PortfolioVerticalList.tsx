@@ -8,13 +8,13 @@ export default function PortfolioVerticalList({ portfolios, currentSlug }: { por
   return (
     <AnimatePresence>
       <motion.div className={
-        "flex flex-col items-center md:h-[70vh] sm:p-6 gap-4 md:overflow-hidden md:overflow-y-auto md:bg-white-light md:outline md:outline-1 md:outline-cocoa-light rounded-xl " +
+        "flex flex-col items-center lg:h-[70vh] lg:p-6 gap-4 lg:overflow-hidden lg:overflow-y-auto lg:bg-white-light lg:outline lg:outline-1 lg:outline-cocoa-light rounded-xl " +
         "h-auto p-0 overflow-visible bg-transparent"
       }>
         {
           portfolios.map((portfolio) => (
             <motion.div key={portfolio.name} className={
-              "md:block self-stretch md:max-w-96 " +
+              "lg:block self-stretch lg:max-w-96 " +
               `${portfolio.slug == currentSlug ? "" : "hidden"} ` +
               "max-w-full"
             }>
