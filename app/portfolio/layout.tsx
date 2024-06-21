@@ -11,7 +11,7 @@ export default function PortfolioLayout({ children, }: Readonly<{ children: Reac
       {children}
       <footer className="mx-auto text-cocoa">
         © 2024
-        <ruby> It
+        <ruby className="ml-1">It
           <rt>イ</rt>
           sa
           <rt>サ</rt>
