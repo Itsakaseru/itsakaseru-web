@@ -20,9 +20,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: "https://itsakaseru.me",
+      url: "https://itsakaseru.me/about",
       lastModified: new Date(),
-      priority: 0,
+      priority: 1,
     },
     ...portfolioSiteMap,
   ]
