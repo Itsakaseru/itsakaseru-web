@@ -38,10 +38,10 @@ export default function Navbar({ currentPage }: { currentPage: IPage }) {
 
   return (
     <nav className="flex flex-row justify-between">
-      <div className="flex flex-col my-auto -space-y-1 text-cocoa">
+      <Link className="flex flex-col my-auto -space-y-1 text-cocoa" href="/">
         <div className="font-semibold text-3xl">Itsakaseru</div>
         <div className="font-extralight text-base">Lemuel Lancaster</div>
-      </div>
+      </Link>
       <div
         className={
           "sm:flex flex-row items-center px-4 py-3 space-x-8 text-cocoa bg-white-light outline outline-1 outline-cocoa-light rounded-xl " +
