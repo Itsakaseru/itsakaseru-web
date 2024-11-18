@@ -5,6 +5,7 @@ import { getMarkdownData } from "@/libs/Markdown";
 import Markdown from "@/components/Markdown";
 import { HubBar, IHubLink } from "@/components/HubBar";
 import { Source_Sans_3 } from "next/font/google";
+import { DocumentArrowDownIcon } from "@heroicons/react/16/solid";
 
 const ABOUTME_MD_FILE_PATH = path.join("public", "static", "about.mdx");
 const HUB_LINKS: IHubLink[] = [
@@ -72,7 +73,7 @@ export default async function AboutPage() {
               src="/static/lemi.jpg"
               width={300}
               height={300}
-              style={{ objectFit: "contain" }}
+              style={{objectFit: "contain"}}
               quality={100}
               alt="Photo of Lemuel Lancaster"
             />
@@ -91,7 +92,7 @@ export default async function AboutPage() {
               <div className="font-light">Itsakaseru, Remueru</div>
             </div>
             <div className="font-medium text-wrap leading-tight">
-              Programmer,<br />
+              Programmer,<br/>
               Oneironatics, Human
             </div>
           </div>
@@ -100,15 +101,24 @@ export default async function AboutPage() {
           "text-cocoa lg:background-transparent rounded-lg " +
           "bg-white-light"
         }>
-          <HubBar Links={HUB_LINKS} background={false} />
+          <HubBar Links={HUB_LINKS} background={false}/>
         </div>
         <div className={
-          "flex flex-grow lg:mb-24 " +
+          "flex flex-grow lg:mb-auto " +
           "mb-0"
         }>
-          <blockquote className={`${ SourceSans.className } my-auto font-medium text-xl text-cocoa`}>
-            {`"${ QUOTE_LIST[0] }"`}
+          <blockquote className={`${SourceSans.className} my-auto font-medium text-xl text-cocoa`}>
+            {`"${QUOTE_LIST[0]}"`}
           </blockquote>
+        </div>
+        <div className="flex flex-col gap-2">
+          <a
+            className="flex flex-row gap-3 px-6 py-2 mx-auto text-white hover:text-cocoa bg-cocoa hover:bg-cocoa-light rounded transition-colors cursor-pointer"
+            href="https://dl.itsakaseru.me/cv-2024-11-18-14-15.pdf"
+          >
+            Public CV <DocumentArrowDownIcon className="mx-auto my-auto size-5"/>
+          </a>
+          <div className="font-light text-sm text-cocoa">Last Updated: 18 November 2024 - 14:15</div>
         </div>
       </div>
       <div className="flex-initial min-w-0.5 bg-cocoa bg-opacity-75 rounded-full"/>
@@ -116,7 +126,7 @@ export default async function AboutPage() {
         "lg:p-8 overflow-x-hidden " +
         "p-0"
       }>
-        <Markdown content={content} metadata={metadata} />
+        <Markdown content={content} metadata={metadata}/>
       </div>
     </div>
   );
