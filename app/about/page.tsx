@@ -113,7 +113,7 @@ export default async function AboutPage() {
         </div>
         <div className="flex flex-col gap-2">
           <a
-            className="flex flex-row gap-3 px-6 py-2 mx-auto text-white hover:text-cocoa bg-cocoa hover:bg-cocoa-light rounded transition-colors cursor-pointer"
+            className="flex flex-row gap-3 px-6 py-2 mx-auto text-white bg-cocoa rounded transition-colors cursor-pointer"
             href="https://dl.itsakaseru.me/cv-2024-11-20-13-35.pdf"
           >
             Public CV <DocumentArrowDownIcon className="mx-auto my-auto size-5"/>
