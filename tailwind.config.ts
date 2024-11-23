@@ -8,7 +8,7 @@ const config: Config = {
   ],
   safelist: [
     {
-      pattern: /(bg|from|to|text|outline)-(dayker|white|cocoa|lime|orange|chocolate|cloud|lavender|cyan|rose)/
+      pattern: /(bg|from|to|text|outline)-(dayker|white|cocoa|lime|orange|chocolate|cloud|lavender|cyan|rose|matt-purple)/
     }
   ],
   theme: {
@@ -72,6 +72,12 @@ const config: Config = {
           DEFAULT: "#E97777",
           dark: "#e83a3a",
         },
+        "matt-purple": {
+          white: "#ede9fd",
+          light: "#a596d5",
+          DEFAULT: "#8c7bd0",
+          dark: "#644bae"
+        }
       }
     }
   },

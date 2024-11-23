@@ -2,16 +2,74 @@
 
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState} from "react";
+import {ReactNode, useState} from "react";
 
-export interface IImage {
+export interface IItem {
   src: string, 
   alt: string, 
+  type: IGalleryType
 }
 
-export default function Gallery({ images, orientation } : { images : IImage[], orientation : "portrait" | "landscape" }) {
+export enum IGalleryType {
+  image = "image",
+  video = "video"
+}
+
+export default function Gallery({ items, orientation } : { items: IItem[], orientation : "portrait" | "landscape" }) {
   const [ modal, setModal ] = useState<number | undefined>();
   
+  function getElementItem(item: IItem) {
+    switch (item.type) {
+      case IGalleryType.image:
+        return (
+          <Image
+            src={item.src}
+            className={`w-auto h-auto ${orientation == "landscape" ? "max-w-[45rem]" : "max-w-[15rem]"} rounded-lg pointer-events-none`}
+            width={orientation == "landscape" ? 770 : 250}
+            height={orientation == "landscape" ? 443 : 444}
+            style={{objectFit: "contain"}}
+            alt={item.alt}
+            unoptimized
+          />
+        )
+        
+      case IGalleryType.video:
+        return (
+          <iframe
+            className="rounded-lg w-[770px] h-[405px] max-h-full max-w-[45rem] pointer-events-none"
+            src={`https://www.youtube-nocookie.com/embed/${item.src}`}
+            title="YouTube"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen/>
+        )
+    }
+  }
+  
+  function getModalElement(item: IItem) {
+    switch (item.type) {
+      case IGalleryType.image:
+        return (
+          <Image
+            className="rounded-2xl"
+            fill
+            style={{ objectFit: "contain" }}
+            src={item.src}
+            alt={item.alt}
+          />
+        )
+
+      case IGalleryType.video:
+        return (
+          <iframe
+            className="rounded-2xl w-full"
+            src={`https://www.youtube-nocookie.com/embed/${item.src}`}
+            title="YouTube"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen/>
+        )
+    }
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -19,10 +77,10 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
           modal != undefined &&
             <>
                 <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 0.1, duration: 0.25 }}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
+                    transition={{delay: 0.1, duration: 0.25}}
                     className="z-10 fixed top-0 left-0 flex w-screen h-screen bg-black bg-opacity-5 backdrop-blur"
                 />
                 <motion.div
@@ -44,13 +102,7 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
                             className={`relative flex ${ orientation == "landscape" ? "min-w-[80vw] min-h-[80vh]" : "xl:min-w-[20vw] min-h-[80vh] min-w-[80vw]" }`}
                             layoutId={modal.toString()}
                         >
-                            <Image
-                                className="rounded-2xl"
-                                fill
-                                style={{ objectFit: "contain" }}
-                                src={images[modal].src}
-                                alt={images[modal].alt}
-                            />
+                          { getModalElement(items[modal]) }
                         </motion.div>
                     </motion.div>
                 </motion.div>
@@ -60,27 +112,21 @@ export default function Gallery({ images, orientation } : { images : IImage[], o
       <div className="overflow-x-scroll">
         <div className="flex flex-row w-auto my-4 pb-4 gap-8 overflow-y-visible">
           {
-            images.map((img, idx) => (
-              <motion.div
-                className={`flex-shrink-0 ${ idx == 0 ? "pl-6" : idx == images.length - 1 ? "pr-6" : "" } drop-shadow-md cursor-pointer`}
-                onPointerUp={() => {
-                  setModal(idx);
-                }}
-                layoutId={idx.toString()}
-                whileHover={{ scale: 1.05 }}
-                key={idx}
-              >
-                <Image
-                  src={img.src}
-                  className={`w-auto h-auto ${ orientation == "landscape" ? "max-w-[45rem]" : "max-w-[15rem]" } rounded-lg pointer-events-none`}
-                  width={orientation == "landscape" ? 770 : 250}
-                  height={orientation == "landscape" ? 443 : 444}
-                  style={{ objectFit: "contain" }}
-                  alt={img.alt}
-                  unoptimized
-                />
-              </motion.div>
-            ))
+            items.map((item, idx) => {
+              return (
+                <motion.div
+                  className={`flex-shrink-0 ${idx == 0 ? "pl-6" : idx == items.length - 1 ? "pr-6" : ""} mx-auto drop-shadow-md cursor-pointer`}
+                  onPointerUp={() => {
+                    setModal(idx);
+                  }}
+                  layoutId={idx.toString()}
+                  whileHover={{scale: 1.05}}
+                  key={idx}
+                >
+                  { getElementItem(item) }
+                </motion.div>
+              )
+            })
           }
         </div>
       </div>
