@@ -42,7 +42,7 @@ export default function PortfolioList({ loaderData }: Route.ComponentProps) {
               "hidden"
             }
           />
-          <div>
+          <div className="my-auto">
             <InformationCircleIcon
               className={
                 "sm:block size-6 " +
