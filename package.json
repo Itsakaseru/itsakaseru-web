@@ -24,7 +24,7 @@
     "next-mdx-remote": "^5.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.5.0",
+    "react-router": "^7.5.2",
     "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
