@@ -23,9 +23,9 @@ const HUB_LINKS: IHubLink[] = [
     name: "GitHub",
   },
   {
-    icon: "x-formerly-twitter",
-    href: "https://x.com/Itsakaseru",
-    name: "Formerly Twitter",
+    icon: "bluesky",
+    href: "https://bsky.app/profile/itsakaseru.me",
+    name: "Bluesky",
   },
   {
     icon: "linkedin",

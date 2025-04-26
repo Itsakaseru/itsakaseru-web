@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { CodeBracketSquareIcon, NewspaperIcon, Square2StackIcon, UserCircleIcon } from "@heroicons/react/24/solid";
-import { faGithub, faLinkedin, faXTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faLinkedin, faXTwitter, faBluesky } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeWrapper } from "./Wrapper";
 import { SkyEncripttion } from "./CustomIcon";
 
@@ -16,6 +16,7 @@ const IconMapping = {
   envelope:                   () => FontAwesomeWrapper(faEnvelope),
   github:                     () => FontAwesomeWrapper(faGithub),
   "x-formerly-twitter":       () => FontAwesomeWrapper(faXTwitter),
+  "bluesky":                   () => FontAwesomeWrapper(faBluesky),
   linkedin:                   () => FontAwesomeWrapper(faLinkedin),
 };
 

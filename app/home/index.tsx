@@ -2,7 +2,7 @@ import type { Route } from "../home/+types/index";
 import { HubBar, type IHubLink } from "@/components/HubBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faYoutube, faGithub, faXTwitter, faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube, faGithub, faLinkedin, faBluesky } from "@fortawesome/free-brands-svg-icons";
 
 const HUB_LINKS: IHubLink[] = [
   {
@@ -49,9 +49,9 @@ const SOCIAL_LINKS = [
     name: "GitHub",
   },
   {
-    icon: faXTwitter,
-    href: "https://x.com/Itsakaseru",
-    name: "X Formerly Twitter",
+    icon: faBluesky,
+    href: "https://bsky.app/profile/itsakaseru.me",
+    name: "Bluesky",
   },
 ];
 
