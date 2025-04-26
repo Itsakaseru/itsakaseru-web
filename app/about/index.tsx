@@ -5,7 +5,7 @@ import { HubBar, type IHubLink } from "@/components/HubBar";
 import { DocumentArrowDownIcon } from "@heroicons/react/16/solid";
 import type { Route } from "@/.react-router/types/app/about/+types";
 
-const ABOUTME_MD_FILE_PATH = path.join("public", "about", "about.mdx");
+const ABOUTME_MD_FILE_PATH = path.join(process.cwd(), "public", "about", "about.mdx");
 const HUB_LINKS: IHubLink[] = [
   {
     icon: "sky-encripttion",

@@ -28,7 +28,7 @@ export default function PortfolioList({ loaderData }: Route.ComponentProps) {
     <main className="flex flex-col grow h-full space-y-6">
       { /* Info Bars */ }
       <section
-        className="flex flex-row items-center justify-between space-x-6 bg-white-light outline outline-1 outline-cocoa-light px-6 py-4 rounded-md"
+        className="flex flex-row items-center justify-between space-x-6 bg-white-light outline-1 outline-cocoa-light px-6 py-4 rounded-md"
       >
         <div
           className={
