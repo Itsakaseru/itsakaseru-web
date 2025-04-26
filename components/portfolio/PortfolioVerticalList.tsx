@@ -1,5 +1,3 @@
-"use client";
-
 import { motion, AnimatePresence } from "motion/react";
 import type { IMarkdownMetadata } from "@/libs/Markdown";
 import Portfolio from "@/components/portfolio/Portfolio";
