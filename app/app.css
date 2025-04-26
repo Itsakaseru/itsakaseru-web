@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --font-source: "Source Sans 3", sans-serif;
+
+  --color-cocoa-light: #F4EAE9;
+  --color-cocoa: #694B47;
+  --color-cocoa-dark: #694B47;
+
+  --color-white-light: #FFFFFF;
+  --color-white: #F9F9F9;
+  --color-white-dark: #F5F5F5;
+
+  --color-dayker-white: #DCDCDC;
+  --color-dayker-light: #424242;
+  --color-dayker: #2C2C2C;
+  --color-dayker-dark: #1F1F1F;
+
+  --color-lime-white: #EEF2E6;
+  --color-lime-light: #C6F27A;
+  --color-lime: #B0D66B;
+  --color-lime-dark: #9CBF60;
+
+  --color-orange-white: #FFFAF2;
+  --color-orange-light: #FFB940;
+  --color-orange: #FFA040;
+  --color-orange-dark: #955E26;
+
+  --color-chocolate-white: #CCC7C2;
+  --color-chocolate-light: #CD955A;
+  --color-chocolate: #B9752E;
+  --color-chocolate-dark: #955F26;
+
+  --color-cloud-white: #E4E9F0;
+  --color-cloud-light: #69AAF0;
+  --color-cloud: #4F89C8;
+  --color-cloud-dark: #2E5B89;
+
+  --color-lavender-white: #F6F2FF;
+  --color-lavender-light: #AB8AFF;
+  --color-lavender: #7E6BC4;
+  --color-lavender-dark: #7E6BC4;
+
+  --color-cyan-white: #F2F7FF;
+  --color-cyan-light: #AFCDFF;
+  --color-cyan: #79A9FB;
+  --color-cyan-dark: #617BCC;
+
+  --color-rose-white: #FFF2F2;
+  --color-rose-light: #FF9F9F;
+  --color-rose: #E97777;
+  --color-rose-dark: #E83A3A;
+
+  --color-matt-purple-white: #EDE9FD;
+  --color-matt-purple-light: #A596D5;
+  --color-matt-purple: #8C7BD0;
+  --color-matt-purple-dark: #644BAE;
+}
+
+html,
+body {
+  @apply bg-white-light;
+}
+
+article {
+  h1 {
+    @apply font-bold text-3xl leading-tight;
+    @apply mb-1;
+  }
+
+  h1:not(:first-child) {
+    @apply font-bold text-3xl leading-tight;
+    @apply mb-3;
+  }
+
+  p {
+    @apply font-normal text-base leading-snug whitespace-pre-wrap;
+    @apply mb-5;
+  }
+
+  a:not(.info-bubble) {
+    @apply font-semibold border-cocoa-light border-b-2;
+    @apply hover:border-cocoa transition-colors duration-300
+  }
+
+  hr:not(:first-child) {
+    @apply -mt-1 mb-4 border-t-[0.5px] border-cocoa-light;
+  }
+}

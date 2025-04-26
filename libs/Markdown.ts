@@ -1,35 +1,54 @@
 import fs from "node:fs";
-import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import remarkGfm from "remark-gfm";
 
 export interface IMarkdown {
-  content: string,
-  metadata: IMarkdownMetadata
+  content:  string,
+  metadata: IMarkdownMetadata,
 }
 
+export type IMarkdownColor =
+  "cocoa"
+  | "white"
+  | "dayker"
+  | "lime"
+  | "orange"
+  | "chocolate"
+  | "cloud"
+  | "lavender"
+  | "cyan"
+  | "rose"
+  | "matt-purple";
+
 export interface IMarkdownMetadata {
-  name: string,
+  name:        string,
   description: string,
-  slug: string,
-  logo: string,
-  color: string
-  year: number
-  tags?: IMarkdownTag[],
-  "lastUpdated": string, 
+  slug:        string,
+  logo:        string,
+  color:       IMarkdownColor,
+  year:        number,
+  tags?:       IMarkdownTag[],
+  lastUpdated: string,
 }
 
 export interface IMarkdownTag {
-  text: string,
-  icon?: string,
-  color?: string,
-  href?: string,
+  text:   string,
+  icon?:  string,
+  color?: IMarkdownColor,
+  href?:  string,
 }
 
-export function getMarkdownData(filePath: string) {
+export async function getMarkdownData(filePath: string) {
   const mdFile = fs.readFileSync(filePath, "utf-8");
-  const markdownData = matter(mdFile);
-  
-  return {
-    content: markdownData.content,
-    metadata: markdownData.data
-  } as IMarkdown;
+
+  return await serialize(
+    mdFile,
+    {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        format:        "mdx",
+      },
+      parseFrontmatter: true,
+    }
+  );
 }

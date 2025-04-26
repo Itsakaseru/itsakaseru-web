@@ -1,21 +1,20 @@
-import remarkGfm from "remark-gfm";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { IMarkdown } from "@/libs/Markdown";
-import InfoBubble from "@/components/portfolio/InfoBuble";
+import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
+import InfoBubble from "@/components/InfoBubble";
 import Gallery from "@/components/Gallery";
+import { getColorClass } from "@/libs/Color";
+import type { IMarkdownColor } from "@/libs/Markdown";
 
-export default function Markdown({ content, metadata } : IMarkdown) {
+export default function Markdown(serializedResult: MDXRemoteSerializeResult) {
+  const { frontmatter } = serializedResult;
+
+  // Cast type or implement a color validator function
+  const color = frontmatter.color as IMarkdownColor;
+
   return (
-    <article className={`overflow-x-visible text-${ metadata.color }-dark`}>
+    <article className={ `overflow-x-visible ${getColorClass("text", color, "dark")}` }>
       <MDXRemote
-        source={content}
+        { ...serializedResult }
         components={{ InfoBubble, Gallery }}
-        options={{
-          mdxOptions: {
-            remarkPlugins: [ remarkGfm ], 
-            rehypePlugins: [], 
-            format: "mdx",
-          }}}
       />
     </article>
   );
