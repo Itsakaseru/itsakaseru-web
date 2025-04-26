@@ -3,6 +3,7 @@ type color =
   "white" |
   "dayker" |
   "lime" |
+  "reboot" |
   "orange" |
   "chocolate" |
   "cloud" |
@@ -49,6 +50,7 @@ const bgColorsDark = {
   white:         "bg-white-dark",
   dayker:        "bg-dayker-dark",
   lime:          "bg-lime-dark",
+  reboot:        "bg-reboot-dark",
   orange:        "bg-orange-dark",
   chocolate:     "bg-chocolate-dark",
   cloud:         "bg-cloud-dark",
@@ -63,6 +65,7 @@ const bgColorsWhite = {
   white:         "bg-white-white",
   dayker:        "bg-dayker-white",
   lime:          "bg-lime-white",
+  reboot:        "bg-reboot-white",
   orange:        "bg-orange-white",
   chocolate:     "bg-chocolate-white",
   cloud:         "bg-cloud-white",
@@ -77,6 +80,7 @@ const textColorsDark = {
   white:         "text-white-dark",
   dayker:        "text-dayker-dark",
   lime:          "text-lime-dark",
+  reboot:        "text-reboot-dark",
   orange:        "text-orange-dark",
   chocolate:     "text-chocolate-dark",
   cloud:         "text-cloud-dark",
@@ -91,6 +95,7 @@ const outlineColorsLight = {
   white:         "outline-white",
   dayker:        "outline-dayker",
   lime:          "outline-lime",
+  reboot:        "outline-reboot",
   orange:        "outline-orange",
   chocolate:     "outline-chocolate",
   cloud:         "outline-cloud",
@@ -105,6 +110,7 @@ const gradientColors = {
   white:         "from-white to-white-light",
   dayker:        "from-dayker to-dayker-light",
   lime:          "from-lime to-lime-light",
+  reboot:        "from-reboot to-reboot-light",
   orange:        "from-orange to-orange-light",
   chocolate:     "from-chocolate to-chocolate-light",
   cloud:         "from-cloud to-cloud-light",
