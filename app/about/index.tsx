@@ -50,7 +50,11 @@ export function meta() {
 }
 
 export async function loader() {
-  return { data: await getMarkdownData(ABOUTME_MD_FILE_PATH) };
+  const data = await getMarkdownData(ABOUTME_MD_FILE_PATH);
+
+  if (!data) { throw new Response("Not Found", { status: 404 }); }
+
+  return { data };
 }
 
 export default function AboutPage({ loaderData }: Route.ComponentProps) {

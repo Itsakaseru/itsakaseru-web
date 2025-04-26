@@ -14,6 +14,8 @@ export async function loader({ params }: Route.ComponentProps) {
   const portfolioData = await getMarkdownData(filePath);
   const portfolioList = sortPortfolioList(await getPortfolioList());
 
+  if (!portfolioData) { throw new Response("Not Found", { status: 404 }); }
+
   return { portfolioList, portfolioData };
 }
 

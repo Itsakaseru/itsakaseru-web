@@ -25,6 +25,7 @@ export default tseslint.config({
         // ESLint
         "@typescript-eslint/no-unused-vars": [ "warn" ],
         "@typescript-eslint/no-empty-function": [ "warn" ],
+        "@typescript-eslint/only-throw-error": [ "off" ],
         // Stylistic: JavaScript/TypeScript
         "@stylistic/array-bracket-newline": [ "error", "consistent" ],
         "@stylistic/array-bracket-spacing": [ "error", "always", {

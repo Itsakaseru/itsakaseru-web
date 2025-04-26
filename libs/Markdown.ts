@@ -39,16 +39,21 @@ export interface IMarkdownTag {
 }
 
 export async function getMarkdownData(filePath: string) {
-  const mdFile = fs.readFileSync(filePath, "utf-8");
+  try {
+    const mdFile = fs.readFileSync(filePath, "utf-8");
 
-  return await serialize(
-    mdFile,
-    {
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        format:        "mdx",
-      },
-      parseFrontmatter: true,
-    }
-  );
+    return await serialize(
+      mdFile,
+      {
+        mdxOptions: {
+          remarkPlugins: [remarkGfm],
+          format:        "mdx",
+        },
+        parseFrontmatter: true,
+      }
+    );
+  }
+  catch (err) {
+    return null;
+  }
 }
