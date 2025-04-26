@@ -38,7 +38,7 @@ export default function PortfolioDetail({ loaderData, params }: Route.ComponentP
   return (
     <main
       className={
-        "flex lg:flex-row items-start max-w-full lg:gap-8 " +
+        "flex lg:flex-row items-stretch max-w-full lg:gap-8 " +
         "flex-col gap-0"
       }
     >
