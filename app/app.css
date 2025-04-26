@@ -65,6 +65,25 @@ body {
   @apply bg-white-light;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-cocoa) var(--color-white);
+}
+
+::-webkit-scrollbar {
+  @apply w-2 h-2
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-white;
+  @apply rounded-2xl;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cocoa;
+  @apply rounded-2xl;
+}
+
 article {
   h1 {
     @apply font-bold text-3xl leading-tight;
