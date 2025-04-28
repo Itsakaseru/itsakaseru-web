@@ -135,7 +135,7 @@ export default function Home() {
           </nav>
         </section>
         <footer className="mx-auto text-cocoa">
-          © 2024
+          © 2025
           <ruby className="ml-1">It
             <rt>イ</rt>
             sa
