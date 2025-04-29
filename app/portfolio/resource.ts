@@ -1,15 +1,21 @@
-import path from "node:path";
 import { getFileList } from "@/libs/FileSystem";
 import { getMarkdownData, type IMarkdownMetadata } from "@/libs/Markdown";
 
 export async function getPortfolioList() {
-  const PORTFOLIO_DATA_PATH = path.join(process.cwd(), "public", "portfolio");
+  const PORTFOLIO_DATA_PATH = `${process.cwd()}/public/portfolio`;
   const portfolioFolderList = getFileList(PORTFOLIO_DATA_PATH, ".mdx");
 
-  return await Promise.all(portfolioFolderList.map(async(portfolio) => {
-    const mdData = await getMarkdownData(path.join(PORTFOLIO_DATA_PATH, portfolio));
-    return mdData.frontmatter as unknown as IMarkdownMetadata;
-  }));
+  const list: IMarkdownMetadata[] = [];
+
+  for (const portfolio of portfolioFolderList) {
+    const mdData = await getMarkdownData(`${PORTFOLIO_DATA_PATH}/${portfolio}`);
+    if (mdData)
+      list.push(mdData.frontmatter as unknown as IMarkdownMetadata);
+    else
+      console.warn(`Failed to load portfolio: ${portfolio}`);
+  }
+
+  return list;
 }
 
 // Sort by current portfolio first (if any) and rest by year descending
