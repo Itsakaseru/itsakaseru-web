@@ -1,5 +1,6 @@
-import { getFileList } from "@/libs/FileSystem";
-import { getMarkdownData, type IMarkdownMetadata } from "@/libs/Markdown";
+// Using absolute import, workaround for failed vite build, error when resolving import aliases (prerender)
+import { getFileList } from "../../libs/FileSystem";
+import { getMarkdownData, type IMarkdownMetadata } from "../../libs/Markdown";
 
 export async function getPortfolioList() {
   const PORTFOLIO_DATA_PATH = `${process.cwd()}/public/portfolio`;
