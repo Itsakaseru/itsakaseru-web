@@ -17,7 +17,7 @@ export function meta() {
     { property: "og:description", content: "List of projects that I've been worked on either throughout college or my life" },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://itsakaseru.me/portfolio" },
-    { property: "og:image", content: "https://itsakaseru.me/static/sakii.png" },
+    { property: "og:image", content: "https://raw.githubusercontent.com/Itsakaseru/itsakaseru-web/refs/heads/main/public/static/sakii.png" },
   ];
 }
 

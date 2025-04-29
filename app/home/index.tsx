@@ -63,7 +63,7 @@ export function meta({}: Route.MetaArgs) {
     { property: "og:description", content: "Welcome to my Personal Website!" },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://itsakaseru.me" },
-    { property: "og:image", content: "https://itsakaseru.me/static/sakii.png" },
+    { property: "og:image", content: "https://raw.githubusercontent.com/Itsakaseru/itsakaseru-web/refs/heads/main/public/static/sakii.png" },
   ];
 }
 

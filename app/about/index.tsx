@@ -45,7 +45,7 @@ export function meta() {
     { property: "og:description", content: "About Itsakaseru or Lemuel Lancaster" },
     { property: "og:type", content: "website" },
     { property: "og:url", content: "https://itsakaseru.me/about" },
-    { property: "og:image", content: "https://itsakaseru.me/static/lemi.jpg" },
+    { property: "og:image", content: "https://raw.githubusercontent.com/Itsakaseru/itsakaseru-web/refs/heads/main/public/static/sakii.png" },
   ];
 }
 
