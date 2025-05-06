@@ -24,10 +24,7 @@ export default function Gallery({ items, orientation }: { items: IItem[], orient
         return (
           <img
             src={ item.src }
-            className={ `w-auto h-auto max-w-[80vw] ${orientation == "landscape" ? "lg:max-w-[45rem]" : "lg:max-w-[15rem]"} rounded-lg pointer-events-none` }
-            width={ orientation == "landscape" ? 770 : 250 }
-            height={ orientation == "landscape" ? 443 : 444 }
-            style={{ objectFit: "contain" }}
+            className={ `w-auto h-auto max-w-[80vw] ${orientation == "landscape" ? "lg:max-w-[45rem] max-h-[50vh]" : "lg:max-w-[15rem] max-h-[80vh]"} rounded-lg pointer-events-none` }
             alt={ item.alt }
           />
         );
@@ -46,7 +43,6 @@ export default function Gallery({ items, orientation }: { items: IItem[], orient
   }
 
   function getModalElement(item: IItem) {
-
     return (
       <motion.div
         className={ "relative flex mx-auto }" }
@@ -54,12 +50,12 @@ export default function Gallery({ items, orientation }: { items: IItem[], orient
       >
         {
           item.type == IGalleryType.image ?
-          <img
-            className="rounded-2xl max-h-[80vh] drop-shadow-2xl"
-            style={{ objectFit: "contain" }}
-            src={ item.src }
-            alt={ item.alt }
-          /> :
+            <img
+              className="rounded-2xl max-h-[80vh] drop-shadow-2xl"
+              style={{ objectFit: "contain" }}
+              src={ item.src }
+              alt={ item.alt }
+            /> :
           item.type == IGalleryType.video ?
             <iframe
               className="rounded-2xl w-[80vw] h-[30vh] md:w-[80vw] md:h-[40vh] lg:w-[80vw] lg:h-[70vh] drop-shadow-2xl"
@@ -67,8 +63,8 @@ export default function Gallery({ items, orientation }: { items: IItem[], orient
               title="YouTube"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-            />
-            : <></>
+            /> :
+            <></>
         }
       </motion.div>
     );
