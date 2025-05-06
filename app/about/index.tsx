@@ -131,13 +131,21 @@ export default function AboutPage({ loaderData }: Route.ComponentProps) {
           </blockquote>
         </div>
         <div className="flex flex-col gap-2">
-          <a
-            className="flex flex-row gap-3 px-6 py-2 mx-auto text-white bg-cocoa hover:underline rounded cursor-pointer"
-            href="https://dl.itsakaseru.me/cv-2024-11-20-13-35.pdf"
-          >
-            Public CV <DocumentArrowDownIcon className="mx-auto my-auto size-5" />
-          </a>
-          <div className="font-light text-sm text-cocoa">Last Updated: 20 November 2024 - 13:35</div>
+          <div className="flex flex-row gap-6">
+            <a
+              className="flex flex-row gap-3 px-6 py-2 mx-auto text-white bg-cocoa hover:underline rounded cursor-pointer"
+              href="https://itsakaseru.me/cv"
+            >
+              Public CV <DocumentArrowDownIcon className="mx-auto my-auto size-5" />
+            </a>
+            <a
+              className="flex flex-row gap-3 px-6 py-2 mx-auto text-white bg-cocoa hover:underline rounded cursor-pointer"
+              href="https://itsakaseru.me/resume"
+            >
+              Public Resume <DocumentArrowDownIcon className="mx-auto my-auto size-5" />
+            </a>
+          </div>
+          <div className="font-light text-sm text-cocoa text-center">Last Updated: 6 May 2025 - 12:05</div>
         </div>
       </div>
       <div className="flex-initial min-w-0.5 bg-cocoa/75 rounded-full" />

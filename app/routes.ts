@@ -12,4 +12,5 @@ export default [
     ]),
   ]),
   route("/cv", "cv.tsx"),
+  route("/resume", "resume.tsx"),
 ] satisfies RouteConfig;

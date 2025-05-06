@@ -1,7 +1,7 @@
 import { redirect } from "react-router";
 
 export function loader() {
-  return redirect("https://dl.itsakaseru.me/cv-2024-11-20-13-35.pdf");
+  return redirect("https://dl.itsakaseru.me/cv-2025-05-06-12-02.pdf");
 }
 
 export default function CV()  { }
