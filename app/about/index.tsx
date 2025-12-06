@@ -77,7 +77,7 @@ export default function AboutPage({ loaderData }: Route.ComponentProps) {
           <div
             className={
               "w-auto h-auto lg:max-w-36 lg:max-y-36 mx-auto " +
-              "max-w-64 max-y-64"
+              "max-w-48 max-y-48"
             }
           >
             <img
@@ -131,7 +131,7 @@ export default function AboutPage({ loaderData }: Route.ComponentProps) {
           </blockquote>
         </div>
         <div className="flex flex-col gap-2">
-          <div className="flex flex-row gap-6">
+          <div className="flex flex-col sm:flex-row gap-6">
             <a
               className="flex flex-row gap-3 px-6 py-2 mx-auto text-white bg-cocoa hover:underline rounded cursor-pointer"
               href="https://itsakaseru.me/cv"
