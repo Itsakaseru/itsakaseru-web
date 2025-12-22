@@ -36,6 +36,7 @@ const HUB_LINKS: IHubLink[] = [
 
 const QUOTE_LIST = [
   "Sometimes you just need to relax",
+  "Diligent to be lazy",
 ];
 
 export function meta() {
@@ -127,7 +128,7 @@ export default function AboutPage({ loaderData }: Route.ComponentProps) {
           }
         >
           <blockquote className="font-source my-auto font-medium text-xl text-cocoa">
-            { `"${QUOTE_LIST[0]}"` }
+            { QUOTE_LIST[Math.floor(Math.random() * QUOTE_LIST.length)] }
           </blockquote>
         </div>
         <div className="flex flex-col gap-2">
