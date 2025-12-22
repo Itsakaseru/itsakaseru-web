@@ -19,6 +19,7 @@
     "@react-router/node": "^7.10.1",
     "@react-router/serve": "^7.10.1",
     "@vercel/react-router": "^1.2.4",
+    "dayjs": "^1.11.19",
     "geist": "^1.5.1",
     "isbot": "^5.1.32",
     "motion": "^12.23.25",

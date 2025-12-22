@@ -21,14 +21,15 @@ export type IMarkdownColor =
   | "matt-purple";
 
 export interface IMarkdownMetadata {
-  name:        string,
-  description: string,
-  slug:        string,
-  logo:        string,
-  color:       IMarkdownColor,
-  year:        number,
-  tags?:       IMarkdownTag[],
-  lastUpdated: string,
+  name:          string,
+  description:   string,
+  slug:          string,
+  logo:          string,
+  color:         IMarkdownColor,
+  tags?:         IMarkdownTag[],
+  projectDate:   string,
+  publishedDate: string,
+  lastUpdated:   string,
 }
 
 export interface IMarkdownTag {

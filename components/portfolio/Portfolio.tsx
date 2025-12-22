@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 import type { IMarkdownMetadata } from "@/libs/Markdown";
 import { getColorClass } from "@/libs/Color";
+import dayjs from "dayjs";
 
 export interface IPortfolioOptions {
   mode:            "none" | "outline" | "background",
@@ -71,7 +72,7 @@ export default function Portfolio(
                   "text-xs"
                 }
               >
-                { portfolio.year }
+                { dayjs(portfolio.projectDate).year() }
               </div>
               {
                 portfolio.tags && portfolio.tags.map((tag) => {

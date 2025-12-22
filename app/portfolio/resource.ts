@@ -1,6 +1,7 @@
 // Using absolute import, workaround for failed vite build, error when resolving import aliases (prerender)
 import { getFileList } from "../../libs/FileSystem";
 import { getMarkdownData, type IMarkdownMetadata } from "../../libs/Markdown";
+import dayjs from "dayjs";
 
 export async function getPortfolioList() {
   const PORTFOLIO_DATA_PATH = `${process.cwd()}/public/portfolio`;
@@ -21,7 +22,9 @@ export async function getPortfolioList() {
 
 // Sort by current portfolio first (if any) and rest by year descending
 export function sortPortfolioList(portfolioList: IMarkdownMetadata[], currentPortfolioFile?: string) {
-  const portfolioListSorted = portfolioList.sort((a, b) => { return b.year - a.year; });
+  const portfolioListSorted = portfolioList.sort((a, b) => {
+    return dayjs(b.projectDate).diff(dayjs(a.projectDate));
+  });
 
   if (!currentPortfolioFile) return portfolioListSorted;
 
