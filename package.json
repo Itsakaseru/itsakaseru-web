@@ -23,7 +23,7 @@
     "geist": "^1.5.1",
     "isbot": "^5.1.32",
     "motion": "^12.23.25",
-    "next-mdx-remote": "^5.0.0",
+    "next-mdx-remote": "^6.0.0",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-router": "^7.12.0",
