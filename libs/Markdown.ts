@@ -51,6 +51,7 @@ export async function getMarkdownData(filePath: string) {
           format:        "mdx",
         },
         parseFrontmatter: true,
+        blockJS:          false,
       }
     );
   }
