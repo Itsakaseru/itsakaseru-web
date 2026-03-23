@@ -1,21 +1,24 @@
-import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
+import { runSync } from "@mdx-js/mdx";
+import { useMemo, type ComponentType } from "react";
+import * as runtime from "react/jsx-runtime";
 import InfoBubble from "@/components/InfoBubble";
 import Gallery from "@/components/Gallery";
 import { getColorClass } from "@/libs/Color";
-import type { IMarkdownColor } from "@/libs/Markdown";
+import type { IMarkdownData } from "@/libs/Markdown";
 
-export default function Markdown(serializedResult: MDXRemoteSerializeResult) {
-  const { frontmatter } = serializedResult;
+interface IMarkdownContentProps { components?: Record<string, unknown>, }
 
-  // Cast type or implement a color validator function
-  const color = frontmatter.color as IMarkdownColor;
+export default function Markdown({ code, frontmatter }: IMarkdownData) {
+  const Content = useMemo(
+    () => runSync(code, runtime).default as ComponentType<IMarkdownContentProps>,
+    [code]
+  );
+
+  const color = frontmatter.color;
 
   return (
     <article className={ `overflow-x-visible ${getColorClass("text", color, "dark")}` }>
-      <MDXRemote
-        { ...serializedResult }
-        components={{ InfoBubble, Gallery }}
-      />
+      <Content components={{ InfoBubble, Gallery }} />
     </article>
   );
 }

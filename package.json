@@ -16,6 +16,7 @@
     "@fortawesome/free-solid-svg-icons": "^7.2.0",
     "@fortawesome/react-fontawesome": "^3.3.0",
     "@heroicons/react": "^2.2.0",
+    "@mdx-js/mdx": "^3.1.1",
     "@react-router/node": "^7.13.1",
     "@react-router/serve": "^7.13.1",
     "@vercel/react-router": "^1.2.6",
@@ -23,11 +24,12 @@
     "geist": "^1.7.0",
     "isbot": "^5.1.36",
     "motion": "^12.38.0",
-    "next-mdx-remote": "^6.0.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router": "^7.13.1",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "vfile": "^6.0.3",
+    "vfile-matter": "^5.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -1,6 +1,8 @@
 import fs from "node:fs";
-import { serialize } from "next-mdx-remote/serialize";
+import { compile } from "@mdx-js/mdx";
 import remarkGfm from "remark-gfm";
+import { VFile } from "vfile";
+import { matter } from "vfile-matter";
 
 export interface IMarkdown {
   content:  string,
@@ -8,17 +10,17 @@ export interface IMarkdown {
 }
 
 export type IMarkdownColor =
-  "cocoa"
-  | "white"
-  | "dayker"
-  | "lime"
-  | "orange"
-  | "chocolate"
-  | "cloud"
-  | "lavender"
-  | "cyan"
-  | "rose"
-  | "matt-purple";
+  "cocoa" |
+  "white" |
+  "dayker" |
+  "lime" |
+  "orange" |
+  "chocolate" |
+  "cloud" |
+  "lavender" |
+  "cyan" |
+  "rose" |
+  "matt-purple";
 
 export interface IMarkdownMetadata {
   name:          string,
@@ -39,23 +41,30 @@ export interface IMarkdownTag {
   href?:  string,
 }
 
+export interface IMarkdownData {
+  code:        string,
+  frontmatter: IMarkdownMetadata,
+}
+
 export async function getMarkdownData(filePath: string) {
   try {
     const mdFile = fs.readFileSync(filePath, "utf-8");
+    const file = new VFile({ path: filePath, value: mdFile });
 
-    return await serialize(
-      mdFile,
-      {
-        mdxOptions: {
-          remarkPlugins: [remarkGfm],
-          format:        "mdx",
-        },
-        parseFrontmatter: true,
-        blockJS:          false,
-      }
-    );
+    matter(file, { strip: true });
+
+    const compiled = await compile(file, {
+      format:        "mdx",
+      outputFormat:  "function-body",
+      remarkPlugins: [remarkGfm],
+    });
+
+    return {
+      code:        String(compiled),
+      frontmatter: file.data.matter as IMarkdownMetadata,
+    } satisfies IMarkdownData;
   }
-  catch (err) {
+  catch {
     return null;
   }
 }
