@@ -1,7 +1,7 @@
 {
-  "name": "",
+  "name": "itsakaseru-web",
   "type": "module",
-  "version": "0.0.1",
+  "version": "5.0.0",
   "engines": {
     "node": ">=22.12.0"
   },
@@ -12,6 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.7"
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/sitemap": "^3.7.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.7",
+    "tailwindcss": "^4.2.2"
   }
 }
