@@ -1,0 +1,45 @@
+name: Dokploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:cicd
+          ping: ${{ secrets.TS_HOST }}
+
+      - name: Trigger Dokploy deploy via API
+        env:
+          DOKPLOY_BASE_URL: ${{ secrets.DOKPLOY_BASE_URL }}
+          DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
+          DOKPLOY_APPLICATION_ID: ${{ secrets.DOKPLOY_APPLICATION_ID }}
+        run: |
+          set -euo pipefail
+
+          response=$(curl -sS -o /tmp/dokploy-response.txt -w "%{http_code}" \
+            -X POST "${DOKPLOY_BASE_URL}/api/application.deploy" \
+            -H "Content-Type: application/json" \
+            -H "x-api-key: ${DOKPLOY_API_KEY}" \
+            -d "{\"applicationId\":\"${DOKPLOY_APPLICATION_ID}\"}")
+
+          echo "HTTP status: $response"
+          cat /tmp/dokploy-response.txt
+
+          if [ "$response" -lt 200 ] || [ "$response" -ge 300 ]; then
+            echo "Dokploy API deploy failed"
+            exit 1
+          fi
