@@ -1,0 +1,41 @@
+---
+
+
+import {getCollection} from "astro:content"
+import ProjectCard from "@/components/projects/ProjectCard.astro";
+import ProjectHero from "@/components/projects/ProjectHero.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro"
+
+const projects = await getCollection("projects")
+const getProjectMarkRank = (mark?: string) => {
+    const normalizedMark = mark?.toLowerCase()
+
+    if (normalizedMark === "spotlight") return 0
+    if (normalizedMark === "featured") return 1
+    return 2
+}
+
+projects.sort(
+    (projectA, projectB) => {
+        const markRankDifference = getProjectMarkRank(projectA.data.mark) - getProjectMarkRank(projectB.data.mark)
+
+        if (markRankDifference !== 0) return markRankDifference
+
+        return projectB.data.createdAt.getTime() - projectA.data.createdAt.getTime()
+    },
+)
+
+const spotlightProjects = projects.filter((project) =>
+    project.data.mark?.toLowerCase().includes("spotlight"),
+)
+const spotlight = spotlightProjects[Math.floor(Math.random() * spotlightProjects.length)]?.data ?? projects[0].data
+---
+<DefaultLayout>
+    <ProjectHero spotlight={spotlight} />
+
+	<section class="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-5">
+        {projects.map((project) => (
+            <ProjectCard metadata={project.data} href={`/projects/${project.id}`} />
+        ))}
+    </section>
+</DefaultLayout>

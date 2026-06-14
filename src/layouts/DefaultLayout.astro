@@ -1,0 +1,23 @@
+---
+
+import Background from "@/components/Background.astro";
+import Footer from "@/components/Footer.astro";
+import Navbar from "@/components/Navbar.astro";
+import NavigationLink from "@/components/NavigationLink.tsx";
+import BaseLayout from "./BaseLayout.astro";
+
+const currentPath = Astro.url.pathname
+---
+<BaseLayout>
+    <body class="min-h-screen relative">
+    <Background />
+    <div class="rounded-2xl p-4 sm:p-6 lg:p-10">
+        <Navbar>
+            <NavigationLink client:load currentPath={currentPath} />
+        </Navbar>
+        <slot />
+        <div class="flex mt-16" />
+        <Footer />
+    </div>
+    </body>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+slug: suteppu
+name: Suteppu
+description: Step by step copy paste for presenting code with Fireship style for Visual Studio Code.
+logo: /projects/suteppu/logo.svg
+mark: Unmaintained
+accent:
+    main: "#FF8F0E"
+    sub: "#FFF0D9"
+tags:
+    - VSCode Extension
+links:
+    - text: GitHub Repository
+      url: https://github.com/Itsakaseru/Suteppu
+createdAt: "2021-09-26"
+publishedAt: "2021-09-26"
+updatedAt: "2025-12-23"
+---
+import Gallery from "@/components/Gallery";
+
+Suteppu is a Visual Studio Code Extension that can be use to step by step copy paste code-- presenting like what Fireship did in his video. I made this extension as a fun project and was intended to use it as a way to teach without ever having to type any code... and yea I know, I know... you can do all of this by just removing and stepping back using the built-in undo system from VSCode. But with this extension, you can save your steps into a file for use later on in the future.
+
+Welp... it's still kinda a useless extension tbh.
+
+<Gallery
+    client:load
+    items={[
+        {
+            src: "/projects/suteppu/demo-redo.gif",
+            label: "Suteppu in action",
+            alt: "VSCode application showing a list of step stored in Suteppu storage memory and an action of pasting word/section into the text field.",
+            type: "image"
+        },
+        {
+            src: "/projects/suteppu/demo-save.gif",
+            label: "Suteppu saving steps",
+            alt: "VSCode application showing user selecting a text and pressing the save button to save word/section into the Suteppu storage memory.",
+            type: "image"
+        },
+    ]}
+    orientation="landscape"
+/>

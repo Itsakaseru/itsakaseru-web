@@ -1,0 +1,282 @@
+---
+import { Image } from "astro:assets"
+import { type CollectionEntry, getCollection, render } from "astro:content"
+import {
+	faArrowLeft, faArrowUpRightFromSquare,
+	faCalendarDay,
+	faClockRotateLeft,
+	faFolderOpen,
+	faLink,
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import SidebarCard from "@/components/SidebarCard.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro"
+import ProjectTagList from "../../components/projects/ProjectTagList.astro"
+
+export async function getStaticPaths() {
+	const projects = await getCollection("projects")
+
+	return projects.map((project) => ({
+		params: { id: project.id },
+		props: { project },
+	}))
+}
+
+interface Props {
+	project: CollectionEntry<"projects">
+}
+
+const { project } = Astro.props
+const { name, description, details = [], logo, mark, tags = [], links = [], accent, createdAt, publishedAt, updatedAt } = project.data
+const { Content } = await render(project)
+
+const allProjects = (await getCollection("projects")).sort(
+	(projectA, projectB) =>
+		projectB.data.createdAt.getTime() - projectA.data.createdAt.getTime(),
+)
+const otherProjects = allProjects
+	.filter((otherProject) => otherProject.id !== project.id)
+
+const formatDate = (date: Date) => new Intl.DateTimeFormat("id", {
+	day: "numeric",
+	month: "short",
+	year: "numeric",
+}).format(date)
+---
+<DefaultLayout>
+	<section
+		class="mt-6 grid gap-4 sm:mt-10 lg:grid-cols-[20rem_1fr]"
+		style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}
+	>
+		<!-- Sidebar content -->
+		<aside class="order-2 grid gap-4 self-start lg:order-1 lg:sticky lg:top-6 lg:overflow-y-auto lg:pr-1">
+			<a href="/projects" class="hidden items-center gap-2 rounded-lg bg-snow-100/85 px-4 py-2 text-sm font-semibold text-cocoa-400 transition hover:bg-cocoa-400 hover:text-snow-100 lg:inline-flex">
+				<FontAwesomeIcon icon={faArrowLeft} className="size-3" />
+				Back to projects
+			</a>
+
+			<!-- Project Details -->
+			{
+				details.length > 0 && (
+					<SidebarCard title="Project Details" icon={faFolderOpen}>
+						{
+							details.map((detail) => (
+                                    <div class="px-3 py-2">
+                                        <p class="font-semibold text-xs uppercase tracking-[0.14em] text-cocoa-300">{detail.title}</p>
+                                        <p class="mt-1 font-semibold text-sm text-cocoa-500">{detail.content}</p>
+                                    </div>
+							))
+						}
+					</SidebarCard>
+				)
+			}
+
+            <!-- Quick Links -->
+			<SidebarCard title="Quick Links" icon={faLink}>
+				{links.length > 0 ? links.map((link) => (
+                        <a href={link.url} target="_blank" rel="noreferrer"  class="flex p-2 justify-between gap-2 rounded-lg border border-cocoa-200/20 bg-snow-100/60 hover:bg-cocoa-200/5 transition">
+                            <p class="truncate text-sm font-semibold text-cocoa-500">{link.text}</p>
+                            <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="size-3 my-auto -translate-y-px" />
+                        </a>
+				)) : (
+                        <p class="rounded-lg bg-snow-100/60 px-3 py-2 text-sm text-cocoa-300">No external links listed yet.</p>
+				)}
+			</SidebarCard>
+
+			<SidebarCard title="Other Projects" icon={faFolderOpen}>
+                <div class="max-h-48 space-y-2 overflow-y-auto pr-1">
+					{otherProjects.map((otherProject) => (
+                            <a
+                                    href={`/projects/${otherProject.id}`}
+                                    class="group flex items-center gap-3 rounded-lg border border-cocoa-200/20 bg-snow-100/60 p-2 transition hover:border-cocoa-200/40 hover:bg-snow-100"
+                                    style={`--other-accent: ${otherProject.data.accent.main}; --other-accent-sub: ${otherProject.data.accent.sub ?? "#fff6f4"};`}
+                            >
+                                <div class="grid size-10 shrink-0 place-items-center overflow-hidden rounded-lg" style="background-color: var(--other-accent-sub)">
+                                    <Image
+                                            src={otherProject.data.logo}
+                                            alt={`${otherProject.data.name} logo`}
+                                            width={120}
+                                            height={120}
+                                            class="aspect-square w-8 rounded-md object-cover"
+                                    />
+                                </div>
+
+                                <div class="min-w-0 flex-1">
+                                    <p class="truncate text-sm font-semibold text-cocoa-500 transition group-hover:text-[var(--other-accent)]">
+										{otherProject.data.name}
+                                    </p>
+                                    <p class="text-xs text-cocoa-300">
+										{otherProject.data.createdAt.getFullYear()}
+                                    </p>
+                                </div>
+                            </a>
+					))}
+                </div>
+			</SidebarCard>
+		</aside>
+
+		<div class="order-1 min-w-0 rounded-xl bg-snow-100/85 p-3 sm:p-4 lg:order-2">
+			<section class="relative overflow-hidden rounded-lg">
+				<div class="relative overflow-hidden rounded-lg p-4 text-snow-100 sm:p-8" style="background: var(--accent-main)">
+					<div class="absolute -right-8 -top-8 font-manrope text-[6rem] font-black leading-none text-snow-100/10 sm:-top-10 sm:text-[12rem]">
+						{createdAt.getFullYear()}
+					</div>
+					<div class="absolute -bottom-20 left-10 size-48 rounded-full bg-snow-100/20 blur-3xl"></div>
+
+					<div class="relative grid gap-8 xl:grid-cols-[1fr_20rem] xl:items-end">
+						<div class="max-w-3xl space-y-5">
+							<div class="flex flex-wrap items-center gap-3">
+								<span class="rounded-lg bg-snow-100/20 px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] backdrop-blur-sm">
+									Project Details
+								</span>
+								{mark && (
+									<span class="rounded-lg bg-snow-100/90 px-2.5 py-1 text-[0.68rem] font-bold uppercase tracking-[0.12em] text-cocoa-400">
+										{mark}
+									</span>
+								)}
+							</div>
+
+							<div class="space-y-4">
+								<h1 class="font-manrope text-3xl font-black leading-none sm:text-5xl">
+									{name}
+								</h1>
+								<p class="max-w-2xl text-sm font-light leading-6 text-snow-100/85 sm:text-base">
+									{description}
+								</p>
+							</div>
+
+							<div class="grid gap-3 sm:grid-cols-3">
+								<div class="rounded-lg bg-snow-100/15 p-3 backdrop-blur-sm">
+									<div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-snow-100/70">
+										<FontAwesomeIcon icon={faCalendarDay} className="size-3" />
+										Created
+									</div>
+									<p class="mt-2 font-manrope text-base font-black text-snow-100">{formatDate(createdAt)}</p>
+								</div>
+
+								<div class="rounded-lg bg-snow-100/15 p-3 backdrop-blur-sm">
+									<div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-snow-100/70">
+										<FontAwesomeIcon icon={faClockRotateLeft} className="size-3" />
+										Updated
+									</div>
+									<p class="mt-2 font-manrope text-base font-black text-snow-100">{formatDate(updatedAt)}</p>
+								</div>
+
+								<div class="rounded-lg bg-snow-100/15 p-3 backdrop-blur-sm">
+									<p class="text-xs font-semibold uppercase tracking-[0.14em] text-snow-100/70">Published</p>
+									<p class="mt-2 font-manrope text-base font-black text-snow-100">{formatDate(publishedAt)}</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="aspect-square w-36 justify-self-start rounded-2xl bg-snow-100/15 p-3 backdrop-blur-sm sm:w-48 xl:justify-self-end xl:self-end">
+							<div class="grid size-full place-items-center rounded-xl bg-snow-100/95 p-6">
+								<Image
+									src={logo}
+									alt={`${name} logo`}
+									width={500}
+									height={500}
+									class="aspect-square w-full rounded-2xl object-cover"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<article class="project-content mx-0 min-w-0 pt-4 sm:px-1 sm:pt-5 md:mx-8 xl:mx-38">
+                <ProjectTagList
+                        tags={tags}
+                        accent={accent}
+                />
+				<Content/>
+			</article>
+		</div>
+	</section>
+</DefaultLayout>
+
+<style is:global>
+	.project-content {
+		color: var(--color-cocoa-300);
+		padding-bottom: 4rem;
+	}
+
+	.project-content > :first-child {
+		margin-top: 0;
+	}
+
+	.project-content h1,
+	.project-content h2,
+	.project-content h3 {
+		color: var(--color-cocoa-500);
+		font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+		font-weight: 900;
+		line-height: 1;
+		margin-top: 1.5rem;
+	}
+
+    .project-content h1 {
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        margin-top: 3.5rem;
+    }
+
+	.project-content h2 {
+		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+	}
+
+	.project-content h3 {
+		font-size: 1.125rem;
+	}
+
+	.project-content p {
+		font-weight: 400;
+		font-size: 1rem;
+		line-height: 1.75;
+		margin-top: 0.75rem;
+	}
+
+	.project-content a {
+		color: var(--accent-main);
+		font-weight: 700;
+		text-decoration: underline;
+		text-underline-offset: 0.25rem;
+	}
+
+	.project-content strong {
+		color: var(--color-cocoa-500);
+		font-weight: 800;
+	}
+
+	.project-content ul,
+	.project-content ol {
+		margin-top: 0.75rem;
+		padding-left: 1.25rem;
+	}
+
+	.project-content li {
+		font-size: 1rem;
+		font-weight: 300;
+		line-height: 1.75;
+		margin-top: 0.5rem;
+	}
+
+    .project-content hr {
+        margin-top: 0.75rem;
+        margin-bottom: 1.25rem;
+        color: var(--color-cocoa-200);
+        opacity: 0.25;
+    }
+
+    .project-content #gallery,
+    .project-content #video {
+        margin: 3rem 0 0;
+    }
+
+	@media (min-width: 1024px) {
+		.project-content #gallery,
+		.project-content #video {
+			margin-left: 5rem;
+			margin-right: 5rem;
+		}
+	}
+</style>

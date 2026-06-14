@@ -1,0 +1,58 @@
+---
+import { faBluesky, faGithub, faLinkedin, faYoutube } from "@fortawesome/free-brands-svg-icons"
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+export const SOCIAL_LINKS = [
+	{
+		name: "Mail",
+		href: "mailto:contact@itsakaseru.me",
+		icon: faEnvelope,
+	},
+	{
+		name: "LinkedIn",
+		href: "https://www.linkedin.com/in/itsakaseru",
+		icon: faLinkedin,
+	},
+	{
+		name: "GitHub",
+		href: "https://github.com/itsakaseru",
+		icon: faGithub,
+	},
+	{
+		name: "YouTube",
+		href: "https://youtube.com/itsakaseru",
+		icon: faYoutube,
+	},
+	{
+		name: "Bluesky",
+		href: "https://bsky.app/profile/itsakaseru.me",
+		icon: faBluesky,
+	},
+];
+---
+<div
+		class:list={[
+			"hidden my-auto gap-3 px-3 py-2 lg:flex",
+			"text-snow-100/75",
+		]}
+>
+	{
+		SOCIAL_LINKS.map((link, idx) => (
+                <>
+					<a
+							class:list={[
+								"inline-flex items-center gap-1.5",
+								"underline-offset-4 hover:text-snow-100 hover:underline",
+								"cursor-pointer transition",
+							]}
+							href={link.href}
+					>
+						<FontAwesomeIcon icon={link.icon} className="size-3.5" />
+						{link.name}
+					</a>
+					{idx !== SOCIAL_LINKS.length - 1 && <span class="mx-0.5 select-none text-snow-100/25">/</span> }
+                </>
+		))
+	}
+</div>

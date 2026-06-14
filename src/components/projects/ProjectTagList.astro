@@ -1,0 +1,23 @@
+---
+import type {IProjectAccent} from "src/types/projects.ts";
+
+interface Props {
+	tags: string[]
+	accent: IProjectAccent
+}
+
+const { tags, accent } = Astro.props
+---
+<div class="flex flex-wrap gap-2">
+	{tags.map((tag) => (
+			<span
+					class:list={[
+						"px-2.5 py-1",
+						"rounded-lg font-semibold text-xs uppercase tracking-[0.12em]",
+					]}
+					style={`background-color: ${accent.sub}; color: ${accent.main}`}
+			>
+				{tag}
+			</span>
+	))}
+</div>
