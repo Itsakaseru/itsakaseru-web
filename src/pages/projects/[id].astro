@@ -29,6 +29,7 @@ interface Props {
 const { project } = Astro.props
 const { name, description, details = [], logo, mark, tags = [], links = [], accent, createdAt, publishedAt, updatedAt } = project.data
 const { Content } = await render(project)
+const pageTitle = `Project: ${name}`
 
 const allProjects = (await getCollection("projects")).sort(
 	(projectA, projectB) =>
@@ -43,7 +44,7 @@ const formatDate = (date: Date) => new Intl.DateTimeFormat("id", {
 	year: "numeric",
 }).format(date)
 ---
-<DefaultLayout>
+<DefaultLayout title={pageTitle} description={description} canonical={`/projects/${project.id}`} type="article">
 	<section
 		class="mt-6 grid gap-4 sm:mt-10 lg:grid-cols-[20rem_1fr]"
 		style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}

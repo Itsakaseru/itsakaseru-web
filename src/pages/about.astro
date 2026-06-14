@@ -28,6 +28,7 @@ if (!about) {
 
 const { Content } = await render(about);
 const { title, description, accent, documents} = about.data;
+const pageTitle = "Itsakaseru: About Me";
 
 const roles = ["Programmer", "Oneironatics", "Human"];
 
@@ -47,7 +48,7 @@ const formatDocumentDate = (date: Date) => {
 };
 ---
 
-<DefaultLayout>
+<DefaultLayout title={pageTitle} description={description} canonical="/about" image={Lemi} imageAlt="Itsakaseru portrait">
 	<main class="mt-6 space-y-6 sm:mt-10" style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}>
 
 		<!-- Hero Section -->

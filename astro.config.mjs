@@ -10,11 +10,20 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://itsakaseru.me",
+
 	vite: {
 		plugins: [tailwindcss()],
 	},
 
-	integrations: [sitemap(), react(), mdx(), icon()],
+	integrations: [
+		sitemap({
+			filter: (page) => !["https://itsakaseru.me/blog/", "https://itsakaseru.me/fun/"].includes(page),
+		}),
+		react(),
+		mdx(),
+		icon(),
+	],
 
 	fonts: [
 		{
