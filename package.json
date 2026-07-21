@@ -24,7 +24,7 @@
 		"@types/react": "^19.2.17",
 		"@types/react-dom": "^19.2.3",
 		"animejs": "^4.4.1",
-		"astro": "^6.4.6",
+		"astro": "^7.1.0",
 		"astro-icon": "^1.1.5",
 		"motion": "^12.40.0",
 		"react": "^19.2.7",
