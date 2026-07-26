@@ -1,4 +1,4 @@
-name: Dokploy
+name: Deploy Production
 
 on:
   push:
@@ -8,7 +8,9 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to production
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Checkout
@@ -22,7 +24,7 @@ jobs:
           tags: tag:cicd
           ping: ${{ secrets.TS_HOST }}
 
-      - name: Trigger Dokploy deploy via API
+      - name: Trigger production deployment via Dokploy API
         env:
           DOKPLOY_BASE_URL: ${{ secrets.DOKPLOY_BASE_URL }}
           DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
