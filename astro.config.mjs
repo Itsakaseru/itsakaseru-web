@@ -8,6 +8,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig, fontProviders } from "astro/config";
 
 import icon from "astro-icon";
+import pagefind from "astro-pagefind";
 
 /** @type {NonNullable<NonNullable<import("astro/markdown").AstroMarkdownOptions["shikiConfig"]>["transformers"]>[number]} */
 const codeBlockTitleTransformer = {
@@ -80,6 +81,7 @@ export default defineConfig({
 		react(),
 		mdx(),
 		icon(),
+		pagefind(),
 	],
 
 	fonts: [

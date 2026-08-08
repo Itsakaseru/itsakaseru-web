@@ -1,6 +1,5 @@
 ---
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Search from "@/components/Search.astro";
 
 interface Props {
 	variant?: "default" | "home";
@@ -56,33 +55,12 @@ const { variant = "default" } = Astro.props;
 
 		{variant !== "home" && (
 			<div
-                class:list={[
-                    "hidden p-1.5 lg:block",
-                    "rounded-xl bg-snow-100/10 backdrop-blur-sm",
-                ]}
-            >
-				<button
-                    class:list={[
-                        "group flex items-center px-3 py-2 gap-3",
-                        "rounded-lg text-snow-100/75 bg-snow-100/10 hover:bg-snow-300 hover:text-cocoa-500",
-                        "transition",
-                    ]}
-                    type="button"
-                    aria-label="Open global search"
-                >
-					<FontAwesomeIcon icon={faMagnifyingGlass} className="size-3.5"/>
-					<span>Search (Disabled)</span>
-					<span
-                        class:list={[
-                            "px-1.5 py-0.5",
-                            "rounded-md font-semibold text-[0.68rem] text-snow-100/60 group-hover:text-cocoa-400",
-                            "border border-snow-100/20 bg-snow-100/10 group-hover:border-cocoa-200/30 group-hover:bg-cocoa-100",
-                            "transition",
-                        ]}
-                    >
-						Ctrl K
-					</span>
-				</button>
+				class:list={[
+					"hidden p-1.5 lg:block",
+					"rounded-xl bg-snow-100/10",
+				]}
+			>
+				<Search />
 			</div>
 		)}
 	</div>

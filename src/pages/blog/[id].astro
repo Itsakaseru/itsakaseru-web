@@ -273,6 +273,7 @@ const relatedPosts = (await getCollection("blog"))
 
 				{relatedPosts.length > 0 && (
 					<section
+						data-pagefind-ignore
 						class:list={[
 							"p-3 sm:p-4",
 							"rounded-xl bg-snow-100 border border-cocoa-200/15",

@@ -1,0 +1,311 @@
+---
+import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
+---
+
+<PagefindConfig lang="en" />
+<div class="flex backdrop-blur-sm" data-search-trigger>
+	<pagefind-modal-trigger placeholder="Search"></pagefind-modal-trigger>
+</div>
+<pagefind-modal reset-on-close></pagefind-modal>
+
+<style>
+/* biome-ignore-all lint/complexity/noImportantStyles: Pagefind deliberately ships high-specificity component styles. */
+[data-search-trigger] {
+	--pf-background: rgb(255 255 255);
+	--pf-border: transparent;
+	--pf-border-radius: 0.5rem;
+	--pf-hover: transparent;
+	--pf-input-height: 2.65rem;
+	--pf-outline-focus: var(--color-snow-100);
+	--pf-text-muted: rgb(255 255 255 / 0.75);
+}
+
+[data-search-trigger] :global(.pf-trigger-btn) {
+	gap: 0.75rem !important;
+	padding-inline: 2rem !important;
+	background: rgb(255 255 255 / 0.1) !important;
+	border-color: transparent !important;
+	font-family:
+		var(--font-geist), ui-sans-serif, system-ui, sans-serif !important;
+	font-size: 1rem !important;
+	color: rgb(255 255 255 / 0.75) !important;
+	transition:
+		background-color 150ms,
+		color 150ms !important;
+}
+
+[data-search-trigger] :global(.pf-trigger-btn:hover) {
+	background: var(--color-snow-100) !important;
+	color: var(--color-cocoa-500) !important;
+}
+
+[data-search-trigger] :global(.pf-trigger-icon) {
+	background: currentColor !important;
+}
+
+[data-search-trigger] :global(.pf-trigger-text) {
+	color: inherit !important;
+}
+
+[data-search-trigger] :global(.pf-trigger-shortcut) {
+	margin-inline-start: 0 !important;
+}
+
+[data-search-trigger] :global(.pf-trigger-key) {
+	border-color: rgb(255 255 255 / 0.2) !important;
+	background: rgb(255 255 255 / 0.1) !important;
+	color: rgb(255 255 255 / 0.6) !important;
+	font-weight: 600 !important;
+}
+
+[data-search-trigger] :global(.pf-trigger-btn:hover .pf-trigger-key) {
+	border-color: rgb(200 163 155 / 0.3) !important;
+	background: var(--color-cocoa-100) !important;
+	color: var(--color-cocoa-400) !important;
+}
+
+pagefind-modal {
+	--pf-background: var(--color-snow-100);
+	--pf-border: rgb(200 163 155 / 0.22);
+	--pf-border-focus: var(--color-cocoa-300);
+	--pf-border-radius: 0.875rem;
+	--pf-font: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+	--pf-hover: var(--color-cocoa-100);
+	--pf-input-height: 3.25rem;
+	--pf-mark: var(--color-cocoa-500);
+	--pf-modal-max-height: min(78dvh, 48rem);
+	--pf-modal-max-width: 44rem;
+	--pf-modal-backdrop: rgb(43 22 17 / 0.62);
+	--pf-outline-focus: var(--color-cocoa-400);
+	--pf-results-gap: 0.625rem;
+	--pf-shadow-lg: 0 1.75rem 5rem rgb(43 22 17 / 0.3);
+	--pf-skeleton: var(--color-cocoa-100);
+	--pf-text: var(--color-cocoa-500);
+	--pf-text-muted: var(--color-cocoa-300);
+	--pf-text-secondary: var(--color-cocoa-400);
+}
+
+pagefind-modal :global(dialog.pf-modal) {
+	border: 1px solid rgb(200 163 155 / 0.3) !important;
+	border-radius: 1.25rem !important;
+	background: var(--color-snow-100) !important;
+	box-shadow:
+		0 1.75rem 5rem rgb(43 22 17 / 0.3),
+		0 0 0 0.375rem rgb(255 246 244 / 0.14) !important;
+}
+
+pagefind-modal :global(dialog.pf-modal::backdrop) {
+	backdrop-filter: blur(0.375rem);
+}
+
+pagefind-modal :global(.pf-modal-header) {
+	padding: 1rem !important;
+	border-bottom-color: rgb(200 163 155 / 0.2) !important;
+	background: linear-gradient(
+		135deg,
+		var(--color-snow-100),
+		rgb(255 246 244 / 0.72)
+	) !important;
+}
+
+pagefind-modal :global(.pf-input-wrapper) {
+	border: 1px solid rgb(200 163 155 / 0.5) !important;
+	border-radius: 0.75rem !important;
+	background: var(--color-snow-100) !important;
+	box-shadow:
+		0 0.25rem 0.75rem rgb(43 22 17 / 0.04),
+		inset 0 0 0 1px rgb(255 255 255 / 0.8) !important;
+	transition:
+		border-color 150ms,
+		box-shadow 150ms !important;
+}
+
+pagefind-modal :global(.pf-input-wrapper:focus-within) {
+	border-color: var(--color-cocoa-300) !important;
+	box-shadow:
+		0 0 0 0.1875rem rgb(117 87 80 / 0.12),
+		0 0.5rem 1.25rem rgb(43 22 17 / 0.06) !important;
+}
+
+pagefind-modal :global(.pf-input) {
+	padding-inline-end: 5.5rem !important;
+	font-weight: 500 !important;
+	color: var(--color-cocoa-500) !important;
+}
+
+pagefind-modal :global(.pf-input-clear) {
+	inset-inline-end: 0.375rem !important;
+	height: 2rem !important;
+	min-width: auto !important;
+	padding: 0 0.75rem !important;
+	border: 1px solid rgb(200 163 155 / 0.28) !important;
+	border-radius: 0.5rem !important;
+	background: var(--color-cocoa-100) !important;
+	font-size: 0.6875rem !important;
+	font-weight: 700 !important;
+	letter-spacing: 0.04em !important;
+	color: var(--color-cocoa-400) !important;
+	text-transform: uppercase !important;
+	transition:
+		background-color 150ms,
+		border-color 150ms,
+		color 150ms !important;
+}
+
+pagefind-modal :global(.pf-input-clear:hover) {
+	border-color: var(--color-cocoa-300) !important;
+	background: var(--color-cocoa-300) !important;
+	color: var(--color-snow-100) !important;
+}
+
+pagefind-modal :global(.pf-modal-close) {
+	border: 1px solid rgb(200 163 155 / 0.22) !important;
+	background: var(--color-cocoa-100) !important;
+}
+
+pagefind-modal :global(.pf-modal-body) {
+	padding: 1rem !important;
+	background: rgb(255 246 244 / 0.3) !important;
+	scrollbar-color: rgb(117 87 80 / 0.65) transparent;
+	scrollbar-width: thin;
+}
+
+pagefind-modal :global(.pf-modal-body::-webkit-scrollbar) {
+	width: 0.5rem;
+}
+
+pagefind-modal :global(.pf-modal-body::-webkit-scrollbar-thumb) {
+	border: 0.125rem solid transparent;
+	border-radius: 999px;
+	background: rgb(117 87 80 / 0.65);
+	background-clip: padding-box;
+}
+
+pagefind-modal :global(.pf-summary) {
+	margin: 0.125rem 0.25rem 0.875rem !important;
+	font-size: 0.7rem !important;
+	font-weight: 800 !important;
+	letter-spacing: 0.1em !important;
+	color: var(--color-cocoa-300) !important;
+	text-transform: uppercase !important;
+}
+
+pagefind-modal :global(.pf-result-card) {
+	padding: 1rem 1.125rem !important;
+	border-color: rgb(200 163 155 / 0.2) !important;
+	background: rgb(255 255 255 / 0.86) !important;
+	box-shadow: 0 0.25rem 0.875rem rgb(43 22 17 / 0.025) !important;
+	transition:
+		background-color 200ms,
+		border-color 200ms,
+		box-shadow 200ms,
+		transform 200ms !important;
+}
+
+pagefind-modal :global(.pf-result-card:hover) {
+	border-color: rgb(117 87 80 / 0.38) !important;
+	background: var(--color-snow-100) !important;
+	box-shadow: 0 0.625rem 1.75rem rgb(43 22 17 / 0.08) !important;
+	transform: translateY(-0.0625rem);
+}
+
+pagefind-modal :global(.pf-result-card:has([data-pf-selected])) {
+	border-color: rgb(117 87 80 / 0.45) !important;
+	background: var(--color-cocoa-100) !important;
+	box-shadow: none !important;
+}
+
+pagefind-modal :global(.pf-result-title) {
+	font-family:
+		var(--font-manrope), ui-sans-serif, system-ui, sans-serif !important;
+	font-size: 1rem !important;
+	font-weight: 900 !important;
+	line-height: 1.3 !important;
+}
+
+pagefind-modal :global(.pf-result-link:hover) {
+	color: var(--color-cocoa-300) !important;
+	text-decoration: none !important;
+}
+
+pagefind-modal :global(.pf-result-excerpt) {
+	margin-top: 0.375rem !important;
+	font-size: 0.875rem !important;
+	font-weight: 300 !important;
+	line-height: 1.55 !important;
+}
+
+pagefind-modal :global(.pf-heading-chips) {
+	gap: 0.375rem !important;
+	padding-inline-start: 0.75rem !important;
+}
+
+pagefind-modal :global(.pf-heading-chip) {
+	padding: 0.625rem 0.75rem !important;
+	border-color: rgb(200 163 155 / 0.18) !important;
+	border-radius: 0.625rem !important;
+	background: rgb(255 255 255 / 0.58) !important;
+}
+
+pagefind-modal :global(.pf-heading-chip:hover),
+pagefind-modal :global(.pf-heading-chip:has([data-pf-selected])) {
+	border-color: rgb(117 87 80 / 0.3) !important;
+	background: var(--color-cocoa-100) !important;
+}
+
+pagefind-modal :global(.pf-heading-link) {
+	font-weight: 700 !important;
+	color: var(--color-cocoa-400) !important;
+}
+
+pagefind-modal :global(.pf-result-excerpt mark),
+pagefind-modal :global(.pf-heading-excerpt mark) {
+	border-radius: 0.25rem !important;
+	background: var(--color-cocoa-100) !important;
+	font-weight: 700 !important;
+}
+
+pagefind-modal :global(.pf-modal-footer) {
+	padding: 0.75rem 1rem !important;
+	border-top-color: rgb(200 163 155 / 0.2) !important;
+	background: var(--color-snow-100) !important;
+}
+
+pagefind-modal :global(.pf-keyboard-hints) {
+	gap: 1.25rem !important;
+	font-weight: 500 !important;
+	color: var(--color-cocoa-300) !important;
+}
+
+pagefind-modal :global(.pf-keyboard-key) {
+	min-width: 1.5rem !important;
+	height: 1.5rem !important;
+	padding-inline: 0.375rem !important;
+	border: 1px solid rgb(200 163 155 / 0.3) !important;
+	border-radius: 0.375rem !important;
+	background: var(--color-cocoa-100) !important;
+	box-shadow: 0 0.125rem 0 rgb(200 163 155 / 0.2) !important;
+	font-weight: 700 !important;
+	color: var(--color-cocoa-400) !important;
+}
+
+@media (max-width: 640px) {
+	pagefind-modal :global(dialog.pf-modal) {
+		border: 0 !important;
+		border-radius: 0 !important;
+	}
+
+	pagefind-modal :global(.pf-modal-header) {
+		padding-top: max(0.75rem, env(safe-area-inset-top)) !important;
+		padding-inline: max(0.75rem, env(safe-area-inset-left)) !important;
+	}
+
+	pagefind-modal :global(.pf-modal-body) {
+		padding: 0.875rem !important;
+	}
+
+	pagefind-modal :global(.pf-result-card) {
+		padding: 0.875rem !important;
+	}
+}
+</style>

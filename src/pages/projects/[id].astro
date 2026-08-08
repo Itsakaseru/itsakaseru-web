@@ -172,9 +172,10 @@ const formatDate = (date: Date) =>
 				</div>
 			</SidebarCard>
 
-			<SidebarCard title="Other Projects" icon={faFolderOpen}>
-				<div class="max-h-48 space-y-2 overflow-y-auto pr-1">
-					{otherProjects.map((otherProject) => (
+			<div data-pagefind-ignore>
+				<SidebarCard title="Other Projects" icon={faFolderOpen}>
+					<div class="max-h-48 space-y-2 overflow-y-auto pr-1">
+						{otherProjects.map((otherProject) => (
                             <a
                                     href={`/projects/${otherProject.id}`}
                                     class="group flex items-center gap-3 rounded-lg border border-cocoa-200/20 bg-snow-100/60 p-2 transition hover:border-cocoa-200/40 hover:bg-snow-100"
@@ -199,9 +200,10 @@ const formatDate = (date: Date) =>
                                     </p>
                                 </div>
                             </a>
-					))}
-				</div>
-			</SidebarCard>
+						))}
+					</div>
+				</SidebarCard>
+			</div>
 		</aside>
 
 		<div
