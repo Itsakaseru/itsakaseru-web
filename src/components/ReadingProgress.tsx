@@ -1,9 +1,9 @@
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
-import "./BlogReadingProgress.css";
+import "./ReadingProgress.css";
 
-interface BlogReadingProgressProps {
+interface ReadingProgressProps {
 	contentSelector?: string;
 }
 
@@ -31,9 +31,9 @@ function createProgressPath(width: number, height: number) {
 	].join(" ");
 }
 
-export default function BlogReadingProgress({
+export default function ReadingProgress({
 	contentSelector = ".markdown-content",
-}: BlogReadingProgressProps) {
+}: ReadingProgressProps) {
 	const progressTrackRef = useRef<HTMLDivElement>(null);
 	const [percentage, setPercentage] = useState(0);
 	const [progressPath, setProgressPath] = useState("");
@@ -114,7 +114,7 @@ export default function BlogReadingProgress({
 
 			<div
 				role="progressbar"
-				aria-label="Article reading progress"
+				aria-label="Reading progress"
 				aria-valuemin={0}
 				aria-valuemax={100}
 				aria-valuenow={percentage}

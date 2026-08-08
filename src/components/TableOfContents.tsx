@@ -1,7 +1,7 @@
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
-import "./BlogTableOfContents.css";
+import "./TableOfContents.css";
 
 interface Heading {
 	depth: number;
@@ -9,7 +9,7 @@ interface Heading {
 	text: string;
 }
 
-interface BlogTableOfContentsProps {
+interface TableOfContentsProps {
 	headings: Heading[];
 }
 
@@ -24,9 +24,7 @@ function isTOCHeading(heading: Heading) {
 	return heading.depth >= 1 && heading.depth <= 6;
 }
 
-export default function BlogTableOfContents({
-	headings,
-}: BlogTableOfContentsProps) {
+export default function TableOfContents({ headings }: TableOfContentsProps) {
 	const tocItems = headings.filter(isTOCHeading);
 	const headingListRef = useRef<HTMLElement>(null);
 	const linksBySlugRef = useRef(new Map<string, HTMLAnchorElement>());
@@ -114,7 +112,7 @@ export default function BlogTableOfContents({
 			<nav
 				ref={headingListRef}
 				className="mt-4 grid min-h-0 gap-1 overflow-y-auto"
-				aria-label="Article headings"
+				aria-label="Content headings"
 			>
 				{tocItems.map((item) => {
 					const isActive = item.slug === activeSlug;

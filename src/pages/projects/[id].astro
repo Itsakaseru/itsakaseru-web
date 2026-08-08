@@ -10,10 +10,10 @@ import {
 	faLink,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import BlogReadingProgress from "@/components/blog/BlogReadingProgress";
-import BlogTableOfContents from "@/components/blog/BlogTableOfContents";
 import MarkdownCodeCopy from "@/components/MarkdownCodeCopy.astro";
+import ReadingProgress from "@/components/ReadingProgress";
 import SidebarCard from "@/components/SidebarCard.astro";
+import TableOfContents from "@/components/TableOfContents";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 import "@/styles/markdown-content.css";
 import TagList from "../../components/TagList.astro";
@@ -336,12 +336,12 @@ const formatDate = (date: Date) =>
 				</article>
 
 				{headings.length > 0 && (
-					<BlogTableOfContents client:load headings={headings} />
+					<TableOfContents client:load headings={headings} />
 				)}
 			</div>
 		</div>
 
-		<BlogReadingProgress client:load />
+		<ReadingProgress client:load />
 		<MarkdownCodeCopy />
 	</main>
 </DefaultLayout>

@@ -17,7 +17,7 @@
 }
 
 [data-reading-controls] .reading-progress-border-track {
-	stroke: var(--color-cocoa-100);
+	stroke: var(--accent-sub);
 }
 
 [data-reading-controls] .reading-progress-border-value {
