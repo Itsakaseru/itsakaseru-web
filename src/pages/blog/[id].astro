@@ -43,9 +43,60 @@ const {
 	accent,
 	publishedAt,
 	updatedAt,
+	hero,
 } = post.data;
 const readingTime = calculateReadingTime(post.body ?? "");
-const pageTitle = `Blog: ${title}`;
+const pageTitle = `${title} | Itsakaseru`;
+const canonicalPath = `/blog/${post.id}`;
+const site = Astro.site ?? new URL("https://itsakaseru.me");
+const canonicalUrl = new URL(`${canonicalPath}/`, site).toString();
+const personId = new URL("/#person", site).toString();
+const pageId = `${canonicalUrl}#webpage`;
+const articleImageUrl = hero?.wide
+	? new URL(hero.wide.src, site).toString()
+	: undefined;
+const structuredData = [
+	{
+		"@type": "BlogPosting",
+		"@id": `${canonicalUrl}#article`,
+		url: canonicalUrl,
+		headline: title,
+		description,
+		...(articleImageUrl ? { image: articleImageUrl } : {}),
+		datePublished: publishedAt.toISOString(),
+		dateModified: updatedAt.toISOString(),
+		articleSection: category,
+		keywords: tags,
+		inLanguage: "en",
+		author: { "@id": personId },
+		publisher: { "@id": personId },
+		mainEntityOfPage: { "@id": pageId },
+	},
+	{
+		"@type": "BreadcrumbList",
+		"@id": `${canonicalUrl}#breadcrumb`,
+		itemListElement: [
+			{
+				"@type": "ListItem",
+				position: 1,
+				name: "Home",
+				item: site.toString(),
+			},
+			{
+				"@type": "ListItem",
+				position: 2,
+				name: "Blog",
+				item: new URL("/blog/", site).toString(),
+			},
+			{
+				"@type": "ListItem",
+				position: 3,
+				name: title,
+				item: canonicalUrl,
+			},
+		],
+	},
+];
 const relatedPosts = (await getCollection("blog"))
 	.filter((candidate) => candidate.id !== post.id)
 	.sort((postA, postB) => {
@@ -72,8 +123,17 @@ const relatedPosts = (await getCollection("blog"))
 <DefaultLayout
 	title={pageTitle}
 	description={description}
-	canonical={`/blog/${post.id}`}
+	canonical={canonicalPath}
+	image={hero?.wide.src}
+	imageAlt={hero?.wide.alt}
 	type="article"
+	article={{
+		publishedTime: publishedAt,
+		modifiedTime: updatedAt,
+		section: category,
+		tags,
+	}}
+	structuredData={structuredData}
 >
 	<main
 		class="mt-6 space-y-4 sm:mt-10"
@@ -249,8 +309,10 @@ const relatedPosts = (await getCollection("blog"))
 												]}
                                         >
                                             <img
-													src={relatedArticle.data.hero.thumbnail.src}
-													alt={relatedArticle.data.hero.thumbnail.alt}
+												src={relatedArticle.data.hero.thumbnail.src}
+												alt={relatedArticle.data.hero.thumbnail.alt}
+												loading="lazy"
+												decoding="async"
                                                     class:list={[
 														"w-full h-full absolute inset-0",
 														"object-cover",

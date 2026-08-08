@@ -1,0 +1,67 @@
+---
+import Background from "@/components/Background.astro";
+import Footer from "@/components/Footer.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const description = "The page you requested could not be found.";
+---
+
+<BaseLayout
+	title="Page Not Found | Itsakaseru"
+	description={description}
+	canonical={false}
+	noindex
+>
+	<body class="relative min-h-screen">
+		<Background />
+		<div
+			class:list={[
+				"min-h-dvh p-4 flex flex-col sm:p-6 lg:p-10",
+				"rounded-xl"
+			]}
+		>
+			<main
+				class="mx-auto w-full max-w-2xl flex flex-1 items-center justify-center"
+			>
+				<section
+					class:list={[
+						"w-full p-6 sm:p-10",
+						"text-center",
+						"rounded-xl bg-snow-100 border border-cocoa-200/15",
+					]}
+				>
+					<p class="font-bold text-xs uppercase tracking-widest text-cocoa-300">
+						Error 404
+					</p>
+					<h1
+						class:list={[
+							"mt-2",
+							"font-manrope font-black text-3xl text-cocoa-500 sm:text-5xl",
+						]}
+					>
+						Page not found
+					</h1>
+					<p
+						class:list={[
+							"max-w-lg mx-auto mt-4",
+							"text-sm leading-6 text-cocoa-300 sm:text-base",
+						]}
+					>
+						The page may have moved, changed its address, or never existed.
+					</p>
+					<a
+						href="/"
+						class:list={[
+							"mt-6 inline-block",
+							"font-semibold text-sm underline underline-offset-4 text-cocoa-500 decoration-2 decoration-cocoa-200",
+							"transition duration-300 hover:text-cocoa-400 hover:decoration-cocoa-400",
+						]}
+					>
+						Go to homepage
+					</a>
+				</section>
+			</main>
+			<Footer />
+		</div>
+	</body>
+</BaseLayout>

@@ -73,7 +73,7 @@ export default defineConfig({
 	integrations: [
 		sitemap({
 			filter: (page) =>
-				!["https://itsakaseru.me/blog/", "https://itsakaseru.me/fun/"].includes(
+				!["https://itsakaseru.me/404/", "https://itsakaseru.me/fun/"].includes(
 					page,
 				),
 		}),

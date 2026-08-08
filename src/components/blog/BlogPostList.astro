@@ -201,6 +201,8 @@ const getPageUrl = (pageNumber: number) =>
                                     <img
 											src={article.data.hero.thumbnail.src}
 											alt={article.data.hero.thumbnail.alt}
+											loading="lazy"
+											decoding="async"
                                             class:list={[
 												"w-full h-full absolute inset-0",
 												"object-cover",

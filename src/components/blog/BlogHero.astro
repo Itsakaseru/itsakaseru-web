@@ -36,6 +36,9 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
                     <img
 							src={spotlight.data.hero.wide.src}
 							alt={spotlight.data.hero.wide.alt}
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
 							class:list={[
 								"absolute inset-0 h-full w-full",
 								"object-cover",
@@ -75,9 +78,9 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
                     </div>
 
                     <div class="space-y-3">
-                        <h1 class="font-manrope font-black text-4xl leading-tight sm:text-5xl xl:text-6xl">
+						<h2 class="font-manrope font-black text-4xl leading-tight sm:text-5xl xl:text-6xl">
 							{spotlight.data.title}
-                        </h1>
+						</h2>
                         <p
 							class:list={[
 								"max-w-2xl",
@@ -146,6 +149,8 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
                                             <img
 												src={featuredPost.data.hero.thumbnail.src}
 												alt={featuredPost.data.hero.thumbnail.alt}
+												loading="lazy"
+												decoding="async"
 													class:list={[
 														"w-full h-full max-h-64",
 														"object-cover transition duration-500 group-hover:scale-105",

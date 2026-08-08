@@ -95,6 +95,8 @@ const { spotlight } = Astro.props;
                                         alt={`${spotlight.name} logo`}
                                         width={500}
                                         height={500}
+										loading="eager"
+										fetchpriority="high"
                                         class="w-10 aspect-square object-cover rounded-lg"
                                 />
                             </div>

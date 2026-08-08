@@ -26,6 +26,9 @@ const { title, description, category, tags = [], hero } = post.data;
 	>
 		{hero?.wide ? (
 				<img src={hero.wide.src} alt={hero.wide.alt}
+					loading="eager"
+					fetchpriority="high"
+					decoding="async"
 					class:list={[
 						"absolute inset-0 w-full h-full",
 						"object-cover",

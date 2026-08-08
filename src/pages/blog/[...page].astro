@@ -27,12 +27,16 @@ const articles = (await getCollection("blog")).sort(
 	(articleA, articleB) =>
 		articleB.data.publishedAt.getTime() - articleA.data.publishedAt.getTime(),
 );
+const baseDescription =
+	"Itsakaseru's blog, where I post tutorials, opinions, updates, information, and other random stuff.";
 const description =
-	"Tutorials, notes, opinions, updates, and random information from Itsakaseru.";
+	page.currentPage === 1
+		? baseDescription
+		: `Page ${page.currentPage} of the Itsakaseru blog, where I post tutorials, opinions, updates, information, and other random stuff.`;
 const title =
 	page.currentPage === 1
-		? "Itsakaseru's Blog"
-		: `Itsakaseru's Blog - Page ${page.currentPage}`;
+		? "Blog | Itsakaseru"
+		: `Blog - Page ${page.currentPage} | Itsakaseru`;
 const canonical =
 	page.currentPage === 1 ? "/blog" : `/blog/${page.currentPage}`;
 const categories = [
@@ -45,9 +49,25 @@ const totalReadingMinutes = articles.reduce(
 );
 ---
 
-<DefaultLayout title={title} description={description} canonical={canonical}>
+<DefaultLayout
+	title={title}
+	description={description}
+	canonical={canonical}
+	schemaType="CollectionPage"
+	prev={page.url.prev}
+	next={page.url.next}
+>
 	<main class="mt-6 space-y-6 sm:mt-10">
-		<BlogHero posts={articles} />
+		<h1
+			class:list={[
+				page.currentPage === 1
+					? "sr-only"
+					: "font-manrope text-3xl font-black text-cocoa-500 sm:text-4xl",
+			]}
+		>
+			Blog{page.currentPage > 1 && ` - Page ${page.currentPage}`}
+		</h1>
+		{page.currentPage === 1 && <BlogHero posts={articles} />}
 
 		<section class="grid gap-4 lg:grid-cols-[20rem_1fr]">
 			<aside class="self-start lg:sticky lg:top-6">

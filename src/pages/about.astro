@@ -24,7 +24,7 @@ if (!about) {
 
 const { Content } = await render(about);
 const { title, description, accent, documents } = about.data;
-const pageTitle = "Itsakaseru: About Me";
+const pageTitle = "About Lemuel Lancaster | Itsakaseru";
 
 const roles = ["Programmer", "Oneironatics", "Human"];
 
@@ -50,6 +50,7 @@ const formatDocumentDate = (date: Date) => {
 	canonical="/about"
 	image={Lemi}
 	imageAlt="Itsakaseru portrait"
+	schemaType="ProfilePage"
 >
 	<main
 		class="mt-6 space-y-6 sm:mt-10"
@@ -128,6 +129,8 @@ const formatDocumentDate = (date: Date) => {
 									alt="Itsakaseru portrait"
 									width={600}
 									height={600}
+									loading="eager"
+									fetchpriority="high"
 									class="aspect-square w-full rounded-lg object-cover"
 								/>
 							</div>

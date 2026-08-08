@@ -6,16 +6,38 @@ import defaultSeoImage from "@/assets/sakii.png";
 interface Props {
 	title?: string;
 	description?: string;
-	canonical?: string | URL;
+	canonical?: string | URL | false;
 	image?: string | ImageMetadata;
 	imageAlt?: string;
 	type?: "website" | "article";
 	noindex?: boolean;
+	schemaType?: "WebPage" | "CollectionPage" | "ProfilePage";
+	article?: {
+		publishedTime: Date | string;
+		modifiedTime?: Date | string;
+		section?: string;
+		tags?: string[];
+	};
+	structuredData?: Record<string, unknown> | Record<string, unknown>[];
+	prev?: string | URL;
+	next?: string | URL;
 }
 
 const SITE_NAME = "Itsakaseru";
 const DEFAULT_DESCRIPTION = "Itsakaseru / Lemuel Lancaster's personal website!";
 const site = Astro.site ?? new URL("https://itsakaseru.me");
+
+const normalizePageUrl = (value: string | URL) => {
+	const url = new URL(value, site);
+	url.hash = "";
+	url.search = "";
+
+	if (url.pathname !== "/" && !url.pathname.endsWith("/")) {
+		url.pathname += "/";
+	}
+
+	return url.toString();
+};
 
 const {
 	title = SITE_NAME,
@@ -25,13 +47,79 @@ const {
 	imageAlt = SITE_NAME,
 	type = "website",
 	noindex = false,
+	schemaType = "WebPage",
+	article,
+	structuredData,
+	prev,
+	next,
 } = Astro.props;
 
-const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site).toString();
+const canonicalUrl =
+	canonical === false
+		? undefined
+		: normalizePageUrl(canonical ?? Astro.url.pathname);
 const imageUrl = new URL(
 	typeof image === "string" ? image : image.src,
 	site,
 ).toString();
+const defaultImageUrl = new URL(defaultSeoImage.src, site).toString();
+const imageDimensions =
+	typeof image === "string"
+		? undefined
+		: { width: image.width, height: image.height };
+const prevUrl = prev ? normalizePageUrl(prev) : undefined;
+const nextUrl = next ? normalizePageUrl(next) : undefined;
+const websiteId = new URL("/#website", site).toString();
+const personId = new URL("/#person", site).toString();
+const pageId = canonicalUrl ? `${canonicalUrl}#webpage` : undefined;
+const additionalGraph = structuredData
+	? Array.isArray(structuredData)
+		? structuredData
+		: [structuredData]
+	: [];
+const jsonLd = canonicalUrl
+	? JSON.stringify({
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "WebSite",
+					"@id": websiteId,
+					url: site.toString(),
+					name: SITE_NAME,
+					alternateName: "Lemuel Lancaster",
+					inLanguage: "en",
+					publisher: { "@id": personId },
+				},
+				{
+					"@type": "Person",
+					"@id": personId,
+					name: "Lemuel Lancaster",
+					alternateName: SITE_NAME,
+					url: site.toString(),
+					image: defaultImageUrl,
+					sameAs: [
+						"https://www.linkedin.com/in/itsakaseru",
+						"https://github.com/itsakaseru",
+						"https://youtube.com/itsakaseru",
+						"https://bsky.app/profile/itsakaseru.me",
+					],
+				},
+				{
+					"@type": schemaType,
+					"@id": pageId,
+					url: canonicalUrl,
+					name: title,
+					description,
+					inLanguage: "en",
+					isPartOf: { "@id": websiteId },
+					...(schemaType === "ProfilePage"
+						? { mainEntity: { "@id": personId } }
+						: {}),
+				},
+				...additionalGraph,
+			],
+		}).replace(/</g, "\\u003c")
+	: undefined;
 ---
 
 <html lang="en">
@@ -41,25 +129,56 @@ const imageUrl = new URL(
 		<meta name="theme-color" content="#4e342e">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 		<link rel="icon" href="/favicon.ico">
-		<link rel="canonical" href={canonicalUrl}>
+		{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+		{prevUrl && <link rel="prev" href={prevUrl} />}
+		{nextUrl && <link rel="next" href={nextUrl} />}
 		<meta name="generator" content={Astro.generator}>
 		<meta name="description" content={description}>
 		<meta name="author" content="Lemuel Lancaster">
-		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{noindex && <meta name="robots" content="noindex, follow" />}
 
 		<meta property="og:site_name" content={SITE_NAME}>
+		<meta property="og:locale" content="en_US">
 		<meta property="og:title" content={title}>
 		<meta property="og:description" content={description}>
 		<meta property="og:type" content={type}>
-		<meta property="og:url" content={canonicalUrl}>
+		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 		<meta property="og:image" content={imageUrl}>
 		<meta property="og:image:alt" content={imageAlt}>
+		{imageDimensions && (
+			<>
+				<meta property="og:image:width" content={imageDimensions.width.toString()} />
+				<meta property="og:image:height" content={imageDimensions.height.toString()} />
+			</>
+		)}
+		{article && (
+			<>
+				<meta property="article:author" content={personId} />
+				<meta
+					property="article:published_time"
+					content={new Date(article.publishedTime).toISOString()}
+				/>
+				{article.modifiedTime && (
+					<meta
+						property="article:modified_time"
+						content={new Date(article.modifiedTime).toISOString()}
+					/>
+				)}
+				{article.section && (
+					<meta property="article:section" content={article.section} />
+				)}
+				{article.tags?.map((tag) => (
+					<meta property="article:tag" content={tag} />
+				))}
+			</>
+		)}
 
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:title" content={title}>
 		<meta name="twitter:description" content={description}>
 		<meta name="twitter:image" content={imageUrl}>
 		<meta name="twitter:image:alt" content={imageAlt}>
+		{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 		<Font cssVariable="--font-geist" />
 		<Font cssVariable="--font-manrope" />
 		<title>{title}</title>
