@@ -1,0 +1,57 @@
+<script>
+const initializeCodeCopyButtons = () => {
+	document
+		.querySelectorAll<HTMLElement>(".markdown-content pre")
+		.forEach((codeBlock) => {
+			if (codeBlock.dataset.copyEnabled === "true") return;
+
+			const code = codeBlock.querySelector("code");
+			if (!code) return;
+
+			const wrapButton = document.createElement("button");
+			wrapButton.type = "button";
+			wrapButton.className = "markdown-wrap-button";
+			wrapButton.textContent = "Wrap";
+			wrapButton.title = "Toggle line wrapping";
+			wrapButton.setAttribute("aria-pressed", "false");
+			wrapButton.addEventListener("click", () => {
+				const wrapEnabled = codeBlock.dataset.wrapEnabled !== "true";
+				codeBlock.dataset.wrapEnabled = String(wrapEnabled);
+				wrapButton.setAttribute("aria-pressed", String(wrapEnabled));
+			});
+
+			const button = document.createElement("button");
+			button.type = "button";
+			button.className = "markdown-copy-button";
+			button.textContent = "Copy";
+			button.title = "Copy code";
+			button.setAttribute("aria-live", "polite");
+
+			let resetTimer: number | undefined;
+
+			button.addEventListener("click", async () => {
+				window.clearTimeout(resetTimer);
+
+				try {
+					await navigator.clipboard.writeText(code.textContent ?? "");
+					button.textContent = "Copied";
+					button.dataset.state = "success";
+				} catch {
+					button.textContent = "Failed";
+					button.dataset.state = "error";
+				}
+
+				resetTimer = window.setTimeout(() => {
+					button.textContent = "Copy";
+					delete button.dataset.state;
+				}, 2000);
+			});
+
+			codeBlock.dataset.copyEnabled = "true";
+			codeBlock.append(wrapButton, button);
+		});
+};
+
+initializeCodeCopyButtons();
+document.addEventListener("astro:page-load", initializeCodeCopyButtons);
+</script>

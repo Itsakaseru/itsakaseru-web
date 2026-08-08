@@ -1,20 +1,26 @@
 ---
-
 import Image from "astro/components/Image.astro";
 import Itsakaseru from "@/assets/sakii.png";
 import HubBar from "../components/HubBar.tsx";
 import BaseLayout from "../layouts/HomeLayout.astro";
 
-const description = "Itsakaseru / Lemuel Lancaster's personal website, where I share software projects, blog posts, experiments, fun little things, and a bit about myself."
+const description =
+	"Itsakaseru / Lemuel Lancaster's personal website, where I share software projects, blog posts, experiments, fun little things, and a bit about myself.";
 ---
 
-<BaseLayout title="Itsakaseru" description={description} canonical="/" image={Itsakaseru} imageAlt="Itsakaseru portrait">
-    <main class="flex flex-col items-center gap-6 sm:gap-8">
-        <Image
-            src={Itsakaseru}
-            alt="Itsakaseru Portrait"
-            class="w-60 rounded-3xl sm:w-72 sm:rounded-4xl lg:w-90"
-        />
-        <HubBar client:load/>
-    </main>
+<BaseLayout
+	title="Itsakaseru"
+	description={description}
+	canonical="/"
+	image={Itsakaseru}
+	imageAlt="Itsakaseru portrait"
+>
+	<main class="flex flex-col items-center gap-6 sm:gap-8">
+		<Image
+			src={Itsakaseru}
+			alt="Itsakaseru Portrait"
+			class="w-60 rounded-3xl sm:w-72 sm:rounded-4xl lg:w-90"
+		/>
+		<HubBar client:load />
+	</main>
 </BaseLayout>

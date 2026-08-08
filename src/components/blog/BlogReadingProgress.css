@@ -1,0 +1,68 @@
+[data-reading-controls] .reading-progress-track {
+	--reading-progress: 0;
+	position: relative;
+}
+
+[data-reading-controls] .reading-progress-border {
+	position: absolute;
+	inset: 0;
+	height: 100%;
+	pointer-events: none;
+	width: 100%;
+}
+
+[data-reading-controls] .reading-progress-border path {
+	fill: none;
+	stroke-width: 4px;
+}
+
+[data-reading-controls] .reading-progress-border-track {
+	stroke: var(--color-cocoa-100);
+}
+
+[data-reading-controls] .reading-progress-border-value {
+	stroke: var(--accent-main);
+	stroke-dasharray: var(--reading-progress) 100;
+	transition: stroke-dasharray 150ms ease-out;
+}
+
+[data-reading-controls]
+	.reading-progress-track[data-complete="true"]
+	.reading-progress-border-value {
+	stroke-dasharray: none;
+}
+
+[data-reading-controls] .scroll-top-button {
+	opacity: 0;
+	pointer-events: none;
+	scale: 0.9;
+	translate: 0 0.5rem;
+	visibility: hidden;
+	transition:
+		opacity 180ms ease-out,
+		scale 180ms ease-out,
+		translate 180ms ease-out,
+		visibility 0s linear 180ms,
+		filter 150ms ease;
+}
+
+[data-reading-controls] .scroll-top-button[data-visible="true"] {
+	opacity: 1;
+	pointer-events: auto;
+	scale: 1;
+	translate: 0;
+	visibility: visible;
+	transition-delay: 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	[data-reading-controls] .reading-progress-border-value {
+		transition: none;
+	}
+
+	[data-reading-controls] .scroll-top-button {
+		scale: 1;
+		translate: 0;
+		transition: none;
+	}
+}

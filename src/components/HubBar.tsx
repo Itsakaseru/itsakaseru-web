@@ -38,7 +38,7 @@ export default function HubBar() {
 		<>
 			<motion.div
 				layout
-				className="hidden max-w-[calc(100vw-2rem)] flex-row gap-2 overflow-x-auto rounded-xl bg-white px-3 py-2 shadow-sm shadow-cocoa-100 sm:flex"
+				className="hidden max-w-[calc(100vw-2rem)] flex-row gap-2 overflow-x-auto rounded-xl bg-white px-3 py-2 border border-cocoa-200/15 shadow-sm shadow-cocoa-100 sm:flex"
 				transition={{ duration: 0.25, type: "tween", stiffness: 50 }}
 			>
 				{HubLink.map((link) => (

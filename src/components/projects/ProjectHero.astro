@@ -1,64 +1,68 @@
 ---
-
-import {faArchive} from "@fortawesome/free-solid-svg-icons"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import Image from "astro/components/Image.astro"
-import type {IProjectMetadata} from "@/types/projects.ts";
+import { faArchive } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "astro/components/Image.astro";
+import type { IProjectMetadata } from "@/types/projects.ts";
 
 interface Props {
-	spotlight?: IProjectMetadata
+	spotlight?: IProjectMetadata;
 }
 
-const { spotlight } = Astro.props
+const { spotlight } = Astro.props;
 ---
+
 <div
-    class:list={[
+	class:list={[
         "relative flex mx-auto mt-6 px-4 py-5 overflow-hidden sm:mt-10 sm:px-8 sm:py-8",
-        "rounded-xl bg-snow-100/85",
+        "rounded-xl bg-snow-100/85 border border-cocoa-200/15",
     ]}
 >
-
-    <div class="relative flex w-full flex-col gap-6 md:flex-row md:justify-between md:items-center">
-        <div class="flex flex-col max-w-xl gap-4">
-            <div class="flex items-center gap-3">
-                <div class:list={[
+	<div
+		class="relative flex w-full flex-col gap-6 md:flex-row md:justify-between md:items-center"
+	>
+		<div class="flex flex-col max-w-xl gap-4">
+			<div class="flex items-center gap-3">
+				<div
+					class:list={[
                     "grid size-14 place-items-center",
                     "rounded-2xl shadow-inner bg-cocoa-100 text-cocoa-400",
                 ]}
-                >
-                    <FontAwesomeIcon
-                            icon={faArchive}
-                            className="size-7 -translate-y-px"
-                    />
-                </div>
-                <span
-                    class:list={[
+				>
+					<FontAwesomeIcon
+						icon={faArchive}
+						className="size-7 -translate-y-px"
+					/>
+				</div>
+				<span
+					class:list={[
                         "px-4 py-1",
                         "rounded-lg font-semibold text-xs tracking-[0.18em] uppercase border border-cocoa-200/40",
                     ]}
-                >
-                        Portfolio
-                    </span>
-            </div>
+				>
+					Portfolio
+				</span>
+			</div>
 
-            <div class="space-y-3">
-                <h1 class="font-manrope text-4xl font-black leading-none text-cocoa-500 sm:text-5xl">
-                    Projects
-                </h1>
-                <p
-                    class:list={[
+			<div class="space-y-3">
+				<h1
+					class="font-manrope text-4xl font-black leading-none text-cocoa-500 sm:text-5xl"
+				>
+					Projects
+				</h1>
+				<p
+					class:list={[
                         "max-w-lg",
                         "font-light leading-7 text-cocoa-300",
                     ]}
-                >
-                    All of the projects that I've been worked on either throughout my life, college  or in my own time.
-                </p>
-            </div>
-        </div>
+				>
+					All of the projects that I've been worked on either throughout my
+					life, college or in my own time.
+				</p>
+			</div>
+		</div>
 
-        <!-- Spotlight -->
-		{
-			spotlight &&
+		<!-- Spotlight -->
+		{spotlight &&
 				<div
                     class:list={[
                         "w-full p-3 overflow-hidden md:w-72",
@@ -111,8 +115,6 @@ const { spotlight } = Astro.props
                             In Progress
                         </p>
                     </div>
-                </div>
-		}
-    </div>
-
+                </div>}
+	</div>
 </div>

@@ -70,13 +70,13 @@ export default function Gallery({
 					<div className={`relative overflow-hidden rounded-lg ${frameClass}`}>
 						<button
 							type="button"
-							className="block h-full w-full cursor-zoom-in rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cocoa-500"
+							className="block h-full w-full cursor-pointer rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cocoa-500"
 							onClick={() => setIsPreviewOpen(true)}
 							aria-label={`Preview ${activeItem.alt}`}
 						>
 							<img
 								key={activeItem.src}
-								className={mediaClass}
+								className={`${mediaClass} markdown-gallery-image`}
 								src={activeItem.src}
 								alt={activeItem.alt}
 								loading="lazy"
@@ -87,7 +87,7 @@ export default function Gallery({
 							<div className="absolute flex inset-x-3 top-1/2 -translate-y-1/2 justify-between pointer-events-none">
 								<button
 									type="button"
-									className="grid size-10 place-items-center rounded-full font-bold text-lg pointer-events-auto bg-snow-100/90 text-cocoa-500 shadow-lg shadow-cocoa-900/10 transition hover:bg-cocoa-500 hover:text-snow-100"
+									className="grid size-10 place-items-center rounded-full font-bold text-lg pointer-events-auto bg-snow-100/90 text-cocoa-500 shadow-lg shadow-cocoa-900/10 transition hover:bg-cocoa-500 hover:text-snow-100 cursor-pointer"
 									onClick={goToPrevious}
 									aria-label="Previous gallery item"
 								>
@@ -95,7 +95,7 @@ export default function Gallery({
 								</button>
 								<button
 									type="button"
-									className="grid size-10 place-items-center rounded-full text-lg font-bold pointer-events-auto bg-snow-100/90 text-cocoa-500 shadow-lg shadow-cocoa-900/10 transition hover:bg-cocoa-500 hover:text-snow-100"
+									className="grid size-10 place-items-center rounded-full text-lg font-bold pointer-events-auto bg-snow-100/90 text-cocoa-500 shadow-lg shadow-cocoa-900/10 transition hover:bg-cocoa-500 hover:text-snow-100 cursor-pointer"
 									onClick={goToNext}
 									aria-label="Next gallery item"
 								>
@@ -122,7 +122,7 @@ export default function Gallery({
 								key={`${item.src}-${item.alt}`}
 								type="button"
 								className={
-									"h-2.5 rounded-full transition-all " +
+									"h-2.5 rounded-full transition-all cursor-pointer " +
 									(index === activeIndex
 										? "w-8 bg-cocoa-500"
 										: "w-2.5 bg-cocoa-200/50 hover:bg-cocoa-300")
@@ -165,7 +165,7 @@ export default function Gallery({
 								<button
 									ref={closeButtonRef}
 									type="button"
-									className="absolute right-5 top-5 z-10 grid size-10 place-items-center rounded-full bg-snow-100/90 text-2xl leading-none text-cocoa-500 shadow-lg shadow-cocoa-900/20 transition hover:bg-cocoa-500 hover:text-snow-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-snow-100"
+									className="absolute right-5 top-5 z-10 grid size-10 place-items-center rounded-full bg-snow-100/90 text-2xl leading-none text-cocoa-500 shadow-lg shadow-cocoa-900/20 transition hover:bg-cocoa-500 hover:text-snow-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-snow-100 cursor-pointer"
 									onClick={() => setIsPreviewOpen(false)}
 									aria-label="Close image preview"
 								>
@@ -174,7 +174,7 @@ export default function Gallery({
 
 								<img
 									key={`preview-${activeItem.src}`}
-									className="block max-h-[85vh] max-w-full rounded-xl bg-snow-100/5 object-contain shadow-2xl shadow-cocoa-900/40"
+									className="markdown-gallery-image block max-h-[85vh] max-w-full rounded-xl bg-snow-100/5 object-contain shadow-2xl shadow-cocoa-900/40"
 									src={activeItem.src}
 									alt={activeItem.alt}
 								/>

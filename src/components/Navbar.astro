@@ -1,52 +1,58 @@
 ---
-
-
-
-import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
-	variant?: "default" | "home"
+	variant?: "default" | "home";
 }
 
-const { variant = "default" } = Astro.props
+const { variant = "default" } = Astro.props;
 ---
+
 <header
-    class:list={[
+	class:list={[
         "relative w-full overflow-hidden sm:p-3",
         "rounded-2xl bg-cocoa-500 p-2 text-snow-100",
     ]}
 >
-    <div
-        class:list={[
+	<div
+		class:list={[
             "absolute -left-6 -top-8 sm:-top-10",
             "font-manrope text-7xl font-black text-snow-100/10 sm:text-[9rem]",
             "pointer-events-none",
         ]}
-    >
-        イサカセル
-    </div>
+	>
+		イサカセル
+	</div>
 
-    <div class:list={[
+	<div
+		class:list={[
         "w-full",
         "relative grid gap-3 lg:items-center",
         variant === "home" ? "lg:grid-cols-[auto_1fr]" : "grid-cols-[1fr_auto] items-center lg:grid-cols-[auto_1fr_auto]",
-    ]}>
-        <a
-            class:list={[
+    ]}
+	>
+		<a
+			class:list={[
                 "flex flex-col rounded-xl px-3 py-2 -space-y-1",
                 "hover:bg-snow-100/10",
                 "transition",
             ]}
-            href="/"
-        >
-            <span class="text-2xl font-bold tracking-tight sm:text-3xl">Itsakaseru</span>
-            <span class="text-sm font-extralight text-snow-100/75 sm:text-base">Lemuel Lancaster</span>
-        </a>
+			href="/"
+		>
+			<span class="text-2xl font-bold tracking-tight sm:text-3xl"
+				>Itsakaseru</span
+			>
+			<span class="text-sm font-extralight text-snow-100/75 sm:text-base"
+				>Lemuel Lancaster</span
+			>
+		</a>
 
-        <div class:list={[variant === "home" ? "hidden lg:block lg:justify-self-end" : "w-full justify-self-end lg:justify-self-stretch"]}>
-            <slot />
-        </div>
+		<div
+			class:list={[variant === "home" ? "hidden lg:block lg:justify-self-end" : "w-full justify-self-end lg:justify-self-stretch"]}
+		>
+			<slot />
+		</div>
 
 		{variant !== "home" && (
 			<div

@@ -1,0 +1,198 @@
+---
+import type { CollectionEntry } from "astro:content";
+import {
+	faArrowRight,
+	faCalendarDay,
+	faClock,
+	faStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { calculateReadingTime } from "@/utils/blog.ts";
+import { formatDateMonthYear } from "@/utils/format.ts";
+
+interface Props {
+	posts: CollectionEntry<"blog">[];
+}
+
+const { posts } = Astro.props;
+const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
+---
+
+{spotlight && (
+    <section
+			class:list={[
+				"p-3 sm:p-4",
+				"rounded-xl bg-snow-100/85",
+			]}
+            style={`--accent-sub: ${spotlight.data.accent.sub ?? "#fff6f4"};`}
+    >
+        <div
+			class:list={[
+				"relative overflow-hidden p-4 sm:p-6 lg:p-8",
+				"rounded-lg text-snow-100",
+			]}
+		>
+			{spotlight.data.hero?.wide && (
+                    <img
+							src={spotlight.data.hero.wide.src}
+							alt={spotlight.data.hero.wide.alt}
+							class:list={[
+								"absolute inset-0 h-full w-full",
+								"object-cover",
+							]}
+                    />
+			)}
+
+            <div
+				class:list={[
+					"absolute inset-0",
+					"bg-black/50",
+				]}
+			/>
+
+            <div class="relative flex flex-col gap-5 lg:flex-row">
+                <div class="min-w-0 flex flex-col flex-1 gap-4">
+                    <div class="flex flex-wrap items-center gap-3">
+							<span
+								class:list={[
+									"inline-flex items-center gap-2 px-3 py-1",
+									"font-bold text-xs uppercase tracking-widest",
+									"rounded-lg bg-snow-100/20 backdrop-blur-sm",
+								]}
+							>
+								<FontAwesomeIcon icon={faStar} className="size-3"/>
+								Spotlight Post
+							</span>
+                        <span
+							class:list={[
+								"px-3 py-1",
+								"font-bold text-xs uppercase tracking-widest text-cocoa-400",
+								"rounded-lg bg-snow-100/90",
+							]}
+						>
+								{spotlight.data.category}
+							</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h1 class="font-manrope font-black text-4xl leading-tight sm:text-5xl xl:text-6xl">
+							{spotlight.data.title}
+                        </h1>
+                        <p
+							class:list={[
+								"max-w-2xl",
+								"font-light text-sm text-snow-100/85 line-clamp-3 sm:text-base",
+							]}
+						>
+							{spotlight.data.description}
+                        </p>
+                    </div>
+
+                    <div
+						class:list={[
+							"flex flex-wrap gap-3",
+							"font-semibold text-xs uppercase tracking-[0.12em] text-snow-100/75",
+						]}
+					>
+							<span
+								class:list={[
+									"px-3 py-2 inline-flex items-center gap-2",
+									"rounded-lg bg-snow-100/15 backdrop-blur-sm",
+								]}
+							>
+								<FontAwesomeIcon icon={faCalendarDay} className="size-3" />
+								{formatDateMonthYear(spotlight.data.publishedAt)}
+							</span>
+                        <span
+							  class:list={[
+								  "px-3 py-2 inline-flex items-center gap-2",
+								  "rounded-lg bg-snow-100/15 backdrop-blur-sm",
+							  ]}
+						>
+								<FontAwesomeIcon icon={faClock} className="size-3" />
+							{calculateReadingTime(spotlight.body ?? "")}
+							</span>
+                    </div>
+
+                    <a
+                            href={`/blog/${spotlight.id}`}
+							class:list={[
+								"w-fit mt-auto px-4 py-2.5 inline-flex items-center gap-3",
+								"font-semibold text-sm text-cocoa-500",
+								"group rounded-xl bg-snow-100 transition hover:bg-(--accent-sub) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-snow-100",
+							]}
+                    >
+                        <FontAwesomeIcon icon={faArrowRight} className="size-3 group-hover:translate-x-1 transition-transform" />
+                        Read spotlight
+                    </a>
+
+                </div>
+
+				{/* Featured posts */}
+                <div class="flex flex-col mt-auto gap-2.5 lg:w-80 lg:flex-none">
+					{featuredPost && (
+                            <a
+                                    href={`/blog/${featuredPost.id}`}
+                                    class="group rounded-2xl bg-snow-100/15 p-2.5 backdrop-blur-sm transition hover:-translate-y-1 hover:bg-snow-100/20"
+                                    style={`--featured-accent-sub: ${featuredPost.data.accent.sub ?? "#fff6f4"};`}
+                            >
+                                <div class="relative aspect-16/10 overflow-hidden rounded-xl"
+									class:list={[
+										"relative aspect-auto overflow-hidden",
+										"rounded-xl",
+									]}
+								>
+									{featuredPost.data.hero?.thumbnail &&
+                                            <img
+												src={featuredPost.data.hero.thumbnail.src}
+												alt={featuredPost.data.hero.thumbnail.alt}
+													class:list={[
+														"w-full h-full max-h-64",
+														"object-cover transition duration-500 group-hover:scale-105",
+													]}
+                                            />}
+
+                                    <div class="absolute inset-x-3 bottom-3 rounded-xl bg-snow-100/80 p-3 text-cocoa-500 shadow-xl shadow-cocoa-900/20 backdrop-blur-sm"
+										class:list={[
+											"absolute inset-x-3 bottom-3 p-3",
+											"text-cocoa-500",
+											"rounded-xl bg-snow-100/80 shadow-xl shadow-cocoa-900/20 backdrop-blur-sm",
+										]}
+									>
+                                        <p class="font-bold text-xs uppercase tracking-widest text-cocoa-300">
+                                            Featured Note
+                                        </p>
+                                        <p
+											class:list={[
+												"mt-1",
+												"font-manrope font-black text-lg leading-snug line-clamp-2",
+											]}
+										>
+											{featuredPost.data.title}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+					)}
+
+					{additionalSpotlight && (
+                            <a
+                                    href={`/blog/${additionalSpotlight.id}`}
+                                    class="rounded-xl bg-snow-100/15 p-2.5 text-snow-100 backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-snow-100/20"
+                            >
+                                <div>
+                                    <p class="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-snow-100/60">
+                                        Also Featured
+                                    </p>
+                                    <h2 class="mt-1 line-clamp-1 font-manrope text-base font-black leading-tight">
+										{additionalSpotlight.data.title}
+                                    </h2>
+                                </div>
+                            </a>
+					)}
+
+                </div>
+            </div>
+        </div>
+    </section>
+	)}

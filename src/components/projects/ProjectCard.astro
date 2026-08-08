@@ -1,54 +1,62 @@
 ---
-import {Image} from "astro:assets";
-import ProjectTagList from "@/components/projects/ProjectTagList.astro";
-import type {IProjectMetadata} from "@/types/projects.ts";
+import { Image } from "astro:assets";
+import TagList from "@/components/TagList.astro";
+import type { IProjectMetadata } from "@/types/projects.ts";
 
 interface Props {
-	metadata: IProjectMetadata
-	href: string
+	metadata: IProjectMetadata;
+	href: string;
 }
 
-const { metadata, href } = Astro.props
-const { name, description, logo, mark, tags = [], accent, createdAt } = metadata
+const { metadata, href } = Astro.props;
+const {
+	name,
+	description,
+	logo,
+	mark,
+	tags = [],
+	accent,
+	createdAt,
+} = metadata;
 ---
+
 <a
-        href={href}
-        class:list={[
+	href={href}
+	class:list={[
             "group flex flex-col min-h-72 p-3 overflow-hidden hover:-translate-y-1",
-            "rounded-xl bg-snow-100/85 hover:bg-snow-100 hover:shadow-cocoa-200/15 hover:shadow-xl",
+            "rounded-xl bg-snow-100/85 border border-cocoa-200/15 hover:bg-snow-100 hover:shadow-cocoa-200/15 hover:shadow-xl",
             "transition duration-300",
         ]}
-        style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub};`}
+	style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub};`}
 >
-    <article class="flex flex-1 flex-col">
-    <div
-        class:list={[
+	<article class="flex flex-1 flex-col">
+		<div
+			class:list={[
             "relative p-4 mb-4 overflow-hidden",
             "rounded-lg text-snow-100",
         ]}
-        style={"background-color: var(--accent-main)"}
-    >
-        <div
-            class:list={[
+			style={"background-color: var(--accent-main)"}
+		>
+			<div
+				class:list={[
                 "absolute -top-4 -right-2",
                 "font-manrope font-black leading-none text-5xl text-snow-100/15",
             ]}
-        >
-			{createdAt.getFullYear()}
-        </div>
+			>
+				{createdAt.getFullYear()}
+			</div>
 
-        <!-- Soft Light -->
-        <div
-            class:list={[
+			<!-- Soft Light -->
+			<div
+				class:list={[
                 "absolute -bottom-10 left-8 size-28",
                 "rounded-full bg-snow-100/20 blur-2xl",
             ]}
-        />
+			/>
 
-        <div class="relative flex flex-col min-h-28 justify-between gap-6">
-            <div class="flex justify-between items-start gap-3">
-                {
-                    mark &&
+			<div class="relative flex flex-col min-h-28 justify-between gap-6">
+				<div class="flex justify-between items-start gap-3">
+					{mark &&
                     <span
                         class:list={[
                             "px-3 py-1",
@@ -56,48 +64,49 @@ const { name, description, logo, mark, tags = [], accent, createdAt } = metadata
                         ]}
                     >
                         {mark}
-                    </span>
-                }
-            </div>
+                    </span>}
+				</div>
 
-            <div class="absolute grid top-0 bottom-0 right-0 w-24 place-items-center">
-                <div
-                    class:list={[
+				<div
+					class="absolute grid top-0 bottom-0 right-0 w-24 place-items-center"
+				>
+					<div
+						class:list={[
                         "grid size-24 place-items-center overflow-hidden",
                         "rounded-2xl bg-snow-100/90 group-hover:scale-105",
                         "transition duration-300",
                     ]}
-                >
-                    <Image
-                            src={logo}
-                            alt={`${name} logo`}
-                            width=500
-                            height="500"
-                            class="aspect-square w-20 rounded-xl object-cover"
-                    />
-                </div>
-            </div>
+					>
+						<Image
+							src={logo}
+							alt={`${name} logo`}
+							width="500"
+							height="500"
+							class="aspect-square w-20 rounded-xl object-cover"
+						/>
+					</div>
+				</div>
 
-            <h2
-                class:list={[
+				<h2
+					class:list={[
                     "max-w-32 ",
                     "font-manrope font-black text-2xl leading-none",
                 ]}
-            >
-				{name}
-            </h2>
-        </div>
-    </div>
+				>
+					{name}
+				</h2>
+			</div>
+		</div>
 
-    <div class="flex flex-1 flex-col px-1 pb-1 gap-4">
-        <p class="font-light line-clamp-3 leading-6 text-cocoa-300">
-			{description}
-        </p>
+		<div class="flex flex-1 flex-col px-1 pb-1 gap-4">
+			<p class="font-light line-clamp-3 leading-6 text-cocoa-300">
+				{description}
+			</p>
 
-        <div class="mt-auto">
-            <!-- Only the top 3 tags are shown -->
-			<ProjectTagList tags={tags.slice(0, 2)} accent={accent} />
-        </div>
-    </div>
-    </article>
+			<div class="mt-auto">
+				<!-- Only the top 3 tags are shown -->
+				<TagList tags={tags.slice(0, 2)} accent={accent} />
+			</div>
+		</div>
+	</article>
 </a>

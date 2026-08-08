@@ -1,14 +1,29 @@
 ---
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { faCoffee } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import DefaultLayout from "@/layouts/DefaultLayout.astro"
-
-const description = "Itsakaseru's Fun Blog. Coming soon."
+const description = "Itsakaseru's Fun Blog. Coming soon.";
 ---
-<DefaultLayout title="Itsakaseru's Fun Blog" description={description} canonical="/fun" noindex>
-	<div class="flex min-h-[calc(100dvh-16rem)] flex-col items-center justify-center px-4 text-center text-2xl font-semibold sm:min-h-[calc(100dvh-18rem)] sm:text-3xl">
-        <h1>
-            Coming Soon!
-        </h1>
-		<div class="text-base font-normal sm:text-lg">Itsakaseru&apos;s Fun Blog</div>
+
+<DefaultLayout
+	title="Itsakaseru's Fun Blog"
+	description={description}
+	canonical="/fun"
+	noindex
+>
+	<div
+		class:list={[
+			"min-h-[calc(100dvh-16rem)] px-4 flex flex-col items-center justify-center sm:min-h-[calc(100dvh-18rem)]",
+			"font-semibold text-2xl text-center sm:text-3xl",
+		]}
+	>
+		<div class="size-24">
+			<FontAwesomeIcon icon={faCoffee} />
+		</div>
+		<h1 class="mt-2">Coming Soon!</h1>
+		<div class="font-extralight text-sm sm:text-base">
+			Itsakaseru&apos;s Fun Blog
+		</div>
 	</div>
 </DefaultLayout>

@@ -1,16 +1,13 @@
+import type { IAccent } from "./common.ts";
+
 export interface IProjectMetadata {
 	name: string;
 	description: string;
 	logo: string;
 	mark?: string | undefined;
 	tags?: string[] | undefined;
-	accent: IProjectAccent;
+	accent: IAccent;
 	createdAt: Date;
 	publishedAt: Date;
 	updatedAt: Date;
-}
-
-export interface IProjectAccent {
-	main: string;
-	sub?: string | undefined;
 }

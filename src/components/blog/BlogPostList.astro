@@ -1,0 +1,309 @@
+---
+import type { CollectionEntry } from "astro:content";
+import {
+	faArrowLeft,
+	faArrowRight,
+	faBookmark,
+	faBookOpen,
+	faLayerGroup,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { Page } from "astro";
+import { calculateReadingTime } from "@/utils/blog.ts";
+import {
+	formatDate,
+	formatDateMonthYear,
+	formatMonth,
+	formatYear,
+} from "@/utils/format.ts";
+
+interface Props {
+	page: Page<CollectionEntry<"blog">>;
+}
+
+const { page } = Astro.props;
+const posts = page.data;
+const paginationPages = Array.from(
+	{ length: page.lastPage },
+	(_, index) => index + 1,
+);
+
+const getPageUrl = (pageNumber: number) =>
+	pageNumber === 1 ? "/blog" : `/blog/${pageNumber}`;
+---
+
+<section
+	class:list={[
+		"min-w-0 min-h-[calc(100dvh-20rem)] p-3 overflow-hidden flex flex-col sm:p-4 lg:p-5",
+		"rounded-xl bg-snow-100 border border-cocoa-200/15",
+	]}
+>
+	<div
+		class="flex flex-col justify-between gap-3 px-1 sm:pb-4 sm:flex-row sm:items-end"
+	>
+		<div>
+			<p class="font-bold text-xs uppercase tracking-widest text-cocoa-300">
+				Blog
+			</p>
+			<h2 class="font-manrope font-black text-2xl leading-none text-cocoa-500">
+				List of Posts
+			</h2>
+		</div>
+		<p class="font-light text-sm text-cocoa-300">
+			{`${page.total} posts arranged by recency`}
+		</p>
+	</div>
+
+	<!-- With horizontal connecting line -->
+	<div
+		class:list={[
+			"relative grid flex-1 gap-3 sm:mt-3",
+			posts.length > 0 &&
+				"content-start sm:before:absolute sm:before:bottom-0 sm:before:left-8 sm:before:top-0 sm:before:w-px before:bg-cocoa-200/25",
+		]}
+	>
+		{posts.length === 0 ? (
+			<div
+				class:list={[
+					"grid h-full min-h-56 place-items-center px-6 py-10",
+					"text-center",
+					"rounded-xl border border-dashed border-cocoa-200/30 bg-cocoa-100/35",
+				]}
+			>
+				<div class="flex flex-col">
+					<div class="w-8 mx-auto">
+                        <FontAwesomeIcon icon={faBookmark} size="2xs"/>
+					</div>
+					<h3 class="mt-4 font-manrope font-black text-xl text-cocoa-500">
+						No posts available
+					</h3>
+					<p class="mt-2 font-light text-sm text-cocoa-300">
+						New posts will appear here once published.
+					</p>
+				</div>
+			</div>
+		) : posts.map((article) => (
+			<a
+				href={`/blog/${article.id}`}
+				class="group relative grid gap-3 sm:grid-cols-[5rem_1fr]"
+				style={`--accent-main: ${article.data.accent.main}; --accent-sub: ${article.data.accent.sub ?? "#fff6f4"};`}
+			>
+				<div class="z-10 hidden relative items-start gap-3 sm:flex">
+					<div
+						class:list={[
+							"z-10 relative grid size-14 shrink-0 place-items-center sm:size-16",
+							"text-center",
+							"rounded-xl border border-cocoa-200/20 bg-snow-100",
+							"shadow-lg shadow-cocoa-200/10",
+							"transition group-hover:border-(--accent-main)/40 group-hover:bg-(--accent-sub)",
+						]}
+					>
+						<div>
+							 <p class="font-manrope font-black text-xl leading-none text-cocoa-500">
+								{formatDate(article.data.publishedAt)}
+							</p>
+							<p class="text-[0.65rem] font-bold uppercase text-(--accent-main)">
+								{formatMonth(article.data.publishedAt)}
+							</p>
+							<p class="text-[0.65rem] tracking-widest text-cocoa-200">
+								{formatYear(article.data.publishedAt)}
+							</p>
+						</div>
+					</div>
+
+					{ /* Vertical connecting line */ }
+					<span
+						class="absolute left-8 -right-3 top-8 hidden h-px bg-cocoa-200/25 transition-colors group-hover:bg-(--accent-main) sm:block"
+						aria-hidden="true"
+					/>
+				</div>
+
+				<article
+					class:list={[
+						"relative overflow-hidden",
+						"rounded-xl border border-cocoa-200/20 bg-snow-100/70",
+						"transition duration-300 hover:-translate-y-1 hover:border-(--accent-main)/40 hover:bg-snow-100 hover:shadow-xl hover:shadow-cocoa-200/15",
+					]}
+				>
+					<div class="min-h-45 grid lg:grid-cols-[minmax(0,1fr)_12rem] xl:grid-cols-[minmax(0,1fr)_15rem]">
+						<div class="min-w-0 p-4 flex flex-col gap-3">
+							<div class="flex flex-wrap items-center gap-2">
+								<span
+									class:list={[
+										"px-2.5 py-1 inline-flex items-center gap-2",
+										"font-bold text-xs uppercase tracking-widest text-(--accent-main)",
+										"rounded-lg bg-(--accent-sub) border border-(--accent-main)/15",
+									]}
+								>
+									<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
+									{article.data.category}
+								</span>
+								<span
+									class:list={[
+										"px-2.5 py-1 inline-flex items-center gap-1.5",
+										"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
+										"rounded-lg bg-cocoa-100 border border-cocoa-200/15",
+									]}
+								>
+									<FontAwesomeIcon icon={faBookOpen} className="size-3" />
+									{calculateReadingTime(article.body ?? "")}
+								</span>
+							</div>
+
+							<div>
+								<h3
+									class:list={[
+										"max-w-3xl",
+										"font-manrope font-black text-xl leading-tight text-cocoa-500 line-clamp-2 sm:text-2xl",
+										"transition group-hover:text-(--accent-main)",
+									]}
+								>
+									{article.data.title}
+								</h3>
+								<p
+									class:list={[
+										"max-w-3xl mt-2",
+										"font-light text-sm text-cocoa-300/85 line-clamp-3",
+									]}
+								>
+									{article.data.description}
+								</p>
+							</div>
+
+							<div
+								class:list={[
+									"mt-auto flex flex-wrap items-center justify-between gap-3 sm:hidden",
+									"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
+								]}
+							>
+								<span>{formatDateMonthYear(article.data.publishedAt)}</span>
+								<span
+									class:list={[
+										"inline-flex items-center gap-2",
+										"text-cocoa-500",
+										"transition group-hover:text-(--accent-main)",
+									]}
+								>
+									Read post
+									<FontAwesomeIcon icon={faArrowRight} className="size-3" />
+								</span>
+							</div>
+						</div>
+
+						{
+							article.data.hero?.thumbnail &&
+                                <div
+                                        class:list={[
+											"hidden min-h-36 relative overflow-hidden sm:block lg:min-h-full",
+											"bg-(--accent-main)"
+										]}
+                                >
+                                    <img
+											src={article.data.hero.thumbnail.src}
+											alt={article.data.hero.thumbnail.alt}
+                                            class:list={[
+												"w-full h-full absolute inset-0",
+												"object-cover",
+												"transition duration-500 group-hover:scale-105",
+											]}
+                                    />
+                                </div>
+						}
+
+					</div>
+				</article>
+			</a>
+		))}
+	</div>
+
+	{page.lastPage > 1 && (
+		<nav
+			class:list={[
+				"mt-5 px-3 py-2.5 overflow-hidden",
+				"rounded-2xl bg-cocoa-100/75 border border-cocoa-200/15",
+			]}
+			aria-label="Blog pagination"
+		>
+			<div class="flex flex-row justify-between lg:items-center">
+				{page.url.prev ? (
+					<a
+						href={page.url.prev}
+						class:list={[
+							"px-4 py-3 inline-flex items-center justify-center gap-2 sm:justify-start",
+							"font-bold text-sm text-snow-100",
+							"rounded-xl bg-cocoa-300",
+							"transition hover:bg-cocoa-400",
+						]}
+					>
+						<FontAwesomeIcon icon={faArrowLeft} className="size-3" />
+						Previous
+					</a>
+				) : (
+					<span
+						aria-disabled="true"
+						class:list={[
+							"px-4 py-3 inline-flex items-center justify-center gap-2 opacity-70 sm:justify-start",
+							"font-bold text-sm text-cocoa-200",
+							"rounded-xl bg-snow-100/60 border border-cocoa-200/15",
+							"transition hover:bg-snow-100/70",
+						]}
+					>
+						<FontAwesomeIcon icon={faArrowLeft} className="size-3" />
+						Previous
+					</span>
+				)}
+
+				<div
+					class:list={[
+						"flex flex-wrap items-center justify-center gap-2",
+						"rounded-xl",
+					]}
+				>
+					{paginationPages.map((pageNumber) => (
+						<a
+							href={getPageUrl(pageNumber)}
+							class:list={[
+								"grid size-10 place-items-center rounded-lg font-manrope text-sm font-black transition",
+								pageNumber === page.currentPage
+									? "bg-cocoa-300 text-snow-100"
+									: "bg-snow-100 text-cocoa-300 border border-cocoa-200/15 hover:bg-cocoa-100 hover:text-cocoa-500",
+							]}
+							aria-current={pageNumber === page.currentPage ? "page" : undefined}
+						>
+							{String(pageNumber).padStart(2, "0")}
+						</a>
+					))}
+				</div>
+
+				{page.url.next ? (
+					<a
+						href={page.url.next}
+						class="inline-flex items-center justify-center gap-2 rounded-xl bg-cocoa-300 px-4 py-3 text-sm font-bold text-snow-100 hover:bg-cocoa-400 sm:justify-end"
+                        class:list={[
+							"px-4 py-3 inline-flex items-center justify-center gap-2 sm:justify-start",
+							"font-bold text-sm text-snow-100",
+							"rounded-xl bg-cocoa-300",
+							"transition hover:bg-cocoa-400",
+						]}
+					>
+						Next
+						<FontAwesomeIcon icon={faArrowRight} className="size-3" />
+					</a>
+				) : (
+					<span
+						aria-disabled="true"
+                        class:list={[
+							"px-4 py-3 inline-flex items-center justify-center gap-2 opacity-70 sm:justify-start",
+							"font-bold text-sm text-cocoa-200",
+							"rounded-xl bg-snow-100/60 border border-cocoa-200/15",
+							"transition hover:bg-snow-100/70",
+						]}
+					>
+						Next
+						<FontAwesomeIcon icon={faArrowRight} className="size-3" />
+					</span>
+				)}
+			</div>
+		</nav>
+	)}
+</section>

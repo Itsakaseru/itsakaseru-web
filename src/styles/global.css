@@ -20,7 +20,47 @@
 	--color-cocoa-900: #2b1611;
 }
 
+:root {
+	--accent-main: var(--color-cocoa-500);
+	--accent-sub: var(--color-cocoa-100);
+	--other-accent: var(--color-cocoa-500);
+	--other-accent-sub: var(--color-cocoa-100);
+	--scrollbar-thumb: var(--color-cocoa-300);
+	--scrollbar-thumb-hover: var(--color-cocoa-400);
+	--scrollbar-track: transparent;
+}
+
 html,
 body {
 	@apply bg-cocoa-200/5 text-cocoa-500;
+}
+
+* {
+	scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+	scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+	height: 0.75rem;
+	width: 0.75rem;
+}
+
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-corner {
+	background: var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+	background-clip: padding-box;
+	background-color: var(--scrollbar-thumb);
+	border: 0.1875rem solid transparent;
+	border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+	background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-thumb:active {
+	background-color: var(--color-cocoa-500);
 }

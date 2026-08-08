@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+interface Props {
+	post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { title, description, category, tags = [], hero } = post.data;
+---
+
+<section
+	class:list={[
+		"p-3 overflow-hidden",
+		"text-snow-100",
+		"rounded-xl bg-snow-100/85",
+	]}
+>
+	<div
+		class:list={[
+			"p-5 relative overflow-hidden sm:p-6 lg:p-8",
+			"rounded-lg bg-(--accent-main)",
+		]}
+	>
+		{hero?.wide ? (
+				<img src={hero.wide.src} alt={hero.wide.alt}
+					class:list={[
+						"absolute inset-0 w-full h-full",
+						"object-cover",
+					]}
+				/>
+			) : (
+				<div
+					class:list={[
+						"absolute inset-0",
+						"bg-[radial-gradient(circle_at_60%_35%,rgba(255,255,255,0.25),transparent_35%)] opacity-60",
+					]}
+				/>
+			)}
+		<div
+			class:list={[
+				"absolute inset-0",
+				"bg-[linear-gradient(100deg,rgba(40,25,15,0.75)_0%,rgba(40,25,15,0.40)_45%,rgba(40,25,15,0.10)_100%)]",
+			]}
+		/>
+
+		<div class="relative">
+			<div class="max-w-4/5 space-y-4">
+				<div class="flex flex-wrap items-center gap-3">
+					<span
+						class:list={[
+							"px-3 py-1 inline-flex items-center gap-2",
+							"font-bold text-xs uppercase tracking-widest",
+							"rounded-lg bg-snow-100/20 backdrop-blur-sm",
+						]}
+					>
+						<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
+						{category}
+					</span>
+
+					<!-- Top 3 post tags -->
+					{tags.slice(0, 3).map((tag) => (
+							<span
+								class:list={[
+									"px-3 py-1",
+									"font-bold text-xs uppercase tracking-widest text-cocoa-400",
+									"rounded-lg bg-snow-100/90",
+								]}
+							>
+								#{tag}
+							</span>
+						))}
+				</div>
+
+				<h1
+					class="font-manrope font-black text-3xl leading-none sm:text-5xl xl:text-6xl"
+				>
+					{title}
+				</h1>
+				<p class="font-light text-sm leading-tight text-snow-100/85">
+					{description}
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

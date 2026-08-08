@@ -1,6 +1,46 @@
-<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="1" y="1" width="510" height="510" rx="39" fill="white" stroke="#694B47" stroke-width="2"/>
-<rect x="189" y="141" width="228" height="228" rx="9" fill="#694B47" stroke="#694B47" stroke-width="2"/>
-<rect x="95" y="97" width="62" height="318" rx="9" fill="#694B47" stroke="#694B47" stroke-width="2"/>
-<circle cx="304" cy="256" r="59" fill="white" stroke="#694B47" stroke-width="2"/>
+<svg
+	width="512"
+	height="512"
+	viewBox="0 0 512 512"
+	fill="none"
+	xmlns="http://www.w3.org/2000/svg"
+>
+	<rect
+		x="1"
+		y="1"
+		width="510"
+		height="510"
+		rx="39"
+		fill="white"
+		stroke="#694B47"
+		stroke-width="2"
+	/>
+	<rect
+		x="189"
+		y="141"
+		width="228"
+		height="228"
+		rx="9"
+		fill="#694B47"
+		stroke="#694B47"
+		stroke-width="2"
+	/>
+	<rect
+		x="95"
+		y="97"
+		width="62"
+		height="318"
+		rx="9"
+		fill="#694B47"
+		stroke="#694B47"
+		stroke-width="2"
+	/>
+	<circle
+		cx="304"
+		cy="256"
+		r="59"
+		fill="white"
+		stroke="#694B47"
+		stroke-width="2"
+	/>
 </svg>

@@ -1,33 +1,29 @@
 ---
 import { getCollection, render } from "astro:content";
-import Image from "astro/components/Image.astro";
 import {
 	faArrowUpRightFromSquare,
 	faClockRotateLeft,
 	faFolderOpen,
 	faLink,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-	faBluesky,
-	faGithub,
-	faLinkedin,
-	faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "astro/components/Image.astro";
 import Lemi from "@/assets/lemi.jpg";
-import DefaultLayout from "@/layouts/DefaultLayout.astro";
 import SidebarCard from "@/components/SidebarCard.astro";
-import { SOCIAL_LINKS } from "@/components/SocialLink.astro"
+import { SOCIAL_LINKS } from "@/components/SocialLink.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import "@/styles/markdown-content.css";
 
 const aboutEntries = await getCollection("about");
-const about = aboutEntries.find((entry) => entry.id === "profile") ?? aboutEntries[0];
+const about =
+	aboutEntries.find((entry) => entry.id === "profile") ?? aboutEntries[0];
 
 if (!about) {
 	throw new Error("Missing about content entry.");
 }
 
 const { Content } = await render(about);
-const { title, description, accent, documents} = about.data;
+const { title, description, accent, documents } = about.data;
 const pageTitle = "Itsakaseru: About Me";
 
 const roles = ["Programmer", "Oneironatics", "Human"];
@@ -48,40 +44,92 @@ const formatDocumentDate = (date: Date) => {
 };
 ---
 
-<DefaultLayout title={pageTitle} description={description} canonical="/about" image={Lemi} imageAlt="Itsakaseru portrait">
-	<main class="mt-6 space-y-6 sm:mt-10" style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}>
-
+<DefaultLayout
+	title={pageTitle}
+	description={description}
+	canonical="/about"
+	image={Lemi}
+	imageAlt="Itsakaseru portrait"
+>
+	<main
+		class="mt-6 space-y-6 sm:mt-10"
+		style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}
+	>
 		<!-- Hero Section -->
-		<section class="relative overflow-hidden rounded-xl bg-snow-100/85 p-3 sm:p-4">
-			<div class="relative overflow-hidden rounded-lg p-4 text-snow-100 sm:p-8" style="background: var(--accent-main)">
-				<div class="absolute -right-8 -top-8 font-manrope text-[6rem] font-black leading-none text-snow-100/10 sm:-top-10 sm:text-[12rem]">
-                    レムエル
+		<section
+			class="relative overflow-hidden rounded-xl bg-snow-100 border border-cocoa-200/15 p-3 sm:p-4"
+		>
+			<div
+				class="relative overflow-hidden rounded-lg p-4 text-snow-100 sm:p-8"
+				style="background: var(--accent-main)"
+			>
+				<div
+					class="absolute -right-8 -top-8 font-manrope text-[6rem] font-black leading-none text-snow-100/10 sm:-top-10 sm:text-[12rem]"
+				>
+					レムエル
 				</div>
 
-				<div class="absolute -bottom-20 left-10 size-48 rounded-full bg-snow-100/20 blur-3xl"></div>
+				<div
+					class="absolute -bottom-20 left-10 size-48 rounded-full bg-snow-100/20 blur-3xl"
+				></div>
 
 				<div class="relative grid gap-8 xl:grid-cols-[1fr_18rem] xl:items-end">
 					<div class="max-w-2xl space-y-5">
 						<div class="space-y-4">
-							<h1 class="font-manrope text-3xl font-black leading-none sm:text-5xl">{title}</h1>
-							<p class="font-manrope text-xl font-black leading-none text-snow-100/90">Itsakaseru, Remueru</p>
-							<p class="max-w-2xl text-sm font-light leading-6 text-snow-100/85 sm:text-base">{description}</p>
+							<h1
+								class="font-manrope text-3xl font-black leading-none sm:text-5xl"
+							>
+								{title}
+							</h1>
+							<p
+								class="font-manrope text-xl font-black leading-none text-snow-100/90"
+							>
+								Itsakaseru, Remueru
+							</p>
+							<p
+								class="max-w-2xl text-sm font-light leading-6 text-snow-100/85 sm:text-base"
+							>
+								{description}
+							</p>
 						</div>
 
-						<div class="max-w-sm rounded-lg bg-snow-100/15 p-3 text-snow-100 backdrop-blur-sm">
-							<p class="text-xs font-semibold uppercase tracking-[0.14em] text-snow-100/70">Roles</p>
-							<p class="mt-2 font-manrope text-lg font-black leading-none">{roles.join(" / ")}</p>
+						<div
+							class="max-w-sm rounded-lg bg-snow-100/15 p-3 text-snow-100 backdrop-blur-sm"
+						>
+							<p
+								class="text-xs font-semibold uppercase tracking-[0.14em] text-snow-100/70"
+							>
+								Roles
+							</p>
+							<p class="mt-2 font-manrope text-lg font-black leading-none">
+								{roles.join(" / ")}
+							</p>
 						</div>
 					</div>
 
-					<div class="relative w-fit justify-self-start xl:justify-self-end xl:self-end">
-						<div class="absolute -left-10 bottom-3 top-3 hidden text-xs font-bold uppercase tracking-[0.28em] text-snow-100/40 xl:block" style="writing-mode: vertical-rl;">
+					<div
+						class="relative w-fit justify-self-start xl:justify-self-end xl:self-end"
+					>
+						<div
+							class="absolute -left-10 bottom-3 top-3 hidden text-xs font-bold uppercase tracking-[0.28em] text-snow-100/40 xl:block"
+							style="writing-mode: vertical-rl;"
+						>
 							Itsakaseru, Remueru
 						</div>
 
-						<div class="aspect-square w-44 rounded-2xl bg-snow-100/15 p-3 backdrop-blur-sm sm:w-56">
-							<div class="grid size-full place-items-center overflow-hidden rounded-xl bg-cocoa-100 p-2">
-								<Image src={Lemi} alt="Itsakaseru portrait" width={600} height={600} class="aspect-square w-full rounded-lg object-cover" />
+						<div
+							class="aspect-square w-44 rounded-2xl bg-snow-100/15 p-3 backdrop-blur-sm sm:w-56"
+						>
+							<div
+								class="grid size-full place-items-center overflow-hidden rounded-xl bg-cocoa-100 p-2"
+							>
+								<Image
+									src={Lemi}
+									alt="Itsakaseru portrait"
+									width={600}
+									height={600}
+									class="aspect-square w-full rounded-lg object-cover"
+								/>
 							</div>
 						</div>
 					</div>
@@ -91,11 +139,13 @@ const formatDocumentDate = (date: Date) => {
 
 		<!-- Content section -->
 		<section class="grid gap-4 lg:grid-cols-[20rem_1fr]">
-
 			<!-- Sidebar content -->
-			<aside class="order-2 grid gap-4 self-start lg:order-1 lg:sticky lg:top-6">
+			<aside
+				class="order-2 grid gap-4 self-start lg:order-1 lg:sticky lg:top-6"
+			>
 				<SidebarCard title="Public Documents" icon={faFolderOpen}>
-					{documents.map((document) => (
+					<div class="flex flex-col gap-2">
+						{documents.map((document) => (
                             <a href={document.url} target="_blank" rel="noreferrer" class="group block rounded-lg border border-cocoa-200/20 bg-cocoa-100/70 p-3 transition hover:border-cocoa-200/40 hover:bg-snow-100">
 								<span class="flex items-start justify-between gap-3">
 									<span>
@@ -108,11 +158,13 @@ const formatDocumentDate = (date: Date) => {
 									{formatDocumentDate(document.updatedAt)}
 								</span>
                             </a>
-					))}
+						))}
+					</div>
 				</SidebarCard>
 
 				<SidebarCard title="Find Me" icon={faLink}>
-					{SOCIAL_LINKS.length > 0 ? SOCIAL_LINKS.map((link) => (
+					<div class="flex flex-col gap-2">
+						{SOCIAL_LINKS.length > 0 ? SOCIAL_LINKS.map((link) => (
                             <a href={link.href} target="_blank" rel="noreferrer"  class="flex p-2 justify-between gap-2 rounded-lg border border-cocoa-200/20 bg-snow-100/60 hover:bg-cocoa-200/5 transition">
                                 <span class="flex min-w-0 items-center gap-2">
 									<FontAwesomeIcon icon={link.icon} className="size-3.5 shrink-0 text-cocoa-300" />
@@ -122,101 +174,19 @@ const formatDocumentDate = (date: Date) => {
                             </a>
 					)) : (
                             <p class="rounded-lg bg-snow-100/60 px-3 py-2 text-sm text-cocoa-300">No external links listed yet.</p>
-					)}
+						)}
+					</div>
 				</SidebarCard>
 			</aside>
 
 			<!-- Main content -->
 			<section class="order-1 min-w-0 space-y-4 lg:order-2">
-                <article class="rounded-xl bg-snow-100/85 about-content min-w-0 p-4 sm:p-8">
-                    <Content />
-                </article>
+				<article
+					class="markdown-content min-w-0 rounded-xl bg-snow-100 border border-cocoa-200/15 py-4 px-6 sm:py-8 sm:px-12"
+				>
+					<Content />
+				</article>
 			</section>
-
 		</section>
-
 	</main>
 </DefaultLayout>
-
-<style is:global>
-	.about-content {
-		color: var(--color-cocoa-300);
-		padding-bottom: 2.5rem;
-	}
-
-	.about-content > :first-child {
-		margin-top: 0;
-	}
-
-	.about-content h1,
-	.about-content h2,
-	.about-content h3 {
-		color: var(--color-cocoa-500);
-		font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-		font-weight: 900;
-		line-height: 1;
-		margin-top: 1.5rem;
-	}
-
-	.about-content h1 {
-		font-size: clamp(1.75rem, 3vw, 2.25rem);
-		margin-top: 4rem;
-	}
-
-	.about-content h2 {
-		font-size: clamp(1.35rem, 2.5vw, 1.75rem);
-	}
-
-	.about-content h3 {
-		font-size: 1.125rem;
-	}
-
-	.about-content p {
-		font-size: 1rem;
-		font-weight: 400;
-		line-height: 1.5;
-		margin-top: 0.75rem;
-		white-space: pre-line;
-	}
-
-	.about-content a {
-		color: var(--accent-main);
-		font-weight: 700;
-		border-bottom: 1px solid var(--accent-sub);
-		border-bottom-width: 2px;
-
-        transition-property: color, border-color;
-        transition-timing-function: ease-in-out;
-        transition-duration: 0.15s;
-	}
-
-    .about-content a:hover {
-        border-bottom: 1px solid var(--accent-main);
-        border-bottom-width: 2px;
-    }
-
-	.about-content strong {
-		color: var(--color-cocoa-500);
-		font-weight: 800;
-	}
-
-	.about-content ul,
-	.about-content ol {
-		margin-top: 0.75rem;
-		padding-left: 1.25rem;
-	}
-
-	.about-content li {
-		font-size: 1rem;
-		font-weight: 300;
-		line-height: 1.75;
-		margin-top: 0.5rem;
-	}
-
-	.about-content hr {
-		margin-top: 0.75rem;
-		margin-bottom: 1.25rem;
-		color: var(--color-cocoa-200);
-		opacity: 0.25;
-	}
-</style>

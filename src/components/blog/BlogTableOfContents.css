@@ -1,0 +1,13 @@
+[data-table-of-contents] .toc-link[data-active="true"] {
+	color: var(--accent-main);
+}
+
+[data-table-of-contents] .toc-link[data-active="true"][data-depth="1"] {
+	background: var(--accent-sub);
+	border-color: color-mix(in srgb, var(--accent-main) 30%, transparent);
+}
+
+[data-table-of-contents] .toc-link[data-active="true"] .toc-marker {
+	background: var(--accent-main);
+	width: 0.25rem;
+}

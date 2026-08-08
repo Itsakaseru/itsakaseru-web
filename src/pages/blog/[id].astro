@@ -1,0 +1,304 @@
+---
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import {
+	faArrowLeft,
+	faBookOpen,
+	faCalendarDay,
+	faClock,
+	faClockRotateLeft,
+	faTags,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import BlogPostHero from "@/components/blog/BlogPostHero.astro";
+import BlogReadingProgress from "@/components/blog/BlogReadingProgress";
+import BlogTableOfContents from "@/components/blog/BlogTableOfContents";
+import MarkdownCodeCopy from "@/components/MarkdownCodeCopy.astro";
+import SidebarCard from "@/components/SidebarCard.astro";
+import TagList from "@/components/TagList.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import "@/styles/markdown-content.css";
+import { calculateReadingTime } from "@/utils/blog.ts";
+import { formatDateMonthYear } from "@/utils/format.ts";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("blog");
+
+	return posts.map((post) => ({
+		params: { id: post.id },
+		props: { post: post },
+	}));
+}
+
+interface Props {
+	post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+const {
+	title,
+	description,
+	category,
+	tags = [],
+	accent,
+	publishedAt,
+	updatedAt,
+} = post.data;
+const readingTime = calculateReadingTime(post.body ?? "");
+const pageTitle = `Blog: ${title}`;
+const relatedPosts = (await getCollection("blog"))
+	.filter((candidate) => candidate.id !== post.id)
+	.sort((postA, postB) => {
+		// Calculate score base on category or tags
+		const scorePost = (candidate: CollectionEntry<"blog">) => {
+			// Same tags = +1 score
+			const sharedTags = (candidate.data.tags ?? []).filter((tag) =>
+				tags.includes(tag),
+			).length;
+			// Same category = +2 score
+			const sameCategory = candidate.data.category === category ? 2 : 0;
+
+			return sharedTags + sameCategory;
+		};
+
+		return (
+			scorePost(postB) - scorePost(postA) ||
+			postB.data.publishedAt.getTime() - postA.data.publishedAt.getTime()
+		);
+	})
+	.slice(0, 4);
+---
+
+<DefaultLayout
+	title={pageTitle}
+	description={description}
+	canonical={`/blog/${post.id}`}
+	type="article"
+>
+	<main
+		class="mt-6 space-y-4 sm:mt-10"
+		style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}
+	>
+		<BlogPostHero post={post} />
+
+		<section class="grid gap-4 lg:grid-cols-[18rem_1fr]">
+			<aside
+				class="grid gap-4 self-start lg:sticky lg:top-6 lg:max-h-[calc(100vh-3rem)] lg:overflow-y-auto lg:pr-1"
+			>
+				<a
+					href="/blog"
+					class:list={[
+						"hidden px-4 py-2 items-center gap-2 lg:inline-flex",
+						"font-semibold text-sm text-cocoa-400 hover:text-snow-100",
+						"rounded-xl bg-snow-100 border border-cocoa-200/15 hover:bg-cocoa-400",
+						"transition",
+					]}
+				>
+					<FontAwesomeIcon icon={faArrowLeft} className="size-3" />
+					Back to posts
+				</a>
+
+				<SidebarCard title="Post Details" icon={faBookOpen}>
+					<div class="flex flex-col gap-2">
+						<div
+							class:list={[
+								"p-3",
+								"rounded-xl bg-cocoa-100/70 border border-cocoa-200/15",
+							]}
+						>
+							<div
+								class:list={[
+									"flex items-center gap-2",
+									"text-cocoa-300",
+								]}
+							>
+								<FontAwesomeIcon icon={faCalendarDay} size="xs" />
+								<span class="text-xs font-bold uppercase tracking-[0.14em]"
+									>Published</span
+								>
+							</div>
+							<time
+								datetime={publishedAt.toISOString()}
+								class:list={[
+									"mt-2 block",
+									"font-semibold text-sm text-cocoa-500",
+								]}
+							>
+								{formatDateMonthYear(publishedAt)}
+							</time>
+						</div>
+
+						<div
+							class:list={[
+									"p-3",
+									"rounded-xl bg-cocoa-100/70 border border-cocoa-200/15",
+								]}
+						>
+							<div
+								class:list={[
+										"flex items-center gap-2",
+										"text-cocoa-300",
+									]}
+							>
+								<FontAwesomeIcon icon={faClockRotateLeft} size="xs" />
+								<span class="text-xs font-bold uppercase tracking-[0.14em]"
+									>Updated</span
+								>
+							</div>
+							<time
+								datetime={updatedAt.toISOString()}
+								class:list={[
+									"mt-2 block",
+									"font-semibold text-sm text-cocoa-500",
+								]}
+							>
+								{formatDateMonthYear(updatedAt)}
+							</time>
+						</div>
+
+						<div
+							class:list={[
+								"p-3",
+								"text-snow-100",
+								"rounded-xl bg-cocoa-500",
+							]}
+						>
+							<div
+								class:list={[
+									"flex items-center gap-2",
+									"text-snow-100/65",
+								]}
+							>
+								<FontAwesomeIcon icon={faClock} size="xs" />
+								<span class="text-xs font-bold uppercase tracking-[0.14em]"
+									>Reading Time</span
+								>
+							</div>
+							<p
+								class:list={[
+									"mt-2",
+									"font-semibold text-sm text-snow-100",
+								]}
+							>
+								{readingTime}
+							</p>
+						</div>
+					</div>
+				</SidebarCard>
+
+				<SidebarCard title="Article Tags" icon={faTags}>
+					<TagList tags={tags} accent={accent} />
+				</SidebarCard>
+			</aside>
+
+			<div class="min-w-0 space-y-4">
+				<article
+					class:list={[
+						"min-w-0 p-4 sm:p-8",
+						"rounded-xl bg-snow-100 border border-cocoa-200/15",
+					]}
+				>
+					<div
+						class="grid items-start gap-8 xl:grid-cols-[minmax(0,1fr)_15rem]"
+					>
+						<div class="markdown-content min-w-0 px-1 sm:px-3">
+							<Content />
+						</div>
+
+						{headings.length > 0 && (
+							<BlogTableOfContents client:load headings={headings} />
+						)}
+					</div>
+				</article>
+
+				{relatedPosts.length > 0 && (
+					<section
+						class:list={[
+							"p-3 sm:p-4",
+							"rounded-xl bg-snow-100 border border-cocoa-200/15",
+						]}
+					>
+					<div class="px-1 pb-2 flex items-end justify-between gap-4">
+						<div>
+						<p class="font-bold text-xs uppercase tracking-[0.16em] text-cocoa-300">
+							More Posts
+						</p>
+						<h2 class="font-manrope font-black text-2xl leading-none text-cocoa-500">
+							Keep Reading
+						</h2>
+						</div>
+					</div>
+
+					<div class="mt-2 grid gap-3 md:grid-cols-2">
+						{relatedPosts.map((relatedArticle, index) => (
+							<a
+								href={`/blog/${relatedArticle.id}`}
+								class:list={[
+									`group min-h-32 p-2 grid ${ relatedArticle.data.hero?.thumbnail ? "grid-cols-[8rem_minmax(0,1fr)]" : "grid-cols-1"} gap-3 overflow-hidden`,
+									"rounded-xl bg-cocoa-100/45 border border-cocoa-200/15",
+									"transition duration-300 hover:-translate-y-0.5 hover:border-(--related-accent-main)/35 hover:bg-snow-100"
+								]}
+								style={`--related-accent-main: ${relatedArticle.data.accent.main}; --related-accent-sub: ${relatedArticle.data.accent.sub ?? "#fff6f4"};`}
+							>
+								{
+									relatedArticle.data.hero?.thumbnail &&
+                                        <div
+                                                class:list={[
+													"relative overflow-hidden",
+													"rounded-lg bg-(--related-accent-sub)",
+												]}
+                                        >
+                                            <img
+													src={relatedArticle.data.hero.thumbnail.src}
+													alt={relatedArticle.data.hero.thumbnail.alt}
+                                                    class:list={[
+														"w-full h-full absolute inset-0",
+														"object-cover",
+														"transition duration-500 group-hover:scale-105",
+													]}
+                                            />
+                                        </div>
+								}
+
+								<div
+									class:list={[
+										"min-w-0 py-1",
+										`${ relatedArticle.data.hero?.thumbnail ? "" : "ml-2" }`,
+									]}
+								>
+									<p class="truncate text-[0.65rem] font-bold uppercase tracking-[0.12em] text-(--related-accent-main)"
+									>
+										{index === 0 ? "Recommended Next" : relatedArticle.data.category}
+										<span class="px-1 text-cocoa-200" aria-hidden="true">/</span>
+										<span class="text-cocoa-300">{calculateReadingTime(relatedArticle.body ?? "")}</span>
+									</p>
+									<h3
+										class:list={[
+											"mt-1.5",
+											"font-manrope font-black text-lg leading-tight text-cocoa-500 line-clamp-2",
+											"transition duration-300 group-hover:text-(--related-accent-main)",
+										]}
+									>
+										{relatedArticle.data.title}
+									</h3>
+									<p
+										class:list={[
+											"mt-1",
+											"font-normal text-xs leading-5 text-cocoa-300 line-clamp-2",
+										]}
+									>
+										{relatedArticle.data.description}
+									</p>
+								</div>
+							</a>
+						))}
+					</div>
+					</section>
+				)}
+			</div>
+		</section>
+
+		<BlogReadingProgress client:load />
+		<MarkdownCodeCopy />
+	</main>
+</DefaultLayout>

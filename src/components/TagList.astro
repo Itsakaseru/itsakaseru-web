@@ -1,0 +1,27 @@
+---
+import type { IAccent } from "@/types/common.ts";
+
+interface Props {
+	tags: string[];
+	accent: IAccent;
+}
+
+const { tags, accent } = Astro.props;
+---
+
+<div
+	class="flex flex-wrap gap-2"
+	style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub ?? "#fff6f4"};`}
+>
+	{tags.map((tag) => (
+			<span
+					class:list={[
+						"px-2.5 py-1",
+						"rounded-lg font-semibold text-xs uppercase tracking-[0.12em]",
+						"bg-(--accent-sub) text-(--accent-main) border border-(--accent-main)/15",
+					]}
+			>
+				{tag}
+			</span>
+	))}
+</div>

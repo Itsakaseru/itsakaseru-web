@@ -1,33 +1,34 @@
 ---
-import {faLink, type IconDefinition} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface Props {
-	title: string
-	icon: IconDefinition
+	title: string;
+	icon: IconDefinition;
 }
 
-const { title, icon } = Astro.props
+const { title, icon } = Astro.props;
 ---
-<div class="rounded-xl bg-snow-100/85 p-4">
-    <div
-        class:list={[
+
+<div class="rounded-xl bg-snow-100/85 border border-cocoa-200/15 p-4">
+	<div
+		class:list={[
             "flex items-center gap-3",
             "text-cocoa-400",
         ]}
-    >
-        <div
-            class:list={[
+	>
+		<div
+			class:list={[
                 "grid size-10 place-items-center",
-                "rounded-xl bg-cocoa-100",
+                "rounded-xl bg-cocoa-100 border border-cocoa-200/15",
             ]}
-        >
-            <FontAwesomeIcon icon={icon} className="size-4" />
-        </div>
-        <h2 class="font-manrope text-base font-black">{title}</h2>
-    </div>
+		>
+			<FontAwesomeIcon icon={icon} className="size-4" />
+		</div>
+		<h2 class="font-manrope text-base font-black">{title}</h2>
+	</div>
 
-    <div class="mt-4 grid gap-2">
+	<div class="mt-4">
 		<slot />
-    </div>
+	</div>
 </div>

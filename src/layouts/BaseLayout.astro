@@ -1,21 +1,21 @@
 ---
-import "@/styles/global.css"
-import { Font } from 'astro:assets'
-import defaultSeoImage from "@/assets/sakii.png"
+import "@/styles/global.css";
+import { Font } from "astro:assets";
+import defaultSeoImage from "@/assets/sakii.png";
 
 interface Props {
-	title?: string
-	description?: string
-	canonical?: string | URL
-	image?: string | ImageMetadata
-	imageAlt?: string
-	type?: "website" | "article"
-	noindex?: boolean
+	title?: string;
+	description?: string;
+	canonical?: string | URL;
+	image?: string | ImageMetadata;
+	imageAlt?: string;
+	type?: "website" | "article";
+	noindex?: boolean;
 }
 
-const SITE_NAME = "Itsakaseru"
-const DEFAULT_DESCRIPTION = "Itsakaseru / Lemuel Lancaster's personal website!"
-const site = Astro.site ?? new URL("https://itsakaseru.me")
+const SITE_NAME = "Itsakaseru";
+const DEFAULT_DESCRIPTION = "Itsakaseru / Lemuel Lancaster's personal website!";
+const site = Astro.site ?? new URL("https://itsakaseru.me");
 
 const {
 	title = SITE_NAME,
@@ -25,38 +25,42 @@ const {
 	imageAlt = SITE_NAME,
 	type = "website",
 	noindex = false,
-} = Astro.props
+} = Astro.props;
 
-const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site).toString()
-const imageUrl = new URL(typeof image === "string" ? image : image.src, site).toString()
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site).toString();
+const imageUrl = new URL(
+	typeof image === "string" ? image : image.src,
+	site,
+).toString();
 ---
+
 <html lang="en">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="theme-color" content="#4e342e" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<link rel="canonical" href={canonicalUrl} />
-		<meta name="generator" content={Astro.generator} />
-        <meta name="description" content={description} />
-		<meta name="author" content="Lemuel Lancaster" />
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="theme-color" content="#4e342e">
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+		<link rel="icon" href="/favicon.ico">
+		<link rel="canonical" href={canonicalUrl}>
+		<meta name="generator" content={Astro.generator}>
+		<meta name="description" content={description}>
+		<meta name="author" content="Lemuel Lancaster">
 		{noindex && <meta name="robots" content="noindex, nofollow" />}
 
-		<meta property="og:site_name" content={SITE_NAME} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:type" content={type} />
-		<meta property="og:url" content={canonicalUrl} />
-		<meta property="og:image" content={imageUrl} />
-		<meta property="og:image:alt" content={imageAlt} />
+		<meta property="og:site_name" content={SITE_NAME}>
+		<meta property="og:title" content={title}>
+		<meta property="og:description" content={description}>
+		<meta property="og:type" content={type}>
+		<meta property="og:url" content={canonicalUrl}>
+		<meta property="og:image" content={imageUrl}>
+		<meta property="og:image:alt" content={imageAlt}>
 
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={imageUrl} />
-		<meta name="twitter:image:alt" content={imageAlt} />
-        <Font cssVariable="--font-geist" />
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content={title}>
+		<meta name="twitter:description" content={description}>
+		<meta name="twitter:image" content={imageUrl}>
+		<meta name="twitter:image:alt" content={imageAlt}>
+		<Font cssVariable="--font-geist" />
 		<Font cssVariable="--font-manrope" />
 		<title>{title}</title>
 	</head>
@@ -64,14 +68,14 @@ const imageUrl = new URL(typeof image === "string" ? image : image.src, site).to
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		min-height: 100%;
-	}
+html,
+body {
+	margin: 0;
+	width: 100%;
+	min-height: 100%;
+}
 
-	body {
-		min-height: 100dvh;
-	}
+body {
+	min-height: 100dvh;
+}
 </style>
