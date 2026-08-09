@@ -1,7 +1,7 @@
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
-import "./ReadingProgress.css";
+import "@/styles/reading-progress.css";
 
 interface ReadingProgressProps {
 	contentSelector?: string;

@@ -1,7 +1,7 @@
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useRef, useState } from "react";
-import "./TableOfContents.css";
+import "@/styles/table-of-contents.css";
 
 interface Heading {
 	depth: number;
