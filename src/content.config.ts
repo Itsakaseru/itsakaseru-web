@@ -19,11 +19,11 @@ const blogCategorySchema = z.enum([
 	"Tutorial",
 ]);
 
-const blogMarkSchema = z.enum(["Spotlight"]);
+const blogMarkSchema = z.enum(["Spotlight", "Featured", "New"]);
 
 const blogImageSchema = z.object({
 	src: z.string().min(1),
-	alt: z.string().min(1),
+	alt: z.string().min(1).optional(),
 });
 
 const projects = defineCollection({
@@ -88,9 +88,9 @@ const blog = defineCollection({
 		title: z.string(),
 		description: z.string(),
 		category: blogCategorySchema,
-		tags: z.array(z.string()).optional(),
 		mark: blogMarkSchema.optional(),
 		accent: accentSchema,
+		tags: z.array(z.string()).optional(),
 		hero: z
 			.object({
 				wide: blogImageSchema,

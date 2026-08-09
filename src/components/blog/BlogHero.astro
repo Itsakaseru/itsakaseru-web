@@ -4,10 +4,10 @@ import {
 	faArrowRight,
 	faCalendarDay,
 	faClock,
-	faStar,
+	faLayerGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { calculateReadingTime } from "@/utils/blog.ts";
+import { BLOG_MARK_ICONS, calculateReadingTime } from "@/utils/blog.ts";
 import { formatDateMonthYear } from "@/utils/format.ts";
 
 interface Props {
@@ -15,7 +15,11 @@ interface Props {
 }
 
 const { posts } = Astro.props;
-const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
+const [spotlight, featuredPost, additionalSpotlight] = posts
+	.filter(
+		(post) => post.data.mark === "Spotlight" || post.data.mark === "Featured",
+	)
+	.slice(0, 3);
 ---
 
 {spotlight && (
@@ -35,7 +39,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
 			{spotlight.data.hero?.wide && (
                     <img
 							src={spotlight.data.hero.wide.src}
-							alt={spotlight.data.hero.wide.alt}
+							alt={spotlight.data.hero.wide.alt ?? `${spotlight.data.title} hero image`}
 							loading="eager"
 							fetchpriority="high"
 							decoding="async"
@@ -47,15 +51,27 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
 			)}
 
             <div
-				class:list={[
-					"absolute inset-0",
-					"bg-black/50",
-				]}
-			/>
+                    class:list={[
+						"absolute inset-0",
+						"bg-[linear-gradient(100deg,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.40)_45%,rgba(0,0,0,0.10)_100%)]",
+					]}
+            />
 
             <div class="relative flex flex-col gap-5 lg:flex-row">
                 <div class="min-w-0 flex flex-col flex-1 gap-4">
                     <div class="flex flex-wrap items-center gap-3">
+							{spotlight.data.mark && (
+								<span
+									class:list={[
+										"inline-flex items-center gap-2 px-3 py-1",
+										"font-bold text-xs uppercase tracking-widest",
+										"rounded-lg bg-snow-100/20 backdrop-blur-sm",
+									]}
+								>
+									<FontAwesomeIcon icon={BLOG_MARK_ICONS[spotlight.data.mark]} className="size-3"/>
+									{spotlight.data.mark}
+								</span>
+							)}
 							<span
 								class:list={[
 									"inline-flex items-center gap-2 px-3 py-1",
@@ -63,21 +79,12 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
 									"rounded-lg bg-snow-100/20 backdrop-blur-sm",
 								]}
 							>
-								<FontAwesomeIcon icon={faStar} className="size-3"/>
-								Spotlight Post
-							</span>
-                        <span
-							class:list={[
-								"px-3 py-1",
-								"font-bold text-xs uppercase tracking-widest text-cocoa-400",
-								"rounded-lg bg-snow-100/90",
-							]}
-						>
+								<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
 								{spotlight.data.category}
 							</span>
                     </div>
 
-                    <div class="space-y-3">
+                    <div class="max-w-5/6 space-y-3">
 						<h2 class="font-manrope font-black text-4xl leading-tight sm:text-5xl xl:text-6xl">
 							{spotlight.data.title}
 						</h2>
@@ -143,7 +150,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
 									{featuredPost.data.hero?.thumbnail &&
                                             <img
 												src={featuredPost.data.hero.thumbnail.src}
-												alt={featuredPost.data.hero.thumbnail.alt}
+												alt={featuredPost.data.hero.thumbnail.alt ?? `${featuredPost.data.title} thumbnail`}
 												loading="lazy"
 												decoding="async"
 													class:list={[

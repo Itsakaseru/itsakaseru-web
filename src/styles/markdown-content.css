@@ -82,13 +82,14 @@
 	text-transform: uppercase;
 }
 
-.markdown-content > :first-child {
+.markdown-content > :first-child,
+.markdown-content .markdown-body > :first-child {
 	margin-top: 0;
 }
 
 .markdown-content p,
 .markdown-content li {
-	font-size: 1rem;
+	font-size: clamp(1rem, 1vw, 1.0625rem);
 	font-weight: 400;
 	line-height: 1.75;
 }

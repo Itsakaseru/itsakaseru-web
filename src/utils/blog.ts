@@ -1,4 +1,12 @@
-const WORDS_PER_MINUTE = 250;
+import { faAward, faBookmark, faStar } from "@fortawesome/free-solid-svg-icons";
+
+const WORDS_PER_MINUTE = 220;
+
+export const BLOG_MARK_ICONS = {
+	Spotlight: faStar,
+	Featured: faAward,
+	New: faBookmark,
+};
 
 export function calculateReadingTime(content: string): string {
 	const trimmedContent = content.trim();

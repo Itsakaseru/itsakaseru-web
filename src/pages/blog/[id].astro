@@ -257,7 +257,7 @@ const relatedPosts = (await getCollection("blog"))
 					]}
 				>
 					<div
-						class="grid items-start gap-8 xl:grid-cols-[minmax(0,1fr)_15rem]"
+						class="grid items-start gap-8 xl:grid-cols-[minmax(0,1fr)_18rem]"
 					>
 						<div class="markdown-content min-w-0 px-1 sm:px-3">
 							<Content />
@@ -309,7 +309,7 @@ const relatedPosts = (await getCollection("blog"))
                                         >
                                             <img
 												src={relatedArticle.data.hero.thumbnail.src}
-												alt={relatedArticle.data.hero.thumbnail.alt}
+												alt={relatedArticle.data.hero.thumbnail.alt ?? `${relatedArticle.data.title} thumbnail`}
 												loading="lazy"
 												decoding="async"
                                                     class:list={[

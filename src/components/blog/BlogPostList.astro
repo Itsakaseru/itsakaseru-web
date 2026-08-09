@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Page } from "astro";
-import { calculateReadingTime } from "@/utils/blog.ts";
+import { BLOG_MARK_ICONS, calculateReadingTime } from "@/utils/blog.ts";
 import {
 	formatDate,
 	formatDateMonthYear,
@@ -130,7 +130,7 @@ const getPageUrl = (pageNumber: number) =>
 							<div class="flex flex-wrap items-center gap-2">
 								<span
 									class:list={[
-										"px-2.5 py-1 inline-flex items-center gap-2",
+										"px-2.5 py-1 inline-flex items-center gap-1.5",
 										"font-bold text-xs uppercase tracking-widest text-(--accent-main)",
 										"rounded-lg bg-(--accent-sub) border border-(--accent-main)/15",
 									]}
@@ -138,6 +138,18 @@ const getPageUrl = (pageNumber: number) =>
 									<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
 									{post.data.category}
 								</span>
+								{post.data.mark && (
+									<span
+										class:list={[
+											"px-2.5 py-1 inline-flex items-center gap-1.5",
+											"font-bold text-xs uppercase tracking-widest text-cocoa-400",
+											"rounded-lg bg-cocoa-100 border border-cocoa-200/15",
+										]}
+									>
+										<FontAwesomeIcon icon={BLOG_MARK_ICONS[post.data.mark]} className="size-3" />
+										{post.data.mark}
+									</span>
+								)}
 								<span
 									class:list={[
 										"px-2.5 py-1 inline-flex items-center gap-1.5",
@@ -200,7 +212,7 @@ const getPageUrl = (pageNumber: number) =>
                                 >
                                     <img
 											src={post.data.hero.thumbnail.src}
-											alt={post.data.hero.thumbnail.alt}
+											alt={post.data.hero.thumbnail.alt ?? `${post.data.title} thumbnail`}
 											loading="lazy"
 											decoding="async"
                                             class:list={[

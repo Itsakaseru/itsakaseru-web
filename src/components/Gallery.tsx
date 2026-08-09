@@ -3,8 +3,8 @@ import { useEffect, useRef, useState } from "react";
 
 interface GalleryItem {
 	src: string;
-	alt: string;
-	label?: string;
+	alt?: string;
+	label: string;
 	type?: "image";
 }
 
@@ -60,6 +60,7 @@ export default function Gallery({
 	if (!activeItem) {
 		return null;
 	}
+	const activeItemAlt = activeItem.alt ?? activeItem.label;
 
 	return (
 		<>
@@ -72,13 +73,13 @@ export default function Gallery({
 							type="button"
 							className="block h-full w-full cursor-pointer rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cocoa-500"
 							onClick={() => setIsPreviewOpen(true)}
-							aria-label={`Preview ${activeItem.alt}`}
+							aria-label={`Preview ${activeItemAlt}`}
 						>
 							<img
 								key={activeItem.src}
 								className={`${mediaClass} markdown-gallery-image`}
 								src={activeItem.src}
-								alt={activeItem.alt}
+								alt={activeItemAlt}
 								loading="lazy"
 							/>
 						</button>
@@ -119,7 +120,7 @@ export default function Gallery({
 					<div className="flex flex-wrap justify-center gap-2">
 						{items.map((item, index) => (
 							<button
-								key={`${item.src}-${item.alt}`}
+								key={`${item.src}-${item.alt ?? item.label}`}
 								type="button"
 								className={
 									"h-2.5 rounded-full transition-all cursor-pointer " +
@@ -128,7 +129,7 @@ export default function Gallery({
 										: "w-2.5 bg-cocoa-200/50 hover:bg-cocoa-300")
 								}
 								onClick={() => setActiveIndex(index)}
-								aria-label={`Show gallery item ${index + 1}: ${item.alt}`}
+								aria-label={`Show gallery item ${index + 1}: ${item.alt ?? item.label}`}
 							/>
 						))}
 					</div>
@@ -151,7 +152,7 @@ export default function Gallery({
 						}}
 						role="dialog"
 						aria-modal="true"
-						aria-label={`Preview of ${activeItem.alt}`}
+						aria-label={`Preview of ${activeItemAlt}`}
 					>
 						<motion.div
 							className="flex max-h-full w-full flex-col items-center"
@@ -176,7 +177,7 @@ export default function Gallery({
 									key={`preview-${activeItem.src}`}
 									className="markdown-gallery-image block max-h-[85vh] max-w-full rounded-xl bg-snow-100/5 object-contain shadow-2xl shadow-cocoa-900/40"
 									src={activeItem.src}
-									alt={activeItem.alt}
+									alt={activeItemAlt}
 								/>
 							</div>
 							<p className="mt-3 text-center text-sm font-light text-snow-100/85">

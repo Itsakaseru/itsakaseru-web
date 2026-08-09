@@ -325,12 +325,14 @@ const formatDate = (date: Date) =>
 			<div
 				class:list={[
 					"grid items-start gap-8 p-4 sm:p-8",
-					headings.length > 0 && "xl:grid-cols-[minmax(0,1fr)_15rem]",
+					headings.length > 0 && "xl:grid-cols-[minmax(0,1fr)_18rem]",
 				]}
 			>
 				<article class="markdown-content min-w-0">
 					<TagList tags={tags} accent={accent} />
-					<Content />
+					<div class="mt-5 markdown-body">
+						<Content />
+					</div>
 				</article>
 
 				{headings.length > 0 && (
