@@ -43,8 +43,8 @@ const {
 	title = SITE_NAME,
 	description = DEFAULT_DESCRIPTION,
 	canonical,
-	image = defaultSeoImage,
-	imageAlt = SITE_NAME,
+	image,
+	imageAlt,
 	type = "website",
 	noindex = false,
 	schemaType = "WebPage",
@@ -58,15 +58,22 @@ const canonicalUrl =
 	canonical === false
 		? undefined
 		: normalizePageUrl(canonical ?? Astro.url.pathname);
+const imagePathname = canonicalUrl
+	? new URL(canonicalUrl).pathname
+	: Astro.url.pathname;
+const imageRoute = imagePathname.replace(/^\/+|\/+$/g, "") || "index";
+const generatedImage = `/open-graph/${imageRoute}.png`;
 const imageUrl = new URL(
-	typeof image === "string" ? image : image.src,
+	image ? (typeof image === "string" ? image : image.src) : generatedImage,
 	site,
 ).toString();
 const defaultImageUrl = new URL(defaultSeoImage.src, site).toString();
-const imageDimensions =
-	typeof image === "string"
+const imageDimensions = image
+	? typeof image === "string"
 		? undefined
-		: { width: image.width, height: image.height };
+		: { width: image.width, height: image.height }
+	: { width: 1200, height: 630 };
+const resolvedImageAlt = imageAlt ?? `${title} social preview`;
 const prevUrl = prev ? normalizePageUrl(prev) : undefined;
 const nextUrl = next ? normalizePageUrl(next) : undefined;
 const websiteId = new URL("/#website", site).toString();
@@ -144,7 +151,7 @@ const jsonLd = canonicalUrl
 		<meta property="og:type" content={type}>
 		{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
 		<meta property="og:image" content={imageUrl}>
-		<meta property="og:image:alt" content={imageAlt}>
+		<meta property="og:image:alt" content={resolvedImageAlt}>
 		{imageDimensions && (
 			<>
 				<meta property="og:image:width" content={imageDimensions.width.toString()} />
@@ -177,7 +184,7 @@ const jsonLd = canonicalUrl
 		<meta name="twitter:title" content={title}>
 		<meta name="twitter:description" content={description}>
 		<meta name="twitter:image" content={imageUrl}>
-		<meta name="twitter:image:alt" content={imageAlt}>
+		<meta name="twitter:image:alt" content={resolvedImageAlt}>
 		{jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
 		<Font cssVariable="--font-geist" />
 		<Font cssVariable="--font-manrope" />

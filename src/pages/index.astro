@@ -5,16 +5,10 @@ import HubBar from "../components/HubBar.tsx";
 import BaseLayout from "../layouts/HomeLayout.astro";
 
 const description =
-	"Itsakaseru / Lemuel Lancaster's personal website, where I share software projects, blog posts, experiments, fun little things, and a bit about myself.";
+	"Itsakaseru / Lemuel Lancaster's personal website, where I share my portfolio, projects, blog posts, experiments, fun little things, random stuff, and a bit about myself.";
 ---
 
-<BaseLayout
-	title="Itsakaseru"
-	description={description}
-	canonical="/"
-	image={Itsakaseru}
-	imageAlt="Itsakaseru portrait"
->
+<BaseLayout title="Itsakaseru" description={description} canonical="/">
 	<main class="flex flex-col items-center gap-6 sm:gap-8">
 		<Image
 			src={Itsakaseru}

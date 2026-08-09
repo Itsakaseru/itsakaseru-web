@@ -81,12 +81,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts.slice(0, 3);
 						<h2 class="font-manrope font-black text-4xl leading-tight sm:text-5xl xl:text-6xl">
 							{spotlight.data.title}
 						</h2>
-                        <p
-							class:list={[
-								"max-w-2xl",
-								"font-light text-sm text-snow-100/85 line-clamp-3 sm:text-base",
-							]}
-						>
+                        <p class="font-light text-sm text-snow-100/85 line-clamp-3 sm:text-base">
 							{spotlight.data.description}
                         </p>
                     </div>

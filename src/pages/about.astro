@@ -48,8 +48,6 @@ const formatDocumentDate = (date: Date) => {
 	title={pageTitle}
 	description={description}
 	canonical="/about"
-	image={Lemi}
-	imageAlt="Itsakaseru portrait"
 	schemaType="ProfilePage"
 >
 	<main
@@ -169,10 +167,10 @@ const formatDocumentDate = (date: Date) => {
 					<div class="flex flex-col gap-2">
 						{SOCIAL_LINKS.length > 0 ? SOCIAL_LINKS.map((link) => (
                             <a href={link.href} target="_blank" rel="noreferrer"  class="flex p-2 justify-between gap-2 rounded-lg border border-cocoa-200/20 bg-snow-100/60 hover:bg-cocoa-200/5 transition">
-                                <span class="flex min-w-0 items-center gap-2">
+                                <div class="flex min-w-0 items-center gap-2">
 									<FontAwesomeIcon icon={link.icon} className="size-3.5 shrink-0 text-cocoa-300" />
 									<p class="truncate text-sm font-semibold text-cocoa-500">{link.name}</p>
-								</span>
+								</div>
                                 <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="size-3 my-auto -translate-y-px" />
                             </a>
 					)) : (

@@ -34,7 +34,7 @@ const getPageUrl = (pageNumber: number) =>
 
 <section
 	class:list={[
-		"min-w-0 min-h-[calc(100dvh-20rem)] p-3 overflow-hidden flex flex-col sm:p-4 lg:p-5",
+		`min-w-0 p-3 ${ posts.length > 0 ? "" : "min-h-[calc(100dvh-20rem)]" } overflow-hidden flex flex-col sm:p-4 lg:p-5`,
 		"rounded-xl bg-snow-100 border border-cocoa-200/15",
 	]}
 >
@@ -82,11 +82,11 @@ const getPageUrl = (pageNumber: number) =>
 					</p>
 				</div>
 			</div>
-		) : posts.map((article) => (
+		) : posts.map((post) => (
 			<a
-				href={`/blog/${article.id}`}
+				href={`/blog/${post.id}`}
 				class="group relative grid gap-3 sm:grid-cols-[5rem_1fr]"
-				style={`--accent-main: ${article.data.accent.main}; --accent-sub: ${article.data.accent.sub ?? "#fff6f4"};`}
+				style={`--accent-main: ${post.data.accent.main}; --accent-sub: ${post.data.accent.sub ?? "#fff6f4"};`}
 			>
 				<div class="z-10 hidden relative items-start gap-3 sm:flex">
 					<div
@@ -100,13 +100,13 @@ const getPageUrl = (pageNumber: number) =>
 					>
 						<div>
 							 <p class="font-manrope font-black text-xl leading-none text-cocoa-500">
-								{formatDate(article.data.publishedAt)}
+								{formatDate(post.data.publishedAt)}
 							</p>
 							<p class="text-[0.65rem] font-bold uppercase text-(--accent-main)">
-								{formatMonth(article.data.publishedAt)}
+								{formatMonth(post.data.publishedAt)}
 							</p>
 							<p class="text-[0.65rem] tracking-widest text-cocoa-200">
-								{formatYear(article.data.publishedAt)}
+								{formatYear(post.data.publishedAt)}
 							</p>
 						</div>
 					</div>
@@ -136,7 +136,7 @@ const getPageUrl = (pageNumber: number) =>
 									]}
 								>
 									<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
-									{article.data.category}
+									{post.data.category}
 								</span>
 								<span
 									class:list={[
@@ -146,7 +146,7 @@ const getPageUrl = (pageNumber: number) =>
 									]}
 								>
 									<FontAwesomeIcon icon={faBookOpen} className="size-3" />
-									{calculateReadingTime(article.body ?? "")}
+									{calculateReadingTime(post.body ?? "")}
 								</span>
 							</div>
 
@@ -158,7 +158,7 @@ const getPageUrl = (pageNumber: number) =>
 										"transition group-hover:text-(--accent-main)",
 									]}
 								>
-									{article.data.title}
+									{post.data.title}
 								</h3>
 								<p
 									class:list={[
@@ -166,7 +166,7 @@ const getPageUrl = (pageNumber: number) =>
 										"font-light text-sm text-cocoa-300/85 line-clamp-3",
 									]}
 								>
-									{article.data.description}
+									{post.data.description}
 								</p>
 							</div>
 
@@ -176,7 +176,7 @@ const getPageUrl = (pageNumber: number) =>
 									"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
 								]}
 							>
-								<span>{formatDateMonthYear(article.data.publishedAt)}</span>
+								<span>{formatDateMonthYear(post.data.publishedAt)}</span>
 								<span
 									class:list={[
 										"inline-flex items-center gap-2",
@@ -191,7 +191,7 @@ const getPageUrl = (pageNumber: number) =>
 						</div>
 
 						{
-							article.data.hero?.thumbnail &&
+							post.data.hero?.thumbnail &&
                                 <div
                                         class:list={[
 											"hidden min-h-36 relative overflow-hidden sm:block lg:min-h-full",
@@ -199,8 +199,8 @@ const getPageUrl = (pageNumber: number) =>
 										]}
                                 >
                                     <img
-											src={article.data.hero.thumbnail.src}
-											alt={article.data.hero.thumbnail.alt}
+											src={post.data.hero.thumbnail.src}
+											alt={post.data.hero.thumbnail.alt}
 											loading="lazy"
 											decoding="async"
                                             class:list={[

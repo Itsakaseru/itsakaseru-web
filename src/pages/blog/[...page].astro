@@ -28,7 +28,7 @@ const articles = (await getCollection("blog")).sort(
 		articleB.data.publishedAt.getTime() - articleA.data.publishedAt.getTime(),
 );
 const baseDescription =
-	"Itsakaseru's blog, where I post tutorials, opinions, updates, information, and other random stuff.";
+	"Itsakaseru's blog, collection of tutorials, opinions, updates, information that is hopefully useful, personal thoughts, and other things I find interesting or worth sharing.";
 const description =
 	page.currentPage === 1
 		? baseDescription
