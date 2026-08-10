@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["...", "fontconfig"]
+
+[phases.build]
+cmds = ["mkdir -p node_modules/.fontconfig-cache", "..."]
+
+[variables]
+FONTCONFIG_FILE = "/app/fontconfig.xml"
