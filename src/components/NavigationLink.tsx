@@ -147,11 +147,11 @@ export default function NavigationLink({
 
 	return (
 		<>
-			<div className="flex justify-end mr-2 lg:hidden">
+			<div className="flex justify-end lg:hidden">
 				<button
 					ref={menuButtonRef}
 					type="button"
-					className="inline-flex items-center gap-3 rounded-xl bg-snow-100/10 px-4 py-3 font-semibold text-snow-100/85 backdrop-blur-sm transition hover:bg-snow-100/20 hover:text-snow-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-snow-100"
+					className="inline-flex size-12 items-center justify-center rounded-xl bg-snow-100/10 font-semibold text-snow-100/85 backdrop-blur-sm transition hover:bg-snow-100/20 hover:text-snow-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-snow-100 sm:size-auto sm:gap-3 sm:px-4 sm:py-3"
 					onClick={() => setIsMenuOpen(true)}
 					aria-haspopup="dialog"
 					aria-expanded={isMenuOpen}
@@ -162,7 +162,7 @@ export default function NavigationLink({
 						<span className="block h-0.5 w-5 rounded-full bg-current" />
 						<span className="block h-0.5 w-5 rounded-full bg-current" />
 					</span>
-					Menu
+					<span className="hidden sm:inline">Menu</span>
 				</button>
 			</div>
 

@@ -1,9 +1,19 @@
 ---
 import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
+
+interface Props {
+	compactOnMobile?: boolean;
+}
+
+const { compactOnMobile = false } = Astro.props;
 ---
 
 <PagefindConfig lang="en" />
-<div class="flex backdrop-blur-sm" data-search-trigger>
+<div
+	class="flex backdrop-blur-sm"
+	data-search-trigger
+	data-compact-mobile={compactOnMobile ? "" : undefined}
+>
 	<pagefind-modal-trigger placeholder="Search"></pagefind-modal-trigger>
 </div>
 <pagefind-modal reset-on-close></pagefind-modal>
@@ -62,6 +72,24 @@ import PagefindConfig from "astro-pagefind/components/PagefindConfig.astro";
 	border-color: rgb(200 163 155 / 0.3) !important;
 	background: var(--color-cocoa-100) !important;
 	color: var(--color-cocoa-400) !important;
+}
+
+@media (max-width: 1023px) {
+	[data-search-trigger][data-compact-mobile] {
+		--pf-input-height: 3rem;
+	}
+
+	[data-search-trigger][data-compact-mobile] :global(.pf-trigger-btn) {
+		width: 3rem !important;
+		justify-content: center !important;
+		padding-inline: 0 !important;
+		border-radius: 0.75rem !important;
+	}
+
+	[data-search-trigger][data-compact-mobile] :global(.pf-trigger-text),
+	[data-search-trigger][data-compact-mobile] :global(.pf-trigger-shortcut) {
+		display: none !important;
+	}
 }
 
 pagefind-modal {

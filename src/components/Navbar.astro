@@ -48,20 +48,27 @@ const { variant = "default" } = Astro.props;
 		</a>
 
 		<div
-			class:list={[variant === "home" ? "hidden lg:block lg:justify-self-end" : "w-full justify-self-end lg:justify-self-stretch"]}
+			class:list={[
+				variant === "home"
+					? "hidden lg:contents"
+					: "flex items-center justify-end gap-2 pr-3 lg:contents lg:pr-0",
+			]}
 		>
-			<slot />
-		</div>
-
-		{variant !== "home" && (
 			<div
 				class:list={[
-					"hidden p-1.5 lg:block",
-					"rounded-xl bg-snow-100/10",
+					variant === "home"
+						? "lg:block lg:justify-self-end"
+						: "order-2 justify-self-end lg:order-0 lg:w-full lg:justify-self-stretch",
 				]}
 			>
-				<Search />
+				<slot />
 			</div>
-		)}
+
+			{variant !== "home" && (
+				<div class="order-1 rounded-xl lg:order-0 lg:mr-3 lg:p-1.5 lg:bg-snow-100/10">
+					<Search compactOnMobile />
+				</div>
+			)}
+		</div>
 	</div>
 </header>
