@@ -150,6 +150,9 @@ const titleFont = path.resolve(
 	"src/assets/fonts/manrope/manrope-variable.woff2",
 );
 const bodyFont = path.resolve("src/assets/fonts/geist/geist-variable.woff2");
+const utilityFont = path.resolve(
+	"src/assets/fonts/geist/geist_latin-700-normal.ttf",
+);
 const cacheDirectory = path.resolve("node_modules/.astro-og-canvas");
 const backgroundDirectory = path.join(cacheDirectory, "backgrounds");
 await rm(cacheDirectory, { recursive: true, force: true });
@@ -184,7 +187,7 @@ const renderGeistText = async (
 		text: {
 			text: `<span foreground="${color}" letter_spacing="${letterSpacing * 0.75 * 1024}">${escapeXML(text)}</span>`,
 			font: `Geist Bold ${fontSize * 0.75}`,
-			fontfile: bodyFont,
+			fontfile: utilityFont,
 			dpi: 96,
 			rgba: true,
 		},
