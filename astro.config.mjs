@@ -34,9 +34,14 @@ const codeBlockTitleTransformer = {
 	},
 };
 
+const site = new URL(process.env.SITE_URL ?? "https://itsakaseru.me");
+const excludedSitemapPages = new Set(
+	["/404/", "/fun/"].map((pathname) => new URL(pathname, site).toString()),
+);
+
 // https://astro.build/config
 export default defineConfig({
-	site: "https://itsakaseru.me",
+	site: site.toString(),
 	markdown: {
 		processor: satteri({
 			features: {
@@ -73,10 +78,7 @@ export default defineConfig({
 
 	integrations: [
 		sitemap({
-			filter: (page) =>
-				!["https://itsakaseru.me/404/", "https://itsakaseru.me/fun/"].includes(
-					page,
-				),
+			filter: (page) => !excludedSitemapPages.has(page),
 		}),
 		react(),
 		mdx(),
