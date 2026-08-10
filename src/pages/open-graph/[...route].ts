@@ -174,6 +174,27 @@ const escapeXML = (value: string) =>
 			})[character] ?? character,
 	);
 
+const renderGeistText = async (
+	text: string,
+	fontSize: number,
+	color: string,
+	letterSpacing: number,
+) => {
+	const { data, info } = await sharp({
+		text: {
+			text: `<span foreground="${color}" letter_spacing="${letterSpacing * 0.75 * 1024}">${escapeXML(text)}</span>`,
+			font: `Geist Bold ${fontSize * 0.75}`,
+			fontfile: bodyFont,
+			dpi: 96,
+			rgba: true,
+		},
+	})
+		.png()
+		.toBuffer({ resolveWithObject: true });
+
+	return { data, width: info.width, height: info.height };
+};
+
 const safeAccent = (accent?: string) =>
 	accent && /^#[\da-f]{6}$/i.test(accent) ? accent : "#4e342e";
 
@@ -249,14 +270,12 @@ const createCardBackground = async (route: string, page: OGPage) => {
 	);
 	const accent = safeAccent(page.accent);
 	const labelText = page.label.toUpperCase();
-	const label = escapeXML(labelText);
-	const labelSpacing = Math.max(0, [...labelText].length - 1) * 2;
-	const badgeWidth = Math.min(
-		360,
-		Math.ceil(approximateTextWidth(labelText, 14) + labelSpacing + 40),
-	);
 	const showIconTile = page.kind !== "blog" || page.isList;
-	const footer = escapeXML(getFooter(route, page.kind));
+	const [badgeText, footerText] = await Promise.all([
+		renderGeistText(labelText, 14, "#ffffff", 2),
+		renderGeistText(getFooter(route, page.kind), 13, "#755750", 2),
+	]);
+	const badgeWidth = Math.min(360, badgeText.width + 40);
 	const svg = `
 		<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
 			<defs>
@@ -274,10 +293,16 @@ const createCardBackground = async (route: string, page: OGPage) => {
 			<rect x="40" y="40" width="1120" height="180" rx="20" fill="url(#panel)" />
 			<circle cx="760" cy="215" r="210" fill="url(#light)" />
 			${showIconTile ? '<rect x="992" y="58" width="144" height="144" rx="25" fill="#ffffff" fill-opacity=".94" />' : ""}
-			<text x="1132" y="574" text-anchor="end" fill="#755750" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">${footer}</text>
 		</svg>`;
 
-	const composites: sharp.OverlayOptions[] = [{ input: Buffer.from(svg) }];
+	const composites: sharp.OverlayOptions[] = [
+		{ input: Buffer.from(svg) },
+		{
+			input: footerText.data,
+			left: 1132 - footerText.width,
+			top: 574 - footerText.height,
+		},
+	];
 	if (page.coverPath) {
 		const coverMask = Buffer.from(
 			'<svg width="1120" height="180"><rect width="1120" height="180" rx="20" fill="white"/></svg>',
@@ -320,9 +345,13 @@ const createCardBackground = async (route: string, page: OGPage) => {
 	const bannerLabel = Buffer.from(`
 		<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
 			<rect x="68" y="75" width="${badgeWidth}" height="40" rx="12" fill="#ffffff" fill-opacity=".18" stroke="#ffffff" stroke-opacity=".28" />
-			<text x="88" y="101" fill="#ffffff" font-family="Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="2">${label}</text>
 		</svg>`);
 	composites.push({ input: bannerLabel });
+	composites.push({
+		input: badgeText.data,
+		left: 88,
+		top: 95 - Math.round(badgeText.height / 2),
+	});
 	if (showIconTile && page.logoPath) {
 		const logo = await sharp(page.logoPath)
 			.resize(112, 112, { fit: "contain" })
