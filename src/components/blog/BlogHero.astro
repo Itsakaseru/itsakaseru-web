@@ -28,7 +28,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts
 				"p-3 sm:p-4",
 				"rounded-xl bg-snow-100/85",
 			]}
-            style={`--accent-sub: ${spotlight.data.accent.sub ?? "#fff6f4"};`}
+			style={`--accent-main: ${spotlight.data.accent.main}; --accent-sub: ${spotlight.data.accent.sub ?? "#fff6f4"};`}
     >
         <div
 			class:list={[
@@ -50,12 +50,10 @@ const [spotlight, featuredPost, additionalSpotlight] = posts
                     />
 			)}
 
-            <div
-                    class:list={[
-						"absolute inset-0",
-						"bg-[linear-gradient(100deg,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.40)_45%,rgba(0,0,0,0.10)_100%)]",
-					]}
-            />
+			<div
+				class="absolute inset-0"
+				style="background: linear-gradient(100deg, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 75%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 40%, transparent) 45%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 10%, transparent) 100%);"
+			/>
 
             <div class="relative flex flex-col gap-5 lg:flex-row">
                 <div class="min-w-0 flex flex-col flex-1 gap-4">

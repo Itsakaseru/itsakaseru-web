@@ -9,7 +9,15 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, category, mark, tags = [], hero } = post.data;
+const {
+	title,
+	description,
+	category,
+	mark,
+	tags = [],
+	hero,
+	accent,
+} = post.data;
 ---
 
 <section
@@ -17,6 +25,7 @@ const { title, description, category, mark, tags = [], hero } = post.data;
 		"p-3 sm:p-4",
 		"rounded-xl bg-snow-100/85",
 	]}
+	style={`--accent-main: ${accent.main};`}
 >
 	<div
 		class:list={[
@@ -43,10 +52,8 @@ const { title, description, category, mark, tags = [], hero } = post.data;
 				/>
 			)}
 		<div
-			class:list={[
-				"absolute inset-0",
-				"bg-[linear-gradient(100deg,rgba(0,0,0,0.75)_0%,rgba(0,0,0,0.40)_45%,rgba(0,0,0,0.10)_100%)]",
-			]}
+			class="absolute inset-0"
+			style="background: linear-gradient(100deg, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 75%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 40%, transparent) 45%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 10%, transparent) 100%);"
 		/>
 
 		<div class="relative">
