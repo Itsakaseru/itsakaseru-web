@@ -2,10 +2,11 @@
 
 import { satteri } from "@astrojs/markdown-satteri";
 import mdx from "@astrojs/mdx";
+import partytown from "@astrojs/partytown";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig, envField, fontProviders } from "astro/config";
 
 import icon from "astro-icon";
 import pagefind from "astro-pagefind";
@@ -34,7 +35,7 @@ const codeBlockTitleTransformer = {
 	},
 };
 
-const site = new URL(process.env.SITE_URL ?? "https://itsakaseru.me");
+const site = new URL(process.env.SITE_URL || "https://itsakaseru.me");
 const excludedSitemapPages = new Set(
 	["/404/", "/fun/"].map((pathname) => new URL(pathname, site).toString()),
 );
@@ -42,6 +43,25 @@ const excludedSitemapPages = new Set(
 // https://astro.build/config
 export default defineConfig({
 	site: site.toString(),
+	env: {
+		schema: {
+			SITE_URL: envField.string({
+				context: "server",
+				access: "public",
+				optional: true,
+			}),
+			RAILPACK_DEPLOY_APT_PACKAGES: envField.string({
+				context: "server",
+				access: "secret",
+				optional: true,
+			}),
+			GOOGLE_ANALYTICS_ID: envField.string({
+				context: "server",
+				access: "public",
+				optional: true,
+			}),
+		},
+	},
 	markdown: {
 		processor: satteri({
 			features: {
@@ -77,6 +97,9 @@ export default defineConfig({
 	},
 
 	integrations: [
+		partytown({
+			config: { forward: ["dataLayer.push"] },
+		}),
 		sitemap({
 			filter: (page) => !excludedSitemapPages.has(page),
 		}),

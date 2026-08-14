@@ -2,6 +2,7 @@
 import "@/styles/global.css";
 import { Font } from "astro:assets";
 import defaultSeoImage from "@/assets/sakii.png";
+import GoogleAnalytics from "@/components/GoogleAnalytics.astro";
 
 interface Props {
 	title?: string;
@@ -133,6 +134,7 @@ const jsonLd = canonicalUrl
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
+		<GoogleAnalytics />
 		<meta name="theme-color" content="#4e342e">
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 		<link rel="icon" href="/favicon.ico">
