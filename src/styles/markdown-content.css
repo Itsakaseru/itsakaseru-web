@@ -639,8 +639,16 @@
 
 .markdown-content [data-footnote-backref] {
 	display: inline-block;
+	font-size: 0;
 	margin-left: 0.25rem;
 	text-decoration: none;
+}
+
+.markdown-content [data-footnote-backref]::after {
+	content: "\21A9\FE0E";
+	font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+	font-size: 0.75rem;
+	font-weight: 700;
 }
 
 .markdown-content hr {
