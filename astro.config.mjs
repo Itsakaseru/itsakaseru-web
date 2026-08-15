@@ -36,6 +36,7 @@ const codeBlockTitleTransformer = {
 };
 
 const site = new URL(process.env.SITE_URL || "https://itsakaseru.me");
+const isProduction = process.env.NODE_ENV === "production";
 const excludedSitemapPages = new Set(
 	["/404/", "/fun/"].map((pathname) => new URL(pathname, site).toString()),
 );
@@ -100,9 +101,13 @@ export default defineConfig({
 		partytown({
 			config: { forward: ["dataLayer.push"] },
 		}),
-		sitemap({
-			filter: (page) => !excludedSitemapPages.has(page),
-		}),
+		...(isProduction
+			? [
+					sitemap({
+						filter: (page) => !excludedSitemapPages.has(page),
+					}),
+				]
+			: []),
 		react(),
 		mdx(),
 		icon(),

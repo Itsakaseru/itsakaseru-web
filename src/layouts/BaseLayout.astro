@@ -77,6 +77,11 @@ const imageDimensions = image
 const resolvedImageAlt = imageAlt ?? `${title} social preview`;
 const prevUrl = prev ? normalizePageUrl(prev) : undefined;
 const nextUrl = next ? normalizePageUrl(next) : undefined;
+const robots = !import.meta.env.PROD
+	? "noindex, nofollow"
+	: noindex
+		? "noindex, follow"
+		: undefined;
 const websiteId = new URL("/#website", site).toString();
 const personId = new URL("/#person", site).toString();
 const pageId = canonicalUrl ? `${canonicalUrl}#webpage` : undefined;
@@ -144,7 +149,7 @@ const jsonLd = canonicalUrl
 		<meta name="generator" content={Astro.generator}>
 		<meta name="description" content={description}>
 		<meta name="author" content="Lemuel Lancaster">
-		{noindex && <meta name="robots" content="noindex, follow" />}
+		{robots && <meta name="robots" content={robots} />}
 
 		<meta property="og:site_name" content={SITE_NAME}>
 		<meta property="og:locale" content="en_US">
