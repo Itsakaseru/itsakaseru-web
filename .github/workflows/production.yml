@@ -4,13 +4,39 @@ on:
   push:
     branches:
       - main
+
   workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
 jobs:
   deploy:
     name: Deploy to production
     runs-on: ubuntu-latest
-    environment: production
+    environment:
+      name: production
+      url: https://itsaksaeru.me
+
+    env:
+      # Registry information
+      REGISTRY_HOST: ${{ secrets.REGISTRY_HOST }}
+      REGISTRY_REPOSITORY: ${{ secrets.REGISTRY_REPOSITORY }}
+
+      # Astro build environment
+      SITE_URL: "https://itsaksaeru.me"
+
+      # Railpack build environment
+      RAILPACK_VERSION: "0.38.0"
+      RAILPACK_DEPLOY_APT_PACKAGES: "curl"
+
+      # Dokploy deployment check
+      DOKPLOY_DEPLOY_TIMEOUT: "300"
+      DOKPLOY_DEPLOY_POLL_INTERVAL: "5"
 
     steps:
       - name: Checkout
@@ -21,10 +47,79 @@ jobs:
         with:
           oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-          tags: tag:cicd
+          tags: tag:github-action
           ping: ${{ secrets.TS_HOST }}
 
-      - name: Trigger production deployment via Dokploy API
+      - name: Login to container registry
+        env:
+          REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
+          REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
+        run: |
+          set -euo pipefail
+
+          echo "${REGISTRY_PASSWORD}" | docker login "${REGISTRY_HOST}" \
+            --username "${REGISTRY_USERNAME}" \
+            --password-stdin
+
+      - name: Install Railpack
+        run: |
+          set -euo pipefail
+
+          mkdir -p "${HOME}/.local/bin"
+
+          curl -fsSL https://railpack.com/install.sh | \
+            RAILPACK_VERSION="${RAILPACK_VERSION}" \
+            bash -s -- --bin-dir "${HOME}/.local/bin"
+
+          echo "${HOME}/.local/bin" >> "${GITHUB_PATH}"
+
+          "${HOME}/.local/bin/railpack" --version
+
+      - name: Start BuildKit
+        run: |
+          set -euo pipefail
+
+          docker run \
+            --rm \
+            --privileged \
+            --detach \
+            --name buildkit \
+            moby/buildkit
+
+          echo "BUILDKIT_HOST=docker-container://buildkit" >> "${GITHUB_ENV}"
+
+      - name: Build image with Railpack
+        id: image
+        run: |
+          set -euo pipefail
+
+          LOCAL_IMAGE="${REGISTRY_REPOSITORY}:${GITHUB_SHA}"
+          PRODUCTION_IMAGE="${REGISTRY_HOST}/${REGISTRY_REPOSITORY}:latest"
+
+          echo "Building image..."
+          echo "Commit: ${GITHUB_SHA}"
+
+          railpack build \
+            --name "${LOCAL_IMAGE}" \
+            --platform linux/amd64 \
+            --progress plain \
+            --env "SITE_URL=${SITE_URL}" \
+            --env "RAILPACK_DEPLOY_APT_PACKAGES=${RAILPACK_DEPLOY_APT_PACKAGES}" \
+            .
+
+          docker image inspect "${LOCAL_IMAGE}" > /dev/null
+          docker tag "${LOCAL_IMAGE}" "${PRODUCTION_IMAGE}"
+          echo "production_image=${PRODUCTION_IMAGE}" >> "${GITHUB_OUTPUT}"
+
+      - name: Push image to registry
+        env:
+          PRODUCTION_IMAGE: ${{ steps.image.outputs.production_image }}
+        run: |
+          set -euo pipefail
+
+          docker push "${PRODUCTION_IMAGE}"
+
+      - name: Deploy to Dokploy
         env:
           DOKPLOY_BASE_URL: ${{ secrets.DOKPLOY_BASE_URL }}
           DOKPLOY_API_KEY: ${{ secrets.DOKPLOY_API_KEY }}
@@ -32,16 +127,85 @@ jobs:
         run: |
           set -euo pipefail
 
-          response=$(curl -sS -o /tmp/dokploy-response.txt -w "%{http_code}" \
+          DEPLOY_MARKER="github-actions:${GITHUB_RUN_ID}:${GITHUB_RUN_ATTEMPT}"
+
+          echo "Triggering Dokploy deployment..."
+
+          payload=$(jq -n \
+            --arg applicationId "${DOKPLOY_APPLICATION_ID}" \
+            --arg title "GitHub Actions production deployment" \
+            --arg description "${DEPLOY_MARKER}" \
+            '{
+              applicationId: $applicationId,
+              title: $title,
+              description: $description
+            }')
+
+          response=$(curl -sS \
+            -o /tmp/dokploy-response.txt \
+            -w "%{http_code}" \
             -X POST "${DOKPLOY_BASE_URL}/api/application.deploy" \
             -H "Content-Type: application/json" \
             -H "x-api-key: ${DOKPLOY_API_KEY}" \
-            -d "{\"applicationId\":\"${DOKPLOY_APPLICATION_ID}\"}")
+            -d "${payload}")
 
-          echo "HTTP status: $response"
-          cat /tmp/dokploy-response.txt
+          echo "Deploy request HTTP status: ${response}"
 
-          if [ "$response" -lt 200 ] || [ "$response" -ge 300 ]; then
-            echo "Dokploy API deploy failed"
+          if [ "${response}" -lt 200 ] || [ "${response}" -ge 300 ]; then
+            echo "Dokploy deploy request failed ❌"
             exit 1
           fi
+
+          echo "Deployment queued."
+          echo "Timeout: ${DOKPLOY_DEPLOY_TIMEOUT}s"
+          echo "Polling interval: ${DOKPLOY_DEPLOY_POLL_INTERVAL}s"
+
+          SECONDS=0
+
+          while [ "${SECONDS}" -lt "${DOKPLOY_DEPLOY_TIMEOUT}" ]; do
+            deployments=$(curl -fsS \
+              -G "${DOKPLOY_BASE_URL}/api/deployment.all" \
+              -H "x-api-key: ${DOKPLOY_API_KEY}" \
+              --data-urlencode "applicationId=${DOKPLOY_APPLICATION_ID}")
+
+            deployment=$(echo "${deployments}" | jq -c \
+              --arg marker "${DEPLOY_MARKER}" \
+              '[.[] | select(.description == $marker)][0] // empty')
+
+            if [ -z "${deployment}" ]; then
+              echo "Waiting for deployment record..."
+              sleep "${DOKPLOY_DEPLOY_POLL_INTERVAL}"
+              continue
+            fi
+
+            deployment_id=$(echo "${deployment}" | jq -r '.deploymentId')
+            status=$(echo "${deployment}" | jq -r '.status')
+
+            echo "Deployment ID: ${deployment_id}"
+            echo "Deployment status: ${status}"
+
+            case "${status}" in
+              done)
+                echo "Dokploy production deployment completed successfully ✅"
+                exit 0
+                ;;
+
+              error)
+                echo "Dokploy production deployment failed ❌"
+                exit 1
+                ;;
+
+              *)
+                sleep "${DOKPLOY_DEPLOY_POLL_INTERVAL}"
+                ;;
+            esac
+          done
+
+          echo "Dokploy production deployment timed out after ${DOKPLOY_DEPLOY_TIMEOUT}s ❌"
+          exit 1
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f buildkit 2>/dev/null || true
+          docker logout "${REGISTRY_HOST}" 2>/dev/null || true
