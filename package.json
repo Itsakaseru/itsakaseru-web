@@ -13,10 +13,10 @@
 		"content:sync": "sh tools/sync-contents.sh"
 	},
 	"dependencies": {
-		"@astrojs/markdown-satteri": "^0.3.5",
-		"@astrojs/mdx": "^7.0.5",
+		"@astrojs/markdown-satteri": "^0.3.8",
+		"@astrojs/mdx": "^7.0.8",
 		"@astrojs/partytown": "^2.1.7",
-		"@astrojs/react": "^6.0.2",
+		"@astrojs/react": "^6.0.4",
 		"@astrojs/sitemap": "^3.7.3",
 		"@fortawesome/fontawesome-svg-core": "^7.3.1",
 		"@fortawesome/free-brands-svg-icons": "^7.3.1",
@@ -25,21 +25,21 @@
 		"@fortawesome/react-fontawesome": "^3.5.0",
 		"@tailwindcss/vite": "^4.3.3",
 		"@types/react": "^19.2.18",
-		"@types/react-dom": "^19.2.4",
+		"@types/react-dom": "^19.2.5",
 		"animejs": "^4.5.0",
-		"astro": "^7.2.0",
-		"astro-icon": "^1.1.5",
+		"astro": "^7.2.9",
+		"astro-icon": "^1.2.0",
 		"astro-og-canvas": "^0.13.0",
 		"astro-pagefind": "^2.0.1",
 		"canvaskit-wasm": "^0.41.1",
 		"motion": "^12.43.0",
 		"react": "^19.2.8",
 		"react-dom": "^19.2.8",
-		"sharp": "^0.35.3",
+		"sharp": "^0.35.4",
 		"tailwindcss": "^4.3.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.5",
+		"@biomejs/biome": "2.5.11",
 		"@iconify-json/tabler": "^1.2.38"
 	}
 }
