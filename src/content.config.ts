@@ -21,43 +21,39 @@ const blogCategorySchema = z.enum([
 
 const blogMarkSchema = z.enum(["Spotlight", "Featured", "New"]);
 
-const blogImageSchema = z.object({
-	src: z.string().min(1),
-	alt: z.string().min(1).optional(),
-});
-
 const projects = defineCollection({
 	loader: glob({
 		base: "src/contents/projects",
 		pattern: "**/*.mdx",
 	}),
-	schema: z.object({
-		name: z.string(),
-		description: z.string(),
-		logo: z.string(),
-		mark: projectMarkSchema.optional(),
-		accent: accentSchema,
-		tags: z.array(z.string()).optional(),
-		links: z
-			.array(
-				z.object({
-					text: z.string(),
-					url: z.string(),
-				}),
-			)
-			.optional(),
-		details: z
-			.array(
-				z.object({
-					title: z.string(),
-					content: z.string(),
-				}),
-			)
-			.optional(),
-		createdAt: z.coerce.date(),
-		publishedAt: z.coerce.date(),
-		updatedAt: z.coerce.date(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			name: z.string(),
+			description: z.string(),
+			logo: image(),
+			mark: projectMarkSchema.optional(),
+			accent: accentSchema,
+			tags: z.array(z.string()).optional(),
+			links: z
+				.array(
+					z.object({
+						text: z.string(),
+						url: z.string(),
+					}),
+				)
+				.optional(),
+			details: z
+				.array(
+					z.object({
+						title: z.string(),
+						content: z.string(),
+					}),
+				)
+				.optional(),
+			createdAt: z.coerce.date(),
+			publishedAt: z.coerce.date(),
+			updatedAt: z.coerce.date(),
+		}),
 });
 
 const about = defineCollection({
@@ -84,22 +80,29 @@ const blog = defineCollection({
 		base: "src/contents/blog",
 		pattern: "**/*.mdx",
 	}),
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		category: blogCategorySchema,
-		mark: blogMarkSchema.optional(),
-		accent: accentSchema,
-		tags: z.array(z.string()).optional(),
-		hero: z
-			.object({
-				wide: blogImageSchema,
-				thumbnail: blogImageSchema,
-			})
-			.optional(),
-		publishedAt: z.coerce.date(),
-		updatedAt: z.coerce.date(),
-	}),
+	schema: ({ image }) => {
+		const blogImageSchema = z.object({
+			img: image(),
+			alt: z.string().min(1).optional(),
+		});
+
+		return z.object({
+			title: z.string(),
+			description: z.string(),
+			category: blogCategorySchema,
+			mark: blogMarkSchema.optional(),
+			accent: accentSchema,
+			tags: z.array(z.string()).optional(),
+			hero: z
+				.object({
+					wide: blogImageSchema,
+					thumbnail: blogImageSchema,
+				})
+				.optional(),
+			publishedAt: z.coerce.date(),
+			updatedAt: z.coerce.date(),
+		});
+	},
 });
 
 export const collections = { projects, about, blog };

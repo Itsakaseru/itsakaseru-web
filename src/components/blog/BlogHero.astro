@@ -38,7 +38,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts
 		>
 			{spotlight.data.hero?.wide && (
                     <img
-							src={spotlight.data.hero.wide.src}
+							src={spotlight.data.hero.wide.img.src}
 							alt={spotlight.data.hero.wide.alt ?? `${spotlight.data.title} hero image`}
 							loading="eager"
 							fetchpriority="high"
@@ -147,7 +147,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts
 								>
 									{featuredPost.data.hero?.thumbnail &&
                                             <img
-												src={featuredPost.data.hero.thumbnail.src}
+												src={featuredPost.data.hero.thumbnail.img.src}
 												alt={featuredPost.data.hero.thumbnail.alt ?? `${featuredPost.data.title} thumbnail`}
 												loading="lazy"
 												decoding="async"

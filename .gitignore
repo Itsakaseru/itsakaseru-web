@@ -17,6 +17,10 @@ pnpm-debug.log*
 .env*
 !.env.example
 
+# content assets
+src/contents/*
+!src/contents/.gitkeep
+
 # macOS-specific files
 .DS_Store
 

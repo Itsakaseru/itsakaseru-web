@@ -53,7 +53,7 @@ const canonicalUrl = new URL(`${canonicalPath}/`, site).toString();
 const personId = new URL("/#person", site).toString();
 const pageId = `${canonicalUrl}#webpage`;
 const articleImageUrl = hero?.wide
-	? new URL(hero.wide.src, site).toString()
+	? new URL(hero.wide.img.src, site).toString()
 	: undefined;
 const structuredData = [
 	{
@@ -308,7 +308,7 @@ const relatedPosts = (await getCollection("blog"))
 												]}
                                         >
                                             <img
-												src={relatedArticle.data.hero.thumbnail.src}
+												src={relatedArticle.data.hero.thumbnail.img.src}
 												alt={relatedArticle.data.hero.thumbnail.alt ?? `${relatedArticle.data.title} thumbnail`}
 												loading="lazy"
 												decoding="async"

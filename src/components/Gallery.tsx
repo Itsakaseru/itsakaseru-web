@@ -1,6 +1,25 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
+const projectAssets = import.meta.glob<string>(
+	"/src/contents/projects/**/assets/*",
+	{
+		eager: true,
+		import: "default",
+		query: "?url",
+	},
+);
+
+const resolveAsset = (src: string) => {
+	const match = src.match(/^\/projects\/([^/]+)\/(.+)$/);
+	if (!match) return src;
+
+	return (
+		projectAssets[`/src/contents/projects/${match[1]}/assets/${match[2]}`] ??
+		src
+	);
+};
+
 interface GalleryItem {
 	src: string;
 	alt?: string;
@@ -61,6 +80,7 @@ export default function Gallery({
 		return null;
 	}
 	const activeItemAlt = activeItem.alt ?? activeItem.label;
+	const activeItemSrc = resolveAsset(activeItem.src);
 
 	return (
 		<>
@@ -76,9 +96,9 @@ export default function Gallery({
 							aria-label={`Preview ${activeItemAlt}`}
 						>
 							<img
-								key={activeItem.src}
+								key={activeItemSrc}
 								className={`${mediaClass} markdown-gallery-image`}
-								src={activeItem.src}
+								src={activeItemSrc}
 								alt={activeItemAlt}
 								loading="lazy"
 							/>
@@ -120,7 +140,7 @@ export default function Gallery({
 					<div className="flex flex-wrap justify-center gap-2">
 						{items.map((item, index) => (
 							<button
-								key={`${item.src}-${item.alt ?? item.label}`}
+								key={`${resolveAsset(item.src)}-${item.alt ?? item.label}`}
 								type="button"
 								className={
 									"h-2.5 rounded-full transition-all cursor-pointer " +
@@ -174,9 +194,9 @@ export default function Gallery({
 								</button>
 
 								<img
-									key={`preview-${activeItem.src}`}
+									key={`preview-${activeItemSrc}`}
 									className="markdown-gallery-image block max-h-[85vh] max-w-full rounded-xl bg-snow-100/5 object-contain shadow-2xl shadow-cocoa-900/40"
-									src={activeItem.src}
+									src={activeItemSrc}
 									alt={activeItemAlt}
 								/>
 							</div>

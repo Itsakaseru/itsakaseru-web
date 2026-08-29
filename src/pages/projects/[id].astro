@@ -52,7 +52,7 @@ const site = Astro.site ?? new URL("https://itsakaseru.me");
 const canonicalUrl = new URL(`${canonicalPath}/`, site).toString();
 const personId = new URL("/#person", site).toString();
 const pageId = `${canonicalUrl}#webpage`;
-const logoUrl = new URL(logo, site).toString();
+const logoUrl = new URL(logo.src, site).toString();
 const structuredData = [
 	{
 		"@type": "CreativeWork",

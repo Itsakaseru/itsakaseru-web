@@ -109,25 +109,35 @@ const pages: Record<string, OGPage> = {
 
 // Projects page
 for (const project of projects) {
+	const entryDirectory = path.dirname(path.resolve(project.filePath ?? ""));
 	pages[`projects/${project.id}`] = {
 		title: `${project.data.name}.`,
 		description: project.data.description,
 		kind: "project",
 		accent: project.data.accent.main,
-		logoPath: path.resolve(`public${project.data.logo}`),
+		logoPath: path.join(
+			entryDirectory,
+			"assets",
+			`logo.${project.data.logo.format}`,
+		),
 		label: "Project",
 	};
 }
 
 // Posts page
 for (const post of posts) {
+	const entryDirectory = path.dirname(path.resolve(post.filePath ?? ""));
 	pages[`blog/${post.id}`] = {
 		title: post.data.title,
 		description: post.data.description,
 		kind: "blog",
 		accent: post.data.accent.main,
 		coverPath: post.data.hero
-			? path.resolve(`public${post.data.hero.wide.src}`)
+			? path.join(
+					entryDirectory,
+					"assets",
+					`hero.${post.data.hero.wide.img.format}`,
+				)
 			: undefined,
 		label: post.data.category,
 	};
