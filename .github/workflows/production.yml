@@ -155,12 +155,13 @@ jobs:
           set -euo pipefail
 
           DEPLOY_MARKER="github-actions:${GITHUB_RUN_ID}:${GITHUB_RUN_ATTEMPT}"
+          COMMIT_MESSAGE="$(git log -1 --pretty=%s "${GITHUB_SHA}")"
 
           echo "Triggering Dokploy deployment..."
 
           payload=$(jq -n \
             --arg applicationId "${DOKPLOY_APPLICATION_ID}" \
-            --arg title "GitHub Actions production deployment" \
+            --arg title "${COMMIT_MESSAGE}" \
             --arg description "${DEPLOY_MARKER}" \
             '{
               applicationId: $applicationId,
