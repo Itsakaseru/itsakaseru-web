@@ -86,6 +86,33 @@ jobs:
 
           echo "BUILDKIT_HOST=docker-container://buildkit" >> "${GITHUB_ENV}"
 
+      - name: Pull contents from S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.S3_REGION }}
+          S3_ENDPOINT_URL: ${{ secrets.S3_ENDPOINT_URL }}
+        run: |
+          set -euo pipefail
+
+          : "${AWS_ACCESS_KEY_ID:?S3_ACCESS_KEY_ID is not configured}"
+          : "${AWS_SECRET_ACCESS_KEY:?S3_SECRET_ACCESS_KEY is not configured}"
+          : "${AWS_DEFAULT_REGION:?S3_REGION is not configured}"
+          : "${S3_ENDPOINT_URL:?S3_ENDPOINT_URL is not configured}"
+
+          mkdir -p src/contents
+          aws s3 sync \
+            s3://itsakaseru-web/contents/ \
+            src/contents/ \
+            --endpoint-url "${S3_ENDPOINT_URL}" \
+            --delete \
+            --no-progress
+
+          if ! find src/contents -type f -print -quit | grep -q .; then
+            echo "No content files were downloaded from S3." >&2
+            exit 1
+          fi
+
       - name: Build image with Railpack
         id: image
         run: |
