@@ -9,7 +9,8 @@
 		"dev": "astro dev --host",
 		"build": "astro build",
 		"preview": "astro preview --host",
-		"astro": "astro"
+		"content:pull": "sh tools/pull-contents.sh",
+		"content:sync": "sh tools/sync-contents.sh"
 	},
 	"dependencies": {
 		"@astrojs/markdown-satteri": "^0.3.5",
