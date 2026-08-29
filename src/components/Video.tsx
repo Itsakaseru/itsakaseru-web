@@ -15,7 +15,7 @@ export default function Video({ youtubeId, title, caption }: VideoProps) {
 		>
 			<div className="aspect-video overflow-hidden rounded-lg bg-cocoa-900/5">
 				<iframe
-					className="h-full w-full"
+					className="markdown-video-iframe block h-full w-full border-0"
 					src={embedUrl}
 					title={title}
 					loading="lazy"
@@ -25,7 +25,7 @@ export default function Video({ youtubeId, title, caption }: VideoProps) {
 				/>
 			</div>
 
-			<figcaption className="flex flex-col gap-2 px-1 pt-2 text-xs font-light leading-5 text-cocoa-300 sm:flex-row sm:items-center sm:justify-between">
+			<figcaption className="markdown-gallery-caption flex flex-col gap-2 px-1 pt-2 text-xs font-light leading-5 text-cocoa-300 sm:flex-row sm:items-center sm:justify-between">
 				<span>{caption ?? title}</span>
 				<a href={youtubeUrl} target="_blank" rel="noreferrer">
 					Watch on YouTube

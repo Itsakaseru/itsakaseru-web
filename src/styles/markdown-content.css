@@ -530,7 +530,7 @@
 
 .markdown-content img:not(.markdown-gallery-image),
 .markdown-content video,
-.markdown-content iframe {
+.markdown-content iframe:not(.markdown-video-iframe) {
 	border-radius: 0.75rem;
 	display: block;
 	margin-top: 1.5rem;
@@ -548,7 +548,7 @@
 	margin-right: auto;
 }
 
-.markdown-content iframe {
+.markdown-content iframe:not(.markdown-video-iframe) {
 	aspect-ratio: 16 / 9;
 	border: 1px solid var(--markdown-border);
 	width: 100%;
@@ -574,6 +574,10 @@
 	line-height: 1.5;
 	margin-top: 0.625rem;
 	text-align: center;
+}
+
+.markdown-content figcaption.markdown-gallery-caption {
+	margin-top: 0;
 }
 
 .markdown-content dl {

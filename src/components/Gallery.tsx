@@ -126,7 +126,7 @@ export default function Gallery({
 						)}
 					</div>
 
-					<figcaption className="flex flex-col px-1 pt-2 gap-2 font-light text-xs leading-5 text-cocoa-300 sm:flex-row sm:items-center sm:justify-between">
+					<figcaption className="markdown-gallery-caption flex flex-col gap-2 px-1 pt-2 text-xs font-light leading-5 text-cocoa-300 sm:flex-row sm:items-center sm:justify-between">
 						<span>{activeItem.label}</span>
 						{hasMultipleItems && (
 							<span className="font-semibold uppercase tracking-[0.14em] text-cocoa-200">
