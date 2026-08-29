@@ -3,14 +3,61 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer
+	data-site-footer
 	class:list={[
-			"bottom-0",
-			"font-light text-center",
-		]}
+		"mt-16 pt-5",
+		"text-sm text-cocoa-300 border-t border-cocoa-200/25",
+	]}
 >
-	&copy; {currentYear}
-	<ruby class="ml-0.5"
-		>It<rt>イ</rt>sa<rt>サ</rt>ka<rt>カ</rt>se<rt>セ</rt>ru<rt>ル</rt>. All
-		Rights Reserved.
-	</ruby>
+	<div
+		class:list={[
+			"flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:justify-between ",
+			"text-center sm:text-left",
+		]}
+	>
+		<a
+			href="/"
+			class:list={[
+				"group inline-flex items-center gap-3 rounded-lg",
+				"text-cocoa-500 transition hover:text-cocoa-400",
+				"focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cocoa-300",
+			]}
+		>
+			<img
+				src="/logo.svg"
+				alt=""
+				aria-hidden="true"
+				width="28"
+				height="28"
+				class="size-7"
+			>
+			<ruby class="text-base font-semibold tracking-tight" translate="no">
+				It<rt>イ</rt>sa<rt>サ</rt>ka<rt>カ</rt>se<rt>セ</rt>ru<rt>ル</rt>
+			</ruby>
+		</a>
+
+		<div
+			class:list={[
+				"flex flex-wrap items-center justify-center gap-x-3 gap-y-2 sm:justify-end",
+				"text-sm leading-5 text-cocoa-300/75",
+			]}
+		>
+			<span class="whitespace-nowrap">
+				&copy; {currentYear} Itsakaseru · All rights reserved.
+			</span>
+			<a
+				href="https://status.skyencripttion.com"
+				target="_blank"
+				rel="noopener noreferrer"
+				class:list={[
+					"inline-flex items-center gap-2 rounded-xl bg-cocoa-300 px-3 py-2",
+					"text-sm font-bold text-snow-100 transition hover:bg-cocoa-400",
+					"focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cocoa-300",
+				]}
+			>
+				Server status
+				<span aria-hidden="true" class="text-xs">↗</span>
+			</a>
+		</div>
+	</div>
 </footer>

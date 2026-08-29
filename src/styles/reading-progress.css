@@ -1,3 +1,7 @@
+[data-reading-controls] {
+	bottom: var(--reading-controls-bottom, 1.25rem);
+}
+
 [data-reading-controls] .reading-progress-track {
 	--reading-progress: 0;
 	position: relative;

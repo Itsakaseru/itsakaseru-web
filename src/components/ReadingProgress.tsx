@@ -41,14 +41,40 @@ export default function ReadingProgress({
 	useEffect(() => {
 		const articleContent = document.querySelector<HTMLElement>(contentSelector);
 		const progressTrack = progressTrackRef.current;
+		const readingControls = document.querySelector<HTMLElement>(
+			"[data-reading-controls]",
+		);
+		const siteFooter =
+			document.querySelector<HTMLElement>("[data-site-footer]");
 		if (!articleContent || !progressTrack) return;
 
 		let animationFrame = 0;
 		let pathWidth = 0;
 		let pathHeight = 0;
+		const defaultControlsBottom = 20;
+		const footerGap = 16;
+
+		const updateControlsPosition = () => {
+			if (!readingControls || !siteFooter) return;
+
+			const footerTop = siteFooter.getBoundingClientRect().top;
+			const controlsBottom =
+				footerTop < window.innerHeight
+					? Math.max(
+							defaultControlsBottom,
+							window.innerHeight - footerTop + footerGap,
+						)
+					: defaultControlsBottom;
+
+			readingControls.style.setProperty(
+				"--reading-controls-bottom",
+				`${controlsBottom}px`,
+			);
+		};
 
 		const updateProgress = () => {
 			animationFrame = 0;
+			updateControlsPosition();
 			const width = progressTrack.clientWidth;
 			const height = progressTrack.clientHeight;
 
@@ -100,7 +126,7 @@ export default function ReadingProgress({
 	return (
 		<div
 			data-reading-controls
-			className="fixed right-5 bottom-5 z-40 flex items-center gap-3"
+			className="fixed right-5 z-40 flex items-center gap-3"
 		>
 			<button
 				type="button"

@@ -16,7 +16,6 @@ const currentPath = Astro.url.pathname;
 				<NavigationLink client:load currentPath={currentPath} />
 			</Navbar>
 			<slot />
-			<div class="flex mt-16" />
 			<Footer />
 		</div>
 	</body>
