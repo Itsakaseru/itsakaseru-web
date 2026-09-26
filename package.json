@@ -13,33 +13,33 @@
 		"content:sync": "sh tools/sync-contents.sh"
 	},
 	"dependencies": {
-		"@astrojs/markdown-satteri": "^0.3.8",
-		"@astrojs/mdx": "^7.0.8",
-		"@astrojs/partytown": "^2.1.7",
-		"@astrojs/react": "^6.0.4",
-		"@astrojs/sitemap": "^3.7.3",
+		"@astrojs/markdown-satteri": "^0.4.2",
+		"@astrojs/mdx": "^8.0.2",
+		"@astrojs/partytown": "^2.1.8",
+		"@astrojs/react": "^7.0.0",
+		"@astrojs/sitemap": "^3.7.4",
 		"@fortawesome/fontawesome-svg-core": "^7.3.1",
 		"@fortawesome/free-brands-svg-icons": "^7.3.1",
 		"@fortawesome/free-regular-svg-icons": "^7.3.1",
 		"@fortawesome/free-solid-svg-icons": "^7.3.1",
 		"@fortawesome/react-fontawesome": "^3.5.0",
 		"@tailwindcss/vite": "^4.3.3",
-		"@types/react": "^19.2.18",
-		"@types/react-dom": "^19.2.5",
+		"@types/react": "^19.3.0",
+		"@types/react-dom": "^19.3.0",
 		"animejs": "^4.5.0",
-		"astro": "^7.2.9",
+		"astro": "^7.3.5",
 		"astro-icon": "^1.2.0",
-		"astro-og-canvas": "^0.13.0",
+		"astro-og-canvas": "^0.13.2",
 		"astro-pagefind": "^2.0.1",
-		"canvaskit-wasm": "^0.41.1",
-		"motion": "^12.43.0",
-		"react": "^19.2.8",
-		"react-dom": "^19.2.8",
+		"canvaskit-wasm": "^0.42.0",
+		"motion": "^13.4.4",
+		"react": "^19.3.0",
+		"react-dom": "^19.3.0",
 		"sharp": "^0.35.4",
 		"tailwindcss": "^4.3.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.11",
-		"@iconify-json/tabler": "^1.2.38"
+		"@biomejs/biome": "2.5.14",
+		"@iconify-json/tabler": "^1.2.40"
 	}
 }
