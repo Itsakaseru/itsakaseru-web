@@ -16,8 +16,9 @@ const { tags, accent } = Astro.props;
 	{tags.map((tag) => (
 			<span
 					class:list={[
-						"px-2.5 py-1",
+						"w-max max-w-full px-2.5 py-1",
 						"rounded-lg font-semibold text-xs uppercase tracking-[0.12em]",
+						"text-balance wrap-anywhere",
 						"bg-(--accent-sub) text-(--accent-main) border border-(--accent-main)/15",
 					]}
 			>
