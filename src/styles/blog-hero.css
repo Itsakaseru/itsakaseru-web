@@ -1,0 +1,15 @@
+.blog-hero-shade {
+	background:
+		radial-gradient(
+			ellipse at 80% 5%,
+			color-mix(in srgb, var(--color-cocoa-200) 25%, transparent),
+			transparent 55%
+		),
+		linear-gradient(
+			105deg,
+			color-mix(in srgb, var(--color-cocoa-900) 95%, transparent) 0%,
+			color-mix(in srgb, var(--color-cocoa-500) 85%, transparent) 35%,
+			color-mix(in srgb, var(--color-cocoa-400) 45%, transparent) 70%,
+			color-mix(in srgb, var(--color-cocoa-900) 15%, transparent) 100%
+		);
+}

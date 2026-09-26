@@ -9,6 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BLOG_MARK_ICONS, calculateReadingTime } from "@/utils/blog.ts";
 import { formatDateMonthYear } from "@/utils/format.ts";
+import "@/styles/blog-hero.css";
 
 interface Props {
 	posts: CollectionEntry<"blog">[];
@@ -28,12 +29,12 @@ const [spotlight, featuredPost, additionalSpotlight] = posts
 				"p-3 sm:p-4",
 				"rounded-xl bg-snow-100/85",
 			]}
-			style={`--accent-main: ${spotlight.data.accent.main}; --accent-sub: ${spotlight.data.accent.sub ?? "#fff6f4"};`}
+			style={`--accent-sub: ${spotlight.data.accent.sub ?? "#fff6f4"};`}
     >
         <div
 			class:list={[
 				"relative overflow-hidden p-4 sm:p-6 lg:p-8",
-				"rounded-lg text-snow-100",
+				"rounded-lg bg-cocoa-500 text-snow-100",
 			]}
 		>
 			{spotlight.data.hero?.wide && (
@@ -50,10 +51,7 @@ const [spotlight, featuredPost, additionalSpotlight] = posts
                     />
 			)}
 
-			<div
-				class="absolute inset-0"
-				style="background: linear-gradient(100deg, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 75%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 40%, transparent) 45%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 10%, transparent) 100%);"
-			/>
+			<div class="blog-hero-shade absolute inset-0" />
 
             <div class="relative flex flex-col gap-5 lg:flex-row">
                 <div class="min-w-0 flex flex-col flex-1 gap-4">

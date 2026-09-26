@@ -3,21 +3,14 @@ import type { CollectionEntry } from "astro:content";
 import { faLayerGroup } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { BLOG_MARK_ICONS } from "@/utils/blog.ts";
+import "@/styles/blog-hero.css";
 
 interface Props {
 	post: CollectionEntry<"blog">;
 }
 
 const { post } = Astro.props;
-const {
-	title,
-	description,
-	category,
-	mark,
-	tags = [],
-	hero,
-	accent,
-} = post.data;
+const { title, description, category, mark, tags = [], hero } = post.data;
 ---
 
 <section
@@ -25,12 +18,11 @@ const {
 		"p-3 sm:p-4",
 		"rounded-xl bg-snow-100/85",
 	]}
-	style={`--accent-main: ${accent.main};`}
 >
 	<div
 		class:list={[
 			"relative overflow-hidden p-4 sm:p-6 lg:p-8",
-			"rounded-lg text-snow-100",
+			"rounded-lg bg-cocoa-500 text-snow-100",
 		]}
 	>
 		{hero?.wide ? (
@@ -51,10 +43,7 @@ const {
 					]}
 				/>
 			)}
-		<div
-			class="absolute inset-0"
-			style="background: linear-gradient(100deg, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 75%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 40%, transparent) 45%, color-mix(in srgb, color-mix(in srgb, var(--accent-main) 45%, black) 10%, transparent) 100%);"
-		/>
+		<div class="blog-hero-shade absolute inset-0" />
 
 		<div class="relative">
 			<div class="max-w-4/6 space-y-3">
