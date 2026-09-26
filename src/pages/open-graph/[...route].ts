@@ -73,7 +73,7 @@ const pages: Record<string, OGPage> = {
 		logoPath: SAKII_IMAGE_PATH,
 	},
 	projects: {
-		title: "Project List.",
+		title: "Project List",
 		description:
 			"A collection of software, web, game, and other projects I’ve worked on throughout my life, including things I’ve built for fun, learning, experimentation, and everything in between.",
 		kind: "project",
@@ -111,7 +111,7 @@ const pages: Record<string, OGPage> = {
 for (const project of projects) {
 	const entryDirectory = path.dirname(path.resolve(project.filePath ?? ""));
 	pages[`projects/${project.id}`] = {
-		title: `${project.data.name}.`,
+		title: project.data.name,
 		description: project.data.description,
 		kind: "project",
 		accent: project.data.accent.main,
