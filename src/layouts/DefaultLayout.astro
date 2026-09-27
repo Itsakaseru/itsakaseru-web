@@ -12,12 +12,12 @@ const currentPath = Astro.url.pathname;
 	<body class="min-h-screen relative">
 		<Background />
 		<div
-			class="rounded-2xl p-4 sm:px-6 sm:pt-6 sm:pb-4 lg:px-10 lg:pt-10 lg:pb-4"
+			class="flex min-h-dvh flex-col rounded-2xl p-4 sm:px-6 sm:pt-6 sm:pb-4 lg:px-10 lg:pt-10 lg:pb-4"
 		>
 			<Navbar>
 				<NavigationLink client:load currentPath={currentPath} />
 			</Navbar>
-			<slot />
+			<div class="flex-1"><slot /></div>
 			<Footer />
 		</div>
 	</body>
