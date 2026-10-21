@@ -125,7 +125,7 @@ export default defineConfig({
 			provider: fontProviders.fontsource(),
 			name: "Manrope",
 			cssVariable: "--font-manrope",
-			weights: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+			weights: [200, 300, 400, 500, 600, 700, 800],
 		},
 	],
 });

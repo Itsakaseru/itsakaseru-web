@@ -9,7 +9,7 @@ import {
 	faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { type OGImageOptions, OGImageRoute } from "astro-og-canvas";
-import sharp from "sharp";
+import sharp, { type OverlayOptions } from "sharp";
 import { hexToRGB } from "@/utils/colour";
 
 type PageKind = "project" | "blog" | "general";
@@ -308,7 +308,7 @@ const createCardBackground = async (route: string, page: OGPage) => {
 			${showIconTile ? '<rect x="992" y="58" width="144" height="144" rx="25" fill="#ffffff" fill-opacity=".94" />' : ""}
 		</svg>`;
 
-	const composites: sharp.OverlayOptions[] = [
+	const composites: OverlayOptions[] = [
 		{ input: Buffer.from(svg) },
 		{
 			input: footerText.data,

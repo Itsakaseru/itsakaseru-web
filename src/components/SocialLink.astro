@@ -38,25 +38,24 @@ export const SOCIAL_LINKS = [
 ---
 
 <div
-	class:list={[
-			"hidden my-auto gap-3 px-3 py-2 lg:flex",
-			"text-snow-100/75",
-		]}
+	class:list={["hidden my-auto gap-3 px-3 py-2 lg:flex", "text-snow-100/75"]}
 >
 	{SOCIAL_LINKS.map((link, idx) => (
-                <>
-					<a
-							class:list={[
-								"inline-flex items-center gap-1.5",
-								"underline-offset-4 hover:text-snow-100 hover:underline",
-								"cursor-pointer transition",
-							]}
-							href={link.href}
-					>
-						<FontAwesomeIcon icon={link.icon} className="size-3.5" />
-						{link.name}
-					</a>
-					{idx !== SOCIAL_LINKS.length - 1 && <span class="mx-0.5 select-none text-snow-100/25">/</span> }
-                </>
-		))}
+		<>
+			<a
+				class:list={[
+					"inline-flex items-center gap-1.5",
+					"underline-offset-4 hover:text-snow-100 hover:underline",
+					"cursor-pointer transition",
+				]}
+				href={link.href}
+			>
+				<FontAwesomeIcon icon={link.icon} className="size-3.5" />
+				{link.name}
+			</a>
+			{idx !== SOCIAL_LINKS.length - 1 && (
+				<span class="mx-0.5 select-none text-snow-100/25">/</span>
+			)}
+		</>
+	))}
 </div>

@@ -13,9 +13,9 @@ const { spotlight } = Astro.props;
 
 <div
 	class:list={[
-        "relative flex mx-auto mt-6 px-4 py-5 overflow-hidden sm:mt-10 sm:px-8 sm:py-8",
-        "rounded-xl bg-snow-100/85 border border-cocoa-200/15",
-    ]}
+		"relative flex mx-auto mt-6 px-4 py-5 overflow-hidden sm:mt-10 sm:px-8 sm:py-8",
+		"rounded-xl bg-snow-100/85 border border-cocoa-200/15",
+	]}
 >
 	<div
 		class="relative flex w-full flex-col gap-6 md:flex-row md:justify-between md:items-center"
@@ -24,9 +24,9 @@ const { spotlight } = Astro.props;
 			<div class="flex items-center gap-3">
 				<div
 					class:list={[
-                    "grid size-14 place-items-center",
-                    "rounded-2xl shadow-inner bg-cocoa-100 border border-cocoa-200/15 text-cocoa-400",
-                ]}
+						"grid size-14 place-items-center",
+						"rounded-2xl shadow-inner bg-cocoa-100 border border-cocoa-200/15 text-cocoa-400",
+					]}
 				>
 					<FontAwesomeIcon
 						icon={faArchive}
@@ -35,9 +35,9 @@ const { spotlight } = Astro.props;
 				</div>
 				<span
 					class:list={[
-                        "px-4 py-1",
-                        "rounded-lg font-semibold text-xs tracking-[0.18em] uppercase border border-cocoa-200/40",
-                    ]}
+						"px-4 py-1",
+						"rounded-lg font-semibold text-xs tracking-[0.18em] uppercase border border-cocoa-200/40",
+					]}
 				>
 					Portfolio
 				</span>
@@ -58,61 +58,60 @@ const { spotlight } = Astro.props;
 		</div>
 
 		<!-- Spotlight -->
-		{spotlight &&
+		{spotlight && (
+			<div
+				class:list={[
+					"w-full p-3 overflow-hidden md:w-72",
+					"rounded-2xl border border-cocoa-200/40 bg-cocoa-100/80",
+				]}
+			>
 				<div
-                    class:list={[
-                        "w-full p-3 overflow-hidden md:w-72",
-                        "rounded-2xl border border-cocoa-200/40 bg-cocoa-100/80",
-                    ]}
-                >
-                    <div
-                        class:list={[
-                            "p-3",
-                            "rounded-xl text-snow-100",
-                        ]}
-                        style={`background: ${spotlight.accent.main}`}
-                    >
-                        <div class="flex justify-between items-start gap-3">
-                        <span class:list={[
-                            "px-2.5 py-1",
-                            "rounded-lg font-bold text-xs uppercase tracking-[0.14em] bg-snow-100/20",
-                        ]}
-                        >
-                            Spotlight
-                        </span>
-                            <div
-                                class:list={[
-                                    "grid size-12 place-items-center overflow-hidden",
-                                    "rounded-xl bg-snow-100/90",
-                                ]}
-                            >
-                                <Image
-                                        src={spotlight.logo}
-                                        alt={`${spotlight.name} logo`}
-                                        width={500}
-                                        height={500}
-										loading="eager"
-										fetchpriority="high"
-                                        class="w-10 aspect-square object-cover rounded-lg"
-                                />
-                            </div>
-                        </div>
+					class:list={["p-3", "rounded-xl text-snow-100"]}
+					style={`background: ${spotlight.accent.main}`}
+				>
+					<div class="flex justify-between items-start gap-3">
+						<span
+							class:list={[
+								"px-2.5 py-1",
+								"rounded-lg font-bold text-xs uppercase tracking-[0.14em] bg-snow-100/20",
+							]}
+						>
+							Spotlight
+						</span>
+						<div
+							class:list={[
+								"grid size-12 place-items-center overflow-hidden",
+								"rounded-xl bg-snow-100/90",
+							]}
+						>
+							<Image
+								src={spotlight.logo}
+								alt={`${spotlight.name} logo`}
+								width={500}
+								height={500}
+								loading="eager"
+								fetchpriority="high"
+								class="w-10 aspect-square object-cover rounded-lg"
+							/>
+						</div>
+					</div>
 
-                        <p
-                            class:list={[
-                                "max-w-44 mt-8",
-                                "font-manrope font-black text-lg leading-none",
-                            ]}
-                        >
-							{spotlight.name}
-                        </p>
-                    </div>
+					<p
+						class:list={[
+							"max-w-44 mt-8",
+							"font-manrope font-black text-lg leading-none",
+						]}
+					>
+						{spotlight.name}
+					</p>
+				</div>
 
-                    <div class="mt-3 px-1 pb-1 space-y-3">
-                        <p class="font-semibold text-xs uppercase tracking-[0.18em] text-cocoa-300">
-                            In Progress
-                        </p>
-                    </div>
-                </div>}
+				<div class="mt-3 px-1 pb-1 space-y-3">
+					<p class="font-semibold text-xs uppercase tracking-[0.18em] text-cocoa-300">
+						In Progress
+					</p>
+				</div>
+			</div>
+		)}
 	</div>
 </div>

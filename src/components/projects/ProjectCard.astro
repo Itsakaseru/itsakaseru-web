@@ -23,25 +23,25 @@ const {
 <a
 	href={href}
 	class:list={[
-            "group flex flex-col min-h-72 p-3 overflow-hidden hover:-translate-y-1",
-            "rounded-xl bg-snow-100/85 border border-cocoa-200/15 hover:bg-snow-100 hover:shadow-cocoa-200/15 hover:shadow-xl",
-            "transition duration-300",
-        ]}
+		"group flex flex-col min-h-72 p-3 overflow-hidden hover:-translate-y-1",
+		"rounded-xl bg-snow-100/85 border border-cocoa-200/15 hover:bg-snow-100 hover:shadow-cocoa-200/15 hover:shadow-xl",
+		"transition duration-300",
+	]}
 	style={`--accent-main: ${accent.main}; --accent-sub: ${accent.sub};`}
 >
 	<article class="flex flex-1 flex-col">
 		<div
 			class:list={[
-            "relative p-4 mb-4 overflow-hidden",
-            "rounded-lg text-snow-100",
-        ]}
+				"relative p-4 mb-4 overflow-hidden",
+				"rounded-lg text-snow-100",
+			]}
 			style={"background-color: var(--accent-main)"}
 		>
 			<div
 				class:list={[
-                "absolute -top-4 -right-2",
-                "font-manrope font-black leading-none text-5xl text-snow-100/15",
-            ]}
+					"absolute -top-4 -right-2",
+					"font-manrope font-black leading-none text-5xl text-snow-100/15",
+				]}
 			>
 				{createdAt.getFullYear()}
 			</div>
@@ -49,22 +49,23 @@ const {
 			<!-- Soft Light -->
 			<div
 				class:list={[
-                "absolute -bottom-10 left-8 size-28",
-                "rounded-full bg-snow-100/20 blur-2xl",
-            ]}
+					"absolute -bottom-10 left-8 size-28",
+					"rounded-full bg-snow-100/20 blur-2xl",
+				]}
 			/>
 
 			<div class="relative flex flex-col min-h-28 justify-between gap-6">
 				<div class="flex justify-between items-start gap-3">
-					{mark &&
-                    <span
-                        class:list={[
-                            "px-3 py-1",
-                            "rounded-lg font-bold text-xs uppercase tracking-[0.14em] bg-snow-100/20 backdrop-blur-sm",
-                        ]}
-                    >
-                        {mark}
-                    </span>}
+					{mark && (
+						<span
+							class:list={[
+								"px-3 py-1",
+								"rounded-lg font-bold text-xs uppercase tracking-[0.14em] bg-snow-100/20 backdrop-blur-sm",
+							]}
+						>
+							{mark}
+						</span>
+					)}
 				</div>
 
 				<div
@@ -72,10 +73,10 @@ const {
 				>
 					<div
 						class:list={[
-                        "grid size-24 place-items-center overflow-hidden",
-                        "rounded-2xl bg-snow-100/90 group-hover:scale-105",
-                        "transition duration-300",
-                    ]}
+							"grid size-24 place-items-center overflow-hidden",
+							"rounded-2xl bg-snow-100/90 group-hover:scale-105",
+							"transition duration-300",
+						]}
 					>
 						<Image
 							src={logo}
@@ -89,9 +90,9 @@ const {
 
 				<h2
 					class:list={[
-                    "max-w-32 ",
-                    "font-manrope font-black text-2xl leading-none",
-                ]}
+						"max-w-32 ",
+						"font-manrope font-black text-2xl leading-none",
+					]}
 				>
 					{name}
 				</h2>

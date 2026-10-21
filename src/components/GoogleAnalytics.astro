@@ -14,8 +14,8 @@ gtag("config", ${JSON.stringify(analyticsId)});`
 ---
 
 {analyticsId && (
-		<>
-			<script type="text/partytown" src={tagUrl}></script>
-			<script type="text/partytown" set:html={configuration}></script>
-		</>
-	)}
+	<>
+		<script type="text/partytown" src={tagUrl}></script>
+		<script type="text/partytown" set:html={configuration}></script>
+	</>
+)}

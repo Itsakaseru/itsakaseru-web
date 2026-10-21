@@ -161,8 +161,14 @@ const jsonLd = canonicalUrl
 		<meta property="og:image:alt" content={resolvedImageAlt}>
 		{imageDimensions && (
 			<>
-				<meta property="og:image:width" content={imageDimensions.width.toString()} />
-				<meta property="og:image:height" content={imageDimensions.height.toString()} />
+				<meta
+					property="og:image:width"
+					content={imageDimensions.width.toString()}
+				/>
+				<meta
+					property="og:image:height"
+					content={imageDimensions.height.toString()}
+				/>
 			</>
 		)}
 		{article && (

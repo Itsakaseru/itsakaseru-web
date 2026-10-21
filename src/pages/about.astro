@@ -147,34 +147,64 @@ const formatDocumentDate = (date: Date) => {
 				<SidebarCard title="Public Documents" icon={faFolderOpen}>
 					<div class="flex flex-col gap-2">
 						{documents.map((document) => (
-                            <a href={document.url} target="_blank" rel="noreferrer" class="group block rounded-lg border border-cocoa-200/20 bg-cocoa-100/70 p-3 transition hover:border-cocoa-200/40 hover:bg-snow-100">
+							<a
+								href={document.url}
+								target="_blank"
+								rel="noreferrer"
+								class="group block rounded-lg border border-cocoa-200/20 bg-cocoa-100/70 p-3 transition hover:border-cocoa-200/40 hover:bg-snow-100"
+							>
 								<span class="flex items-start justify-between gap-3">
 									<span>
-										<span class="font-manrope text-base font-black text-cocoa-500">{document.title}</span>
+										<span class="font-manrope text-base font-black text-cocoa-500">
+											{document.title}
+										</span>
 									</span>
-									<FontAwesomeIcon icon={faArrowUpRightFromSquare} className="mt-1 size-3 shrink-0 text-cocoa-300" />
+									<FontAwesomeIcon
+										icon={faArrowUpRightFromSquare}
+										className="mt-1 size-3 shrink-0 text-cocoa-300"
+									/>
 								</span>
-                                <span class="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-cocoa-300">
-									<FontAwesomeIcon icon={faClockRotateLeft} className="size-3" />
+								<span class="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-cocoa-300">
+									<FontAwesomeIcon
+										icon={faClockRotateLeft}
+										className="size-3"
+									/>
 									{formatDocumentDate(document.updatedAt)}
 								</span>
-                            </a>
+							</a>
 						))}
 					</div>
 				</SidebarCard>
 
 				<SidebarCard title="Find Me" icon={faLink}>
 					<div class="flex flex-col gap-2">
-						{SOCIAL_LINKS.length > 0 ? SOCIAL_LINKS.map((link) => (
-                            <a href={link.href} target="_blank" rel="noreferrer"  class="flex p-2 justify-between gap-2 rounded-lg border border-cocoa-200/20 bg-snow-100/60 hover:bg-cocoa-200/5 transition">
-                                <div class="flex min-w-0 items-center gap-2">
-									<FontAwesomeIcon icon={link.icon} className="size-3.5 shrink-0 text-cocoa-300" />
-									<p class="truncate text-sm font-semibold text-cocoa-500">{link.name}</p>
-								</div>
-                                <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="size-3 my-auto -translate-y-px" />
-                            </a>
-					)) : (
-                            <p class="rounded-lg bg-snow-100/60 px-3 py-2 text-sm text-cocoa-300">No external links listed yet.</p>
+						{SOCIAL_LINKS.length > 0 ? (
+							SOCIAL_LINKS.map((link) => (
+								<a
+									href={link.href}
+									target="_blank"
+									rel="noreferrer"
+									class="flex p-2 justify-between gap-2 rounded-lg border border-cocoa-200/20 bg-snow-100/60 hover:bg-cocoa-200/5 transition"
+								>
+									<div class="flex min-w-0 items-center gap-2">
+										<FontAwesomeIcon
+											icon={link.icon}
+											className="size-3.5 shrink-0 text-cocoa-300"
+										/>
+										<p class="truncate text-sm font-semibold text-cocoa-500">
+											{link.name}
+										</p>
+									</div>
+									<FontAwesomeIcon
+										icon={faArrowUpRightFromSquare}
+										className="size-3 my-auto -translate-y-px"
+									/>
+								</a>
+							))
+						) : (
+							<p class="rounded-lg bg-snow-100/60 px-3 py-2 text-sm text-cocoa-300">
+								No external links listed yet.
+							</p>
 						)}
 					</div>
 				</SidebarCard>

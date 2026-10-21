@@ -11,17 +11,12 @@ const { title, icon } = Astro.props;
 ---
 
 <div class="rounded-xl bg-snow-100/85 border border-cocoa-200/15 p-4">
-	<div
-		class:list={[
-            "flex items-center gap-3",
-            "text-cocoa-400",
-        ]}
-	>
+	<div class:list={["flex items-center gap-3", "text-cocoa-400"]}>
 		<div
 			class:list={[
-                "grid size-10 place-items-center",
-                "rounded-xl bg-cocoa-100 border border-cocoa-200/15",
-            ]}
+				"grid size-10 place-items-center",
+				"rounded-xl bg-cocoa-100 border border-cocoa-200/15",
+			]}
 		>
 			<FontAwesomeIcon icon={icon} className="size-4" />
 		</div>

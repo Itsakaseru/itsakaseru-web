@@ -34,7 +34,7 @@ const getPageUrl = (pageNumber: number) =>
 
 <section
 	class:list={[
-		`min-w-0 p-3 ${ posts.length > 0 ? "" : "min-h-[calc(100dvh-20rem)]" } overflow-hidden flex flex-col sm:p-4 lg:p-5`,
+		`min-w-0 p-3 ${posts.length > 0 ? "" : "min-h-[calc(100dvh-20rem)]"} overflow-hidden flex flex-col sm:p-4 lg:p-5`,
 		"rounded-xl bg-snow-100 border border-cocoa-200/15",
 	]}
 >
@@ -72,7 +72,7 @@ const getPageUrl = (pageNumber: number) =>
 			>
 				<div class="flex flex-col">
 					<div class="w-8 mx-auto">
-                        <FontAwesomeIcon icon={faBookmark} size="2xs"/>
+						<FontAwesomeIcon icon={faBookmark} size="2xs" />
 					</div>
 					<h3 class="mt-4 font-manrope font-black text-xl text-cocoa-500">
 						No posts available
@@ -82,152 +82,158 @@ const getPageUrl = (pageNumber: number) =>
 					</p>
 				</div>
 			</div>
-		) : posts.map((post) => (
-			<a
-				href={`/blog/${post.id}`}
-				class="group relative grid gap-3 sm:grid-cols-[5rem_1fr]"
-				style={`--accent-main: ${post.data.accent.main}; --accent-sub: ${post.data.accent.sub ?? "#fff6f4"};`}
-			>
-				<div class="z-10 hidden relative items-start gap-3 sm:flex">
-					<div
-						class:list={[
-							"z-10 relative grid size-14 shrink-0 place-items-center sm:size-16",
-							"text-center",
-							"rounded-xl border border-cocoa-200/20 bg-snow-100",
-							"shadow-lg shadow-cocoa-200/10",
-							"transition group-hover:border-(--accent-main)/40 group-hover:bg-(--accent-sub)",
-						]}
-					>
-						<div>
-							 <p class="font-manrope font-black text-xl leading-none text-cocoa-500">
-								{formatDate(post.data.publishedAt)}
-							</p>
-							<p class="text-[0.65rem] font-bold uppercase text-(--accent-main)">
-								{formatMonth(post.data.publishedAt)}
-							</p>
-							<p class="text-[0.65rem] tracking-widest text-cocoa-200">
-								{formatYear(post.data.publishedAt)}
-							</p>
+		) : (
+			posts.map((post) => (
+				<a
+					href={`/blog/${post.id}`}
+					class="group relative grid gap-3 sm:grid-cols-[5rem_1fr]"
+					style={`--accent-main: ${post.data.accent.main}; --accent-sub: ${post.data.accent.sub ?? "#fff6f4"};`}
+				>
+					<div class="z-10 hidden relative items-start gap-3 sm:flex">
+						<div
+							class:list={[
+								"z-10 relative grid size-14 shrink-0 place-items-center sm:size-16",
+								"text-center",
+								"rounded-xl border border-cocoa-200/20 bg-snow-100",
+								"shadow-lg shadow-cocoa-200/10",
+								"transition group-hover:border-(--accent-main)/40 group-hover:bg-(--accent-sub)",
+							]}
+						>
+							<div>
+								<p class="font-manrope font-black text-xl leading-none text-cocoa-500">
+									{formatDate(post.data.publishedAt)}
+								</p>
+								<p class="text-[0.65rem] font-bold uppercase text-(--accent-main)">
+									{formatMonth(post.data.publishedAt)}
+								</p>
+								<p class="text-[0.65rem] tracking-widest text-cocoa-200">
+									{formatYear(post.data.publishedAt)}
+								</p>
+							</div>
 						</div>
+
+						{/* Vertical connecting line */}
+						<span
+							class="absolute left-8 -right-3 top-8 hidden h-px bg-cocoa-200/25 transition-colors group-hover:bg-(--accent-main) sm:block"
+							aria-hidden="true"
+						/>
 					</div>
 
-					{ /* Vertical connecting line */ }
-					<span
-						class="absolute left-8 -right-3 top-8 hidden h-px bg-cocoa-200/25 transition-colors group-hover:bg-(--accent-main) sm:block"
-						aria-hidden="true"
-					/>
-				</div>
-
-				<article
-					class:list={[
-						"relative overflow-hidden",
-						"rounded-xl border border-cocoa-200/20 bg-snow-100/70",
-						"transition duration-300 hover:-translate-y-1 hover:border-(--accent-main)/40 hover:bg-snow-100 hover:shadow-xl hover:shadow-cocoa-200/15",
-					]}
-				>
-					<div class="min-h-45 grid lg:grid-cols-[minmax(0,1fr)_12rem] xl:grid-cols-[minmax(0,1fr)_15rem]">
-						<div class="min-w-0 p-4 flex flex-col gap-3">
-							<div class="flex flex-wrap items-center gap-2">
-								<span
-									class:list={[
-										"px-2.5 py-1 inline-flex items-center gap-1.5",
-										"font-bold text-xs uppercase tracking-widest text-(--accent-main)",
-										"rounded-lg bg-(--accent-sub) border border-(--accent-main)/15",
-									]}
-								>
-									<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
-									{post.data.category}
-								</span>
-								{post.data.mark && (
+					<article
+						class:list={[
+							"relative overflow-hidden",
+							"rounded-xl border border-cocoa-200/20 bg-snow-100/70",
+							"transition duration-300 hover:-translate-y-1 hover:border-(--accent-main)/40 hover:bg-snow-100 hover:shadow-xl hover:shadow-cocoa-200/15",
+						]}
+					>
+						<div class="min-h-45 grid lg:grid-cols-[minmax(0,1fr)_12rem] xl:grid-cols-[minmax(0,1fr)_15rem]">
+							<div class="min-w-0 p-4 flex flex-col gap-3">
+								<div class="flex flex-wrap items-center gap-2">
 									<span
 										class:list={[
 											"px-2.5 py-1 inline-flex items-center gap-1.5",
-											"font-bold text-xs uppercase tracking-widest text-cocoa-400",
+											"font-bold text-xs uppercase tracking-widest text-(--accent-main)",
+											"rounded-lg bg-(--accent-sub) border border-(--accent-main)/15",
+										]}
+									>
+										<FontAwesomeIcon icon={faLayerGroup} className="size-3" />
+										{post.data.category}
+									</span>
+									{post.data.mark && (
+										<span
+											class:list={[
+												"px-2.5 py-1 inline-flex items-center gap-1.5",
+												"font-bold text-xs uppercase tracking-widest text-cocoa-400",
+												"rounded-lg bg-cocoa-100 border border-cocoa-200/15",
+											]}
+										>
+											<FontAwesomeIcon
+												icon={BLOG_MARK_ICONS[post.data.mark]}
+												className="size-3"
+											/>
+											{post.data.mark}
+										</span>
+									)}
+									<span
+										class:list={[
+											"px-2.5 py-1 inline-flex items-center gap-1.5",
+											"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
 											"rounded-lg bg-cocoa-100 border border-cocoa-200/15",
 										]}
 									>
-										<FontAwesomeIcon icon={BLOG_MARK_ICONS[post.data.mark]} className="size-3" />
-										{post.data.mark}
+										<FontAwesomeIcon icon={faBookOpen} className="size-3" />
+										{calculateReadingTime(post.body ?? "")}
 									</span>
-								)}
-								<span
-									class:list={[
-										"px-2.5 py-1 inline-flex items-center gap-1.5",
-										"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
-										"rounded-lg bg-cocoa-100 border border-cocoa-200/15",
-									]}
-								>
-									<FontAwesomeIcon icon={faBookOpen} className="size-3" />
-									{calculateReadingTime(post.body ?? "")}
-								</span>
-							</div>
+								</div>
 
-							<div>
-								<h3
-									class:list={[
-										"max-w-3xl",
-										"font-manrope font-black text-xl leading-tight text-cocoa-500 line-clamp-2 sm:text-2xl",
-										"transition group-hover:text-(--accent-main)",
-									]}
-								>
-									{post.data.title}
-								</h3>
-								<p
-									class:list={[
-										"max-w-3xl mt-2",
-										"font-light text-sm text-cocoa-300/85 line-clamp-3",
-									]}
-								>
-									{post.data.description}
-								</p>
-							</div>
-
-							<div
-								class:list={[
-									"mt-auto flex flex-wrap items-center justify-between gap-3 sm:hidden",
-									"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
-								]}
-							>
-								<span>{formatDateMonthYear(post.data.publishedAt)}</span>
-								<span
-									class:list={[
-										"inline-flex items-center gap-2",
-										"text-cocoa-500",
-										"transition group-hover:text-(--accent-main)",
-									]}
-								>
-									Read post
-									<FontAwesomeIcon icon={faArrowRight} className="size-3" />
-								</span>
-							</div>
-						</div>
-
-						{
-							post.data.hero?.thumbnail &&
-                                <div
-                                        class:list={[
-											"hidden min-h-36 relative overflow-hidden sm:block lg:min-h-full",
-											"bg-(--accent-main)"
+								<div>
+									<h3
+										class:list={[
+											"max-w-3xl",
+											"font-manrope font-black text-xl leading-tight text-cocoa-500 line-clamp-2 sm:text-2xl",
+											"transition group-hover:text-(--accent-main)",
 										]}
-                                >
-                                    <img
-											src={post.data.hero.thumbnail.img.src}
-											alt={post.data.hero.thumbnail.alt ?? `${post.data.title} thumbnail`}
-											loading="lazy"
-											decoding="async"
-                                            class:list={[
-												"w-full h-full absolute inset-0",
-												"object-cover",
-												"transition duration-500 group-hover:scale-105",
-											]}
-                                    />
-                                </div>
-						}
+									>
+										{post.data.title}
+									</h3>
+									<p
+										class:list={[
+											"max-w-3xl mt-2",
+											"font-light text-sm text-cocoa-300/85 line-clamp-3",
+										]}
+									>
+										{post.data.description}
+									</p>
+								</div>
 
-					</div>
-				</article>
-			</a>
-		))}
+								<div
+									class:list={[
+										"mt-auto flex flex-wrap items-center justify-between gap-3 sm:hidden",
+										"font-semibold text-xs uppercase tracking-widest text-cocoa-300",
+									]}
+								>
+									<span>{formatDateMonthYear(post.data.publishedAt)}</span>
+									<span
+										class:list={[
+											"inline-flex items-center gap-2",
+											"text-cocoa-500",
+											"transition group-hover:text-(--accent-main)",
+										]}
+									>
+										Read post
+										<FontAwesomeIcon icon={faArrowRight} className="size-3" />
+									</span>
+								</div>
+							</div>
+
+							{post.data.hero?.thumbnail && (
+								<div
+									class:list={[
+										"hidden min-h-36 relative overflow-hidden sm:block lg:min-h-full",
+										"bg-(--accent-main)",
+									]}
+								>
+									<img
+										src={post.data.hero.thumbnail.img.src}
+										alt={
+											post.data.hero.thumbnail.alt ??
+											`${post.data.title} thumbnail`
+										}
+										loading="lazy"
+										decoding="async"
+										class:list={[
+											"w-full h-full absolute inset-0",
+											"object-cover",
+											"transition duration-500 group-hover:scale-105",
+										]}
+									/>
+								</div>
+							)}
+						</div>
+					</article>
+				</a>
+			))
+		)}
 	</div>
 
 	{page.lastPage > 1 && (
@@ -282,7 +288,9 @@ const getPageUrl = (pageNumber: number) =>
 									? "bg-cocoa-300 text-snow-100"
 									: "bg-snow-100 text-cocoa-300 border border-cocoa-200/15 hover:bg-cocoa-100 hover:text-cocoa-500",
 							]}
-							aria-current={pageNumber === page.currentPage ? "page" : undefined}
+							aria-current={
+								pageNumber === page.currentPage ? "page" : undefined
+							}
 						>
 							{String(pageNumber).padStart(2, "0")}
 						</a>
@@ -293,7 +301,7 @@ const getPageUrl = (pageNumber: number) =>
 					<a
 						href={page.url.next}
 						class="inline-flex items-center justify-center gap-2 rounded-xl bg-cocoa-300 px-4 py-3 text-sm font-bold text-snow-100 hover:bg-cocoa-400 sm:justify-end"
-                        class:list={[
+						class:list={[
 							"px-4 py-3 inline-flex items-center justify-center gap-2 sm:justify-start",
 							"font-bold text-sm text-snow-100",
 							"rounded-xl bg-cocoa-300",
@@ -306,7 +314,7 @@ const getPageUrl = (pageNumber: number) =>
 				) : (
 					<span
 						aria-disabled="true"
-                        class:list={[
+						class:list={[
 							"px-4 py-3 inline-flex items-center justify-center gap-2 opacity-70 sm:justify-start",
 							"font-bold text-sm text-cocoa-200",
 							"rounded-xl bg-snow-100/60 border border-cocoa-200/15",
