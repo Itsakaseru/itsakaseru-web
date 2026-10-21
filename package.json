@@ -13,10 +13,10 @@
 		"content:sync": "sh tools/sync-contents.sh"
 	},
 	"dependencies": {
-		"@astrojs/markdown-satteri": "^0.4.2",
-		"@astrojs/mdx": "^8.0.2",
+		"@astrojs/markdown-satteri": "^0.4.4",
+		"@astrojs/mdx": "^8.1.0",
 		"@astrojs/partytown": "^2.1.8",
-		"@astrojs/react": "^7.0.0",
+		"@astrojs/react": "^7.1.0",
 		"@astrojs/sitemap": "^3.7.4",
 		"@fortawesome/fontawesome-svg-core": "^7.3.1",
 		"@fortawesome/free-brands-svg-icons": "^7.3.1",
@@ -27,19 +27,19 @@
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
 		"animejs": "^4.5.0",
-		"astro": "^7.3.5",
+		"astro": "^7.4.1",
 		"astro-icon": "^1.2.0",
 		"astro-og-canvas": "^0.13.2",
 		"astro-pagefind": "^2.0.1",
 		"canvaskit-wasm": "^0.42.0",
-		"motion": "^13.4.4",
-		"react": "^19.3.0",
-		"react-dom": "^19.3.0",
-		"sharp": "^0.35.4",
+		"motion": "^14.4.0",
+		"react": "^19.3.1",
+		"react-dom": "^19.3.1",
+		"sharp": "^0.35.5",
 		"tailwindcss": "^4.3.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.5.14",
-		"@iconify-json/tabler": "^1.2.40"
+		"@biomejs/biome": "2.5.15",
+		"@iconify-json/tabler": "^1.2.42"
 	}
 }
