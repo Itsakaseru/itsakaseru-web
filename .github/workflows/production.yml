@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: production
-      url: https://itsaksaeru.me
+      url: https://itsakaseru.me
 
     env:
       # Registry information
@@ -28,7 +28,7 @@ jobs:
       REGISTRY_REPOSITORY: ${{ secrets.REGISTRY_REPOSITORY }}
 
       # Astro build environment
-      SITE_URL: "https://itsaksaeru.me"
+      SITE_URL: "https://itsakaseru.me"
 
       # Railpack build environment
       RAILPACK_VERSION: "0.38.0"

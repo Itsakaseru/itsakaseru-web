@@ -26,7 +26,7 @@ jobs:
       REGISTRY_REPOSITORY: ${{ secrets.REGISTRY_REPOSITORY }}
 
       # Astro build environment
-      SITE_URL: "https://staging.itsaksaeru.me"
+      SITE_URL: "https://staging.itsakaseru.me"
 
       # Railpack build environment
       RAILPACK_VERSION: "0.38.0"
