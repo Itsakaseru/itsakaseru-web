@@ -29,6 +29,7 @@ jobs:
 
       # Astro build environment
       SITE_URL: "https://itsakaseru.me"
+      GOOGLE_ANALYTICS_ID: ${{ secrets.GOOGLE_ANALYTICS_ID }}
 
       # Railpack build environment
       RAILPACK_VERSION: "0.38.0"
@@ -131,6 +132,7 @@ jobs:
             --platform linux/amd64 \
             --progress plain \
             --env "SITE_URL=${SITE_URL}" \
+            --env "GOOGLE_ANALYTICS_ID=${GOOGLE_ANALYTICS_ID}" \
             --env "RAILPACK_DEPLOY_APT_PACKAGES=${RAILPACK_DEPLOY_APT_PACKAGES}" \
             .
 
